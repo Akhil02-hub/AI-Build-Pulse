@@ -1,0 +1,28 @@
+{
+    "rewrites": [
+        {
+            "source": "/((?!data/|logo\\.png|styles\\.css|app\\.js|config\\.js).*)",
+            "destination": "/index.html"
+        }
+    ],
+    "headers": [
+        {
+            "source": "/data/news.json",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=0, s-maxage=300, stale-while-revalidate=86400"
+                }
+            ]
+        },
+        {
+            "source": "/(styles|config|app).(css|js)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=31536000, immutable"
+                }
+            ]
+        }
+    ]
+}

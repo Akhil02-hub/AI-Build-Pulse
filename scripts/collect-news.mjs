@@ -50,11 +50,18 @@ function canon(url) {
 async function rss(s) {
     try {
         const f = await parser.parseURL(s.url);
-        return (f.items || []).slice(0, 15).map(i => ({
-            title: i.title || '', summary: clean(i.contentSnippet || i.content || ''),
-            url: canon(i.link || ''), publishedAt: i.isoDate || i.pubDate || new Date().toISOString(),
-            source: s.name, category: s.category, trusted: s.trusted,
-        }));
+        return (f.items || []).slice(0, 15).map(i => {
+            let imageUrl = null;
+            if (i.enclosure && i.enclosure.url) imageUrl = i.enclosure.url;
+            else if (i['media:content'] && i['media:content'].$ && i['media:content'].$.url) imageUrl = i['media:content'].$.url;
+            else if (i.content && i.content.match(/<img[^>]+src="([^">]+)"/)) imageUrl = i.content.match(/<img[^>]+src="([^">]+)"/)[1];
+
+            return {
+                title: i.title || '', summary: clean(i.contentSnippet || i.content || ''),
+                url: canon(i.link || ''), publishedAt: i.isoDate || i.pubDate || new Date().toISOString(),
+                source: s.name, category: s.category, trusted: s.trusted, image: imageUrl
+            };
+        });
     } catch (e) { console.warn(`RSS ${s.name}: ${e.message}`); return []; }
 }
 async function hn(s) {
@@ -102,6 +109,53 @@ async function fetchAll(sources) {
         await new Promise(r => setTimeout(r, 300));
     }
     return out;
+}
+
+/* --- REAL GITHUB TRENDING FETCHER --- */
+async function fetchGitHubTrending() {
+    try {
+        // Fetch top AI repos created in the last 14 days
+        const d = new Date();
+        d.setDate(d.getDate() - 14);
+        const dateStr = d.toISOString().split('T')[0];
+        const r = await fetch(`https://api.github.com/search/repositories?q=topic:artificial-intelligence+created:>${dateStr}&sort=stars&order=desc&per_page=6`, {
+            headers: { 'User-Agent': 'AI-Engineer-Pulse' }
+        });
+        const data = await r.json();
+        return (data.items || []).map(repo => ({
+            name: repo.full_name,
+            description: repo.description || 'No description provided.',
+            stars: repo.stargazers_count,
+            forks: repo.forks_count,
+            language: repo.language || 'Unknown',
+            url: repo.html_url
+        }));
+    } catch (e) {
+        console.warn(`GitHub Trending: ${e.message}`);
+        return [];
+    }
+}
+
+/* --- REAL JOB RADAR FETCHER --- */
+async function fetchJobs() {
+    try {
+        // Fetch remote AI/ML jobs from a public API
+        const r = await fetch(`https://remoteok.com/api`);
+        const data = await r.json();
+        // Filter for AI/ML/Tech jobs
+        const jobs = data.filter(j => j.position && (j.position.toLowerCase().includes('ai') || j.position.toLowerCase().includes('machine learning') || j.position.toLowerCase().includes('data'))).slice(1, 6); // Skip first element (legal)
+
+        return jobs.map(job => ({
+            title: job.position,
+            company: job.company,
+            location: job.location || 'Remote',
+            salary: job.salary_min ? `$${Math.round(job.salary_min / 1000)}k - $${Math.round(job.salary_max / 1000)}k` : 'Competitive',
+            url: job.url
+        }));
+    } catch (e) {
+        console.warn(`Jobs: ${e.message}`);
+        return [];
+    }
 }
 
 /* ---------- Scoring & categorisation ---------- */
@@ -269,12 +323,21 @@ async function main() {
     );
 
     const ist = new Date(now.getTime() + 5.5 * 3600 * 1000);
+
+    // Fetch the new features
+    console.log('Fetching GitHub Trending...');
+    const githubTrending = await fetchGitHubTrending();
+    console.log('Fetching Jobs...');
+    const jobs = await fetchJobs();
+
     const payload = {
         generatedAt: ist.toISOString().replace('Z', '+05:30'),
         retentionDays: 7,
         totalStories: finalArticles.length,
         newToday: finalArticles.filter(a => new Date(a.addedAt || a.publishedAt).getTime() >= freshCutoff).length,
         articles: finalArticles,
+        githubTrending: githubTrending,
+        jobs: jobs
     };
 
     /* 9. Write news.json + today's archive */

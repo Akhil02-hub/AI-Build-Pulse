@@ -1,0 +1,91 @@
+AI ENGINEER PULSE
+Daily AI Industry Intelligence
+https://aiengineerdaily.vercel.app/
+
+------------------------------------------------------------
+WHAT IT IS
+------------------------------------------------------------
+AI Engineer Pulse is a daily news dashboard for people who build with AI.
+Instead of scrolling ten different feeds every morning, you open one page and
+get the AI engineering stories from the last 24 hours, already sorted by
+category.
+
+It is not a general tech news site. It is deliberately narrow: LLM engineering,
+RAG, AI agents, model training, inference, AI infrastructure, MLOps, and
+multimodal AI. If it doesn't help you ship or understand an AI system, it
+usually doesn't make the cut.
+
+------------------------------------------------------------
+WHO IT'S FOR
+------------------------------------------------------------
+- AI engineers and ML practitioners keeping up without losing a morning
+- Researchers who want the applied signal, not just the papers
+- Technical founders and platform teams tracking tooling and infra
+
+------------------------------------------------------------
+WHAT'S INSIDE
+------------------------------------------------------------
+Today's Overview   The last 24 hours. Searchable, filterable, refreshable.
+Weekly Overview    The week rolled up, for spotting direction over noise.
+Briefing           A short narrative digest — the "read this first" summary.
+Research           Papers and technical write-ups worth your time.
+Tools              Frameworks, SDKs, and utilities that just shipped.
+Trends             Which topics are heating up across the aggregated feed.
+Reading List       Save things now, read them later (requires an account).
+
+Also included: a search box, category filters, light/dark themes, and a
+built-in chatbot that answers questions about the site and searches the news.
+
+------------------------------------------------------------
+HOW IT WORKS
+------------------------------------------------------------
+Every day at midnight IST, an automated GitHub Action fetches fresh articles,
+filters them against the engineering-focused categories, and updates the feed.
+If the data ever goes stale, the app shows a banner so you know what you're
+looking at.
+
+The site is a static single-page app backed by Supabase for authentication and
+data. Accounts are optional — browsing never requires one. Sign-in is email and
+password, with a security question (first pet, birth city, or high school) so
+you can reset your own password without waiting on support.
+
+No paywall. No ads. No account needed to read.
+
+------------------------------------------------------------
+WHO BUILT IT
+------------------------------------------------------------
+AI Engineer Pulse is built and curated by amarachinthaakhil.
+LinkedIn: https://www.linkedin.com/in/amarachinthaakhil
+
+------------------------------------------------------------
+FAQ
+------------------------------------------------------------
+Q: What kind of news does this show?
+A: LLM engineering, RAG, agents, training, inference, AI infra, MLOps,
+   and multimodal AI.
+
+Q: How often is it updated?
+A: An automated pipeline runs every midnight IST.
+
+Q: Do I need an account?
+A: No. Accounts are only needed for the Reading List.
+
+Q: Is it free?
+A: Yes.
+
+Q: How do I reset my password?
+A: Use "Forgot Password?" on the login screen. Enter your email, answer your
+   security question, and set a new password.
+
+------------------------------------------------------------
+LINKS
+------------------------------------------------------------
+Privacy Policy    https://aiengineerdaily.vercel.app/#privacy
+Terms of Service  https://aiengineerdaily.vercel.app/#terms
+About / FAQ       https://aiengineerdaily.vercel.app/#about
+llms.txt          https://aiengineerdaily.vercel.app/llms.txt
+ai.txt            https://aiengineerdaily.vercel.app/ai.txt
+
+------------------------------------------------------------
+Made with ❤️ by amarachinthaakhil
+------------------------------------------------------------
