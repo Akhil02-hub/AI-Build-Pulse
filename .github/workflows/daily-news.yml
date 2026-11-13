@@ -10,6 +10,11 @@ on:
       timezone: 'Asia/Kolkata'
   workflow_dispatch:
 
+# Prevent overlapping runs from clashing
+concurrency:
+  group: daily-news-${{ github.ref }}
+  cancel-in-progress: false
+
 permissions:
   contents: write
   models: read
@@ -18,24 +23,40 @@ jobs:
   collect:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Fetch all history so we can rebase
+          fetch-depth: 0
 
-      - uses: actions/setup-node@v4
-        with: { node-version: 22 }
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
 
-      - run: npm install
+      - name: Install dependencies
+        run: npm install
 
       - name: Collect + prune feed (24h fetch · 7-day retention)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/collect-news.mjs
 
-      - name: Commit
+      - name: Commit and Push
         run: |
           git config user.name "akhil02-hub"
           git config user.email "amarachinthaakhil@gmail.com"
+          
+          # 1. Stage the new data
           git add data/
+          
+          # 2. Only commit if there are actually changes
           if ! git diff --cached --quiet; then
             git commit -m "Update daily news (retention: 7 days)"
-            git push
+            
+            # 3. Pull the absolute latest changes and place our new commit on top
+            git pull --rebase origin main
+            
+            # 4. Push safely
+            git push origin main
           fi
