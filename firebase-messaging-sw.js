@@ -1,9 +1,11 @@
-importScripts('https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js');
-importScripts('https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging-compat.js');
+importScripts("https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js");
+importScripts("https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js");
 
 firebase.initializeApp({
     apiKey: "AIzaSyBCMMrxLCzl7A157ulUF8KHUHZKtimVSIw",
+    authDomain: "sanjanaias-dc2ce.firebaseapp.com",
     projectId: "sanjanaias-dc2ce",
+    storageBucket: "sanjanaias-dc2ce.firebasestorage.app",
     messagingSenderId: "552428288490",
     appId: "1:552428288490:android:b66d0a61fc3b5498e49a93"
 });
@@ -11,23 +13,31 @@ firebase.initializeApp({
 const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage((payload) => {
-    self.registration.showNotification(payload.notification.title, {
-        body: payload.notification.body,
-        icon: '/logo.png',
-        data: { url: payload.data.url }
+    const title = payload.notification?.title || "AI-Build-Pulse";
+    const body = payload.notification?.body || "";
+    const link = payload.fcmOptions?.link || payload.data?.link || "https://aibuildpulse.vercel.app/";
+
+    self.registration.showNotification(title, {
+        body: body,
+        icon: "/logo.png",
+        badge: "/logo.png",
+        data: { link: link },
     });
 });
 
-self.addEventListener('notificationclick', function (event) {
+self.addEventListener("notificationclick", (event) => {
     event.notification.close();
-    const urlToOpen = event.notification.data.url || '/';
+    const link = event.notification.data?.link || "/";
+
     event.waitUntil(
-        clients.matchAll({ type: 'window' }).then(windowClients => {
-            for (var i = 0; i < windowClients.length; i++) {
-                var client = windowClients[i];
-                if (client.url === urlToOpen && 'focus' in client) return client.focus();
+        clients.matchAll({ type: "window", includeUncontrolled: true }).then((clientList) => {
+            for (const client of clientList) {
+                if (client.url.startsWith(self.location.origin) && "focus" in client) {
+                    if ("navigate" in client) client.navigate(link);
+                    return client.focus();
+                }
             }
-            if (clients.openWindow) return clients.openWindow(urlToOpen);
+            if (clients.openWindow) return clients.openWindow(link);
         })
     );
 });

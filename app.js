@@ -3,6 +3,8 @@ const CFG = window.APP_CONFIG || {};
 const sb = (CFG.supabaseUrl && CFG.supabaseAnonKey && window.supabase)
     ? window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey) : null;
 
+window.sb = sb; // Expose for push notifications
+
 const state = {
     news: null,
     articles: [],

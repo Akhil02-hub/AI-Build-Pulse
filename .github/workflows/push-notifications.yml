@@ -1,0 +1,58 @@
+name: AI-Build-Pulse Daily Push Schedule
+
+on:
+  schedule:
+    - cron: '30 2 * * *'  # 8:00 AM IST
+    - cron: '30 5 * * *'  # 11:00 AM IST
+    - cron: '30 8 * * *'  # 2:00 PM IST
+    - cron: '30 11 * * *' # 5:00 PM IST
+    - cron: '30 14 * * *' # 8:00 PM IST
+    - cron: '30 17 * * *' # 11:00 PM IST
+  workflow_dispatch:      # Allows you to test manually
+
+jobs:
+  send-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm install google-auth-library
+      
+      - name: Send 8 AM Notification
+        if: github.event.schedule == '30 2 * * *' || github.event_name == 'workflow_dispatch'
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: node send-push.js "Today's AI Briefing is Live" "Check out the top AI engineering and founder stories from the last 24 hours." "https://aibuildpulse.vercel.app/today"
+
+      - name: Send 11 AM Notification
+        if: github.event.schedule == '30 5 * * *' || github.event_name == 'workflow_dispatch'
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: node send-push.js "Founder Update" "New funding rounds and startup opportunities just added." "https://aibuildpulse.vercel.app/founder"
+
+      - name: Send 2 PM Notification
+        if: github.event.schedule == '30 8 * * *' || github.event_name == 'workflow_dispatch'
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: node send-push.js "Tech Radar Update" "See what new AI frameworks and tools are trending today." "https://aibuildpulse.vercel.app/tools"
+
+      - name: Send 5 PM Notification
+        if: github.event.schedule == '30 11 * * *' || github.event_name == 'workflow_dispatch'
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: node send-push.js "Research Papers" "Fresh AI research and academic breakthroughs are ready." "https://aibuildpulse.vercel.app/research"
+
+      - name: Send 8 PM Notification
+        if: github.event.schedule == '30 14 * * *' || github.event_name == 'workflow_dispatch'
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: node send-push.js "Weekly Trends" "Check out the most active categories in AI this week." "https://aibuildpulse.vercel.app/trends"
+
+      - name: Send 11 PM Notification
+        if: github.event.schedule == '30 17 * * *' || github.event_name == 'workflow_dispatch'
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: node send-push.js "Daily Wrap-up" "Catch up on anything you missed today before you sleep." "https://aibuildpulse.vercel.app/weekly"
