@@ -2,7 +2,8 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 const NEWS_FILE = path.join(process.cwd(), 'data', 'news.json');
-const FIREBASE_SERVER_KEY = process.env.FIREBASE_SERVER_KEY;
+const ONESIGNAL_APP_ID = process.env.ONESIGNAL_APP_ID;
+const ONESIGNAL_REST_API_KEY = process.env.ONESIGNAL_REST_API_KEY;
 
 async function main() {
     const data = JSON.parse(await fs.readFile(NEWS_FILE, 'utf8'));
@@ -21,24 +22,25 @@ async function main() {
     else if (istHour === 23) index = 5;
 
     const article = articles[index] || articles[0];
+
+    // OneSignal API Payload
     const payload = {
-        to: "/topics/daily_news",
-        notification: {
-            title: article.category + " Update",
-            body: article.title.substring(0, 100) + "...",
-        },
-        data: { url: "https://aibuildpulse.vercel.app/article?id=" + article.id }
+        app_id: ONESIGNAL_APP_ID,
+        included_segments: ["Subscribed Users"], // Sends to everyone who allowed notifications
+        headings: { en: article.category + " Update" },
+        contents: { en: article.title.substring(0, 100) + "..." },
+        url: "https://aibuildpulse.vercel.app/article?id=" + article.id
     };
 
-    const res = await fetch('https://fcm.googleapis.com/fcm/send', {
+    const res = await fetch('https://onesignal.com/api/v1/notifications', {
         method: 'POST',
         headers: {
-            'Authorization': `key=${FIREBASE_SERVER_KEY}`,
+            'Authorization': `Basic ${ONESIGNAL_REST_API_KEY}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload)
     });
 
-    console.log('FCM Response:', await res.json());
+    console.log('OneSignal Response:', await res.json());
 }
 main().catch(console.error);
