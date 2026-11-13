@@ -40,4 +40,4 @@ User-agent: Bytespider
 Allow: /
 
 # Sitemap location
-Sitemap: https://aiengineerdaily.vercel.app/sitemap.xml
+Sitemap: https://aibuildpulse.vercel.app/sitemap.xml

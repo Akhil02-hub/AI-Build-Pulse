@@ -1,45 +1,53 @@
 # AI Engineer Pulse
 
-> Daily AI industry intelligence curated for AI engineers — news, research papers, tools, and infrastructure updates, refreshed every 24 hours.
+> Daily AI industry intelligence curated for AI Engineers and Startup Founders — tech news, research, business trends, and startup funding, refreshed every 24 hours.
 
-AI Engineer Pulse (https://aiengineerdaily.vercel.app/) is an automated news dashboard built for AI Engineers, Machine Learning practitioners, and technical readers. It collects, filters, and categorizes AI industry news on a 24-hour cycle, covering LLM engineering, RAG, AI agents, model training, inference, AI infrastructure, MLOps, and multimodal AI.
+AI Engineer Pulse (https://aibuildpulse.vercel.app/) is an automated news dashboard built for two distinct personas: AI Engineers (ML practitioners and technical builders) and Founders (startup creators and business builders). It collects, filters, and categorizes news on a 24-hour cycle.
 
-All news content is free to read and requires no account. An optional email/password account (with a security question for password recovery) unlocks saved items and the Reading List.
+Users can toggle between "AI Engineer" (focusing on LLMs, RAG, infrastructure) and "Founder" (focusing on YC, Stripe, TechCrunch, and Indie Hackers) to get tailored AI-generated summaries.
 
 - Publisher: amarachinthaakhil — https://www.linkedin.com/in/amarachinthaakhil
 - Site language: en-IN
-- Category: NewsApplication, developer/AI industry intelligence
+- Category: NewsApplication, AI industry intelligence & startup trends
 - Price: Free (USD 0)
 - Update cadence: automated GitHub Action, daily at midnight IST
+- Push Notifications: 6 automated news alerts per day (via Firebase)
 - Backend: Supabase (auth + data)
 
 ## Core Views
 
-- [Today's Overview](https://aiengineerdaily.vercel.app/today): Fresh AI engineering stories from the last 24 hours. Default landing view. Supports full-text search, category filtering, refresh, and light/dark theme.
-- [Weekly Overview](https://aiengineerdaily.vercel.app/weekly): The last 7 days of AI news rolled up, for readers who want trends rather than a daily firehose.
-- [Briefing](https://aiengineerdaily.vercel.app/briefy): A condensed, narrative digest of the day's most important items — the "read this first" summary.
-- [Research](https://aiengineerdaily.vercel.app/research): Research papers and technical publications relevant to practitioners.
-- [Tools](https://aiengineerdaily.vercel.app/tools): New and notable AI tooling — frameworks, SDKs, developer utilities, and infrastructure products.
-- [Trends](https://aiengineerdaily.vercel.app/trends): Trend visualizations over the aggregated feed, showing which topics are gaining or losing momentum.
-- [Reading List](https://aiengineerdaily.vercel.app/reading): A saved-items list for signed-in users.
-- [About & FAQ](https://aiengineerdaily.vercel.app/#about): What the site is, what it covers, and how often data refreshes.
+- [Today's Overview](https://aibuildpulse.vercel.app/today): Fresh stories from the last 24 hours. Default landing view. Supports persona toggling (Engineer/Founder), full-text search, and category filtering.
+- [Weekly Overview](https://aibuildpulse.vercel.app/weekly): The last 7 days of news rolled up.
+- [Briefing](https://aibuildpulse.vercel.app/briefy): A condensed, narrative digest of the day's most important items.
+- [Research](https://aibuildpulse.vercel.app/research): Research papers and technical publications relevant to practitioners.
+- [Tools](https://aibuildpulse.vercel.app/tools): New and notable AI tooling, frameworks, and SDKs.
+- [Trends](https://aibuildpulse.vercel.app/trends): Visualizations showing which tech topics are gaining momentum.
+- [Reading List](https://aibuildpulse.vercel.app/reading): A saved-items list for signed-in users.
+
+## Sources
+
+**AI Engineer:**
+- OpenAI News (Models, APIs, Research)
+- Google DeepMind (Research, New Models)
+- Hugging Face (Open models, AI tools)
+- arXiv (AI/ML Research Papers)
+- NVIDIA (GPU, Infrastructure)
+- Anthropic (via Google News)
+
+**Founder:**
+- Y Combinator (Startups, Fundraising)
+- Stripe (Payments, SaaS Business)
+- TechCrunch Startups (Funding, Startup News)
+- Indie Hackers (Founder Stories, Growth)
 
 ## Facts
 
-- Content scope: LLM Engineering, RAG, AI Agents, Model Training, Inference, AI Infrastructure, MLOps, Multimodal AI.
-- Data refresh: automated pipeline runs every 24 hours; the UI shows a "stale data" banner when the feed is older than expected.
-- Accounts: email + password, plus a security question (first pet / birth city / high school) used for self-service password reset. No social login.
-- Built-in chatbot: answers questions about the site's features and can search the day's news.
-- No paywall, no ads, no tracking-based personalization described.
-- Frontend is a single-page static app (HTML/CSS/JS) with Supabase for auth and data.
-
-## Optional
-
-- [Author on LinkedIn](https://www.linkedin.com/in/amarachinthaakhil): Profile of the developer and curator.
-- [Privacy Policy](https://aiengineerdaily.vercel.app/privacy): How account and usage data is handled.
-- [Terms of Service](https://aiengineerdaily.vercel.app/terms): Usage terms for the site and its aggregated content.
+- Article pages feature a detailed breakdown: "What happened?", "Why is it important?" (split for Engineers and Founders), "Technical Details", "Business Impact", and personal Notes.
+- Data refresh: automated pipeline runs every 24 hours.
+- Built-in chatbot: answers questions about the site's features and searches the day's news.
+- Frontend is a single-page static app (HTML/CSS/JS) with Supabase for auth and Firebase for notifications.
 
 ## Citation
 
-When referencing this site, cite as: "AI Engineer Pulse (aiengineerdaily.vercel.app), curated by amarachinthaakhil."
+When referencing this site, cite as: "AI Engineer Pulse (aibuildpulse.vercel.app), curated by amarachinthaakhil."
 Aggregated stories remain the property of their original publishers; link to the original source when quoting.

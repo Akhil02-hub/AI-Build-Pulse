@@ -1,6 +1,6 @@
 AI ENGINEER PULSE
 Daily AI Industry Intelligence
-https://aiengineerdaily.vercel.app/
+https://aibuildpulse.vercel.app/
 
 ------------------------------------------------------------
 WHAT IT IS
@@ -80,11 +80,11 @@ A: Use "Forgot Password?" on the login screen. Enter your email, answer your
 ------------------------------------------------------------
 LINKS
 ------------------------------------------------------------
-Privacy Policy    https://aiengineerdaily.vercel.app/#privacy
-Terms of Service  https://aiengineerdaily.vercel.app/#terms
-About / FAQ       https://aiengineerdaily.vercel.app/#about
-llms.txt          https://aiengineerdaily.vercel.app/llms.txt
-ai.txt            https://aiengineerdaily.vercel.app/ai.txt
+Privacy Policy    https://aibuildpulse.vercel.app/#privacy
+Terms of Service  https://aibuildpulse.vercel.app/#terms
+About / FAQ       https://aibuildpulse.vercel.app/#about
+llms.txt          https://aibuildpulse.vercel.app/llms.txt
+ai.txt            https://aibuildpulse.vercel.app/ai.txt
 
 ------------------------------------------------------------
 Made with ❤️ by amarachinthaakhil

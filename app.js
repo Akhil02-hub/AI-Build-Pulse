@@ -657,7 +657,6 @@ if (notesArea) {
         }, 500); // Save after 0.5s of no typing
     });
 }
-}
 
 function renderFeed() {
     const feed = $('#newsFeed');
@@ -1205,6 +1204,7 @@ function initPolicies() {
 
 /* ---------- Boot ---------- */
 async function boot() {
+    if (typeof initNotifications === 'function') initNotifications();
     initTheme();
     initNav();
     loadLocalBookmarks();

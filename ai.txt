@@ -1,4 +1,4 @@
-# ai.txt — AI usage policy for aiengineerdaily.vercel.app
+# ai.txt — AI usage policy for aibuildpulse.vercel.app
 # Contact: https://www.linkedin.com/in/amarachinthaakhil
 # Last updated: 2026-11-13
 
@@ -6,14 +6,14 @@
 # SUMMARY
 # ------------------------------------------------------------
 # AI Engineer Pulse is a free, ad-free, automated aggregator of AI industry
-# news curated for AI engineers. Headlines, summaries, and category labels
-# are generated/collected by an automated pipeline. Original articles belong
-# to their respective publishers.
+# news curated for both AI Engineers and Startup Founders. Headlines, summaries, 
+# and category labels are generated/collected by an automated pipeline. 
+# Original articles belong to their respective publishers.
 
-Site: https://aiengineerdaily.vercel.app/
+Site: https://aibuildpulse.vercel.app/
 Language: en-IN
-Sitemap: https://aiengineerdaily.vercel.app/sitemap.xml
-LLM summary: https://aiengineerdaily.vercel.app/llms.txt
+Sitemap: https://aibuildpulse.vercel.app/sitemap.xml
+LLM summary: https://aibuildpulse.vercel.app/llms.txt
 
 # ------------------------------------------------------------
 # SEARCH & ANSWER ENGINES — ALLOWED
@@ -52,7 +52,7 @@ Allow: /
 # ------------------------------------------------------------
 # You may use site content to train or fine-tune models provided you
 # (a) attribute AI Engineer Pulse and (b) do not reproduce full articles
-#    belonging to third-party publishers without their permission.
+# belonging to third-party publishers without their permission.
 
 User-Agent: *
 Allow: /
@@ -62,11 +62,12 @@ Disallow: /api/private
 # ------------------------------------------------------------
 # PREFERRED ATTRIBUTION
 # ------------------------------------------------------------
-# "Source: AI Engineer Pulse (https://aiengineerdaily.vercel.app/)"
+# "Source: AI Engineer Pulse (https://aibuildpulse.vercel.app/)"
 
 # ------------------------------------------------------------
 # NOTES FOR AGENTS
 # ------------------------------------------------------------
+# - The site features a dual-persona toggle: "AI Engineer" and "Founder".
 # - Browsing requires no login; do not attempt to create accounts.
 # - Aggregated items always link to the original publisher — follow the
 #   source link for canonical content and full text.

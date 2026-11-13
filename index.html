@@ -509,6 +509,35 @@
     </div>
 
     <script src="app.js"></script>
+
+    <script src="config.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-messaging-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBCMMrxLCzl7A157ulUF8KHUHZKtimVSIw",
+            authDomain: "sanjanaias-dc2ce.firebaseapp.com",
+            projectId: "sanjanaias-dc2ce",
+            storageBucket: "sanjanaias-dc2ce.firebasestorage.app",
+            messagingSenderId: "552428288490",
+            appId: "1:552428288490:android:b66d0a61fc3b5498e49a93"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const messaging = firebase.messaging();
+
+        function initNotifications() {
+            Notification.requestPermission().then((permission) => {
+                if (permission === 'granted') {
+                    // YOU STILL NEED TO ADD YOUR VAPID KEY HERE:
+                    messaging.getToken({ vapidKey: 'YOUR_VAPID_KEY' }).then((token) => {
+                        console.log('FCM Token:', token);
+                    });
+                }
+            });
+        }
+    </script>
+
 </body>
 
 </html>
