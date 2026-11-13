@@ -87,22 +87,21 @@ function getRouteFromPath() {
     return view;
 }
 
-function navigateTo(view, push = true) {
+function navigateTo(view, push = true, articleId = null) {
     let path = '/today';
     for (const [key, val] of Object.entries(routes)) {
-        if (val === view) {
-            path = key;
-            break;
-        }
+        if (val === view) { path = key; break; }
     }
 
-    if (push) {
-        history.pushState({ view }, '', path);
+    // Update URL for articles
+    if (view === 'article' && articleId) {
+        path = `/article?id=${articleId}`;
     }
 
+    if (push) history.pushState({ view, articleId }, '', path);
     state.view = view;
+    state.currentArticleId = articleId;
 
-    // Reset filters on view change so lists don't mysteriously empty
     if ($('#searchInput')) $('#searchInput').value = '';
     if ($('#categoryFilter')) $('#categoryFilter').value = '';
 
@@ -291,7 +290,7 @@ function cardHTML(a) {
     const scoreBadge = fresh !== null ? `<span class="impact-badge" title="Freshness score">★ ${fresh}</span>` : '';
 
     return `
-  <article class="card" data-id="${esc(a.id)}" tabindex="0" role="button" aria-expanded="false" onclick="toggleCard(this, event)">
+  <article class="card" data-id="${esc(a.id)}" tabindex="0" role="button" onclick="navigateToArticle('${esc(a.id)}', event)">
     <div class="card-image">
       <div class="card-image-tag">${esc(a.category || 'General AI')}</div>
       ${imageContent}
@@ -313,7 +312,7 @@ function cardHTML(a) {
             : `<div class="ai-summary"><strong>Excerpt</strong>${esc((a.summary || '').slice(0, 300))}${(a.summary || '').length > 300 ? '…' : ''}</div>`}
         <div class="why-matters"><strong>Why it matters:</strong> ${esc(a.whyItMatters || '')}</div>
         <div class="card-actions">
-          <a href="${safeUrl(a.url)}" target="_blank" rel="noopener" class="btn primary">Read Original</a>
+          <a href="${safeUrl(a.url)}" target="_blank" rel="noopener" class="btn primary" onclick="event.stopPropagation()">Read Original</a>
           <button class="btn save ${saved ? 'saved' : ''}" data-save-id="${esc(a.id)}" onclick="toggleBookmark('${esc(a.id)}', event)">${saved ? '★ Saved' : '☆ Save'}</button>
         </div>
       </div>
@@ -321,17 +320,20 @@ function cardHTML(a) {
   </article>`;
 }
 
-window.toggleCard = function (element, event) {
-    if (event && event.target.closest('.card-actions')) return;
-    document.querySelectorAll('.card').forEach(c => {
-        if (c !== element) {
-            c.classList.remove('expanded');
-            c.setAttribute('aria-expanded', 'false');
-        }
-    });
-    const isExpanded = element.classList.toggle('expanded');
-    element.setAttribute('aria-expanded', String(isExpanded));
+window.navigateToArticle = function (id, event) {
+    if (event) {
+        if (event.target.closest('.card-actions')) return; // Ignore if clicking buttons
+        event.preventDefault();
+    }
+    // Save current view to go back later
+    if (state.view !== 'article') {
+        sessionStorage.setItem('previousView', state.view);
+    }
+    navigateTo('article', true, id);
 };
+
+// Keep toggleCard for other potential uses, but it's no longer bound to the main card click
+window.toggleCard = function (element, event) { };
 
 function applyFilters(list) {
     const q = $('#searchInput').value.toLowerCase().trim();
@@ -351,10 +353,166 @@ function applyFilters(list) {
     });
 }
 
+function renderArticle() {
+    const id = state.currentArticleId || new URLSearchParams(window.location.search).get('id');
+    const article = state.articles.find(a => a.id === id) || state.bookmarks.get(id);
+
+    if (!article) {
+        $('#articleView').innerHTML = `<p style="text-align:center; padding: 4rem;">Article not found. It may have expired.</p>`;
+        return;
+    }
+
+    const saved = state.bookmarks.has(article.id);
+    const imgSrc = safeUrl(article.image);
+
+    // --- THE FIX: Define the missing Notes variables ---
+    const notesKey = `notes_${article.id}`;
+    const savedNotes = localStorage.getItem(notesKey) || '';
+    // ---------------------------------------------------
+
+    // If no image, show a beautiful gradient with the category icon
+    const imgHTML = imgSrc
+        ? `<img src="${imgSrc}" alt="cover">`
+        : `<div class="article-hero-fallback">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${getCategorySVG(article.category)}</svg>
+           </div>`;
+
+    $('#articleView').innerHTML = `
+        <!-- Top Action Bar -->
+        <div class="article-top-bar">
+            <div class="top-bar-left">
+                <button class="article-nav-btn" onclick="navigateTo(sessionStorage.getItem('previousView') || 'today')">← Back</button>
+                <span class="article-breadcrumb">${esc(article.category)}</span>
+            </div>
+            <div class="top-bar-right">
+                <button class="article-nav-btn ${saved ? 'saved' : ''}" onclick="toggleBookmark('${esc(article.id)}', event)" id="topSaveBtn">
+                    ${saved ? '★ Saved' : '☆ Save'}
+                </button>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <div class="article-header-area">
+            <h1 class="article-title">${esc(article.title)}</h1>
+            <div class="article-meta-line">
+                <span>📅 ${fmtDate(article.publishedAt)}</span>
+                <span>•</span>
+                <span>⏱️ ${Math.max(2, Math.ceil((article.summary || '').split(' ').length / 200))} min read</span>
+                <span>•</span>
+                <span class="article-tag">${esc(article.category)}</span>
+            </div>
+        </div>
+
+        <!-- Disclaimer Box -->
+        <div class="article-disclaimer">
+            <strong>Note:</strong> This summary is compiled from public RSS feeds (${esc(article.source)}). It is not an official publication. Please refer to the original source link at the bottom for full accuracy.
+        </div>
+
+        <!-- Hero Image (Always shows, uses fallback if no image) -->
+        <div class="article-hero-container">${imgHTML}</div>
+
+        <!-- Action Buttons -->
+        <div class="article-action-row">
+            <button class="action-btn ${saved ? 'active' : ''}" onclick="toggleBookmark('${esc(article.id)}', event)">
+                ${saved ? '★ Saved to Library' : '☆ Save to Library'}
+            </button>
+            <button class="action-btn" onclick="document.getElementById('chatToggle').click()">💬 Ask AI about this</button>
+            <a href="${safeUrl(article.url)}" target="_blank" class="action-btn primary">Read Full Article ↗</a>
+        </div>
+
+        <!-- Two Column Layout -->
+        <div class="article-two-col">
+            
+            <!-- Left Column: Content -->
+            <div class="article-main-content">
+                
+                <div class="content-section">
+                    <h2>What is this about?</h2>
+                    <p>${esc(article.aiSummary || 'No AI summary available.')}</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>Engineering Impact</h2>
+                    <p>${esc(article.whyItMatters || 'No specific engineering impact extracted.')}</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>Full Article Description</h2>
+                    <div style="white-space: pre-wrap; line-height: 1.8;">${esc(article.summary || 'No full text available. Please read the original source.')}</div>
+                </div>
+
+                <div class="content-section">
+                    <h2>References</h2>
+                    <ul style="padding-left: 1.2rem; margin-top: 0.5rem; color: var(--muted);">
+                        <li>Source: <strong>${esc(article.source)}</strong></li>
+                        <li>Original Link: <a href="${safeUrl(article.url)}" target="_blank" style="color: var(--accent);">Click here to view original</a></li>
+                    </ul>
+                </div>
+
+                <div class="content-section notes-section">
+                    <h2>My Notes</h2>
+                    <textarea id="articleNotes" placeholder="Write down important technical insights, frameworks to check out, or project ideas here...">${esc(savedNotes)}</textarea>
+                    <p class="notes-hint">Notes are saved automatically in your browser.</p>
+                </div>
+
+            </div>
+
+            <!-- Right Column: Sidebar -->
+            <div class="article-sidebar">
+                <div class="sidebar-box">
+                    <h3>Quick Info</h3>
+                    <ul class="sidebar-meta-list">
+                        <li><span>Date</span> <strong>${fmtDate(article.publishedAt)}</strong></li>
+                        <li><span>Source</span> <strong>${esc(article.source)}</strong></li>
+                        <li><span>Category</span> <strong>${esc(article.category)}</strong></li>
+                        <li><span>Type</span> <strong>AI Engineering Update</strong></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-box">
+                    <h3>Related Tags</h3>
+                    <div class="sidebar-tags">
+                        <span>${esc(article.category)}</span>
+                        <span>${esc(article.source)}</span>
+                        <span>AI</span>
+                        <span>LLM</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    `;
+    $('#articleView').classList.remove('hidden');
+
+    // Auto-save notes functionality
+    const notesArea = $('#articleNotes');
+    if (notesArea) {
+        let typingTimer;
+        notesArea.addEventListener('input', () => {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(() => {
+                localStorage.setItem(notesKey, notesArea.value);
+            }, 500); // Save after 0.5s of no typing
+        });
+    }
+}
+
 function renderFeed() {
     const feed = $('#newsFeed');
     const trends = $('#trendsChart');
+    const articleView = $('#articleView');
     feed.setAttribute('aria-live', 'polite');
+
+    // Handle Article View
+    if (state.view === 'article') {
+        feed.classList.add('hidden');
+        trends.classList.add('hidden');
+        articleView.classList.remove('hidden');
+        renderArticle();
+        return;
+    } else {
+        articleView.classList.add('hidden');
+    }
 
     if (state.view === 'trends') {
         feed.classList.add('hidden');
@@ -567,12 +725,29 @@ window.toggleBookmark = async function (id, event) {
     }
     saveLocalBookmarks();
 
-    // Update only the button to prevent re-render jumpiness
+    // Update standard feed buttons
     const btn = document.querySelector(`.save[data-save-id="${id}"]`);
     if (btn) {
         if (isSaved) { btn.classList.remove('saved'); btn.innerHTML = '☆ Save'; }
         else { btn.classList.add('saved'); btn.innerHTML = '★ Saved'; }
     }
+
+    // Update article view buttons if we are currently viewing an article
+    if (state.view === 'article') {
+        const topBtn = document.getElementById('topSaveBtn');
+        if (topBtn) {
+            if (isSaved) { topBtn.classList.remove('saved'); topBtn.innerHTML = '☆ Save'; }
+            else { topBtn.classList.add('saved'); topBtn.innerHTML = '★ Saved'; }
+        }
+        const actionBtns = document.querySelectorAll('.action-btn');
+        actionBtns.forEach(b => {
+            if (b.innerHTML.includes('Save to Library')) {
+                if (isSaved) { b.classList.remove('active'); b.innerHTML = '☆ Save to Library'; }
+                else { b.classList.add('active'); b.innerHTML = '★ Saved to Library'; }
+            }
+        });
+    }
+
     if (state.view === 'reading') renderFeed();
 };
 
@@ -753,8 +928,10 @@ function initChat() {
         if (role === 'user') {
             div.textContent = text; // Prevent XSS
         } else {
-            // Convert **bold** safely
-            const safeText = esc(text).replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            // Since searchLocalData returns raw text with \n, we format it safely
+            const safeText = esc(text)
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>');
             div.innerHTML = safeText.replace(/\n/g, '<br>');
         }
 
@@ -800,14 +977,14 @@ function searchLocalData(query) {
         return "I couldn't find any recent news matching those keywords in today's data.";
     }
 
-    // Format response
-    let response = `I found ${matches.length} articles matching your query:<br><br>`;
+    // Format response using pure text and \n (the addMsg function will render it safely)
+    let response = `I found ${matches.length} articles matching your query:\n\n`;
 
     matches.slice(0, 4).forEach(m => { // limit to top 4
         const sum = m.aiSummary || m.summary || 'No summary available.';
-        response += `📌 <b>${esc(m.title)}</b><br>`;
-        response += `<i>${esc(m.category)} | ${esc(m.source)}</i><br>`;
-        response += `${esc(sum.slice(0, 150))}${sum.length > 150 ? '...' : ''}<br><br>`;
+        response += `📌 **${m.title}**\n`;
+        response += `*${m.category} | ${m.source}*\n`;
+        response += `${sum.slice(0, 150)}${sum.length > 150 ? '...' : ''}\n\n`;
     });
 
     if (matches.length > 4) {
@@ -883,7 +1060,9 @@ async function boot() {
     // Handle browser back/forward buttons
     window.addEventListener('popstate', () => {
         const view = getRouteFromPath();
-        navigateTo(view, false);
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleId = urlParams.get('id');
+        navigateTo(view, false, articleId);
     });
 
     setInterval(checkStaleness, 60 * 60 * 1000);

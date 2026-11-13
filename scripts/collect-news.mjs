@@ -27,8 +27,19 @@ const KEYWORDS = {
     'AI Frameworks': ['pytorch', 'tensorflow', 'langchain', 'llamaindex', 'jax', 'transformers'],
 };
 
-const parser = new Parser();
-const clean = (h = '') => h.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+// Enable custom fields so we can get the full article content
+const parser = new Parser({
+    customFields: {
+        item: [
+            ['content:encoded', 'contentEncoded'],
+            ['media:content', 'mediaContent', { keepArray: true }],
+            ['media:thumbnail', 'mediaThumbnail']
+        ]
+    }
+});
+
+// Clean HTML and preserve paragraph breaks
+const clean = (h = '') => h.replace(/<br\s*\/?>/gi, '\n').replace(/<\/p>/gi, '\n\n').replace(/<[^>]+>/g, ' ').replace(/[ \t]+/g, ' ').trim();
 const norm = t => t.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 
 /* Stable id — same URL always produces the same id across runs */
@@ -51,14 +62,26 @@ async function rss(s) {
     try {
         const f = await parser.parseURL(s.url);
         return (f.items || []).slice(0, 15).map(i => {
+            // Try to get the full HTML content first, then fallback to snippets
+            const rawContent = i.contentEncoded || i.content || i.contentSnippet || '';
+
             let imageUrl = null;
+            // 1. Check standard enclosure
             if (i.enclosure && i.enclosure.url) imageUrl = i.enclosure.url;
-            else if (i['media:content'] && i['media:content'].$ && i['media:content'].$.url) imageUrl = i['media:content'].$.url;
-            else if (i.content && i.content.match(/<img[^>]+src="([^">]+)"/)) imageUrl = i.content.match(/<img[^>]+src="([^">]+)"/)[1];
+            // 2. Check Media RSS
+            else if (i.mediaContent && i.mediaContent[0] && i.mediaContent[0].$) imageUrl = i.mediaContent[0].$.url;
+            else if (i.mediaThumbnail && i.mediaThumbnail.$) imageUrl = i.mediaThumbnail.$.url;
+            // 3. Extract <img> from the raw content (handles both single and double quotes)
+            else if (rawContent) {
+                const match = rawContent.match(/<img[^>]+src=["']([^"']+)["']/i);
+                if (match) imageUrl = match[1];
+            }
 
             return {
-                title: i.title || '', summary: clean(i.contentSnippet || i.content || ''),
-                url: canon(i.link || ''), publishedAt: i.isoDate || i.pubDate || new Date().toISOString(),
+                title: i.title || '',
+                summary: clean(rawContent), // Now stores the full clean text
+                url: canon(i.link || ''),
+                publishedAt: i.isoDate || i.pubDate || new Date().toISOString(),
                 source: s.name, category: s.category, trusted: s.trusted, image: imageUrl
             };
         });
@@ -198,15 +221,21 @@ const WHY = {
 
 /* ---------- AI summaries (GitHub Models) ---------- */
 async function aiSummary(client, a) {
-    const r = await client.chat.completions.create({
-        model: 'gpt-4o-mini',
-        messages: [{
-            role: 'user', content:
-                `You are an AI engineering editor. In 2 concise sentences, explain what this news means for AI engineers (practical impact, no marketing).\n\nTitle: ${a.title}\nSource: ${a.source}\nCategory: ${a.category}\nExcerpt: ${a.summary.slice(0, 800)}`
-        }],
-        max_tokens: 120, temperature: 0.3,
-    });
-    return r.choices[0].message.content.trim();
+    const safeSummary = (a.summary || '').slice(0, 800); // Prevents crash if summary is null
+    try {
+        const r = await client.chat.completions.create({
+            model: 'gpt-4o-mini',
+            messages: [{
+                role: 'user', content:
+                    `You are an AI engineering editor. In 2 concise sentences, explain what this news means for AI engineers (practical impact, no marketing).\n\nTitle: ${a.title}\nSource: ${a.source}\nCategory: ${a.category}\nExcerpt: ${safeSummary}`
+            }],
+            max_tokens: 120, temperature: 0.3,
+        });
+        return r.choices[0].message.content.trim();
+    } catch (err) {
+        console.warn(`AI Error for "${a.title}":`, err.message);
+        return null;
+    }
 }
 async function enrich(list) {
     const token = process.env.GITHUB_TOKEN;
