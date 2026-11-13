@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T04:46:19.888+05:30",
+  "generatedAt": "2026-11-14T05:16:13.109+05:30",
   "retentionDays": 7,
   "totalStories": 105,
   "newToday": 105,
@@ -31,7 +31,7 @@
       "relevanceScore": 37,
       "whyItMatters": "Affects serving cost, throughput, and latency.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -47,7 +47,7 @@
       "relevanceScore": 35,
       "whyItMatters": "Affects serving cost, throughput, and latency.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -63,7 +63,7 @@
       "relevanceScore": 32,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -94,7 +94,7 @@
       "relevanceScore": 28,
       "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -170,7 +170,7 @@
       "relevanceScore": 23,
       "whyItMatters": "Affects serving cost, throughput, and latency.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -231,7 +231,7 @@
       "relevanceScore": 21,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -322,7 +322,7 @@
       "relevanceScore": 19,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -338,7 +338,7 @@
       "relevanceScore": 19,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -370,7 +370,7 @@
       "relevanceScore": 18,
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "insights": null
     },
     {
@@ -385,7 +385,7 @@
       "relevanceScore": 18,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -416,7 +416,7 @@
       "relevanceScore": 17,
       "whyItMatters": "Relevant to deployment, monitoring, and evaluation workflows.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -432,7 +432,7 @@
       "relevanceScore": 17,
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -448,7 +448,7 @@
       "relevanceScore": 17,
       "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -509,7 +509,7 @@
       "relevanceScore": 16,
       "whyItMatters": "Relevant to deployment, monitoring, and evaluation workflows.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "insights": null
     },
     {
@@ -524,7 +524,7 @@
       "relevanceScore": 16,
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -585,7 +585,7 @@
       "relevanceScore": 14,
       "whyItMatters": "Relevant to deployment, monitoring, and evaluation workflows.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -617,7 +617,7 @@
       "relevanceScore": 13,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "insights": null
     },
     {
@@ -632,7 +632,7 @@
       "relevanceScore": 13,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -648,7 +648,7 @@
       "relevanceScore": 13,
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -709,7 +709,7 @@
       "relevanceScore": 12,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -725,7 +725,7 @@
       "relevanceScore": 12,
       "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -801,7 +801,7 @@
       "relevanceScore": 11,
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -863,7 +863,7 @@
       "relevanceScore": 10,
       "whyItMatters": "Impacts hardware, scaling, and deployment decisions.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "insights": null
     },
     {
@@ -878,7 +878,7 @@
       "relevanceScore": 10,
       "whyItMatters": "Relevant to deployment, monitoring, and evaluation workflows.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -894,7 +894,7 @@
       "relevanceScore": 10,
       "whyItMatters": "Relevant to retrieval-augmented generation accuracy and latency.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -910,7 +910,7 @@
       "relevanceScore": 10,
       "whyItMatters": "Relevant to retrieval-augmented generation accuracy and latency.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -926,7 +926,7 @@
       "relevanceScore": 10,
       "whyItMatters": "Relevant to retrieval-augmented generation accuracy and latency.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -943,7 +943,7 @@
       "relevanceScore": 9,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "insights": null
     },
     {
@@ -1048,7 +1048,7 @@
       "relevanceScore": 8,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -1064,7 +1064,7 @@
       "relevanceScore": 8,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -1080,7 +1080,7 @@
       "relevanceScore": 8,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -1096,7 +1096,7 @@
       "relevanceScore": 8,
       "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -1112,7 +1112,7 @@
       "relevanceScore": 8,
       "whyItMatters": "Relevant to retrieval-augmented generation accuracy and latency.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -1309,7 +1309,7 @@
       "relevanceScore": 4,
       "whyItMatters": "Broadly relevant context for AI engineering decisions.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "insights": null
     },
     {
@@ -1325,7 +1325,7 @@
       "relevanceScore": 4,
       "whyItMatters": "Affects tooling choices and developer productivity.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "insights": null
     },
     {
@@ -1341,7 +1341,7 @@
       "relevanceScore": 4,
       "whyItMatters": "Affects tooling choices and developer productivity.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "insights": null
     },
     {
@@ -1371,7 +1371,7 @@
       "relevanceScore": 4,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
@@ -1387,7 +1387,7 @@
       "relevanceScore": 4,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
       "aiSummary": null,
-      "addedAt": "2026-11-13T23:16:19.888Z",
+      "addedAt": "2026-11-13T23:46:13.109Z",
       "image": null,
       "insights": null
     },
