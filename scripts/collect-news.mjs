@@ -221,17 +221,32 @@ const WHY = {
 
 /* ---------- AI summaries (GitHub Models) ---------- */
 async function aiSummary(client, a) {
-    const safeSummary = (a.summary || '').slice(0, 800); // Prevents crash if summary is null
+    const safeSummary = (a.summary || '').slice(0, 1500);
     try {
         const r = await client.chat.completions.create({
             model: 'gpt-4o-mini',
+            response_format: { type: "json_object" },
             messages: [{
+                role: 'system', content: 'You are an expert tech analyst. Output ONLY valid JSON.'
+            }, {
                 role: 'user', content:
-                    `You are an AI engineering editor. In 2 concise sentences, explain what this news means for AI engineers (practical impact, no marketing).\n\nTitle: ${a.title}\nSource: ${a.source}\nCategory: ${a.category}\nExcerpt: ${safeSummary}`
+                    `Analyze this AI news for two personas: AI Engineer and Founder. Output a JSON object with these exact keys:
+                    "engineerSummary" (2 sentences on tech impact),
+                    "founderSummary" (2 sentences on business impact),
+                    "whatHappened" (1 sentence),
+                    "whatChanged" (1 sentence),
+                    "techDetails" (1 sentence on models/tools),
+                    "businessImpact" (1 sentence on market),
+                    "learn" (1 sentence on what skills to learn),
+                    "action" (1 sentence on next steps).
+                    
+                    Title: ${a.title}
+                    Source: ${a.source}
+                    Excerpt: ${safeSummary}`
             }],
-            max_tokens: 120, temperature: 0.3,
+            max_tokens: 400, temperature: 0.3,
         });
-        return r.choices[0].message.content.trim();
+        return JSON.parse(r.choices[0].message.content);
     } catch (err) {
         console.warn(`AI Error for "${a.title}":`, err.message);
         return null;
@@ -239,7 +254,7 @@ async function aiSummary(client, a) {
 }
 async function enrich(list) {
     const token = process.env.GITHUB_TOKEN;
-    if (!token) return list.map(a => ({ ...a, aiSummary: null }));
+    if (!token) return list.map(a => ({ ...a, insights: null }));
     const client = new OpenAI({ baseURL: 'https://models.github.ai/inference', apiKey: token });
     const map = new Map();
     for (const a of list) {
@@ -247,7 +262,7 @@ async function enrich(list) {
         catch (e) { console.warn(`AI ✗ ${a.title.slice(0, 40)}: ${e.message}`); }
         await new Promise(r => setTimeout(r, AI_DELAY_MS));
     }
-    return list.map(a => ({ ...a, aiSummary: map.get(a.id) ?? a.aiSummary ?? null }));
+    return list.map(a => ({ ...a, insights: map.get(a.id) ?? a.insights ?? null }));
 }
 
 /* ---------- Archive cleanup ---------- */
@@ -342,8 +357,8 @@ async function main() {
     /* 7. AI-summarise NEW items only (top by score) */
     const newItems = kept.filter(a => !a.aiSummary).sort((x, y) => y.relevanceScore - x.relevanceScore).slice(0, MAX_AI_SUMMARIES);
     const summarised = await enrich(newItems);
-    const summaryById = new Map(summarised.map(a => [a.id, a.aiSummary]));
-    const finalArticles = kept.map(a => ({ ...a, aiSummary: a.aiSummary ?? summaryById.get(a.id) ?? null }));
+    const insightsById = new Map(summarised.map(a => [a.id, a.insights]));
+    const finalArticles = kept.map(a => ({ ...a, insights: a.insights ?? insightsById.get(a.id) ?? null }));
 
     /* 8. Sort, cap total to keep JSON small */
     finalArticles.sort((a, b) =>

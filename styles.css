@@ -1367,6 +1367,47 @@ select:focus {
     font-weight: 600;
 }
 
+/* Persona Toggle */
+.persona-toggle {
+    display: flex;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 99px;
+    padding: 0.25rem;
+    margin: 0 auto;
+}
+
+.persona-btn {
+    background: transparent;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 99px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.persona-btn:hover {
+    color: var(--text);
+}
+
+.persona-btn.active {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 768px) {
+    .persona-toggle {
+        order: 3;
+        margin: 1rem 0 0 0;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 /* =========================================
    PROFESSIONAL ARTICLE DASHBOARD LAYOUT
    ========================================= */
@@ -1579,6 +1620,24 @@ select:focus {
     color: var(--text);
     font-size: 1.05rem;
     line-height: 1.7;
+}
+
+.insight-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.insight-box strong {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.5px;
 }
 
 /* Notes Section */

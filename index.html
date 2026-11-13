@@ -242,8 +242,15 @@
                 </button>
                 <div class="header-title">
                     <h1 id="pageTitle">Today's Overview</h1>
-                    <p id="pageSubtitle">Fresh AI engineering news from the last 24 hours.</p>
+                    <p id="pageSubtitle">Fresh AI news from the last 24 hours.</p>
                 </div>
+
+                <!-- Persona Toggle -->
+                <div class="persona-toggle" id="personaToggle">
+                    <button class="persona-btn active" data-persona="engineer">👨‍💻 Engineer</button>
+                    <button class="persona-btn" data-persona="founder">🚀 Founder</button>
+                </div>
+
                 <div class="header-actions">
                     <button id="refreshBtn" class="icon-btn" title="Refresh News">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -283,7 +290,7 @@
             <!-- News Feed -->
             <div id="newsFeed" class="news-grid"></div>
             <div id="trendsChart" class="trends hidden"></div>
-            
+
             <!-- Full Article View (Hidden by default) -->
             <div id="articleView" class="article-view hidden"></div>
         </main>

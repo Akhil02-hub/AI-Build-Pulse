@@ -47,16 +47,14 @@ jobs:
           git config user.name "akhil02-hub"
           git config user.email "amarachinthaakhil@gmail.com"
           
-          # 1. Stage the new data
           git add data/
-          
-          # 2. Only commit if there are actually changes
           if ! git diff --cached --quiet; then
             git commit -m "Update daily news (retention: 7 days)"
             
-            # 3. Pull the absolute latest changes and place our new commit on top
-            git pull --rebase origin main
-            
-            # 4. Push safely
-            git push origin main
+            # Try up to 3 times if a race condition happens
+            for i in {1..3}; do
+              git pull --rebase origin main && git push origin HEAD:main && break
+              echo "Push rejected, syncing with remote and retrying..."
+              sleep 5
+            done
           fi
