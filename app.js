@@ -384,164 +384,20 @@ function renderArticle() {
 
     const saved = state.bookmarks.has(article.id);
     const imgSrc = safeUrl(article.image);
+
+    // --- THE FIX: Define the missing Notes variables ---
     const notesKey = `notes_${article.id}`;
     const savedNotes = localStorage.getItem(notesKey) || '';
+    // ---------------------------------------------------
 
+    // If no image, show a beautiful gradient with the category icon
     const imgHTML = imgSrc
         ? `<img src="${imgSrc}" alt="cover">`
         : `<div class="article-hero-fallback">
              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${getCategorySVG(article.category)}</svg>
            </div>`;
 
-    const ins = article.insights || {};
-
     $('#articleView').innerHTML = `
-        <div class="article-top-bar">
-            <div class="top-bar-left">
-                <button class="article-nav-btn" onclick="navigateTo(sessionStorage.getItem('previousView') || 'today')">← Back</button>
-                <span class="article-breadcrumb">${esc(article.category)}</span>
-            </div>
-            <div class="top-bar-right">
-                <button class="article-nav-btn ${saved ? 'saved' : ''}" onclick="toggleBookmark('${esc(article.id)}', event)" id="topSaveBtn">
-                    ${saved ? '★ Saved' : '☆ Save'}
-                </button>
-            </div>
-        </div>
-
-        <div class="article-header-area">
-            <h1 class="article-title">${esc(article.title)}</h1>
-            <div class="article-meta-line">
-                <span>📅 ${fmtDate(article.publishedAt)}</span>
-                <span>•</span>
-                <span>⏱️ ${Math.max(2, Math.ceil((article.summary || '').split(' ').length / 200))} min read</span>
-                <span>•</span>
-                <span class="article-tag">${esc(article.category)}</span>
-            </div>
-        </div>
-
-        <div class="article-hero-container">${imgHTML}</div>
-
-        <div class="article-action-row">
-            <button class="action-btn ${saved ? 'active' : ''}" onclick="toggleBookmark('${esc(article.id)}', event)">
-                ${saved ? '★ Saved to Library' : '☆ Save to Library'}
-            </button>
-            <button class="action-btn" onclick="document.getElementById('chatToggle').click()">💬 Ask AI about this</button>
-            <a href="${safeUrl(article.url)}" target="_blank" class="action-btn primary">Read Full Article ↗</a>
-        </div>
-
-        <div class="article-two-col">
-            <div class="article-main-content">
-                
-                <div class="content-section">
-                    <h2>What happened?</h2>
-                    <p>${esc(ins.whatHappened || article.summary || 'No details available.')}</p>
-                </div>
-
-                <div class="content-section">
-                    <h2>Why is it important?</h2>
-                    <div class="insight-box">
-                        <strong>For Engineers</strong>
-                        <p>${esc(ins.engineerSummary || article.whyItMatters || 'Impact analysis pending.')}</p>
-                    </div>
-                    <div class="insight-box" style="border-left-color: #10b981;">
-                        <strong>For Founders</strong>
-                        <p>${esc(ins.founderSummary || 'Business analysis pending.')}</p>
-                    </div>
-                </div>
-
-                ${ins.whatChanged ? `
-                <div class="content-section">
-                    <h2>What changed?</h2>
-                    <p>${esc(ins.whatChanged)}</p>
-                </div>` : ''}
-
-                ${ins.techDetails ? `
-                <div class="content-section">
-                    <h2>Technical Details</h2>
-                    <p>${esc(ins.techDetails)}</p>
-                </div>` : ''}
-
-                ${ins.businessImpact ? `
-                <div class="content-section">
-                    <h2>Business Impact</h2>
-                    <p>${esc(ins.businessImpact)}</p>
-                </div>` : ''}
-
-                ${ins.learn ? `
-                <div class="content-section">
-                    <h2>What can I learn?</h2>
-                    <p>${esc(ins.learn)}</p>
-                </div>` : ''}
-
-                ${ins.action ? `
-                <div class="content-section">
-                    <h2>What should I do?</h2>
-                    <p>${esc(ins.action)}</p>
-                </div>` : ''}
-
-                <div class="content-section notes-section">
-                    <h2>My Notes</h2>
-                    <textarea id="articleNotes" placeholder="Write down important technical insights, frameworks to check out, or project ideas here...">${esc(savedNotes)}</textarea>
-                    <p class="notes-hint">Notes are saved automatically in your browser.</p>
-                </div>
-
-            </div>
-
-            <div class="article-sidebar">
-                <div class="sidebar-box">
-                    <h3>Quick Info</h3>
-                    <ul class="sidebar-meta-list">
-                        <li><span>Date</span> <strong>${fmtDate(article.publishedAt)}</strong></li>
-                        <li><span>Source</span> <strong>${esc(article.source)}</strong></li>
-                        <li><span>Category</span> <strong>${esc(article.category)}</strong></li>
-                    </ul>
-                </div>
-                
-                <div class="sidebar-box">
-                    <h3>Original Source</h3>
-                    <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem;">Always verify against the original announcement.</p>
-                    <a href="${safeUrl(article.url)}" target="_blank" class="action-btn primary" style="width: 100%;">View Original ↗</a>
-                </div>
-            </div>
-        </div>
-    `;
-    $('#articleView').classList.remove('hidden');
-
-    const notesArea = $('#articleNotes');
-    if (notesArea) {
-        let typingTimer;
-        notesArea.addEventListener('input', () => {
-            clearTimeout(typingTimer);
-            typingTimer = setTimeout(() => {
-                localStorage.setItem(notesKey, notesArea.value);
-            }, 500);
-        });
-    }
-}
-const id = state.currentArticleId || new URLSearchParams(window.location.search).get('id');
-const article = state.articles.find(a => a.id === id) || state.bookmarks.get(id);
-
-if (!article) {
-    $('#articleView').innerHTML = `<p style="text-align:center; padding: 4rem;">Article not found. It may have expired.</p>`;
-    return;
-}
-
-const saved = state.bookmarks.has(article.id);
-const imgSrc = safeUrl(article.image);
-
-// --- THE FIX: Define the missing Notes variables ---
-const notesKey = `notes_${article.id}`;
-const savedNotes = localStorage.getItem(notesKey) || '';
-// ---------------------------------------------------
-
-// If no image, show a beautiful gradient with the category icon
-const imgHTML = imgSrc
-    ? `<img src="${imgSrc}" alt="cover">`
-    : `<div class="article-hero-fallback">
-             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${getCategorySVG(article.category)}</svg>
-           </div>`;
-
-$('#articleView').innerHTML = `
         <!-- Top Action Bar -->
         <div class="article-top-bar">
             <div class="top-bar-left">
@@ -646,19 +502,20 @@ $('#articleView').innerHTML = `
 
         </div>
     `;
-$('#articleView').classList.remove('hidden');
+    $('#articleView').classList.remove('hidden');
 
-// Auto-save notes functionality
-const notesArea = $('#articleNotes');
-if (notesArea) {
-    let typingTimer;
-    notesArea.addEventListener('input', () => {
-        clearTimeout(typingTimer);
-        typingTimer = setTimeout(() => {
-            localStorage.setItem(notesKey, notesArea.value);
-        }, 500); // Save after 0.5s of no typing
-    });
-}
+    // Auto-save notes functionality
+    const notesArea = $('#articleNotes');
+    if (notesArea) {
+        let typingTimer;
+        notesArea.addEventListener('input', () => {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(() => {
+                localStorage.setItem(notesKey, notesArea.value);
+            }, 500); // Save after 0.5s of no typing
+        });
+    }
+} // <--- THIS WAS MISSING
 
 function renderFeed() {
     const feed = $('#newsFeed');
