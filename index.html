@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Engineer Pulse</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="brand">⚡ AI Engineer Pulse</div>
+        <nav>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#briefing">Briefing</a>
+            <a href="#research">Research</a>
+            <a href="#tools">Tools</a>
+            <a href="#trends">Trends</a>
+            <a href="#reading">Reading</a>
+        </nav>
+        <div class="actions">
+            <button id="refreshBtn" title="Trigger workflow">↻</button>
+            <button id="themeBtn" title="Toggle theme">🌙</button>
+            <button id="settingsBtn" title="Settings">⚙</button>
+            <button id="authBtn">Sign in</button>
+        </div>
+    </header>
+
+    <div id="staleBanner" class="stale-banner hidden"></div>
+
+    <main>
+        <section id="dashboard">
+            <h1>Daily AI Engineering Briefing</h1>
+            <div class="stats">
+                <div class="stat"><span id="statUpdated">—</span><label>Last updated</label></div>
+                <div class="stat"><span id="statCount">0</span><label>Stories</label></div>
+                <div class="stat"><span id="statTopCat">—</span><label>Top category</label></div>
+            </div>
+            <div id="topStories" class="grid"></div>
+        </section>
+
+        <section id="briefing">
+            <h2>Today's Briefing</h2>
+            <div class="controls">
+                <input id="searchInput" placeholder="Search stories…">
+                <select id="categoryFilter">
+                    <option value="">All categories</option>
+                </select>
+                <div class="range-tabs">
+                    <button class="range-btn active" data-range="24h" type="button">Today</button>
+                    <button class="range-btn" data-range="7d" type="button">Last 7 days</button>
+                </div>
+            </div>
+            <div id="briefingList" class="list"></div>
+        </section>
+
+        <section id="research">
+            <h2>Research Papers</h2>
+            <div id="researchList" class="list"></div>
+        </section>
+
+        <section id="tools">
+            <h2>Tools & Releases</h2>
+            <div id="toolsList" class="list"></div>
+        </section>
+
+        <section id="trends">
+            <h2>Weekly Trends</h2>
+            <div id="trendsChart" class="trends"></div>
+        </section>
+
+        <section id="reading">
+            <h2>My Reading List</h2>
+            <p class="excerpt" id="readingHint">Saved articles are kept forever — even after they expire from the feed.
+            </p>
+            <div id="readingList" class="list"></div>
+        </section>
+    </main>
+
+    <button id="chatToggle" class="chat-toggle">💬</button>
+    <div id="chatPanel" class="chat-panel hidden">
+        <div class="chat-header">
+            <span>Ask about today's news</span>
+            <button id="chatClose">✕</button>
+        </div>
+        <div id="chatMessages" class="chat-messages"></div>
+        <form id="chatForm">
+            <input id="chatInput" placeholder="Ask anything… (uses live web search)" autocomplete="off">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <div id="settingsModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Settings</h2>
+            <label>Gemini API Key (chatbot + web search)
+                <input id="geminiKey" type="password" placeholder="AIza…">
+            </label>
+            <p class="hint">Free key at <a href="https://aistudio.google.com/apikey"
+                    target="_blank">aistudio.google.com</a>. Stored in your browser only.</p>
+            <label>GitHub PAT (optional — enables refresh button)
+                <input id="ghPat" type="password" placeholder="ghp_… (actions:write)">
+            </label>
+            <div class="modal-actions">
+                <button id="settingsSave">Save</button>
+                <button id="settingsClose">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="authModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Sign in to sync bookmarks</h2>
+            <p>We'll email you a magic link.</p>
+            <input id="authEmail" type="email" placeholder="you@example.com">
+            <div class="modal-actions">
+                <button id="authSend">Send link</button>
+                <button id="authClose">Cancel</button>
+            </div>
+            <p id="authStatus"></p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

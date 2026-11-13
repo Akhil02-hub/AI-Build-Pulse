@@ -1,0 +1,41 @@
+name: Daily AI Engineer News
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+      timezone: 'Asia/Kolkata'
+    - cron: '30 0 * * *'
+      timezone: 'Asia/Kolkata'
+    - cron: '0 1 * * *'
+      timezone: 'Asia/Kolkata'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  models: read
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+
+      - run: npm install
+
+      - name: Collect + prune feed (24h fetch · 7-day retention)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/collect-news.mjs
+
+      - name: Commit
+        run: |
+          git config user.name "akhil02-hub"
+          git config user.email "amarachinthaakhil@gmail.com"
+          git add data/
+          if ! git diff --cached --quiet; then
+            git commit -m "Update daily news (retention: 7 days)"
+            git push
+          fi

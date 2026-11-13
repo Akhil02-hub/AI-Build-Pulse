@@ -1,0 +1,145 @@
+{
+    "sources": [
+        {
+            "type": "rss",
+            "name": "OpenAI Engineering",
+            "url": "https://openai.com/news/engineering/rss.xml",
+            "trusted": true,
+            "category": "LLM Engineering"
+        },
+        {
+            "type": "rss",
+            "name": "Anthropic News",
+            "url": "https://www.anthropic.com/news/rss.xml",
+            "trusted": true,
+            "category": "LLM Engineering"
+        },
+        {
+            "type": "rss",
+            "name": "Google DeepMind",
+            "url": "https://deepmind.google/blog/rss.xml",
+            "trusted": true,
+            "category": "Model Training"
+        },
+        {
+            "type": "rss",
+            "name": "Meta Engineering",
+            "url": "https://engineering.fb.com/feed/",
+            "trusted": true,
+            "category": "AI Infrastructure"
+        },
+        {
+            "type": "rss",
+            "name": "AWS ML Blog",
+            "url": "https://aws.amazon.com/blogs/machine-learning/feed/",
+            "trusted": true,
+            "category": "MLOps"
+        },
+        {
+            "type": "rss",
+            "name": "NVIDIA Blog",
+            "url": "https://blogs.nvidia.com/feed/",
+            "trusted": true,
+            "category": "AI Infrastructure"
+        },
+        {
+            "type": "rss",
+            "name": "Microsoft Research",
+            "url": "https://www.microsoft.com/en-us/research/feed/",
+            "trusted": true,
+            "category": "Research"
+        },
+        {
+            "type": "rss",
+            "name": "Google Research",
+            "url": "https://research.google/blog/rss/",
+            "trusted": true,
+            "category": "Research"
+        },
+        {
+            "type": "rss",
+            "name": "Hugging Face",
+            "url": "https://huggingface.co/blog/feed.xml",
+            "trusted": true,
+            "category": "AI Frameworks"
+        },
+        {
+            "type": "rss",
+            "name": "arXiv cs.AI",
+            "url": "https://rss.arxiv.org/rss/cs.AI",
+            "trusted": true,
+            "category": "Research"
+        },
+        {
+            "type": "rss",
+            "name": "arXiv cs.LG",
+            "url": "https://rss.arxiv.org/rss/cs.LG",
+            "trusted": true,
+            "category": "Research"
+        },
+        {
+            "type": "rss",
+            "name": "arXiv cs.CL",
+            "url": "https://rss.arxiv.org/rss/cs.CL",
+            "trusted": true,
+            "category": "Research"
+        },
+        {
+            "type": "rss",
+            "name": "arXiv cs.CV",
+            "url": "https://rss.arxiv.org/rss/cs.CV",
+            "trusted": true,
+            "category": "Multimodal AI"
+        },
+        {
+            "type": "rss",
+            "name": "The Verge AI",
+            "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+            "trusted": false,
+            "category": "General AI"
+        },
+        {
+            "type": "rss",
+            "name": "TechCrunch AI",
+            "url": "https://techcrunch.com/category/artificial-intelligence/feed/",
+            "trusted": false,
+            "category": "General AI"
+        },
+        {
+            "type": "rss",
+            "name": "VentureBeat AI",
+            "url": "https://venturebeat.com/category/ai/feed/",
+            "trusted": false,
+            "category": "General AI"
+        },
+        {
+            "type": "rss",
+            "name": "MIT Tech Review AI",
+            "url": "https://www.technologyreview.com/topic/artificial-intelligence/feed",
+            "trusted": false,
+            "category": "General AI"
+        },
+        {
+            "type": "hn",
+            "name": "Hacker News",
+            "query": "AI",
+            "minPoints": 50
+        },
+        {
+            "type": "devto",
+            "name": "Dev.to AI",
+            "tag": "ai",
+            "perPage": 15
+        },
+        {
+            "type": "gnews",
+            "name": "Google News · AI Engineering",
+            "query": "AI engineering"
+        },
+        {
+            "type": "gnews",
+            "name": "Google News · LLM Deploy",
+            "query": "LLM deployment"
+        }
+    ]
+}
