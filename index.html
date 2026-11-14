@@ -78,20 +78,21 @@
         rel="stylesheet">
 
     <!-- ALL FAVICON & LOGO TYPES -->
-    <link rel="icon" type="image/png" href="logo.png">
-    <link rel="shortcut icon" type="image/png" href="logo.png">
-    <link rel="apple-touch-icon" href="logo.png">
-    <link rel="apple-touch-icon-precomposed" href="logo.png">
+    <link rel="icon" type="image/png" href="/logo.png">
+    <link rel="shortcut icon" type="image/png" href="/logo.png">
+    <link rel="apple-touch-icon" href="/logo.png">
+    <link rel="apple-touch-icon-precomposed" href="/logo.png">
 
-    <link rel="image_src" href="logo.png">
+    <link rel="image_src" href="/logo.png">
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
     <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script defer src="config.js"></script>
+    <script defer src="/config.js"></script>
     <!-- Prevent Flash of Unstyled Content (FOUC) -->
     <script>
         (function () {
-            var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            var raw = localStorage.getItem('theme');
+            var t = (raw === 'dark' || raw === 'light') ? raw : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
             document.documentElement.dataset.theme = t;
         })();
     </script>
@@ -543,9 +544,9 @@
         </div>
     </div>
 
-    <script defer src="app.js"></script>
+    <script defer src="/app.js"></script>
     <!-- Firebase Web SDK (Deferred) -->
-    <script type="module" src="push-notifications.js"></script>
+    <script type="module" src="/push-notifications.js"></script>
 
 </body>
 

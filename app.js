@@ -11,10 +11,12 @@ const state = {
     user: null,
     bookmarks: new Map(),
     view: 'today',
-    persona: 'engineer',
+    persona: ['engineer', 'founder'].includes(localStorage.getItem('persona')) ? localStorage.getItem('persona') : 'engineer',
     currentArticleId: null,
     briefCategory: null,
-    dateFilter: ''
+    dateFilter: '',
+    loadError: null,
+    lastViewedArticle: null
 };
 
 const $ = s => document.querySelector(s);
@@ -58,17 +60,22 @@ function toast(msg, type = 'info') {
     const t = document.createElement('div');
     t.textContent = msg;
     t.style.cssText = `background:var(--surface);color:var(--text);padding:10px 20px;border-radius:8px;box-shadow:var(--shadow-lg);border:1px solid var(--border);font-size:0.9rem;opacity:0;transition:opacity 0.3s;`;
-    container.appendChild(t);
+    if (document.body) container.appendChild(t);
     setTimeout(() => t.style.opacity = '1', 10);
     setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, 2500);
 }
 
 /* ---------- Theme ---------- */
 function initTheme() {
-    const saved = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    let rawTheme = null;
+    try { rawTheme = localStorage.getItem('theme'); } catch (e) { }
+    const saved = (rawTheme === 'dark' || rawTheme === 'light')
+        ? rawTheme
+        : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     document.documentElement.dataset.theme = saved;
     updateThemeIcon(saved);
-    $('#themeBtn').onclick = () => {
+    const themeBtn = $('#themeBtn');
+    if (themeBtn) themeBtn.onclick = () => {
         const t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
         document.documentElement.dataset.theme = t;
         localStorage.setItem('theme', t);
@@ -76,7 +83,9 @@ function initTheme() {
     };
 }
 function updateThemeIcon(t) {
-    $('#themeBtn').innerHTML = t === 'dark'
+    const btn = $('#themeBtn');
+    if (!btn) return;
+    btn.innerHTML = t === 'dark'
         ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>'
         : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>';
 }
@@ -108,7 +117,10 @@ const BASE_PATH = (() => {
         }
     }
     // No route in path — assume a single deployment segment (e.g. GitHub Pages /repo).
-    return parts.length ? '/' + parts[0] : '';
+    if (parts.length && !parts[parts.length - 1].endsWith('.html')) {
+        return '/' + parts[0];
+    }
+    return '';
 })();
 const buildPath = p => BASE_PATH + p;
 
@@ -117,15 +129,22 @@ function getRouteFromPath() {
     if (BASE_PATH && path.startsWith(BASE_PATH)) path = path.slice(BASE_PATH.length);
     path = path.replace(/\/$/, '');
     if (path === '' || path === '/') {
-        history.replaceState({ view: 'today' }, '', buildPath('/today'));
+        safeReplaceState({ view: 'today' }, '', buildPath('/today'));
         return 'today';
     }
     const view = routes[path];
     if (!view) {
-        history.replaceState({ view: 'today' }, '', buildPath('/today'));
+        safeReplaceState({ view: 'today' }, '', buildPath('/today'));
         return 'today';
     }
     return view;
+}
+
+function safePushState(state, title, url) {
+    try { history.pushState(state, title, url); } catch (e) { console.warn('History API blocked (APK mode)'); }
+}
+function safeReplaceState(state, title, url) {
+    try { history.replaceState(state, title, url); } catch (e) { console.warn('History API blocked (APK mode)'); }
 }
 
 function navigateTo(view, push = true, articleId = null) {
@@ -136,14 +155,22 @@ function navigateTo(view, push = true, articleId = null) {
 
     // Update URL for articles
     if (view === 'article' && articleId) {
-        path = `/article?id=${articleId}`;
+        path = `/article?id=${encodeURIComponent(articleId)}`;
     }
 
-    if (push) history.pushState({ view, articleId }, '', buildPath(path));
+    if (push) {
+        safePushState({
+            view,
+            articleId,
+            search: $('#searchInput')?.value || '',
+            category: $('#categoryFilter')?.value || '',
+            date: $('#dateFilter')?.value || ''
+        }, '', buildPath(path));
+    }
     state.view = view;
     state.currentArticleId = articleId;
 
-    if (push) {
+    if (push && view !== 'article') {
         if ($('#searchInput')) $('#searchInput').value = '';
         if ($('#categoryFilter')) $('#categoryFilter').value = '';
         if ($('#dateFilter')) $('#dateFilter').value = '';
@@ -165,9 +192,13 @@ function initNav() {
     const personaBtns = document.querySelectorAll('.persona-btn');
     personaBtns.forEach(btn => {
         btn.onclick = () => {
+            const p = btn.dataset.persona;
+            if (p !== 'engineer' && p !== 'founder') return;
+
             personaBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            state.persona = btn.dataset.persona;
+            state.persona = p;
+            localStorage.setItem('persona', state.persona);
             state.briefCategory = null;
 
             if (state.view === 'article') {
@@ -210,31 +241,35 @@ function initNav() {
                 if (sb) sb.auth.signOut();
             } else {
                 if (window.openAuthModal) window.openAuthModal();
-                else document.getElementById('authModal').classList.remove('hidden');
+                else document.getElementById('authModal')?.classList.remove('hidden');
             }
         };
     }
 
-    $('#openSidebarBtn').onclick = () => {
-        $('#sidebar').classList.add('open');
-        $('#sidebarOverlay').classList.remove('hidden');
-    };
     window.closeSidebar = () => {
-        $('#sidebar').classList.remove('open');
-        $('#sidebarOverlay').classList.add('hidden');
+        $('#sidebar')?.classList.remove('open');
+        $('#sidebarOverlay')?.classList.add('hidden');
     };
-    $('#closeSidebarBtn').onclick = window.closeSidebar;
-    $('#sidebarOverlay').onclick = window.closeSidebar;
+    const openBtn = $('#openSidebarBtn');
+    if (openBtn) {
+        openBtn.onclick = () => {
+            $('#sidebar')?.classList.add('open');
+            $('#sidebarOverlay')?.classList.remove('hidden');
+        };
+    }
+    if ($('#closeSidebarBtn')) $('#closeSidebarBtn').onclick = window.closeSidebar;
+    if ($('#sidebarOverlay')) $('#sidebarOverlay').onclick = window.closeSidebar;
 }
 
 window.goBackFromArticle = function () {
-    if (history.length > 1) {
+    if (history.state?.view === 'article') {
         history.back();
     } else {
-        const targetView = sessionStorage.getItem('previousView') || 'today';
+        let targetView = 'today';
+        try { targetView = sessionStorage.getItem('previousView') || 'today'; } catch { }
         navigateTo(targetView, false);
         const routePath = Object.entries(routes).find(([, v]) => v === targetView)?.[0] || '/today';
-        history.replaceState({ view: targetView }, '', buildPath(routePath));
+        safeReplaceState({ view: targetView }, '', buildPath(routePath));
     }
 };
 
@@ -252,7 +287,7 @@ function updateHeader() {
         'reading': "My Reading List",
         'article': "Article Analysis"
     };
-    document.title = titles[state.view] + ' | AI Engineer Pulse';
+    document.title = (titles[state.view] || 'AI Pulse') + ' | AI Engineer Pulse';
 
     const subs = {
         'today': state.persona === 'engineer' ? "Free AI engineering news from the last 24 hours." : "Startup, funding, and AI business updates.",
@@ -267,28 +302,36 @@ function updateHeader() {
         'reading': "Saved articles, kept forever.",
         'article': "Detailed engineering and business insights."
     };
-    $('#pageTitle').textContent = titles[state.view];
-    $('#pageSubtitle').textContent = subs[state.view];
+    if ($('#pageTitle')) $('#pageTitle').textContent = titles[state.view] ?? 'AI Pulse';
+    if ($('#pageSubtitle')) $('#pageSubtitle').textContent = subs[state.view] ?? '';
 
-    if (['reading', 'trends', 'radar', 'github', 'jobs', 'article', 'briefing'].includes(state.view)) {
-        $('#controlsBar').classList.add('hidden');
-    } else {
-        $('#controlsBar').classList.remove('hidden');
+    const cb = $('#controlsBar');
+    if (cb) {
+        if (['reading', 'trends', 'radar', 'github', 'jobs', 'article', 'briefing'].includes(state.view)) {
+            cb.classList.add('hidden');
+        } else {
+            cb.classList.remove('hidden');
+        }
     }
 }
 /* ---------- News ---------- */
 async function loadNews() {
-    $('#newsFeed').innerHTML = Array(3).fill('<div class="skeleton-card"></div>').join('');
+    state.loadError = null;
+    const feed = $('#newsFeed');
+    if (feed) feed.innerHTML = Array(3).fill('<div class="skeleton-card"></div>').join('');
     try {
         const r = await fetch('./data/news.json', { cache: 'no-store' });
         if (!r.ok) throw new Error('news.json not found');
         state.news = await r.json();
+        if (!state.news || typeof state.news !== 'object' || Array.isArray(state.news)) throw new Error('Invalid news.json shape');
+        state.briefCategory = null;
 
         // Data Contract Validation + Deduplication safety net
         const REQUIRED = ['id', 'title', 'url', 'publishedAt'];
         const seenIds = new Set();
-        state.articles = (state.news.articles || [])
-            .filter(a => a && REQUIRED.every(k => typeof a[k] === 'string' && a[k].trim()))
+        const sourceArticles = Array.isArray(state.news.articles) ? state.news.articles : [];
+        state.articles = sourceArticles
+            .filter(a => a && REQUIRED.every(k => typeof a[k] === 'string' && a[k].trim()) && Number.isFinite(Date.parse(a.publishedAt)))
             .filter(a => {
                 if (seenIds.has(a.id)) return false;
                 seenIds.add(a.id);
@@ -306,21 +349,31 @@ async function loadNews() {
         renderCategoryDropdown();
         renderDateDropdown();
         renderFeed();
-        checkStaleness();
+        try { checkStaleness(); } catch (err) { console.warn('Staleness check failed', err); }
+        return true;
     } catch (e) {
         console.error(e);
-        $('#newsFeed').innerHTML = `<p style="color:var(--muted); padding: 2rem;">Could not load news yet. The workflow may not have run. ${esc(e.message)}</p>`;
+        state.loadError = `Could not load news yet. The workflow may not have run. ${e.message}`;
+        renderFeed();
+        return false;
     }
 }
 
 function pruneStaleLocalBookmarks() {
-    // A saved snapshot is valid if it has at least an id, title and url.
-    // Old-format bookmarks (bare strings) are dropped.
     let changed = false;
     for (const [id, val] of [...state.bookmarks.entries()]) {
         if (!val || typeof val !== 'object' || !val.id || !val.title) {
             state.bookmarks.delete(id);
             changed = true;
+            continue;
+        }
+        // Migration: try to recover missing URL from state.articles
+        if (!val.url) {
+            const found = state.articles.find(a => a.id === id);
+            if (found && found.url) {
+                val.url = found.url;
+                changed = true;
+            }
         }
     }
     if (changed) saveLocalBookmarks();
@@ -328,7 +381,7 @@ function pruneStaleLocalBookmarks() {
 
 function checkStaleness() {
     const banner = $('#staleBanner');
-    if (!state.news) return;
+    if (!banner || !state.news) return;
     const age = Date.now() - new Date(state.news.generatedAt).getTime();
     if (!Number.isFinite(age)) {
         banner.classList.remove('hidden');
@@ -435,9 +488,9 @@ window.navigateToArticle = function (id, event) {
 // (removed unused toggleCard stub)
 
 function applyFilters(list) {
-    const q = $('#searchInput').value.toLowerCase().trim();
-    const cat = $('#categoryFilter').value;
-    const dateF = $('#dateFilter') ? $('#dateFilter').value : '';
+    const q = ($('#searchInput')?.value || '').toLowerCase().trim();
+    const cat = $('#categoryFilter')?.value || '';
+    const dateF = $('#dateFilter')?.value || '';
 
     const H = 3600 * 1000;
     let cutoff = 0;
@@ -470,16 +523,22 @@ function applyFilters(list) {
 
 function renderArticle() {
     const id = state.currentArticleId || new URLSearchParams(window.location.search).get('id');
-    const article = state.articles.find(a => a.id === id) || state.bookmarks.get(id);
+    const article = state.articles.find(a => a.id === id) ||
+        state.bookmarks.get(id) ||
+        (state.lastViewedArticle?.id === id ? state.lastViewedArticle : null);
 
     if (!article) {
+        const msg = state.loadError
+            ? "Couldn't load article data — please retry. The network may be down."
+            : "Article not found. It may have expired.";
         $('#articleView').innerHTML = `
             <div class="article-top-bar">
                 <div class="top-bar-left">
                     <button class="article-nav-btn" onclick="navigateTo('today')">← Back to Today</button>
                 </div>
             </div>
-            <p style="text-align:center; padding: 4rem;">Article not found. It may have expired.</p>`;
+            <p style="text-align:center; padding: 4rem; color: var(--muted);">${msg}</p>
+            ${state.loadError ? '<div style="text-align:center; padding-bottom: 4rem;"><button class="btn primary" onclick="doRefresh()">Retry Loading</button></div>' : ''}`;
         return;
     }
 
@@ -488,10 +547,11 @@ function renderArticle() {
 
     // --- THE FIX: Define the missing Notes variables ---
     const notesKey = `notes_${article.id}`;
-    const savedNotes = localStorage.getItem(notesKey) || '';
+    const savedNotes = safeGet(notesKey, '');
     const ins = article.insights || {};
-    const words = (article.summary || '').trim().split(/\s+/).filter(Boolean).length;
-    const readMins = Math.max(1, Math.ceil(words / 200));
+    const textForReading = (article.summary || '') + (ins.whatHappened || '') + (ins.engineerSummary || '');
+    const words = textForReading.trim().split(/\s+/).filter(Boolean).length;
+    const readMins = words === 0 ? 1 : Math.max(1, Math.ceil(words / 200));
     // ---------------------------------------------------
 
     // If no image, show a beautiful gradient with the category icon
@@ -505,7 +565,7 @@ function renderArticle() {
         <!-- Top Action Bar -->
         <div class="article-top-bar">
             <div class="top-bar-left">
-                <button class="article-nav-btn mobile-only" onclick="document.getElementById('sidebar').classList.add('open'); document.getElementById('sidebarOverlay').classList.remove('hidden');" style="margin-right: 0.5rem; font-size: 1.2rem;">☰</button>
+                <button class="article-nav-btn mobile-only" onclick="document.getElementById('sidebar')?.classList.add('open'); document.getElementById('sidebarOverlay')?.classList.remove('hidden');" style="margin-right: 0.5rem; font-size: 1.2rem;">☰</button>
                 <button class="article-nav-btn" onclick="goBackFromArticle()">← Back</button>
                 <span class="article-breadcrumb">${esc(article.category)}</span>
             </div>
@@ -538,11 +598,11 @@ function renderArticle() {
 
         <!-- Action Buttons -->
         <div class="article-action-row">
-            <button class="action-btn ${saved ? 'active' : ''}" data-id="${esc(article.id)}" onclick="toggleBookmark(this.dataset.id, event)">
+            <button class="action-btn ${saved ? 'active' : ''}" data-id="${esc(article.id)}" data-action="bookmark" onclick="toggleBookmark(this.dataset.id, event)">
                 ${saved ? '★ Saved to Library' : '☆ Save to Library'}
             </button>
             <button class="action-btn" onclick="document.getElementById('chatToggle').click()" style="display:flex; align-items:center; gap:6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> Ask AI about this</button>
-            <a href="${safeUrl(article.url)}" target="_blank" rel="noopener noreferrer" class="action-btn primary">Read Full Article ↗</a>
+            <a href="${safeUrl(article.url) || '#'}" ${safeUrl(article.url) ? 'target="_blank" rel="noopener noreferrer"' : 'onclick="event.preventDefault()"'} class="action-btn primary">Read Full Article ↗</a>
         </div>
 
         <!-- Two Column Layout -->
@@ -580,7 +640,7 @@ function renderArticle() {
                     <h2>References</h2>
                     <ul style="padding-left: 1.2rem; margin-top: 0.5rem; color: var(--muted);">
                         <li>Source: <strong>${esc(article.source)}</strong></li>
-                        <li>Original Link: <a href="${safeUrl(article.url)}" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">Click here to view original</a></li>
+                        <li>Original Link: <a href="${safeUrl(article.url) || '#'}" ${safeUrl(article.url) ? 'target="_blank" rel="noopener noreferrer"' : 'onclick="event.preventDefault()"'} style="color: var(--accent);">Click here to view original</a></li>
                     </ul>
                 </div>
 
@@ -617,7 +677,8 @@ function renderArticle() {
 
         </div>
     `;
-    document.title = article.title + ' | AI Engineer Pulse';
+    state.lastViewedArticle = article;
+    document.title = (article.title || '').slice(0, 60) + ' | AI Engineer Pulse';
     $('#articleView').classList.remove('hidden');
 
     // Auto-save notes functionality
@@ -627,7 +688,7 @@ function renderArticle() {
         notesArea.addEventListener('input', () => {
             clearTimeout(typingTimer);
             typingTimer = setTimeout(() => {
-                localStorage.setItem(notesKey, notesArea.value);
+                safeSet(notesKey, notesArea.value);
             }, 500); // Save after 0.5s of no typing
         });
     }
@@ -637,22 +698,45 @@ function renderFeed() {
     const feed = $('#newsFeed');
     const trends = $('#trendsChart');
     const articleView = $('#articleView');
-    feed.setAttribute('aria-live', 'polite');
+    if (!feed) return;
+
+    if (state.loadError && state.view !== 'article') {
+        feed.classList.remove('hidden');
+        const topHeader = document.querySelector('.top-header');
+        if (topHeader) topHeader.classList.remove('hidden');
+
+        const hidesControls = ['reading', 'trends', 'radar', 'github', 'jobs', 'article', 'briefing'];
+        if ($('#controlsBar')) {
+            if (hidesControls.includes(state.view)) $('#controlsBar').classList.add('hidden');
+            else $('#controlsBar').classList.remove('hidden');
+        }
+
+        if (trends) trends.classList.add('hidden');
+        if (articleView) articleView.classList.add('hidden');
+        feed.innerHTML = `<div style="text-align:center; padding: 4rem 2rem; color: var(--muted);">
+            <p>${esc(state.loadError)}</p>
+            <button class="btn primary" onclick="doRefresh()">Retry Loading</button>
+        </div>`;
+        return;
+    }
 
     // Handle Article View
     if (state.view === 'article') {
         feed.classList.add('hidden');
-        trends.classList.add('hidden');
-        articleView.classList.remove('hidden');
-        document.querySelector('.top-header').classList.add('hidden');
-        $('#controlsBar').classList.add('hidden');
+        if (trends) trends.classList.add('hidden');
+        if (articleView) articleView.classList.remove('hidden');
+        const topHeader = document.querySelector('.top-header');
+        if (topHeader) topHeader.classList.add('hidden');
+        if ($('#controlsBar')) $('#controlsBar').classList.add('hidden');
         renderArticle();
         return;
     } else {
-        articleView.classList.add('hidden');
-        document.querySelector('.top-header').classList.remove('hidden');
-        if (!['reading', 'trends', 'radar', 'github', 'jobs', 'briefing'].includes(state.view)) {
-            $('#controlsBar').classList.remove('hidden');
+        if (articleView) articleView.classList.add('hidden');
+        const topHeader = document.querySelector('.top-header');
+        if (topHeader) topHeader.classList.remove('hidden');
+        const cb = $('#controlsBar');
+        if (cb && !['reading', 'trends', 'radar', 'github', 'jobs', 'briefing'].includes(state.view)) {
+            cb.classList.remove('hidden');
         }
     }
 
@@ -663,14 +747,14 @@ function renderFeed() {
 
     if (state.view === 'trends') {
         feed.classList.add('hidden');
-        trends.classList.remove('hidden');
+        if (trends) trends.classList.remove('hidden');
         renderTrends();
         return;
     }
 
     // --- REAL FEATURE RENDERERS ---
     if (state.view === 'radar') {
-        trends.classList.add('hidden');
+        if (trends) trends.classList.add('hidden');
         feed.classList.remove('hidden');
 
         const RADAR_TECHS = ['vllm', 'langchain', 'llamaindex', 'mcp', 'h100', 'a100', 'gpt-4', 'gpt-4o', 'claude', 'gemini', 'llama', 'pytorch', 'tensorflow', 'ollama', 'rag', 'fine-tuning', 'inference', 'agents', 'multimodal'];
@@ -720,7 +804,7 @@ function renderFeed() {
     }
 
     if (state.view === 'github') {
-        trends.classList.add('hidden');
+        if (trends) trends.classList.add('hidden');
         feed.classList.remove('hidden');
         const repos = state.news && state.news.githubTrending ? state.news.githubTrending : [];
 
@@ -747,7 +831,7 @@ function renderFeed() {
     }
 
     if (state.view === 'jobs') {
-        trends.classList.add('hidden');
+        if (trends) trends.classList.add('hidden');
         feed.classList.remove('hidden');
         const jobs = state.news && state.news.jobs ? state.news.jobs : [];
 
@@ -775,28 +859,19 @@ function renderFeed() {
     }
     // --- END REAL FEATURE RENDERERS ---
 
-    trends.classList.add('hidden');
+    if (trends) trends.classList.add('hidden');
     feed.classList.remove('hidden');
 
     let list = [];
     if (state.view === 'reading') {
         list = [...state.bookmarks.values()].sort((a, b) => new Date(b.savedAt || b.publishedAt) - new Date(a.savedAt || a.publishedAt));
-        if ($('#dateFilter') && $('#dateFilter').value) {
-            const dateF = $('#dateFilter').value;
-            list = list.filter(a => {
-                const d = new Date(a.publishedAt);
-                const aDate = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
-                return aDate === dateF;
-            });
-        }
     } else {
         list = applyFilters(state.articles);
 
         if (state.view === 'research') {
             list = list.filter(a => a.category === 'Research');
         } else if (state.view === 'tools') {
-            // Tools should only show actual frameworks, and bypass persona so founders see them too
-            list = state.articles.filter(a => a.category === 'AI Frameworks');
+            list = list.filter(a => a.category === 'AI Frameworks');
         }
     }
 
@@ -807,7 +882,7 @@ function renderFeed() {
     if (list.length === 0) {
         const emptyStyle = "grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 4rem 2rem; color: var(--muted); width: 100%;";
 
-        if (state.view === 'today' || state.view === 'briefing') {
+        if (state.view === 'today') {
             const msg = state.persona === 'founder' ? 'No founder-focused news from the last 24 hours.' : 'No news from the last 24 hours.';
             feed.innerHTML = `<div style="${emptyStyle}">${msg}<br><br><button class="btn primary" onclick="navigateTo('weekly')">Check Weekly Overview</button></div>`;
         } else if (state.view === 'research') {
@@ -827,8 +902,8 @@ function renderFeed() {
 function renderBriefing() {
     const feed = $('#newsFeed');
     const trends = $('#trendsChart');
-    trends.classList.add('hidden');
-    feed.classList.remove('hidden');
+    if (trends) trends.classList.add('hidden');
+    if (feed) feed.classList.remove('hidden');
 
     // 1. Today's articles (last 36h, matches applyFilters) + persona filter
     const cutoff = Date.now() - 36 * 3600 * 1000;
@@ -928,18 +1003,26 @@ function briefCardHTML(a) {
 
 function renderTrends() {
     const cats = {};
-    const filtered = applyFilters(state.articles); // Apply persona filter to Trends
+    // Filter by persona ONLY (ignore search/date inputs to prevent stale filter data)
+    const filtered = state.articles.filter(a => {
+        if (state.persona === 'engineer' && a.audience === 'founder') return false;
+        if (state.persona === 'founder' && a.audience !== 'founder' && a.audience !== 'all') return false;
+        return true;
+    });
     filtered.forEach(a => { cats[a.category] = (cats[a.category] || 0) + 1; });
     const sorted = Object.entries(cats).sort((a, b) => b[1] - a[1]);
     const max = sorted[0]?.[1] || 1;
 
-    $('#trendsChart').innerHTML = sorted.map(([c, n]) =>
+    const el = $('#trendsChart');
+    if (!el) return;
+    el.innerHTML = sorted.map(([c, n]) =>
         `<div class="trend-row"><span>${esc(c)}</span><div class="trend-bar"><div style="width:${(n / max) * 100}%"></div></div><span>${n}</span></div>`
     ).join('') || '<p style="color:var(--muted)">No data yet.</p>';
 }
 
 function renderCategoryDropdown() {
     const sel = $('#categoryFilter');
+    if (!sel) return;
     const cats = [...new Set(state.articles.map(a => a.category))].sort();
     sel.innerHTML = '<option value="">All categories</option>' + cats.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('');
 }
@@ -975,15 +1058,24 @@ function loadLocalBookmarks() {
     } catch { /* corrupt storage — start clean */ }
 }
 
+function safeGet(k, fallback = null) { try { return localStorage.getItem(k) ?? fallback; } catch { return fallback; } }
+function safeSet(k, v) { try { localStorage.setItem(k, v); return true; } catch { return false; } }
+
+let _quotaWarned = false;
 function saveLocalBookmarks() {
-    localStorage.setItem('bookmarks', JSON.stringify([...state.bookmarks.values()]));
+    const ok = safeSet('bookmarks', JSON.stringify([...state.bookmarks.values()]));
+    if (!ok && !_quotaWarned) {
+        _quotaWarned = true;
+        toast('Browser storage full — new bookmarks will not persist after reload.');
+    }
 }
 
 async function syncFromCloud() {
-    if (!sb || !state.user) return;
-    const { data, error } = await sb.from('bookmarks').select('article_data').eq('user_id', state.user.id);
+    if (!sb || !state.user) return true;
+    const userId = state.user.id;
+    const { data, error } = await sb.from('bookmarks').select('article_data').eq('user_id', userId);
 
-    if (error) { toast('Failed to sync cloud bookmarks.'); return; }
+    if (error) { toast('Failed to sync cloud bookmarks.'); return false; }
     const cloudIds = new Set();
     if (data) {
         for (const row of data) {
@@ -991,89 +1083,114 @@ async function syncFromCloud() {
             if (a && a.id) { state.bookmarks.set(a.id, a); cloudIds.add(a.id); }
         }
     }
-    // Upload local-only bookmarks that pre-date sign-in
-    for (const [id, bm] of state.bookmarks) {
-        if (!cloudIds.has(id)) {
-            const { error } = await sb.from('bookmarks').upsert({ user_id: state.user.id, article_id: id, article_data: bm });
-            if (error) console.warn(`Cloud bookmark upload failed for ${id}:`, error.message);
-        }
-    }
+
+    pruneStaleLocalBookmarks();
     saveLocalBookmarks();
+
+    const toUpload = [];
+    for (const [id, bm] of state.bookmarks) {
+        if (!cloudIds.has(id)) toUpload.push([id, bm]);
+    }
+
+    let failed = 0;
+    // Concurrency cap of 5
+    for (let i = 0; i < toUpload.length; i += 5) {
+        const batch = toUpload.slice(i, i + 5);
+        const results = await Promise.allSettled(batch.map(async ([id, bm]) => {
+            const { error } = await sb.from('bookmarks').upsert({ user_id: userId, article_id: id, article_data: bm });
+            if (error) throw error;
+        }));
+        failed += results.filter(r => r.status === 'rejected').length;
+    }
+
+    if (failed > 0) {
+        toast(`${failed} bookmark(s) failed to upload.`);
+        return false;
+    }
+
+    saveLocalBookmarks();
+    return true;
 }
 
 window.toggleBookmark = async function (id, event) {
     if (event) event.stopPropagation();
+    if (state._bmBusy?.has(id)) return;
+    (state._bmBusy = state._bmBusy || new Set()).add(id);
 
-    const article = state.articles.find(a => a.id === id) || state.bookmarks.get(id);
-    if (!article) return;
+    try {
+        const article = state.articles.find(a => a.id === id) || state.bookmarks.get(id) || (state.lastViewedArticle?.id === id ? state.lastViewedArticle : null);
+        if (!article) return;
 
-    const isSaved = state.bookmarks.has(id);
+        const isSaved = state.bookmarks.has(id);
 
-    if (isSaved) {
-        state.bookmarks.delete(id);
-        if (sb && state.user) {
-            const { error } = await sb.from('bookmarks').delete().eq('user_id', state.user.id).eq('article_id', id);
-            if (error) toast('Cloud delete failed — removed locally only.');
-        }
-    } else {
-        const snapshot = { ...article, savedAt: new Date().toISOString() };
-        state.bookmarks.set(id, snapshot);
-        if (sb && state.user) {
-            const { error } = await sb.from('bookmarks').upsert({ user_id: state.user.id, article_id: id, article_data: snapshot });
-            if (error) toast('Cloud save failed — bookmark kept locally this session.');
-        }
-    }
-    saveLocalBookmarks();
-
-    // Update standard feed buttons
-    const btn = document.querySelector(`.save[data-save-id="${id}"]`);
-    if (btn) {
-        if (isSaved) { btn.classList.remove('saved'); btn.innerHTML = '☆ Save'; }
-        else { btn.classList.add('saved'); btn.innerHTML = '★ Saved'; }
-    }
-
-    const briefBtn = document.querySelector(`.brief-save[data-save-id="${id}"]`);
-    if (briefBtn) {
-        if (isSaved) { briefBtn.classList.remove('saved'); briefBtn.textContent = '☆'; }
-        else { briefBtn.classList.add('saved'); briefBtn.textContent = '★'; }
-    }
-
-    // Update article view buttons if we are currently viewing an article
-    if (state.view === 'article') {
-        const topBtn = document.getElementById('topSaveBtn');
-        if (topBtn) {
-            if (isSaved) { topBtn.classList.remove('saved'); topBtn.innerHTML = '☆ Save'; }
-            else { topBtn.classList.add('saved'); topBtn.innerHTML = '★ Saved'; }
-        }
-        const actionBtns = document.querySelectorAll('#articleView .action-btn');
-        actionBtns.forEach(b => {
-            if (b.innerHTML.includes('Library')) {
-                if (isSaved) { b.classList.remove('active'); b.innerHTML = '☆ Save to Library'; }
-                else { b.classList.add('active'); b.innerHTML = '★ Saved to Library'; }
+        if (isSaved) {
+            state.bookmarks.delete(id);
+            if (sb && state.user) {
+                const { error } = await sb.from('bookmarks').delete().eq('user_id', state.user.id).eq('article_id', id);
+                if (error) toast('Cloud delete failed — removed locally only.');
             }
-        });
-    }
+        } else {
+            const snapshot = { ...article, savedAt: new Date().toISOString() };
+            state.bookmarks.set(id, snapshot);
+            if (sb && state.user) {
+                const { error } = await sb.from('bookmarks').upsert({ user_id: state.user.id, article_id: id, article_data: snapshot });
+                if (error) toast('Cloud save failed — bookmark kept locally this session.');
+            }
+        }
+        saveLocalBookmarks();
 
-    if (state.view === 'reading') renderFeed();
+        // Update standard feed buttons
+        const btn = document.querySelector(`.save[data-save-id="${CSS.escape(id)}"]`);
+        if (btn) {
+            if (isSaved) { btn.classList.remove('saved'); btn.innerHTML = '☆ Save'; }
+            else { btn.classList.add('saved'); btn.innerHTML = '★ Saved'; }
+        }
+
+        const briefBtn = document.querySelector(`.brief-save[data-save-id="${CSS.escape(id)}"]`);
+        if (briefBtn) {
+            if (isSaved) { briefBtn.classList.remove('saved'); briefBtn.textContent = '☆'; }
+            else { briefBtn.classList.add('saved'); briefBtn.textContent = '★'; }
+        }
+
+        // Update article view buttons if we are currently viewing an article
+        if (state.view === 'article') {
+            const topBtn = document.getElementById('topSaveBtn');
+            if (topBtn) {
+                if (isSaved) { topBtn.classList.remove('saved'); topBtn.innerHTML = '☆ Save'; }
+                else { topBtn.classList.add('saved'); topBtn.innerHTML = '★ Saved'; }
+            }
+            const actionBtns = document.querySelectorAll('#articleView .action-btn');
+            actionBtns.forEach(b => {
+                if (b.dataset.action === 'bookmark') {
+                    if (isSaved) { b.classList.remove('active'); b.innerHTML = '☆ Save to Library'; }
+                    else { b.classList.add('active'); b.innerHTML = '★ Saved to Library'; }
+                }
+            });
+        }
+
+        if (state.view === 'reading') renderFeed();
+    } finally {
+        state._bmBusy.delete(id);
+    }
 };
 
 /* ---------- Auth ---------- */
 async function initAuth() {
-    const closeModals = () => { $('#authModal').classList.add('hidden'); $('#authStatus').textContent = ''; returnFocus(); };
+    const closeModals = () => { $('#authModal')?.classList.add('hidden'); if ($('#authStatus')) $('#authStatus').textContent = ''; returnFocus(); };
     let lastFocused = null;
 
     const open = () => {
         lastFocused = document.activeElement;
-        $('#authModal').classList.remove('hidden');
-        if (!$('#signupView').classList.contains('hidden')) $('#signupUsername').focus();
-        else if (!$('#forgotView').classList.contains('hidden')) $('#forgotUsername').focus();
-        else if (!$('#recoveryView').classList.contains('hidden')) $('#recoveryPassword').focus();
-        else $('#loginUsername').focus();
+        $('#authModal')?.classList.remove('hidden');
+        if (!$('#signupView')?.classList.contains('hidden')) $('#signupUsername')?.focus();
+        else if (!$('#forgotView')?.classList.contains('hidden')) $('#forgotUsername')?.focus();
+        else if (!$('#recoveryView')?.classList.contains('hidden')) $('#recoveryPassword')?.focus();
+        else $('#loginUsername')?.focus();
     };
     window.openAuthModal = open;
     const returnFocus = () => { if (lastFocused) lastFocused.focus(); };
 
-    document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#authModal').classList.contains('hidden')) closeModals(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#authModal')?.classList.contains('hidden')) closeModals(); });
 
     // Init password toggle ARIA state on load
     document.querySelectorAll('.pwd-toggle').forEach(t => {
@@ -1081,7 +1198,7 @@ async function initAuth() {
         t.setAttribute('aria-label', 'Show password');
     });
     // Single delegated password toggle
-    $('#authModal').addEventListener('click', e => {
+    $('#authModal')?.addEventListener('click', e => {
         const t = e.target.closest('.pwd-toggle');
         if (!t) return;
         const input = document.getElementById(t.dataset.pwd);
@@ -1091,41 +1208,50 @@ async function initAuth() {
         t.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
     });
 
-    $('#authBtn').onclick = () => {
+    const authBtn = $('#authBtn');
+    if (authBtn) authBtn.onclick = () => {
         if (state.user && sb) { sb.auth.signOut(); return; }
         open();
     };
-    $('#authClose').onclick = closeModals;
-    $('#authClose2').onclick = closeModals;
-    $('#authModal').onclick = (e) => { if (e.target.id === 'authModal') closeModals(); };
+    const on = (sel, ev, fn) => { const el = $(sel); if (el) el[ev] = fn; };
 
-    $('#tabLogin').onclick = () => switchTab('login');
-    $('#tabSignup').onclick = () => switchTab('signup');
-    $('#btnForgot').onclick = () => switchTab('forgot');
-    $('#btnBackToLogin').onclick = () => switchTab('login');
+    on('#authClose', 'onclick', closeModals);
+    on('#authClose2', 'onclick', closeModals);
+    on('#authModal', 'onclick', (e) => { if (e.target.id === 'authModal') closeModals(); });
+
+    on('#tabLogin', 'onclick', () => switchTab('login'));
+    on('#tabSignup', 'onclick', () => switchTab('signup'));
+    on('#btnForgot', 'onclick', () => switchTab('forgot'));
+    on('#btnBackToLogin', 'onclick', () => switchTab('login'));
 
     function switchTab(which) {
-        ['loginView', 'signupView', 'forgotView', 'recoveryView'].forEach(id => $('#' + id).classList.add('hidden'));
-        $('#loginView').classList.toggle('hidden', which !== 'login');
-        $('#signupView').classList.toggle('hidden', which !== 'signup');
-        $('#forgotView').classList.toggle('hidden', which !== 'forgot');
-        $('#recoveryView').classList.toggle('hidden', which !== 'recovery');
+        ['loginView', 'signupView', 'forgotView', 'recoveryView'].forEach(id => {
+            const el = $('#' + id); if (el) el.classList.add('hidden');
+        });
+        const toggle = (id, visible) => { const el = $('#' + id); if (el) el.classList.toggle('hidden', !visible); };
+        toggle('loginView', which === 'login');
+        toggle('signupView', which === 'signup');
+        toggle('forgotView', which === 'forgot');
+        toggle('recoveryView', which === 'recovery');
 
-        $('#tabLogin').classList.toggle('active', which === 'login');
-        $('#tabSignup').classList.toggle('active', which === 'signup');
-        $('#authStatus').textContent = '';
+        const tabL = $('#tabLogin'), tabS = $('#tabSignup');
+        if (tabL) tabL.classList.toggle('active', which === 'login');
+        if (tabS) tabS.classList.toggle('active', which === 'signup');
+
+        const stat = $('#authStatus'); if (stat) stat.textContent = '';
     }
 
     if (!sb) {
-        $('#authBtn').querySelector('span').textContent = 'Local only';
-        const localOnly = () => { $('#authStatus').style.color = '#f59e0b'; $('#authStatus').textContent = 'Cloud accounts are not configured.'; };
+        const authSpan = $('#authBtn')?.querySelector('span');
+        if (authSpan) authSpan.textContent = 'Local only';
+        const localOnly = () => { if ($('#authStatus')) { $('#authStatus').style.color = '#f59e0b'; $('#authStatus').textContent = 'Cloud accounts are not configured.'; } };
         ['loginForm', 'signupForm', 'forgotForm', 'recoveryForm'].forEach(id => {
             const f = $('#' + id); if (f) f.onsubmit = e => { e.preventDefault(); localOnly(); };
         });
         return;
     }
 
-    $('#loginForm').onsubmit = async e => {
+    if ($('#loginForm')) $('#loginForm').onsubmit = async e => {
         e.preventDefault();
         const email = $('#loginUsername').value.trim();
         const pass = $('#loginPassword').value;
@@ -1141,7 +1267,7 @@ async function initAuth() {
         }
     };
 
-    $('#signupForm').onsubmit = async e => {
+    if ($('#signupForm')) $('#signupForm').onsubmit = async e => {
         e.preventDefault();
         const email = $('#signupUsername').value.trim();
         const pass = $('#signupPassword').value;
@@ -1150,7 +1276,7 @@ async function initAuth() {
         if (pass.length < 8) { $('#authStatus').textContent = 'Password must be at least 8 characters.'; return; }
 
         try {
-            const { data, error } = await sb.auth.signUp({ email, password: pass, options: { emailRedirectTo: location.origin + buildPath('/') } });
+            const { data, error } = await sb.auth.signUp({ email, password: pass, options: { emailRedirectTo: location.origin + buildPath('/today') } });
             if (error) { $('#authStatus').textContent = error.message; return; }
             $('#authStatus').style.color = '#10b981';
             $('#authStatus').textContent = data.session ? 'Account created. You are signed in.' : 'Check your email to confirm your account.';
@@ -1160,7 +1286,7 @@ async function initAuth() {
         }
     };
 
-    $('#forgotForm').onsubmit = async e => {
+    if ($('#forgotForm')) $('#forgotForm').onsubmit = async e => {
         e.preventDefault();
         const email = $('#forgotUsername').value.trim();
         if (!/.+@.+\..+/.test(email)) { $('#authStatus').textContent = 'Enter a valid email.'; return; }
@@ -1175,7 +1301,7 @@ async function initAuth() {
         }
     };
 
-    $('#recoveryForm').onsubmit = async e => {
+    if ($('#recoveryForm')) $('#recoveryForm').onsubmit = async e => {
         e.preventDefault();
         const pass = $('#recoveryPassword').value;
         if (pass.length < 8) { $('#authStatus').textContent = 'Min 8 characters.'; return; }
@@ -1193,50 +1319,72 @@ async function initAuth() {
 
     sb.auth.onAuthStateChange((event, session) => {
         if (event === 'PASSWORD_RECOVERY') {
-            open();
             switchTab('recovery');
+            open();
         } else if (['SIGNED_IN', 'SIGNED_OUT', 'INITIAL_SESSION'].includes(event)) {
-            setUser(session?.user ?? null);
+            setUser(session?.user ?? null).catch(console.error);
         }
     });
 
-    const { data: { session } } = await sb.auth.getSession();
-    setUser(session?.user ?? null);
+    try {
+        const { data: { session } } = await sb.auth.getSession();
+        setUser(session?.user ?? null).catch(console.error);
+    } catch (e) {
+        console.warn('Failed to get initial session:', e);
+    }
 }
 
 let lastUserId = null;
 async function setUser(u) {
     const changed = (u?.id ?? null) !== lastUserId;
+    const signingOut = !u && lastUserId !== null;
     state.user = u;
-    lastUserId = u?.id ?? null;
-    $('#authBtn').querySelector('span').textContent = u ? 'Sign out' : 'Sign in';
-    if (!changed) return;
 
-    if (u) {
-        await syncFromCloud();
-    } else {
-        loadLocalBookmarks();
+    const authSpan = $('#authBtn')?.querySelector('span');
+    if (authSpan) authSpan.textContent = u ? 'Sign out' : 'Sign in';
+
+    if (!changed && !signingOut) return;
+
+    let syncedOk = true;
+    try {
+        if (u) {
+            syncedOk = await syncFromCloud();
+        } else {
+            loadLocalBookmarks();
+        }
+    } catch (e) {
+        syncedOk = false;
+        console.error('Sync failed:', e);
+        toast('Could not sync bookmarks — will retry on next change.');
     }
+
+    if (syncedOk) lastUserId = u?.id ?? null;
     renderFeed();
 }
 
 
 /* ---------- Manual Refresh ---------- */
+window.doRefresh = async function () {
+    const success = await loadNews();
+    if (success) toast('News data reloaded from server.');
+    else toast('Failed to reload news data.');
+    return success;
+};
+
 function initRefresh() {
-    $('#refreshBtn').onclick = async () => {
-        await loadNews();
-        toast('News data reloaded from server.');
-    };
+    const btn = $('#refreshBtn');
+    if (btn) btn.onclick = window.doRefresh;
 }
 
 /* ---------- Chatbot (Local Data Search) ---------- */
 function initChat() {
     const panel = $('#chatPanel'), msgs = $('#chatMessages');
-    $('#chatToggle').onclick = () => panel.classList.toggle('hidden');
-    $('#chatClose').onclick = () => panel.classList.add('hidden');
+    if (!panel || !msgs) return;
+    if ($('#chatToggle')) $('#chatToggle').onclick = () => panel.classList.toggle('hidden');
+    if ($('#chatClose')) $('#chatClose').onclick = () => panel.classList.add('hidden');
 
     let isChatPending = false;
-    $('#chatForm').onsubmit = async e => {
+    if ($('#chatForm')) $('#chatForm').onsubmit = async e => {
         e.preventDefault();
         if (isChatPending) return;
         const input = $('#chatInput');
@@ -1248,6 +1396,8 @@ function initChat() {
         addMsg('user', text);
 
         const sysMsg = addMsg('sys', 'Searching local data...');
+        const submitBtn = $('#chatForm button[type="submit"]');
+        if (submitBtn) submitBtn.disabled = true;
 
         // Simulate short delay for UX
         setTimeout(() => {
@@ -1261,6 +1411,7 @@ function initChat() {
                 addMsg('ai', 'Sorry, something went wrong.');
             } finally {
                 isChatPending = false;
+                if (submitBtn) submitBtn.disabled = false;
             }
         }, 500);
     };
@@ -1289,7 +1440,7 @@ function searchLocalData(query) {
     const q = query.toLowerCase();
 
     // 1. Answer App Feature Questions
-    if (/^(what can i do|how to use|features|help|what is this app)/i.test(q.trim())) {
+    if (/^\s*(help|what can i do|what is this app|how (to|can) (i|you))\s*[?.!]?\s*$/i.test(q.trim())) {
         return "Welcome to **AI Pulse**, your free daily source for AI engineering news! Here is what you can do:\n\n" +
             "• **Today's Overview**: See the freshest AI engineering news from the last 24 hours.\n" +
             "• **Weekly Overview**: View everything collected in the last 7 days.\n" +
@@ -1299,25 +1450,33 @@ function searchLocalData(query) {
             "Ask me about a specific topic (e.g., 'OpenAI', 'RAG', 'Agents', 'GPU') to search today's news!";
     }
 
-    // 2. Search for News Articles
-    if (!state.articles || state.articles.length === 0) {
+    // 2. Search for News Articles & Bookmarks
+    const allArticles = [...(state.articles || []), ...state.bookmarks.values()];
+    const uniqueArticles = Array.from(new Map(allArticles.map(a => [a.id, a])).values());
+
+    if (!uniqueArticles || uniqueArticles.length === 0) {
         return "I don't have any news data loaded right now. Please wait for the daily sync or click the refresh button.";
     }
 
     // Remove stop words from query
     const stopWords = ['what', 'when', 'where', 'who', 'why', 'how', 'the', 'and', 'for', 'are', 'you', 'can', 'tell', 'me', 'about', 'news', 'latest', 'today'];
-    const words = q.split(/\W+/).filter(w => w.length > 2 && !stopWords.includes(w));
+    const words = q.split(/[\s,;.!?]+/).filter(w => w.length > 2 && !stopWords.includes(w));
 
     if (words.length === 0) {
         return "I'm not sure what you're looking for. Try asking about 'OpenAI', 'agents', or 'what can I do here?'.";
     }
 
-    // Find matches
-    const matches = state.articles.filter(a => {
+    const scored = uniqueArticles.map(a => {
         const ins = a.insights || {};
         const text = `${a.title} ${a.summary} ${ins.engineerSummary || ''} ${ins.founderSummary || ''} ${a.category} ${a.source}`.toLowerCase();
-        return words.some(w => text.includes(w));
-    });
+        const hits = words.filter(w => text.includes(w)).length;
+        return { article: a, hits };
+    }).filter(r => r.hits > 0);
+
+    const strictHits = scored.filter(r => r.hits === words.length);
+    const matches = (strictHits.length ? strictHits : scored)
+        .sort((a, b) => b.hits - a.hits)
+        .map(r => r.article);
 
     if (matches.length === 0) {
         return "I couldn't find any recent news matching those keywords in today's data.";
@@ -1328,10 +1487,16 @@ function searchLocalData(query) {
 
     matches.slice(0, 4).forEach(m => { // limit to top 4
         const ins = m.insights || {};
-        const sum = ins.engineerSummary || ins.founderSummary || m.summary || 'No summary available.';
-        response += `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline; vertical-align:-2px; margin-right:4px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> **${m.title}**\n`;
-        response += `*${m.category} | ${m.source}*\n`;
-        response += `${sum.slice(0, 150)}${sum.length > 150 ? '...' : ''}\n\n`;
+        const sum = String(ins.engineerSummary || ins.founderSummary || m.summary || 'No summary available.');
+        const safeTitle = String(m.title || '').replace(/[*_`~]/g, '');
+        const safeCat = String(m.category || 'General AI').replace(/[*_`~]/g, '');
+        const safeSource = String(m.source || 'Unknown').replace(/[*_`~]/g, '');
+        const slicedSum = sum.length > 150 ? sum.slice(0, 150).replace(/\s+\S*$/, '') + '…' : sum;
+        const safeSum = slicedSum.replace(/[*_`~]/g, '');
+
+        response += `• **${safeTitle}**\n`;
+        response += `*${safeCat} | ${safeSource}*\n`;
+        response += `${safeSum}\n\n`;
     });
 
     if (matches.length > 4) {
@@ -1369,19 +1534,19 @@ function initPolicies() {
     };
 
     const showPolicy = (type) => {
-        $('#policyTitle').textContent = type === 'privacy' ? 'Privacy Policy' : 'Terms of Service';
-        $('#policyContent').innerHTML = policies[type];
-        $('#policyModal').classList.remove('hidden');
+        if ($('#policyTitle')) $('#policyTitle').textContent = type === 'privacy' ? 'Privacy Policy' : 'Terms of Service';
+        if ($('#policyContent')) $('#policyContent').innerHTML = policies[type];
+        if ($('#policyModal')) $('#policyModal').classList.remove('hidden');
     };
 
     const privacyLink = $('#privacyLink');
     const termsLink = $('#termsLink');
     if (privacyLink) privacyLink.onclick = (e) => { e.preventDefault(); showPolicy('privacy'); };
     if (termsLink) termsLink.onclick = (e) => { e.preventDefault(); showPolicy('terms'); };
-    $('#policyClose').onclick = () => $('#policyModal').classList.add('hidden');
+    if ($('#policyClose')) $('#policyClose').onclick = () => $('#policyModal')?.classList.add('hidden');
 
     // Close policy modal when clicking on the dark empty space (backdrop)
-    $('#policyModal').onclick = (e) => {
+    if ($('#policyModal')) $('#policyModal').onclick = (e) => {
         if (e.target.id === 'policyModal') {
             $('#policyModal').classList.add('hidden');
         }
@@ -1390,16 +1555,15 @@ function initPolicies() {
 
 /* ---------- Boot ---------- */
 async function boot() {
-    initTheme();
-    initNav();
-    loadLocalBookmarks();
-    initRefresh();
-    initChat();
-    initPolicies();
-    await loadNews();
-    await initAuth();
+    const inits = [initTheme, initNav, initRefresh, initChat, initPolicies];
+    for (const init of inits) {
+        try { init(); } catch (e) { console.error(`${init.name} failed`, e); }
+    }
 
-    // Initialize route based on URL
+    loadLocalBookmarks();
+    await loadNews();
+
+    // Initialize route based on URL (render before waiting for auth)
     const initialView = getRouteFromPath();
     const urlParams = new URLSearchParams(window.location.search);
     const articleId = urlParams.get('id');
@@ -1410,27 +1574,36 @@ async function boot() {
         const view = getRouteFromPath();
         const urlParams = new URLSearchParams(window.location.search);
         const articleId = urlParams.get('id');
+
+        // Restore filters from history state
+        if (history.state) {
+            if ($('#searchInput')) $('#searchInput').value = history.state.search || '';
+            if ($('#categoryFilter')) $('#categoryFilter').value = history.state.category || '';
+            if ($('#dateFilter')) $('#dateFilter').value = history.state.date || '';
+        }
+
         navigateTo(view, false, articleId);
     });
 
-    setInterval(checkStaleness, 60 * 60 * 1000);
+    setInterval(() => { try { checkStaleness(); } catch (e) { console.warn(e); } }, 60 * 60 * 1000);
 
     // Merged search input listeners (clear button + debounce)
     const searchInput = $('#searchInput');
     const clearBtn = $('#clearSearchBtn');
     let searchTimer;
-    searchInput.addEventListener('input', () => {
-        clearBtn.classList.toggle('hidden', !searchInput.value);
-        clearTimeout(searchTimer);
-        searchTimer = setTimeout(renderFeed, 150);
-    });
-    $('#categoryFilter').onchange = renderFeed;
+
+    if (searchInput && clearBtn) {
+        searchInput.addEventListener('input', () => {
+            clearBtn.classList.toggle('hidden', !searchInput.value);
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(renderFeed, 150);
+        });
+    }
+    if ($('#categoryFilter')) $('#categoryFilter').onchange = renderFeed;
     if ($('#dateFilter')) $('#dateFilter').onchange = renderFeed;
 
-
-
     // Keyboard Navigation for Cards
-    document.getElementById('newsFeed').addEventListener('keydown', (e) => {
+    document.getElementById('newsFeed')?.addEventListener('keydown', (e) => {
         if (e.target.closest('.btn, a, button, .card-actions')) return;
         const card = e.target.closest('.card');
         if (!card) return;
@@ -1440,12 +1613,20 @@ async function boot() {
         }
     });
 
-    // Search Clear Button logic (input listener already merged above)
-    clearBtn.addEventListener('click', () => {
-        searchInput.value = '';
-        clearBtn.classList.add('hidden');
-        renderFeed();
-    });
+    // Search Clear Button logic
+    if (clearBtn && searchInput) {
+        clearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            clearBtn.classList.add('hidden');
+            renderFeed();
+        });
+    }
+
+    await initAuth();
 }
 
-boot();
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => boot().catch(err => console.error('Boot failed:', err)));
+} else {
+    boot().catch(err => console.error('Boot failed:', err));
+}

@@ -137,6 +137,7 @@ async function gnews(s) {
         }));
     } catch (e) { console.warn(`GNews ${s.name}: ${e.message}`); return []; }
 }
+
 async function fetchAll(sources) {
     const out = [];
     for (const s of sources) {
@@ -161,7 +162,7 @@ async function fetchGitHubTrending() {
         const headers = { 'User-Agent': 'AI-Engineer-Pulse' };
         if (process.env.GH_TOKEN) headers.Authorization = `Bearer ${process.env.GH_TOKEN}`;
 
-        const r = await fetch(`https://api.github.com/search/repositories?q=topic:artificial-intelligence+created:>${dateStr}&sort=stars&order=desc&per_page=6`, { headers });
+        const r = await fetch(`https://api.github.com/search/repositories?q=topic:artificial-intelligence+stars:>500&sort=stars&order=desc&per_page=6`, { headers });
         const data = await r.json();
         return (data.items || []).map(repo => ({
             name: repo.full_name,
@@ -187,7 +188,7 @@ async function fetchJobs() {
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         const data = await r.json();
         // Filter for AI/ML/Tech jobs using word boundaries
-        const jobs = data.filter(j => {
+        const jobs = (Array.isArray(data) ? data : []).filter(j => {
             if (!j.position) return false;
             const pos = j.position.toLowerCase();
             return /\b(ai|ml|llm|machine learning|deep learning|data scien|mlops|artificial intelligence)\b/.test(pos);
@@ -304,7 +305,7 @@ async function aiSummary(client, a) {
                     Source: ${a.source}
                     Excerpt: ${safeSummary}`
             }],
-            max_completion_tokens: 400, temperature: 0.3,
+            max_tokens: 800, temperature: 0.3,
         });
         return JSON.parse(r.choices[0].message.content);
     } catch (err) {
@@ -316,7 +317,8 @@ async function aiSummary(client, a) {
         ]);
         if (
             (typeof err.status === 'number' && (err.status >= 500 || err.status === 408 || err.status === 429)) ||
-            TRANSIENT_CODES.has(err.code)
+            TRANSIENT_CODES.has(err.code) ||
+            (err instanceof SyntaxError)
         ) {
             throw err;
         }
@@ -392,7 +394,7 @@ async function main() {
     let existingObj = {};
     try {
         existingObj = JSON.parse(await fs.readFile(NEWS_FILE, 'utf8'));
-        existing = existingObj.articles || [];
+        existing = Array.isArray(existingObj.articles) ? existingObj.articles : [];
     } catch { /* first run */ }
     console.log(`Loaded existing: ${existing.length}`);
 
@@ -495,13 +497,14 @@ async function main() {
         jobs: jobs.length ? jobs : (existingObj.jobs || [])
     };
 
-    /* 9. Write news.json + today's archive */
-    await fs.writeFile(NEWS_FILE, JSON.stringify(payload, null, 2));
-    await fs.writeFile(
-        path.join(ARCHIVE_DIR, `${now.toISOString().slice(0, 10)}.json`),
-        JSON.stringify(payload, null, 2)
-    );
-    await fs.writeFile(path.join(ARCHIVE_DIR, 'daily-news.json'), JSON.stringify(payload, null, 2));
+    /* 9. Write news.json + today's archive (atomic to prevent corruption) */
+    const tempNewsFile = NEWS_FILE + '.tmp';
+    await fs.writeFile(tempNewsFile, JSON.stringify(payload, null, 2));
+    await fs.rename(tempNewsFile, NEWS_FILE);
+
+    const tempArchiveFile = path.join(ARCHIVE_DIR, `${now.toISOString().slice(0, 10)}.json.tmp`);
+    await fs.writeFile(tempArchiveFile, JSON.stringify(payload, null, 2));
+    await fs.rename(tempArchiveFile, path.join(ARCHIVE_DIR, `${now.toISOString().slice(0, 10)}.json`));
 
     /* 10. Delete archive files older than 7 days */
     await pruneArchive(now);
