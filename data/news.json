@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-14T05:38:37.649+05:30",
+  "generatedAt": "2026-11-14T05:54:44.826+05:30",
   "retentionDays": 7,
-  "totalStories": 105,
-  "newToday": 105,
+  "totalStories": 106,
+  "newToday": 106,
   "articles": [
     {
       "title": "Do Large Language Models Show Racial and Sex Bias in Pain Management? A Counterfactual Audit of GPT, Claude, Gemini, Llama, DeepSeek and Qwen",
@@ -31,7 +31,7 @@
       "relevanceScore": 37,
       "whyItMatters": "Affects serving cost, throughput, and latency.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -47,7 +47,7 @@
       "relevanceScore": 35,
       "whyItMatters": "Affects serving cost, throughput, and latency.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -63,7 +63,7 @@
       "relevanceScore": 32,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -94,7 +94,7 @@
       "relevanceScore": 28,
       "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -170,7 +170,7 @@
       "relevanceScore": 23,
       "whyItMatters": "Affects serving cost, throughput, and latency.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -231,7 +231,7 @@
       "relevanceScore": 21,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -322,7 +322,7 @@
       "relevanceScore": 19,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -338,7 +338,7 @@
       "relevanceScore": 19,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -370,7 +370,7 @@
       "relevanceScore": 18,
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "insights": null
     },
     {
@@ -385,7 +385,7 @@
       "relevanceScore": 18,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -416,7 +416,7 @@
       "relevanceScore": 17,
       "whyItMatters": "Relevant to deployment, monitoring, and evaluation workflows.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -432,7 +432,7 @@
       "relevanceScore": 17,
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -448,7 +448,7 @@
       "relevanceScore": 17,
       "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -509,7 +509,7 @@
       "relevanceScore": 16,
       "whyItMatters": "Relevant to deployment, monitoring, and evaluation workflows.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "insights": null
     },
     {
@@ -524,7 +524,7 @@
       "relevanceScore": 16,
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -585,7 +585,7 @@
       "relevanceScore": 14,
       "whyItMatters": "Relevant to deployment, monitoring, and evaluation workflows.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -617,7 +617,7 @@
       "relevanceScore": 13,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "insights": null
     },
     {
@@ -632,7 +632,7 @@
       "relevanceScore": 13,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -648,7 +648,7 @@
       "relevanceScore": 13,
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -709,7 +709,7 @@
       "relevanceScore": 12,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -725,7 +725,7 @@
       "relevanceScore": 12,
       "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -801,7 +801,7 @@
       "relevanceScore": 11,
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -863,7 +863,7 @@
       "relevanceScore": 10,
       "whyItMatters": "Impacts hardware, scaling, and deployment decisions.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "insights": null
     },
     {
@@ -878,7 +878,7 @@
       "relevanceScore": 10,
       "whyItMatters": "Relevant to deployment, monitoring, and evaluation workflows.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -894,7 +894,7 @@
       "relevanceScore": 10,
       "whyItMatters": "Relevant to retrieval-augmented generation accuracy and latency.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -910,7 +910,7 @@
       "relevanceScore": 10,
       "whyItMatters": "Relevant to retrieval-augmented generation accuracy and latency.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -926,7 +926,7 @@
       "relevanceScore": 10,
       "whyItMatters": "Relevant to retrieval-augmented generation accuracy and latency.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -943,7 +943,7 @@
       "relevanceScore": 9,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "insights": null
     },
     {
@@ -1048,7 +1048,7 @@
       "relevanceScore": 8,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -1064,7 +1064,7 @@
       "relevanceScore": 8,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -1080,7 +1080,7 @@
       "relevanceScore": 8,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -1096,7 +1096,7 @@
       "relevanceScore": 8,
       "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -1112,7 +1112,7 @@
       "relevanceScore": 8,
       "whyItMatters": "Relevant to retrieval-augmented generation accuracy and latency.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -1204,6 +1204,22 @@
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
+      "insights": null
+    },
+    {
+      "title": "Shield helps technicians hand off legacy portal work with OpenAI",
+      "summary": "Shield uses OpenAI to help IT technicians hand off work in legacy portals. Its Forge agents navigate systems so technicians can focus on issues needing their judgment.",
+      "url": "https://openai.com/business/customer-stories/shield",
+      "publishedAt": "2026-11-13T08:00:00.000Z",
+      "source": "OpenAI News",
+      "category": "AI Agents",
+      "trusted": true,
+      "image": null,
+      "id": "a77ndc0",
+      "relevanceScore": 6,
+      "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
+      "aiSummary": null,
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "insights": null
     },
     {
@@ -1309,7 +1325,7 @@
       "relevanceScore": 4,
       "whyItMatters": "Broadly relevant context for AI engineering decisions.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "insights": null
     },
     {
@@ -1325,7 +1341,7 @@
       "relevanceScore": 4,
       "whyItMatters": "Affects tooling choices and developer productivity.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "insights": null
     },
     {
@@ -1341,7 +1357,7 @@
       "relevanceScore": 4,
       "whyItMatters": "Affects tooling choices and developer productivity.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "insights": null
     },
     {
@@ -1371,7 +1387,7 @@
       "relevanceScore": 4,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -1387,7 +1403,7 @@
       "relevanceScore": 4,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
       "aiSummary": null,
-      "addedAt": "2026-11-14T00:08:37.649Z",
+      "addedAt": "2026-11-14T00:24:44.826Z",
       "image": null,
       "insights": null
     },
@@ -1617,56 +1633,7 @@
       "insights": null
     }
   ],
-  "githubTrending": [
-    {
-      "name": "didilili/mianstack",
-      "description": "🚀 面栈 MianStack｜程序员面试题库天花板！Java、Python、数据库、算法、大模型、AI Agent、RAG 一栈备齐。真实面经关联高频考点，按公司、岗位定向备考；图文题解、精华专题、项目源码拆解，全系标配。面试官出题，面栈出招！免费开源，持续更新。",
-      "stars": 185,
-      "forks": 11,
-      "language": "JavaScript",
-      "url": "https://github.com/didilili/mianstack"
-    },
-    {
-      "name": "vixhal-baraiya/qwenFS",
-      "description": "Qwen3.5-2B with a filesystem compiled and inserted directly into its weights.",
-      "stars": 96,
-      "forks": 11,
-      "language": "Python",
-      "url": "https://github.com/vixhal-baraiya/qwenFS"
-    },
-    {
-      "name": "Jumbomuffin777/Frontier-UI",
-      "description": "ChatGPT-style generative UI for Open WebUI: photo galleries, live maps with real routes, multi-day trips, budgets, calculators, live weather & stocks, link previews, and one-click Word/Excel/PowerPoint exports via ArtCraft. One file, no API keys.",
-      "stars": 69,
-      "forks": 5,
-      "language": "Python",
-      "url": "https://github.com/Jumbomuffin777/Frontier-UI"
-    },
-    {
-      "name": "kokoc30/Auto-Stitch",
-      "description": "AI-powered video editing platform for transforming long-form content into short, engaging videos. Public product showcase.",
-      "stars": 49,
-      "forks": 0,
-      "language": "Unknown",
-      "url": "https://github.com/kokoc30/Auto-Stitch"
-    },
-    {
-      "name": "rohitjee7022-blip/Anonymous-Campus",
-      "description": "Anonymous Campus protects student identities while enabling honest campus facility feedback. It uses aggregated ratings and issue tracking to help administrators improve facilities, with BharatCode AI analysing feedback trends and generating actionable recommendations.",
-      "stars": 37,
-      "forks": 0,
-      "language": "JavaScript",
-      "url": "https://github.com/rohitjee7022-blip/Anonymous-Campus"
-    },
-    {
-      "name": "DjibrilM/MagicVoiceAI",
-      "description": " An offline desktop Text-to-Speech (TTS) studio built with Electron and the Qvac sdk ",
-      "stars": 35,
-      "forks": 4,
-      "language": "TypeScript",
-      "url": "https://github.com/DjibrilM/MagicVoiceAI"
-    }
-  ],
+  "githubTrending": [],
   "jobs": [
     {
       "title": "Data Engineer",
