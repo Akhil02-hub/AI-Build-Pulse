@@ -39,7 +39,7 @@ jobs:
 
       - name: Collect + prune feed (24h fetch · 7-day retention)
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: node scripts/collect-news.mjs
 
       - name: Commit and Push

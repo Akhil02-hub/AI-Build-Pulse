@@ -10,7 +10,8 @@ const firebaseConfig = {
     appId: "1:552428288490:android:b66d0a61fc3b5498e49a93"
 };
 
-const VAPID_KEY = "YOUR_VAPID_KEY_HERE"; // ADD YOUR VAPID KEY HERE
+// ⚠️ REPLACE THIS WITH YOUR ACTUAL VAPID KEY FROM FIREBASE CONSOLE
+const VAPID_KEY = "YOUR_VAPID_KEY_HERE";
 
 const app = initializeApp(firebaseConfig);
 let messaging = null;

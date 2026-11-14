@@ -15,9 +15,9 @@ const MAX_AI_SUMMARIES = 15;
 const AI_DELAY_MS = 1500;
 
 const KEYWORDS = {
-    'LLM Engineering': ['llm', 'gpt', 'transformer', 'tokenization', 'language model', 'claude', 'gemini', 'llama'],
+    'LLM Engineering': ['llm', 'gpt', 'gpt-4', 'gpt-4o', 'transformer', 'tokenization', 'language model', 'claude', 'gemini', 'llama'],
     'RAG': ['rag', 'retrieval', 'embedding', 'vector database', 'vector search', 'semantic search'],
-    'AI Agents': ['agent', 'mcp', 'tool calling', 'orchestration', 'autonomous', 'multi-agent'],
+    'AI Agents': ['agent', 'agentic', 'mcp', 'tool calling', 'orchestration', 'autonomous', 'multi-agent'],
     'Model Training': ['fine-tun', 'lora', 'rlhf', 'training', 'pre-train', 'distillation'],
     'Inference': ['inference', 'vllm', 'quantization', 'serving', 'throughput', 'latency', 'optimization'],
     'AI Infrastructure': ['gpu', 'cuda', 'distributed', 'cluster', 'h100', 'a100', 'tpu', 'infrastructure'],
@@ -25,6 +25,7 @@ const KEYWORDS = {
     'Multimodal AI': ['multimodal', 'vision', 'speech', 'audio', 'video', 'image generation'],
     'AI Security': ['prompt injection', 'guardrail', 'safety', 'jailbreak', 'alignment', 'red team'],
     'AI Frameworks': ['pytorch', 'tensorflow', 'langchain', 'llamaindex', 'jax', 'transformers'],
+    'Research': ['arxiv', 'paper', 'research', 'study', 'benchmark', 'sota', 'novel', 'propose', 'empirical'],
 };
 
 // Enable custom fields so we can get the full article content
@@ -39,14 +40,20 @@ const parser = new Parser({
 });
 
 // Clean HTML and preserve paragraph breaks
-const clean = (h = '') => h.replace(/<br\s*\/?>/gi, '\n').replace(/<\/p>/gi, '\n\n').replace(/<[^>]+>/g, ' ').replace(/[ \t]+/g, ' ').trim();
+const clean = (h = '') => h
+    .replace(/<!\[CDATA\[|\]\]>/g, '')
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/p>/gi, '\n\n')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/[ \t]+/g, ' ')
+    .trim();
 const norm = t => t.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+
+import crypto from 'node:crypto';
 
 /* Stable id — same URL always produces the same id across runs */
 function hashId(url) {
-    let h = 0;
-    for (let i = 0; i < url.length; i++) h = (Math.imul(31, h) + url.charCodeAt(i)) | 0;
-    return 'a' + Math.abs(h).toString(36);
+    return 'a' + crypto.createHash('sha256').update(url).digest('hex').slice(0, 12);
 }
 
 function canon(url) {
@@ -77,12 +84,19 @@ async function rss(s) {
                 if (match) imageUrl = match[1];
             }
 
+            // Resolve protocol-relative and relative URLs against the article link
+            if (imageUrl) {
+                try { imageUrl = new URL(imageUrl, i.link || s.url).toString(); }
+                catch { imageUrl = null; }
+            }
+
             return {
                 title: i.title || '',
                 summary: clean(rawContent), // Now stores the full clean text
                 url: canon(i.link || ''),
                 publishedAt: i.isoDate || i.pubDate || new Date().toISOString(),
-                source: s.name, category: s.category, trusted: s.trusted, image: imageUrl
+                source: s.name, category: s.category, trusted: s.trusted, image: imageUrl,
+                audience: s.audience
             };
         });
     } catch (e) { console.warn(`RSS ${s.name}: ${e.message}`); return []; }
@@ -96,6 +110,7 @@ async function hn(s) {
             url: h.url || `https://news.ycombinator.com/item?id=${h.objectID}`,
             publishedAt: h.created_at || new Date().toISOString(),
             source: s.name, category: 'General AI', trusted: false,
+            audience: s.audience
         }));
     } catch (e) { console.warn(`HN: ${e.message}`); return []; }
 }
@@ -107,16 +122,18 @@ async function devto(s) {
             title: a.title || '', summary: clean(a.description || ''),
             url: canon(a.url || ''), publishedAt: a.published_at || new Date().toISOString(),
             source: s.name, category: 'AI Frameworks', trusted: false,
+            audience: s.audience
         }));
     } catch (e) { console.warn(`Dev.to: ${e.message}`); return []; }
 }
 async function gnews(s) {
     try {
-        const f = await parser.parseURL(`https://news.google.com/rss/search?q=${encodeURIComponent(s.query)}&hl=en-US&gl=US&ceid=US:en`);
+        const f = await parser.parseURL(`https://news.google.com/rss/search?q=${encodeURIComponent(s.query)}&hl=en-IN&gl=IN&ceid=IN:en`);
         return (f.items || []).slice(0, 10).map(i => ({
             title: i.title || '', summary: clean(i.contentSnippet || i.content || ''),
             url: canon(i.link || ''), publishedAt: i.isoDate || i.pubDate || new Date().toISOString(),
             source: s.name, category: 'General AI', trusted: false,
+            audience: s.audience
         }));
     } catch (e) { console.warn(`GNews ${s.name}: ${e.message}`); return []; }
 }
@@ -141,9 +158,10 @@ async function fetchGitHubTrending() {
         const d = new Date();
         d.setDate(d.getDate() - 14);
         const dateStr = d.toISOString().split('T')[0];
-        const r = await fetch(`https://api.github.com/search/repositories?q=topic:artificial-intelligence+created:>${dateStr}&sort=stars&order=desc&per_page=6`, {
-            headers: { 'User-Agent': 'AI-Engineer-Pulse' }
-        });
+        const headers = { 'User-Agent': 'AI-Engineer-Pulse' };
+        if (process.env.GH_TOKEN) headers.Authorization = `Bearer ${process.env.GH_TOKEN}`;
+
+        const r = await fetch(`https://api.github.com/search/repositories?q=topic:artificial-intelligence+created:>${dateStr}&sort=stars&order=desc&per_page=6`, { headers });
         const data = await r.json();
         return (data.items || []).map(repo => ({
             name: repo.full_name,
@@ -163,16 +181,23 @@ async function fetchGitHubTrending() {
 async function fetchJobs() {
     try {
         // Fetch remote AI/ML jobs from a public API
-        const r = await fetch(`https://remoteok.com/api`);
+        const r = await fetch(`https://remoteok.com/api`, {
+            headers: { 'User-Agent': 'AI-Engineer-Pulse', 'Accept': 'application/json' }
+        });
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
         const data = await r.json();
-        // Filter for AI/ML/Tech jobs
-        const jobs = data.filter(j => j.position && (j.position.toLowerCase().includes('ai') || j.position.toLowerCase().includes('machine learning') || j.position.toLowerCase().includes('data'))).slice(1, 6); // Skip first element (legal)
+        // Filter for AI/ML/Tech jobs using word boundaries
+        const jobs = data.filter(j => {
+            if (!j.position) return false;
+            const pos = j.position.toLowerCase();
+            return /\b(ai|ml|llm|machine learning|deep learning|data scien|mlops|artificial intelligence)\b/.test(pos);
+        }).slice(0, 5);
 
         return jobs.map(job => ({
             title: job.position,
             company: job.company,
             location: job.location || 'Remote',
-            salary: job.salary_min ? `$${Math.round(job.salary_min / 1000)}k - $${Math.round(job.salary_max / 1000)}k` : 'Competitive',
+            salary: job.salary_min && job.salary_max ? `${Math.round(job.salary_min / 1000)}k - ${Math.round(job.salary_max / 1000)}k` : 'Competitive',
             url: job.url
         }));
     } catch (e) {
@@ -182,22 +207,31 @@ async function fetchJobs() {
 }
 
 /* ---------- Scoring & categorisation ---------- */
+const escapeRx = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+// Word-boundary matcher. Keywords ending in a letter are treated as word stems
+// (fine-tun → fine-tuning, pre-train → pre-training); everything else gets
+// strict `\b` on both sides.
+const wordMatch = (text, kw) => {
+    const escaped = escapeRx(kw);
+    // Allow explicit common suffixes, enforce boundaries on both sides
+    return new RegExp(`\\b${escaped}(?:s|es|ed|ing|er|ers|ion|ions)?\\b`, 'i').test(text);
+};
+
 function detectCat(text, fallback) {
-    const lower = text.toLowerCase();
     let best = { cat: fallback || 'General AI', hits: 0 };
     for (const [cat, kws] of Object.entries(KEYWORDS)) {
-        const h = kws.filter(k => lower.includes(k)).length;
+        const h = kws.filter(k => wordMatch(text, k)).length;
         if (h > best.hits) best = { cat, hits: h };
     }
     return best.cat;
 }
 function score(a) {
     let s = 0;
-    const t = (a.title || '').toLowerCase(), d = (a.summary || '').toLowerCase();
+    const t = a.title || '', d = a.summary || '';
     for (const kws of Object.values(KEYWORDS)) {
         for (const k of kws) {
-            if (t.includes(k)) s += 5;
-            if (d.includes(k)) s += 2;
+            if (wordMatch(t, k)) s += 5;
+            if (wordMatch(d, k)) s += 2;
         }
     }
     if (a.trusted) s += 2;
@@ -231,38 +265,63 @@ async function aiSummary(client, a) {
             }, {
                 role: 'user', content:
                     `Analyze this AI news for two personas: AI Engineer and Founder. Output a JSON object with these exact keys:
-                    "engineerSummary" (2 sentences on tech impact),
-                    "founderSummary" (2 sentences on business impact),
-                    "whatHappened" (1 sentence),
-                    "whatChanged" (1 sentence),
-                    "techDetails" (1 sentence on models/tools),
-                    "businessImpact" (1 sentence on market),
-                    "learn" (1 sentence on what skills to learn),
-                    "action" (1 sentence on next steps).
+                    "engineerSummary" (3-4 sentences on tech impact),
+                    "founderSummary" (3-4 sentences on business impact),
+                    "whatHappened" (Write a detailed summary of the core news in exactly 60 words, strictly no more than 5 lines),
+                    "whatChanged" (1 short sentence),
+                    "techDetails" (1 short sentence on models/tools),
+                    "businessImpact" (1 short sentence on market),
+                    "learn" (1 short sentence on what skills to learn),
+                    "action" (1 short sentence on next steps).
                     
                     Title: ${a.title}
                     Source: ${a.source}
                     Excerpt: ${safeSummary}`
             }],
-            max_tokens: 400, temperature: 0.3,
+            max_completion_tokens: 400, temperature: 0.3,
         });
         return JSON.parse(r.choices[0].message.content);
     } catch (err) {
         console.warn(`AI Error for "${a.title}":`, err.message);
-        return null;
+        // Throw on transient errors (network, rate limit, server down) so we don't permanently skip
+        const TRANSIENT_CODES = new Set([
+            'ECONNRESET', 'ETIMEDOUT', 'ENOTFOUND', 'ECONNREFUSED',
+            'EAI_AGAIN', 'ENETUNREACH', 'EHOSTUNREACH', 'EPIPE'
+        ]);
+        if (
+            (typeof err.status === 'number' && (err.status >= 500 || err.status === 408 || err.status === 429)) ||
+            TRANSIENT_CODES.has(err.code)
+        ) {
+            throw err;
+        }
+        return null; // Permanent failure (e.g., content policy, bad JSON)
     }
 }
 async function enrich(list) {
-    const token = process.env.GITHUB_TOKEN;
-    if (!token) return list.map(a => ({ ...a, insights: null }));
+    const token = process.env.GH_TOKEN;
+    if (!token) return list.map(a => ({ ...a, insights: null, insightsAttempted: false }));
     const client = new OpenAI({ baseURL: 'https://models.github.ai/inference', apiKey: token });
     const map = new Map();
     for (const a of list) {
-        try { map.set(a.id, await aiSummary(client, a)); console.log(`AI ✓ ${a.title.slice(0, 50)}`); }
-        catch (e) { console.warn(`AI ✗ ${a.title.slice(0, 40)}: ${e.message}`); }
+        try {
+            const res = await aiSummary(client, a);
+            map.set(a.id, res);
+            console.log(res === null
+                ? `AI ⊘ ${a.title.slice(0, 50)} (permanent failure — skipped)`
+                : `AI ✓ ${a.title.slice(0, 50)}`);
+        } catch (e) {
+            console.warn(`AI ✗ ${a.title.slice(0, 40)}: ${e.message} (will retry next run)`);
+        }
         await new Promise(r => setTimeout(r, AI_DELAY_MS));
     }
-    return list.map(a => ({ ...a, insights: map.get(a.id) ?? a.insights ?? null }));
+    return list.map(a => {
+        const wasAttempted = map.has(a.id);
+        return {
+            ...a,
+            insights: wasAttempted ? (map.get(a.id) ?? a.insights ?? null) : (a.insights ?? null),
+            insightsAttempted: a.insightsAttempted || wasAttempted
+        };
+    });
 }
 
 /* ---------- Archive cleanup ---------- */
@@ -292,9 +351,10 @@ async function main() {
 
     /* 1. Load existing articles (up to 7 days) */
     let existing = [];
+    let existingObj = {};
     try {
-        const old = JSON.parse(await fs.readFile(NEWS_FILE, 'utf8'));
-        existing = old.articles || [];
+        existingObj = JSON.parse(await fs.readFile(NEWS_FILE, 'utf8'));
+        existing = existingObj.articles || [];
     } catch { /* first run */ }
     console.log(`Loaded existing: ${existing.length}`);
 
@@ -312,7 +372,7 @@ async function main() {
 
     /* 4. Score + categorise fresh items, dedupe by URL + normalized title */
     const seenUrl = new Set(), seenTitle = new Set();
-    const freshScored = [];
+    let freshScored = [];
     for (const a of freshRaw) {
         if (!a.url || !a.title) continue;
         const u = canon(a.url), t = norm(a.title);
@@ -329,10 +389,11 @@ async function main() {
             id: hashId(u),
             relevanceScore: rel,
             whyItMatters: WHY[category] || WHY['General AI'],
-            aiSummary: null,
             addedAt: now.toISOString(),
         });
     }
+
+    freshScored = freshScored.sort((a, b) => b.relevanceScore - a.relevanceScore).slice(0, MAX_ARTICLES);
 
     /* 5. Merge with existing, existing wins for already-summarised items */
     const byId = new Map();
@@ -340,7 +401,8 @@ async function main() {
     let newCount = 0;
     for (const a of freshScored) {
         if (!byId.has(a.id)) newCount++;
-        byId.set(a.id, { ...(byId.get(a.id) || {}), ...a }); // new data overrides stale fields
+        const prev = byId.get(a.id);
+        byId.set(a.id, { ...(prev || {}), ...a, addedAt: prev?.addedAt ?? a.addedAt }); // new data overrides stale fields, but keeps original addedAt
     }
 
     /* 6. PRUNE anything older than 7 days */
@@ -354,17 +416,26 @@ async function main() {
     }
     console.log(`Merged: ${kept.length} kept · ${newCount} new · ${pruned} pruned (>7d)`);
 
-    /* 7. AI-summarise NEW items only (top by score) */
-    const newItems = kept.filter(a => !a.aiSummary).sort((x, y) => y.relevanceScore - x.relevanceScore).slice(0, MAX_AI_SUMMARIES);
+    /* 7. AI-summarise NEW items only (top by score) — skip entirely if no token */
+    const hasAiToken = !!process.env.GH_TOKEN;
+
+    const newItems = hasAiToken
+        ? kept
+            .filter(a => !a.insights && !a.insightsAttempted)
+            .sort((x, y) => y.relevanceScore - x.relevanceScore)
+            .slice(0, MAX_AI_SUMMARIES)
+        : [];
     const summarised = await enrich(newItems);
-    const insightsById = new Map(summarised.map(a => [a.id, a.insights]));
-    const finalArticles = kept.map(a => ({ ...a, insights: a.insights ?? insightsById.get(a.id) ?? null }));
+    const summarisedMap = new Map(summarised.map(a => [a.id, a]));
+    const finalArticles = kept.map(a => summarisedMap.get(a.id) || a);
 
     /* 8. Sort, cap total to keep JSON small */
     finalArticles.sort((a, b) =>
         b.relevanceScore - a.relevanceScore ||
         new Date(b.publishedAt) - new Date(a.publishedAt)
     );
+    // Hard cap 7-day retention (keeps payload small for the SPA)
+    if (finalArticles.length > 150) finalArticles.length = 150;
 
     const ist = new Date(now.getTime() + 5.5 * 3600 * 1000);
 
@@ -380,8 +451,8 @@ async function main() {
         totalStories: finalArticles.length,
         newToday: finalArticles.filter(a => new Date(a.addedAt || a.publishedAt).getTime() >= freshCutoff).length,
         articles: finalArticles,
-        githubTrending: githubTrending,
-        jobs: jobs
+        githubTrending: githubTrending.length ? githubTrending : (existingObj.githubTrending || []),
+        jobs: jobs.length ? jobs : (existingObj.jobs || [])
     };
 
     /* 9. Write news.json + today's archive */
@@ -395,7 +466,7 @@ async function main() {
     /* 10. Delete archive files older than 7 days */
     await pruneArchive(now);
 
-    console.log(`✓ Wrote ${finalArticles.length} articles (${newCount} new today)`);
+    console.log(`✓ Wrote ${finalArticles.length} articles (${newCount} new this run)`);
 }
 
 main().catch(e => { console.error(e); process.exit(1); });

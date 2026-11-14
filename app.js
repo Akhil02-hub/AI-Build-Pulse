@@ -11,12 +11,31 @@ const state = {
     user: null,
     bookmarks: new Map(),
     view: 'today',
-    persona: 'engineer' // 'engineer' or 'founder'
+    persona: 'engineer',
+    currentArticleId: null,
+    briefCategory: null,
+    dateFilter: ''
 };
 
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const fmtDate = iso => new Date(iso).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+const HIGHLIGHT_WORDS = ['LLM', 'RAG', 'AI Agents', 'Agentic', 'OpenAI', 'GPT-4', 'Claude', 'Gemini', 'Llama', 'MLOps', 'GPU', 'Inference', 'Fine-tuning', 'Transformer', 'H100', 'A100', 'Vector', 'Prompt Injection', 'Multimodal'];
+function highlightKeywords(str) {
+    if (!str) return '';
+    let safe = esc(str);
+    const sorted = [...HIGHLIGHT_WORDS].sort((a, b) => b.length - a.length);
+    const escWords = sorted.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+    const rx = new RegExp(`\\b(${escWords.join('|')})\\b`, 'gi');
+    return safe.replace(rx, '<strong style="color: var(--accent); font-weight: 700;">$1</strong>');
+}
+const fmtDate = iso => {
+    try {
+        const d = new Date(iso);
+        if (isNaN(d.getTime())) return 'Unknown date';
+        return d.toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    } catch { return 'Unknown date'; }
+};
 
 // Security: Ensure URLs are safe (prevent javascript: XSS injection)
 const safeUrl = (url) => {
@@ -24,10 +43,7 @@ const safeUrl = (url) => {
     return /^(http|https):\/\//i.test(url) ? url : '';
 };
 
-window.togglePwd = function (id) {
-    const input = document.getElementById(id);
-    input.type = input.type === 'password' ? 'text' : 'password';
-};
+
 
 // Toast System
 function toast(msg, type = 'info') {
@@ -50,7 +66,6 @@ function toast(msg, type = 'info') {
 function initTheme() {
     const saved = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     document.documentElement.dataset.theme = saved;
-    localStorage.setItem('theme', saved);
     updateThemeIcon(saved);
     $('#themeBtn').onclick = () => {
         const t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
@@ -69,22 +84,44 @@ function updateThemeIcon(t) {
 const routes = {
     '/today': 'today',
     '/weekly': 'weekly',
-    '/briefy': 'briefing',
+    '/briefing': 'briefing',
     '/research': 'research',
     '/tools': 'tools',
     '/trends': 'trends',
     '/radar': 'radar',
     '/github': 'github',
     '/jobs': 'jobs',
-    '/reading': 'reading'
+    '/reading': 'reading',
+    '/article': 'article'
 };
 
+// Detect deployment base (e.g. '/repo' on GitHub Pages, '' on Vercel).
+// Walks the current URL pathname from the end to find the deepest known route.
+const BASE_PATH = (() => {
+    const known = Object.values(routes);
+    const parts = window.location.pathname.split('/').filter(Boolean);
+    for (let i = parts.length - 1; i >= 0; i--) {
+        if (known.includes(parts[i])) {
+            const prefix = parts.slice(0, i).join('/');
+            return prefix ? '/' + prefix : '';
+        }
+    }
+    // No route in path — assume a single deployment segment (e.g. GitHub Pages /repo).
+    return parts.length ? '/' + parts[0] : '';
+})();
+const buildPath = p => BASE_PATH + p;
+
 function getRouteFromPath() {
-    let path = window.location.pathname.replace(/\/$/, '');
-    if (path === '' || path === '/') return 'today';
+    let path = window.location.pathname;
+    if (BASE_PATH && path.startsWith(BASE_PATH)) path = path.slice(BASE_PATH.length);
+    path = path.replace(/\/$/, '');
+    if (path === '' || path === '/') {
+        history.replaceState({ view: 'today' }, '', buildPath('/today'));
+        return 'today';
+    }
     const view = routes[path];
     if (!view) {
-        history.replaceState({ view: 'today' }, '', '/today');
+        history.replaceState({ view: 'today' }, '', buildPath('/today'));
         return 'today';
     }
     return view;
@@ -101,12 +138,16 @@ function navigateTo(view, push = true, articleId = null) {
         path = `/article?id=${articleId}`;
     }
 
-    if (push) history.pushState({ view, articleId }, '', path);
+    if (push) history.pushState({ view, articleId }, '', buildPath(path));
     state.view = view;
     state.currentArticleId = articleId;
 
-    if ($('#searchInput')) $('#searchInput').value = '';
-    if ($('#categoryFilter')) $('#categoryFilter').value = '';
+    if (push) {
+        if ($('#searchInput')) $('#searchInput').value = '';
+        if ($('#categoryFilter')) $('#categoryFilter').value = '';
+        if ($('#dateFilter')) $('#dateFilter').value = '';
+        if ($('#clearSearchBtn')) $('#clearSearchBtn').classList.add('hidden');
+    }
 
     document.querySelectorAll('.sidebar-nav .nav-item').forEach(el => {
         if (el.dataset.view === view) el.classList.add('active');
@@ -126,8 +167,14 @@ function initNav() {
             personaBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             state.persona = btn.dataset.persona;
-            updateHeader();
-            renderFeed();
+            state.briefCategory = null;
+
+            if (state.view === 'article') {
+                navigateTo('today');
+            } else {
+                updateHeader();
+                renderFeed();
+            }
         };
     });
 
@@ -161,7 +208,8 @@ function initNav() {
             if (state.user) {
                 if (sb) sb.auth.signOut();
             } else {
-                document.getElementById('authModal').classList.remove('hidden');
+                if (window.openAuthModal) window.openAuthModal();
+                else document.getElementById('authModal').classList.remove('hidden');
             }
         };
     }
@@ -178,6 +226,17 @@ function initNav() {
     $('#sidebarOverlay').onclick = window.closeSidebar;
 }
 
+window.goBackFromArticle = function () {
+    if (history.length > 1) {
+        history.back();
+    } else {
+        const targetView = sessionStorage.getItem('previousView') || 'today';
+        navigateTo(targetView, false);
+        const routePath = Object.entries(routes).find(([, v]) => v === targetView)?.[0] || '/today';
+        history.replaceState({ view: targetView }, '', buildPath(routePath));
+    }
+};
+
 function updateHeader() {
     const titles = {
         'today': "Today's Overview",
@@ -189,48 +248,56 @@ function updateHeader() {
         'radar': "Technology Radar",
         'github': "GitHub Trending AI",
         'jobs': "AI Job Radar",
-        'reading': "My Reading List"
+        'reading': "My Reading List",
+        'article': "Article Analysis"
     };
     document.title = titles[state.view] + ' | AI Engineer Pulse';
 
     const subs = {
         'today': state.persona === 'engineer' ? "Free AI engineering news from the last 24 hours." : "Startup, funding, and AI business updates.",
         'weekly': "Free AI news collected over the last 7 days.",
-        'briefing': "All recent updates.",
+        'briefing': "Today's top stories, grouped by category.",
         'research': "Latest papers and academic breakthroughs.",
         'tools': "New frameworks, models, and infrastructure.",
         'trends': "Most active categories this week.",
         'radar': "Adopt, Trial, Assess, and Watch emerging AI tech.",
         'github': "Trending AI repositories and open-source projects.",
         'jobs': "Latest AI Engineer and ML Engineer roles.",
-        'reading': "Saved articles, kept forever."
+        'reading': "Saved articles, kept forever.",
+        'article': "Detailed engineering and business insights."
     };
     $('#pageTitle').textContent = titles[state.view];
     $('#pageSubtitle').textContent = subs[state.view];
 
-    if (['reading', 'trends', 'radar', 'github', 'jobs'].includes(state.view)) {
+    if (['reading', 'trends', 'radar', 'github', 'jobs', 'article', 'briefing'].includes(state.view)) {
         $('#controlsBar').classList.add('hidden');
     } else {
         $('#controlsBar').classList.remove('hidden');
     }
 }
-
 /* ---------- News ---------- */
 async function loadNews() {
     $('#newsFeed').innerHTML = Array(3).fill('<div class="skeleton-card"></div>').join('');
     try {
-        const r = await fetch('/data/news.json', { cache: 'no-store' });
+        const r = await fetch('./data/news.json', { cache: 'no-store' });
         if (!r.ok) throw new Error('news.json not found');
         state.news = await r.json();
 
         // Data Contract Validation
         const REQUIRED = ['id', 'title', 'url', 'publishedAt'];
-        state.articles = (state.news.articles || []).filter(a =>
-            a && REQUIRED.every(k => typeof a[k] === 'string' && a[k].trim())
-        );
+        state.articles = (state.news.articles || [])
+            .filter(a => a && REQUIRED.every(k => typeof a[k] === 'string' && a[k].trim()))
+            .map(a => ({
+                ...a,
+                source: a.source || 'Unknown',
+                category: a.category || 'General AI',
+                summary: a.summary || '',
+                relevanceScore: typeof a.relevanceScore === 'number' ? a.relevanceScore : 0
+            }));
 
         pruneStaleLocalBookmarks();
         renderCategoryDropdown();
+        renderDateDropdown();
         renderFeed();
         checkStaleness();
     } catch (e) {
@@ -256,10 +323,15 @@ function checkStaleness() {
     const banner = $('#staleBanner');
     if (!state.news) return;
     const age = Date.now() - new Date(state.news.generatedAt).getTime();
+    if (!Number.isFinite(age)) {
+        banner.classList.remove('hidden');
+        banner.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline; vertical-align:middle; margin-right:6px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Unable to determine data freshness.`;
+        return;
+    }
     const STALE_HOURS = 26;   // 24h + 2h buffer for GitHub Action delay
     if (age > STALE_HOURS * 3600 * 1000) {
         banner.classList.remove('hidden');
-        banner.innerHTML = `⚠️ Last update was ${Math.round(age / 3600000)}h ago. The scheduled workflow may be delayed.`;
+        banner.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline; vertical-align:middle; margin-right:6px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Last update was ${Math.round(age / 3600000)}h ago. The scheduled workflow may be delayed.`;
     } else {
         banner.classList.add('hidden');
     }
@@ -305,12 +377,17 @@ function cardHTML(a) {
     const fresh = Number.isFinite(ts) ? Math.max(60, Math.min(99, 99 - Math.round((Date.now() - ts) / 7200000))) : null;
     const scoreBadge = fresh !== null ? `<span class="impact-badge" title="Freshness score">★ ${fresh}</span>` : '';
 
-    const summaryToDisplay = a.insights
-        ? (state.persona === 'engineer' ? a.insights.engineerSummary : a.insights.founderSummary)
-        : (a.summary || '').slice(0, 300);
+    let summaryToDisplay = a.summary || '';
+    if (a.insights) {
+        if (state.persona === 'engineer' && a.insights.engineerSummary) {
+            summaryToDisplay = a.insights.engineerSummary;
+        } else if (state.persona === 'founder' && a.insights.founderSummary) {
+            summaryToDisplay = a.insights.founderSummary;
+        }
+    }
 
     return `
-  <article class="card" data-id="${esc(a.id)}" tabindex="0" role="button" onclick="navigateToArticle('${esc(a.id)}', event)">
+  <article class="card" data-id="${esc(a.id)}" tabindex="0" role="button" onclick="navigateToArticle(this.dataset.id, event)">
     <div class="card-image">
       <div class="card-image-tag">${esc(a.category || 'General AI')}</div>
       ${imageContent}
@@ -318,7 +395,6 @@ function cardHTML(a) {
     <div class="card-content">
       <div class="card-title-container">
           <h3 class="card-title">${esc(a.title)}</h3>
-          <span class="card-chevron" aria-hidden="true">▾</span>
       </div>
       <div class="card-meta">
         <span>${esc(a.source)}</span>
@@ -326,15 +402,12 @@ function cardHTML(a) {
         <span>${fmtDate(a.publishedAt)}</span>
         ${scoreBadge}
       </div>
-      <div class="card-details">
-        ${summaryToDisplay
-            ? `<div class="ai-summary"><strong>✨ ${state.persona === 'engineer' ? 'Engineering' : 'Business'} Summary</strong>${esc(summaryToDisplay)}</div>`
-            : `<div class="ai-summary"><strong>Excerpt</strong>${esc((a.summary || '').slice(0, 300))}${(a.summary || '').length > 300 ? '…' : ''}</div>`}
-        <div class="why-matters"><strong>Why it matters:</strong> ${esc(a.whyItMatters || '')}</div>
-        <div class="card-actions">
-          <a href="${safeUrl(a.url)}" target="_blank" rel="noopener" class="btn primary" onclick="event.stopPropagation()">Read Original</a>
-          <button class="btn save ${saved ? 'saved' : ''}" data-save-id="${esc(a.id)}" onclick="toggleBookmark('${esc(a.id)}', event)">${saved ? '★ Saved' : '☆ Save'}</button>
-        </div>
+      <div class="ai-summary" style="margin-top: 0.5rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+        ${esc(summaryToDisplay || a.summary || 'Click to read more')}
+      </div>
+      <div class="card-actions" style="margin-top: 1rem; display: flex; gap: 0.5rem;" onclick="event.stopPropagation()">
+        <a href="${safeUrl(a.url) || '#'}" target="_blank" rel="noopener" class="btn primary" style="flex: 1; padding: 0.4rem; font-size: 0.8rem;">Read Original</a>
+        <button class="btn save ${saved ? 'saved' : ''}" data-save-id="${esc(a.id)}" onclick="toggleBookmark(this.dataset.saveId, event)" style="padding: 0.4rem; font-size: 0.8rem;">${saved ? '★ Saved' : '☆ Save'}</button>
       </div>
     </div>
   </article>`;
@@ -342,7 +415,7 @@ function cardHTML(a) {
 
 window.navigateToArticle = function (id, event) {
     if (event) {
-        if (event.target.closest('.card-actions')) return; // Ignore if clicking buttons
+        if (event.target.closest('.card-actions') || event.target.closest('.btn')) return;
         event.preventDefault();
     }
     // Save current view to go back later
@@ -352,23 +425,38 @@ window.navigateToArticle = function (id, event) {
     navigateTo('article', true, id);
 };
 
-// Keep toggleCard for other potential uses, but it's no longer bound to the main card click
-window.toggleCard = function (element, event) { };
+// (removed unused toggleCard stub)
 
 function applyFilters(list) {
     const q = $('#searchInput').value.toLowerCase().trim();
     const cat = $('#categoryFilter').value;
+    const dateF = $('#dateFilter') ? $('#dateFilter').value : '';
 
     const H = 3600 * 1000;
     let cutoff = 0;
     if (state.view === 'today') cutoff = Date.now() - 36 * H;
-    else if (state.view === 'briefing') cutoff = Date.now() - 48 * H;
+    // (Briefing cutoff is handled inside renderBriefing)
     else if (state.view === 'weekly') cutoff = Date.now() - 7 * 24 * H;
 
     return list.filter(a => {
+        // 1. FILTER BY PERSONA (AUDIENCE)
+        if (state.persona === 'engineer' && a.audience === 'founder') return false;
+        if (state.persona === 'founder' && a.audience !== 'founder' && a.audience !== 'all') return false;
+
+        // 2. Other filters
         if (cat && a.category !== cat) return false;
+
+        if (dateF) {
+            const d = new Date(a.publishedAt);
+            const aDate = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+            if (aDate !== dateF) return false;
+        }
+
         if (cutoff > 0 && new Date(a.publishedAt).getTime() < cutoff) return false;
-        if (q && !`${a.title} ${a.summary} ${a.aiSummary || ''}`.toLowerCase().includes(q)) return false;
+
+        const insText = a.insights ? `${a.insights.engineerSummary || ''} ${a.insights.founderSummary || ''}` : '';
+        if (q && !`${a.title} ${a.summary} ${insText}`.toLowerCase().includes(q)) return false;
+
         return true;
     });
 }
@@ -378,7 +466,13 @@ function renderArticle() {
     const article = state.articles.find(a => a.id === id) || state.bookmarks.get(id);
 
     if (!article) {
-        $('#articleView').innerHTML = `<p style="text-align:center; padding: 4rem;">Article not found. It may have expired.</p>`;
+        $('#articleView').innerHTML = `
+            <div class="article-top-bar">
+                <div class="top-bar-left">
+                    <button class="article-nav-btn" onclick="navigateTo('today')">← Back to Today</button>
+                </div>
+            </div>
+            <p style="text-align:center; padding: 4rem;">Article not found. It may have expired.</p>`;
         return;
     }
 
@@ -388,11 +482,14 @@ function renderArticle() {
     // --- THE FIX: Define the missing Notes variables ---
     const notesKey = `notes_${article.id}`;
     const savedNotes = localStorage.getItem(notesKey) || '';
+    const ins = article.insights || {};
+    const words = (article.summary || '').trim().split(/\s+/).filter(Boolean).length;
+    const readMins = Math.max(1, Math.ceil(words / 200));
     // ---------------------------------------------------
 
     // If no image, show a beautiful gradient with the category icon
     const imgHTML = imgSrc
-        ? `<img src="${imgSrc}" alt="cover">`
+        ? `<img src="${imgSrc}" alt="${esc(article.title)}">`
         : `<div class="article-hero-fallback">
              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${getCategorySVG(article.category)}</svg>
            </div>`;
@@ -401,11 +498,12 @@ function renderArticle() {
         <!-- Top Action Bar -->
         <div class="article-top-bar">
             <div class="top-bar-left">
-                <button class="article-nav-btn" onclick="navigateTo(sessionStorage.getItem('previousView') || 'today')">← Back</button>
+                <button class="article-nav-btn mobile-only" onclick="document.getElementById('sidebar').classList.add('open'); document.getElementById('sidebarOverlay').classList.remove('hidden');" style="margin-right: 0.5rem; font-size: 1.2rem;">☰</button>
+                <button class="article-nav-btn" onclick="goBackFromArticle()">← Back</button>
                 <span class="article-breadcrumb">${esc(article.category)}</span>
             </div>
             <div class="top-bar-right">
-                <button class="article-nav-btn ${saved ? 'saved' : ''}" onclick="toggleBookmark('${esc(article.id)}', event)" id="topSaveBtn">
+                <button class="article-nav-btn ${saved ? 'saved' : ''}" data-id="${esc(article.id)}" onclick="toggleBookmark(this.dataset.id, event)" id="topSaveBtn">
                     ${saved ? '★ Saved' : '☆ Save'}
                 </button>
             </div>
@@ -415,9 +513,9 @@ function renderArticle() {
         <div class="article-header-area">
             <h1 class="article-title">${esc(article.title)}</h1>
             <div class="article-meta-line">
-                <span>📅 ${fmtDate(article.publishedAt)}</span>
+                <span style="display:flex; align-items:center; gap:4px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> ${fmtDate(article.publishedAt)}</span>
                 <span>•</span>
-                <span>⏱️ ${Math.max(2, Math.ceil((article.summary || '').split(' ').length / 200))} min read</span>
+                <span style="display:flex; align-items:center; gap:4px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> ${readMins} min read</span>
                 <span>•</span>
                 <span class="article-tag">${esc(article.category)}</span>
             </div>
@@ -433,11 +531,11 @@ function renderArticle() {
 
         <!-- Action Buttons -->
         <div class="article-action-row">
-            <button class="action-btn ${saved ? 'active' : ''}" onclick="toggleBookmark('${esc(article.id)}', event)">
+            <button class="action-btn ${saved ? 'active' : ''}" data-id="${esc(article.id)}" onclick="toggleBookmark(this.dataset.id, event)">
                 ${saved ? '★ Saved to Library' : '☆ Save to Library'}
             </button>
-            <button class="action-btn" onclick="document.getElementById('chatToggle').click()">💬 Ask AI about this</button>
-            <a href="${safeUrl(article.url)}" target="_blank" class="action-btn primary">Read Full Article ↗</a>
+            <button class="action-btn" onclick="document.getElementById('chatToggle').click()" style="display:flex; align-items:center; gap:6px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg> Ask AI about this</button>
+            <a href="${safeUrl(article.url)}" target="_blank" rel="noopener noreferrer" class="action-btn primary">Read Full Article ↗</a>
         </div>
 
         <!-- Two Column Layout -->
@@ -447,25 +545,35 @@ function renderArticle() {
             <div class="article-main-content">
                 
                 <div class="content-section">
-                    <h2>What is this about?</h2>
-                    <p>${esc(article.aiSummary || 'No AI summary available.')}</p>
+                    <h2>What happened?</h2>
+                    <p style="line-height: 1.8; word-break: break-word; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;">
+                        ${highlightKeywords((ins.whatHappened || (state.persona === 'engineer' ? ins.engineerSummary : ins.founderSummary) || article.summary || 'No details available.').trim())}
+                    </p>
                 </div>
 
                 <div class="content-section">
-                    <h2>Engineering Impact</h2>
-                    <p>${esc(article.whyItMatters || 'No specific engineering impact extracted.')}</p>
+                    <h2>Why is it important?</h2>
+                    <div class="insight-box">
+                        <strong>For Engineers</strong>
+                        <p>${highlightKeywords(ins.engineerSummary || article.whyItMatters || 'Engineering impact analysis pending. Please read the full original article for technical details.')}</p>
+                    </div>
+                    <div class="insight-box" style="border-left-color: #10b981;">
+                        <strong>For Founders</strong>
+                        <p>${highlightKeywords(ins.founderSummary || 'Business impact analysis pending. Please read the full original article for market context.')}</p>
+                    </div>
                 </div>
-
-                <div class="content-section">
-                    <h2>Full Article Description</h2>
-                    <div style="white-space: pre-wrap; line-height: 1.8;">${esc(article.summary || 'No full text available. Please read the original source.')}</div>
-                </div>
+                
+                ${ins.whatChanged ? `<div class="content-section"><h2>What changed?</h2><p>${highlightKeywords(ins.whatChanged)}</p></div>` : ''}
+                ${ins.techDetails ? `<div class="content-section"><h2>Technical Details</h2><p>${highlightKeywords(ins.techDetails)}</p></div>` : ''}
+                ${ins.businessImpact ? `<div class="content-section"><h2>Business Impact</h2><p>${highlightKeywords(ins.businessImpact)}</p></div>` : ''}
+                ${ins.learn ? `<div class="content-section"><h2>What can I learn?</h2><p>${highlightKeywords(ins.learn)}</p></div>` : ''}
+                ${ins.action ? `<div class="content-section"><h2>What should I do?</h2><p>${highlightKeywords(ins.action)}</p></div>` : ''}
 
                 <div class="content-section">
                     <h2>References</h2>
                     <ul style="padding-left: 1.2rem; margin-top: 0.5rem; color: var(--muted);">
                         <li>Source: <strong>${esc(article.source)}</strong></li>
-                        <li>Original Link: <a href="${safeUrl(article.url)}" target="_blank" style="color: var(--accent);">Click here to view original</a></li>
+                        <li>Original Link: <a href="${safeUrl(article.url)}" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">Click here to view original</a></li>
                     </ul>
                 </div>
 
@@ -502,6 +610,7 @@ function renderArticle() {
 
         </div>
     `;
+    document.title = article.title + ' | AI Engineer Pulse';
     $('#articleView').classList.remove('hidden');
 
     // Auto-save notes functionality
@@ -528,10 +637,21 @@ function renderFeed() {
         feed.classList.add('hidden');
         trends.classList.add('hidden');
         articleView.classList.remove('hidden');
+        document.querySelector('.top-header').classList.add('hidden');
+        $('#controlsBar').classList.add('hidden');
         renderArticle();
         return;
     } else {
         articleView.classList.add('hidden');
+        document.querySelector('.top-header').classList.remove('hidden');
+        if (!['reading', 'trends', 'radar', 'github', 'jobs', 'briefing'].includes(state.view)) {
+            $('#controlsBar').classList.remove('hidden');
+        }
+    }
+
+    if (state.view === 'briefing') {
+        renderBriefing();
+        return;
     }
 
     if (state.view === 'trends') {
@@ -546,15 +666,24 @@ function renderFeed() {
         trends.classList.add('hidden');
         feed.classList.remove('hidden');
 
-        // Dynamically calculate radar based on how many articles mention them
-        const cats = {};
-        state.articles.forEach(a => { cats[a.category] = (cats[a.category] || 0) + 1; });
-        const sorted = Object.entries(cats).sort((a, b) => b[1] - a[1]);
+        const RADAR_TECHS = ['vllm', 'langchain', 'llamaindex', 'mcp', 'h100', 'a100', 'gpt-4', 'gpt-4o', 'claude', 'gemini', 'llama', 'pytorch', 'tensorflow', 'ollama', 'rag', 'fine-tuning', 'inference', 'agents', 'multimodal'];
+        const techCounts = {};
 
-        const adopt = sorted.slice(0, 3).map(c => `<span class="radar-tag">${esc(c[0])}</span>`).join('');
-        const trial = sorted.slice(3, 6).map(c => `<span class="radar-tag">${esc(c[0])}</span>`).join('');
-        const assess = sorted.slice(6, 9).map(c => `<span class="radar-tag">${esc(c[0])}</span>`).join('');
-        const watch = sorted.slice(9).map(c => `<span class="radar-tag">${esc(c[0])}</span>`).join('');
+        state.articles.forEach(a => {
+            const text = `${a.title} ${a.summary}`.toLowerCase();
+            RADAR_TECHS.forEach(tech => {
+                if (text.includes(tech)) {
+                    techCounts[tech] = (techCounts[tech] || 0) + 1;
+                }
+            });
+        });
+
+        const sorted = Object.entries(techCounts).sort((a, b) => b[1] - a[1]);
+
+        const adopt = sorted.slice(0, 4).map(c => `<span class="radar-tag">${esc(c[0])}</span>`).join('');
+        const trial = sorted.slice(4, 8).map(c => `<span class="radar-tag">${esc(c[0])}</span>`).join('');
+        const assess = sorted.slice(8, 12).map(c => `<span class="radar-tag">${esc(c[0])}</span>`).join('');
+        const watch = sorted.slice(12).map(c => `<span class="radar-tag">${esc(c[0])}</span>`).join('');
 
         feed.innerHTML = `
             <div class="radar-grid" style="grid-column: 1 / -1;">
@@ -601,9 +730,9 @@ function renderFeed() {
                 </div>
                 <p style="color:var(--muted); font-size:0.9rem;">${esc(r.description)}</p>
                 <div class="repo-stats">
-                    <span>⭐ ${(r.stars ?? 0).toLocaleString()}</span>
-                    <span>🍴 ${(r.forks ?? 0).toLocaleString()}</span>
-                    <span>💻 ${esc(r.language || 'Unknown')}</span>
+                    <span style="display:flex; align-items:center; gap:4px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> ${(r.stars ?? 0).toLocaleString()}</span>
+                    <span style="display:flex; align-items:center; gap:4px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><circle cx="18" cy="6" r="3"></circle><path d="M18 9v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9"></path><path d="M12 12v3"></path></svg> ${(r.forks ?? 0).toLocaleString()}</span>
+                    <span style="display:flex; align-items:center; gap:4px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg> ${esc(r.language || 'Unknown')}</span>
                 </div>
             </div>
         `).join('');
@@ -627,8 +756,8 @@ function renderFeed() {
                     <span style="color:var(--muted); font-size:0.85rem;">${esc(j.company)}</span>
                 </div>
                 <div class="job-meta">
-                    <span>📍 ${esc(j.location)}</span>
-                    <span>💰 ${esc(j.salary)}</span>
+                    <span style="display:flex; align-items:center; gap:4px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> ${esc(j.location)}</span>
+                    <span style="display:flex; align-items:center; gap:4px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg> ${esc(j.salary)}</span>
                 </div>
                 <div class="card-actions" style="margin-top: 1rem;">
                     <a href="${safeUrl(j.url)}" target="_blank" rel="noopener noreferrer" class="btn primary">Apply Now ↗</a>
@@ -645,23 +774,35 @@ function renderFeed() {
     let list = [];
     if (state.view === 'reading') {
         list = [...state.bookmarks.values()].sort((a, b) => new Date(b.savedAt || b.publishedAt) - new Date(a.savedAt || a.publishedAt));
+        if ($('#dateFilter') && $('#dateFilter').value) {
+            const dateF = $('#dateFilter').value;
+            list = list.filter(a => {
+                const d = new Date(a.publishedAt);
+                const aDate = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+                return aDate === dateF;
+            });
+        }
     } else {
         list = applyFilters(state.articles);
 
         if (state.view === 'research') {
             list = list.filter(a => a.category === 'Research');
         } else if (state.view === 'tools') {
-            list = list.filter(a => ['AI Frameworks', 'Inference', 'AI Infrastructure'].includes(a.category));
+            // Tools should only show actual frameworks, and bypass persona so founders see them too
+            list = state.articles.filter(a => a.category === 'AI Frameworks');
         }
     }
 
-    list.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+    if (state.view !== 'reading') {
+        list.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+    }
 
     if (list.length === 0) {
         const emptyStyle = "grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 4rem 2rem; color: var(--muted); width: 100%;";
 
         if (state.view === 'today' || state.view === 'briefing') {
-            feed.innerHTML = `<div style="${emptyStyle}">No news from the last 24 hours.<br><br><button class="btn primary" onclick="navigateTo('weekly')">Check Weekly Overview</button></div>`;
+            const msg = state.persona === 'founder' ? 'No founder-focused news from the last 24 hours.' : 'No news from the last 24 hours.';
+            feed.innerHTML = `<div style="${emptyStyle}">${msg}<br><br><button class="btn primary" onclick="navigateTo('weekly')">Check Weekly Overview</button></div>`;
         } else if (state.view === 'research') {
             feed.innerHTML = `<div style="${emptyStyle}">No new research papers today. Try checking the Weekly Overview.</div>`;
         } else if (state.view === 'reading') {
@@ -672,15 +813,116 @@ function renderFeed() {
             feed.innerHTML = `<div style="${emptyStyle}">Nothing matched your filters.<br><br><button class="btn" onclick="document.getElementById('searchInput').value=''; document.getElementById('categoryFilter').value=''; renderFeed();">Reset Filters</button></div>`;
         }
     } else {
-        // Briefing view = top 5 digest
-        if (state.view === 'briefing') list = list.slice(0, 5);
         feed.innerHTML = list.map(cardHTML).join('');
     }
 }
 
+function renderBriefing() {
+    const feed = $('#newsFeed');
+    const trends = $('#trendsChart');
+    trends.classList.add('hidden');
+    feed.classList.remove('hidden');
+
+    // 1. Today's articles (last 36h, matches applyFilters) + persona filter
+    const cutoff = Date.now() - 36 * 3600 * 1000;
+    const todayArticles = state.articles.filter(a => {
+        if (new Date(a.publishedAt).getTime() < cutoff) return false;
+        if (state.persona === 'engineer' && a.audience === 'founder') return false;
+        // STRICT FILTER: Only show articles tagged as founder or all
+        if (state.persona === 'founder' && a.audience !== 'founder' && a.audience !== 'all') return false;
+        return true;
+    });
+
+    // 2. Group by category
+    const byCat = {};
+    todayArticles.forEach(a => (byCat[a.category] = byCat[a.category] || []).push(a));
+    const categories = Object.keys(byCat).sort((a, b) => byCat[b].length - byCat[a].length);
+
+    if (!categories.length) {
+        const emptyMsg = state.persona === 'founder'
+            ? 'No founder-focused stories in the last 24 hours.'
+            : 'No news collected in the last 24 hours.';
+        feed.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:4rem 2rem; color:var(--muted);">
+            ${emptyMsg}<br><br>
+            <button class="btn primary" onclick="navigateTo('weekly')">Check Weekly Overview</button>
+        </div>`;
+        return;
+    }
+
+    // 3. Pick selected category (fallback = first)
+    const selected = state.briefCategory && byCat[state.briefCategory]
+        ? state.briefCategory
+        : categories[0];
+
+    // 4. Pills
+    const pills = categories.map(cat => `
+        <button class="brief-cat-pill ${cat === selected ? 'active' : ''}" data-cat="${esc(cat)}">
+            ${esc(cat)} <span class="brief-count">${byCat[cat].length}</span>
+        </button>
+    `).join('');
+
+    // 5. Briefs for selected category — relevance first, then recency
+    const items = byCat[selected]
+        .sort((a, b) =>
+            (b.relevanceScore || 0) - (a.relevanceScore || 0) ||
+            new Date(b.publishedAt) - new Date(a.publishedAt));
+
+    feed.innerHTML = `
+        <div class="brief-wrap" style="grid-column: 1 / -1;">
+            <div class="brief-cats">${pills}</div>
+            <div class="brief-list">${items.map(briefCardHTML).join('')}</div>
+        </div>
+    `;
+
+    feed.querySelectorAll('.brief-cat-pill').forEach(btn => {
+        btn.onclick = () => {
+            state.briefCategory = btn.dataset.cat;
+            renderBriefing();
+        };
+    });
+}
+
+function briefCardHTML(a) {
+    const ins = a.insights || {};
+    let brief = ins.whatHappened ||
+        (state.persona === 'engineer' ? ins.engineerSummary : ins.founderSummary);
+
+    // Fallback: If AI failed, extract only the first 2 sentences from the raw RSS text
+    if (!brief && a.summary) {
+        const sentences = a.summary.match(/[^.!?]+[.!?]+/g) || [a.summary];
+        brief = sentences.slice(0, 2).join(' ').trim();
+    }
+
+    brief = (brief || 'No brief available.').replace(/\s+/g, ' ').trim();
+
+    const saved = state.bookmarks.has(a.id);
+
+    return `
+        <article class="brief-card" data-id="${esc(a.id)}">
+            <div class="brief-head">
+                <h3 class="brief-title"
+                    onclick="navigateToArticle(this.closest('.brief-card').dataset.id, event)">
+                    ${esc(a.title)}
+                </h3>
+                <button class="brief-save ${saved ? 'saved' : ''}"
+                    data-save-id="${esc(a.id)}"
+                    onclick="toggleBookmark(this.dataset.saveId, event)"
+                    aria-label="Save">${saved ? '★' : '☆'}</button>
+            </div>
+            <p class="brief-body">${highlightKeywords(brief)}</p>
+            <div class="brief-meta">
+                <span>${esc(a.source)}</span>
+                <span>•</span>
+                <span>${fmtDate(a.publishedAt)}</span>
+                <a href="${safeUrl(a.url)}" target="_blank" rel="noopener">Read ↗</a>
+            </div>
+        </article>`;
+}
+
 function renderTrends() {
     const cats = {};
-    state.articles.forEach(a => { cats[a.category] = (cats[a.category] || 0) + 1; });
+    const filtered = applyFilters(state.articles); // Apply persona filter to Trends
+    filtered.forEach(a => { cats[a.category] = (cats[a.category] || 0) + 1; });
     const sorted = Object.entries(cats).sort((a, b) => b[1] - a[1]);
     const max = sorted[0]?.[1] || 1;
 
@@ -693,6 +935,23 @@ function renderCategoryDropdown() {
     const sel = $('#categoryFilter');
     const cats = [...new Set(state.articles.map(a => a.category))].sort();
     sel.innerHTML = '<option value="">All categories</option>' + cats.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('');
+}
+
+function renderDateDropdown() {
+    const sel = $('#dateFilter');
+    if (!sel) return;
+
+    // Get unique local date strings (YYYY-MM-DD)
+    const dates = [...new Set(state.articles.map(a => {
+        const d = new Date(a.publishedAt);
+        return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    }))].sort().reverse();
+
+    sel.innerHTML = '<option value="">All dates</option>' + dates.map(d => {
+        const dateObj = new Date(d + 'T00:00:00');
+        const formatted = dateObj.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+        return `<option value="${d}">${formatted}</option>`;
+    }).join('');
 }
 
 /* ---------- Bookmarks (local + cloud, permanent) ---------- */
@@ -718,13 +977,21 @@ async function syncFromCloud() {
     const { data, error } = await sb.from('bookmarks').select('article_data').eq('user_id', state.user.id);
 
     if (error) { toast('Failed to sync cloud bookmarks.'); return; }
+    const cloudIds = new Set();
     if (data) {
         for (const row of data) {
             const a = row.article_data;
-            if (a && a.id) state.bookmarks.set(a.id, a);
+            if (a && a.id) { state.bookmarks.set(a.id, a); cloudIds.add(a.id); }
         }
-        saveLocalBookmarks();
     }
+    // Upload local-only bookmarks that pre-date sign-in
+    for (const [id, bm] of state.bookmarks) {
+        if (!cloudIds.has(id)) {
+            const { error } = await sb.from('bookmarks').upsert({ user_id: state.user.id, article_id: id, article_data: bm });
+            if (error) console.warn(`Cloud bookmark upload failed for ${id}:`, error.message);
+        }
+    }
+    saveLocalBookmarks();
 }
 
 window.toggleBookmark = async function (id, event) {
@@ -737,11 +1004,17 @@ window.toggleBookmark = async function (id, event) {
 
     if (isSaved) {
         state.bookmarks.delete(id);
-        if (sb && state.user) await sb.from('bookmarks').delete().eq('user_id', state.user.id).eq('article_id', id);
+        if (sb && state.user) {
+            const { error } = await sb.from('bookmarks').delete().eq('user_id', state.user.id).eq('article_id', id);
+            if (error) toast('Cloud delete failed — removed locally only.');
+        }
     } else {
         const snapshot = { ...article, savedAt: new Date().toISOString() };
         state.bookmarks.set(id, snapshot);
-        if (sb && state.user) await sb.from('bookmarks').upsert({ user_id: state.user.id, article_id: id, article_data: snapshot });
+        if (sb && state.user) {
+            const { error } = await sb.from('bookmarks').upsert({ user_id: state.user.id, article_id: id, article_data: snapshot });
+            if (error) toast('Cloud save failed — bookmark kept locally this session.');
+        }
     }
     saveLocalBookmarks();
 
@@ -752,6 +1025,12 @@ window.toggleBookmark = async function (id, event) {
         else { btn.classList.add('saved'); btn.innerHTML = '★ Saved'; }
     }
 
+    const briefBtn = document.querySelector(`.brief-save[data-save-id="${id}"]`);
+    if (briefBtn) {
+        if (isSaved) { briefBtn.classList.remove('saved'); briefBtn.textContent = '☆'; }
+        else { briefBtn.classList.add('saved'); briefBtn.textContent = '★'; }
+    }
+
     // Update article view buttons if we are currently viewing an article
     if (state.view === 'article') {
         const topBtn = document.getElementById('topSaveBtn');
@@ -759,9 +1038,9 @@ window.toggleBookmark = async function (id, event) {
             if (isSaved) { topBtn.classList.remove('saved'); topBtn.innerHTML = '☆ Save'; }
             else { topBtn.classList.add('saved'); topBtn.innerHTML = '★ Saved'; }
         }
-        const actionBtns = document.querySelectorAll('.action-btn');
+        const actionBtns = document.querySelectorAll('#articleView .action-btn');
         actionBtns.forEach(b => {
-            if (b.innerHTML.includes('Save to Library')) {
+            if (b.innerHTML.includes('Library')) {
                 if (isSaved) { b.classList.remove('active'); b.innerHTML = '☆ Save to Library'; }
                 else { b.classList.add('active'); b.innerHTML = '★ Saved to Library'; }
             }
@@ -779,12 +1058,21 @@ async function initAuth() {
     const open = () => {
         lastFocused = document.activeElement;
         $('#authModal').classList.remove('hidden');
-        $('#loginUsername').focus();
+        if (!$('#signupView').classList.contains('hidden')) $('#signupUsername').focus();
+        else if (!$('#forgotView').classList.contains('hidden')) $('#forgotUsername').focus();
+        else if (!$('#recoveryView').classList.contains('hidden')) $('#recoveryPassword').focus();
+        else $('#loginUsername').focus();
     };
+    window.openAuthModal = open;
     const returnFocus = () => { if (lastFocused) lastFocused.focus(); };
 
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#authModal').classList.contains('hidden')) closeModals(); });
 
+    // Init password toggle ARIA state on load
+    document.querySelectorAll('.pwd-toggle').forEach(t => {
+        t.setAttribute('aria-pressed', 'false');
+        t.setAttribute('aria-label', 'Show password');
+    });
     // Single delegated password toggle
     $('#authModal').addEventListener('click', e => {
         const t = e.target.closest('.pwd-toggle');
@@ -793,6 +1081,7 @@ async function initAuth() {
         const show = input.type === 'password';
         input.type = show ? 'text' : 'password';
         t.setAttribute('aria-pressed', String(show));
+        t.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
     });
 
     $('#authBtn').onclick = () => {
@@ -815,7 +1104,7 @@ async function initAuth() {
         $('#forgotView').classList.toggle('hidden', which !== 'forgot');
         $('#recoveryView').classList.toggle('hidden', which !== 'recovery');
 
-        $('#tabLogin').classList.toggle('active', which !== 'signup');
+        $('#tabLogin').classList.toggle('active', which === 'login');
         $('#tabSignup').classList.toggle('active', which === 'signup');
         $('#authStatus').textContent = '';
     }
@@ -836,9 +1125,13 @@ async function initAuth() {
         $('#authStatus').style.color = '#ef4444';
         if (!/.+@.+\..+/.test(email) || !pass) { $('#authStatus').textContent = 'Enter a valid email and password.'; return; }
 
-        const { error } = await sb.auth.signInWithPassword({ email, password: pass });
-        if (error) { $('#authStatus').textContent = error.message; return; }
-        closeModals();
+        try {
+            const { error } = await sb.auth.signInWithPassword({ email, password: pass });
+            if (error) { $('#authStatus').textContent = error.message; return; }
+            closeModals();
+        } catch {
+            $('#authStatus').textContent = 'Network error. Please try again.';
+        }
     };
 
     $('#signupForm').onsubmit = async e => {
@@ -849,12 +1142,15 @@ async function initAuth() {
         if (!/.+@.+\..+/.test(email)) { $('#authStatus').textContent = 'Enter a valid email.'; return; }
         if (pass.length < 8) { $('#authStatus').textContent = 'Password must be at least 8 characters.'; return; }
 
-        const { data, error } = await sb.auth.signUp({ email, password: pass, options: { emailRedirectTo: location.origin } });
-        if (error) { $('#authStatus').textContent = error.message; return; }
-
-        $('#authStatus').style.color = '#10b981';
-        $('#authStatus').textContent = data.session ? 'Account created. You are signed in.' : 'Check your email to confirm your account.';
-        if (data.session) closeModals();
+        try {
+            const { data, error } = await sb.auth.signUp({ email, password: pass, options: { emailRedirectTo: location.origin + buildPath('/') } });
+            if (error) { $('#authStatus').textContent = error.message; return; }
+            $('#authStatus').style.color = '#10b981';
+            $('#authStatus').textContent = data.session ? 'Account created. You are signed in.' : 'Check your email to confirm your account.';
+            if (data.session) closeModals();
+        } catch {
+            $('#authStatus').textContent = 'Network error. Please try again.';
+        }
     };
 
     $('#forgotForm').onsubmit = async e => {
@@ -862,9 +1158,14 @@ async function initAuth() {
         const email = $('#forgotUsername').value.trim();
         if (!/.+@.+\..+/.test(email)) { $('#authStatus').textContent = 'Enter a valid email.'; return; }
 
-        const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + '/today' });
-        $('#authStatus').style.color = error ? '#ef4444' : '#10b981';
-        $('#authStatus').textContent = error ? error.message : 'Reset link sent. Check your inbox.';
+        try {
+            const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + buildPath('/today') });
+            $('#authStatus').style.color = error ? '#ef4444' : '#10b981';
+            $('#authStatus').textContent = error ? error.message : 'Reset link sent. Check your inbox.';
+        } catch {
+            $('#authStatus').style.color = '#ef4444';
+            $('#authStatus').textContent = 'Network error. Please try again.';
+        }
     };
 
     $('#recoveryForm').onsubmit = async e => {
@@ -872,10 +1173,15 @@ async function initAuth() {
         const pass = $('#recoveryPassword').value;
         if (pass.length < 8) { $('#authStatus').textContent = 'Min 8 characters.'; return; }
 
-        const { error } = await sb.auth.updateUser({ password: pass });
-        $('#authStatus').style.color = error ? '#ef4444' : '#10b981';
-        $('#authStatus').textContent = error ? error.message : 'Password updated. Please sign in.';
-        if (!error) setTimeout(() => { switchTab('login'); }, 1200);
+        try {
+            const { error } = await sb.auth.updateUser({ password: pass });
+            $('#authStatus').style.color = error ? '#ef4444' : '#10b981';
+            $('#authStatus').textContent = error ? error.message : 'Password updated. Please sign in.';
+            if (!error) setTimeout(() => { switchTab('login'); }, 1200);
+        } catch {
+            $('#authStatus').style.color = '#ef4444';
+            $('#authStatus').textContent = 'Network error. Please try again.';
+        }
     };
 
     sb.auth.onAuthStateChange((event, session) => {
@@ -910,9 +1216,8 @@ async function setUser(u) {
 
 /* ---------- Manual Refresh ---------- */
 function initRefresh() {
-    $('#refreshBtn').onclick = () => {
-        loadNews();
-        renderCategoryDropdown();
+    $('#refreshBtn').onclick = async () => {
+        await loadNews();
         toast('News data reloaded from server.');
     };
 }
@@ -923,21 +1228,33 @@ function initChat() {
     $('#chatToggle').onclick = () => panel.classList.toggle('hidden');
     $('#chatClose').onclick = () => panel.classList.add('hidden');
 
+    let isChatPending = false;
     $('#chatForm').onsubmit = async e => {
         e.preventDefault();
+        if (isChatPending) return;
         const input = $('#chatInput');
         const text = input.value.trim();
         if (!text) return;
+
+        isChatPending = true;
         input.value = '';
         addMsg('user', text);
 
-        addMsg('sys', 'Searching local data...');
+        const sysMsg = addMsg('sys', 'Searching local data...');
 
         // Simulate short delay for UX
         setTimeout(() => {
-            const answer = searchLocalData(text);
-            msgs.querySelectorAll('.msg.sys').forEach(n => n.remove());
-            addMsg('ai', answer);
+            try {
+                const answer = searchLocalData(text);
+                if (sysMsg) sysMsg.remove();
+                addMsg('ai', answer);
+            } catch (err) {
+                console.error(err);
+                if (sysMsg) sysMsg.remove();
+                addMsg('ai', 'Sorry, something went wrong.');
+            } finally {
+                isChatPending = false;
+            }
         }, 500);
     };
 
@@ -957,6 +1274,7 @@ function initChat() {
 
         msgs.appendChild(div);
         msgs.scrollTop = msgs.scrollHeight;
+        return div;
     }
 }
 
@@ -964,13 +1282,13 @@ function searchLocalData(query) {
     const q = query.toLowerCase();
 
     // 1. Answer App Feature Questions
-    if (/\b(app|feature|save|bookmark|how to|work|free)\b/i.test(q)) {
-        return "Welcome to **AI Pulse**, your free daily source for AI engineering news! Here is what you can do:<br><br>" +
-            "• **Today's Overview**: See the freshest AI engineering news from the last 24 hours.<br>" +
-            "• **Weekly Overview**: View everything collected in the last 7 days.<br>" +
-            "• **Briefing / Research / Tools**: Click the sidebar to filter news by category.<br>" +
-            "• **Trends**: See a chart of the most active categories.<br>" +
-            "• **Reading List**: Click '☆ Save' on any card to save it permanently. Saved articles never expire!<br><br>" +
+    if (/^(what can i do|how to use|features|help|what is this app)/i.test(q.trim())) {
+        return "Welcome to **AI Pulse**, your free daily source for AI engineering news! Here is what you can do:\n\n" +
+            "• **Today's Overview**: See the freshest AI engineering news from the last 24 hours.\n" +
+            "• **Weekly Overview**: View everything collected in the last 7 days.\n" +
+            "• **Briefing / Research / Tools**: Click the sidebar to filter news by category.\n" +
+            "• **Trends**: See a chart of the most active categories.\n" +
+            "• **Reading List**: Click '☆ Save' on any card to save it permanently. Saved articles never expire!\n\n" +
             "Ask me about a specific topic (e.g., 'OpenAI', 'RAG', 'Agents', 'GPU') to search today's news!";
     }
 
@@ -989,7 +1307,8 @@ function searchLocalData(query) {
 
     // Find matches
     const matches = state.articles.filter(a => {
-        const text = `${a.title} ${a.summary} ${a.aiSummary || ''} ${a.category} ${a.source}`.toLowerCase();
+        const ins = a.insights || {};
+        const text = `${a.title} ${a.summary} ${ins.engineerSummary || ''} ${ins.founderSummary || ''} ${a.category} ${a.source}`.toLowerCase();
         return words.some(w => text.includes(w));
     });
 
@@ -1001,14 +1320,15 @@ function searchLocalData(query) {
     let response = `I found ${matches.length} articles matching your query:\n\n`;
 
     matches.slice(0, 4).forEach(m => { // limit to top 4
-        const sum = m.aiSummary || m.summary || 'No summary available.';
-        response += `📌 **${m.title}**\n`;
+        const ins = m.insights || {};
+        const sum = ins.engineerSummary || ins.founderSummary || m.summary || 'No summary available.';
+        response += `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline; vertical-align:-2px; margin-right:4px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> **${m.title}**\n`;
         response += `*${m.category} | ${m.source}*\n`;
         response += `${sum.slice(0, 150)}${sum.length > 150 ? '...' : ''}\n\n`;
     });
 
     if (matches.length > 4) {
-        response += `<i>...and ${matches.length - 4} more. Use the search bar to see all results.</i>`;
+        response += `*...and ${matches.length - 4} more. Use the search bar to see all results.*`;
     }
 
     return response;
@@ -1063,20 +1383,20 @@ function initPolicies() {
 
 /* ---------- Boot ---------- */
 async function boot() {
-    if (typeof initNotifications === 'function') initNotifications();
     initTheme();
     initNav();
     loadLocalBookmarks();
     initRefresh();
     initChat();
     initPolicies();
-    await initAuth();
     await loadNews();
-    renderCategoryDropdown();
+    await initAuth();
 
     // Initialize route based on URL
     const initialView = getRouteFromPath();
-    navigateTo(initialView, false);
+    const urlParams = new URLSearchParams(window.location.search);
+    const articleId = urlParams.get('id');
+    navigateTo(initialView, false, articleId);
 
     // Handle browser back/forward buttons
     window.addEventListener('popstate', () => {
@@ -1088,39 +1408,32 @@ async function boot() {
 
     setInterval(checkStaleness, 60 * 60 * 1000);
 
-    // Debounce search input
+    // Merged search input listeners (clear button + debounce)
+    const searchInput = $('#searchInput');
+    const clearBtn = $('#clearSearchBtn');
     let searchTimer;
-    $('#searchInput').oninput = () => {
+    searchInput.addEventListener('input', () => {
+        clearBtn.classList.toggle('hidden', !searchInput.value);
         clearTimeout(searchTimer);
         searchTimer = setTimeout(renderFeed, 150);
-    };
-    $('#categoryFilter').onchange = renderFeed;
-
-    // Global Event Delegation for Bookmarks
-    document.getElementById('newsFeed').addEventListener('click', (e) => {
-        const btn = e.target.closest('.save');
-        if (btn) {
-            const id = btn.getAttribute('data-save-id');
-            toggleBookmark(id, e);
-        }
     });
+    $('#categoryFilter').onchange = renderFeed;
+    if ($('#dateFilter')) $('#dateFilter').onchange = renderFeed;
+
+
 
     // Keyboard Navigation for Cards
     document.getElementById('newsFeed').addEventListener('keydown', (e) => {
+        if (e.target.closest('.btn, a, button, .card-actions')) return;
         const card = e.target.closest('.card');
         if (!card) return;
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
-            toggleCard(card, e);
+            navigateToArticle(card.dataset.id, e);
         }
     });
 
-    // Search Clear Button
-    const searchInput = $('#searchInput');
-    const clearBtn = $('#clearSearchBtn');
-    searchInput.addEventListener('input', () => {
-        clearBtn.classList.toggle('hidden', !searchInput.value);
-    });
+    // Search Clear Button logic (input listener already merged above)
     clearBtn.addEventListener('click', () => {
         searchInput.value = '';
         clearBtn.classList.add('hidden');
