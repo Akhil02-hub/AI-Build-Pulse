@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T11:23:11.800+05:30",
+  "generatedAt": "2026-11-14T12:07:50.784+05:30",
   "retentionDays": 7,
   "totalStories": 136,
   "newToday": 136,
@@ -574,7 +574,12 @@
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "Build a composable, interoperable multi-agent system on AWS with the Agent-to-Agent (A2A) protocol. A LangChain orchestrator on Amazon ECS communicates with a Strands agent on Amazon Bedrock AgentCore across organizational boundaries, using bidirectional, OAuth-authenticated calls, with neither side depending on the other's framework or SDK.",
+        "engineerSummary": "Build a composable, interoperable multi-agent system on AWS with the Agent-to-Agent (A2A) protocol. A LangChain orchestrator on Amazon ECS communicates with a Strands agent on Amazon Bedrock AgentCore across organizational boundaries, using bidirectional, OAuth-authenticated calls, with neither side depending on the other's framework or SDK.",
+        "founderSummary": "Build a composable, interoperable multi-agent system on AWS with the Agent-to-Agent (A2A) protocol. A LangChain orchestrator on Amazon ECS communicates with a Strands agent on Amazon Bedrock AgentCore across organizational boundaries, using bidirectional, OAuth-authenticated calls, with neither side depending on the other's framework or SDK."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Robust Task-Aware State Estimation from Pre-trained Perception",
@@ -590,7 +595,12 @@
       "aiSummary": null,
       "addedAt": "2026-11-14T02:28:37.918Z",
       "image": null,
-      "insights": null
+      "insights": {
+        "whatHappened": "On this belief construction, we base our MBS$_\\theta$ construction, while maintaining only a lean factored representation of the belief. , a VLM's output-layer token distributions) to construct a $\\theta$-confidence Minimal Belief Set (MBS$_\\theta$), a minimal subset of states whose cumulative probability meets a user-specified belief-mass threshold. Using a novel three-layered belief system, we efficiently approximate individual state probabilities from per-feature predictions and task-level constraints. 14781v1 Announce Type: new \nAbstract: Agents that perform state estimation using pretrained perception models, e.",
+        "engineerSummary": "On this belief construction, we base our MBS$_\\theta$ construction, while maintaining only a lean factored representation of the belief. , a VLM's output-layer token distributions) to construct a $\\theta$-confidence Minimal Belief Set (MBS$_\\theta$), a minimal subset of states whose cumulative probability meets a user-specified belief-mass threshold. Using a novel three-layered belief system, we efficiently approximate individual state probabilities from per-feature predictions and task-level constraints. 14781v1 Announce Type: new \nAbstract: Agents that perform state estimation using pretrained perception models, e.",
+        "founderSummary": "On this belief construction, we base our MBS$_\\theta$ construction, while maintaining only a lean factored representation of the belief. , a VLM's output-layer token distributions) to construct a $\\theta$-confidence Minimal Belief Set (MBS$_\\theta$), a minimal subset of states whose cumulative probability meets a user-specified belief-mass threshold. Using a novel three-layered belief system, we efficiently approximate individual state probabilities from per-feature predictions and task-level constraints. 14781v1 Announce Type: new \nAbstract: Agents that perform state estimation using pretrained perception models, e."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Code as Explanations: Executable and Verifiable LLM Explanations",
@@ -606,7 +616,12 @@
       "aiSummary": null,
       "addedAt": "2026-11-14T02:28:37.918Z",
       "image": null,
-      "insights": null
+      "insights": {
+        "whatHappened": "com/rajesh-lab/code-as-explanations. 5, providing the model with consistency feedback and code execution improves explanation consistency across tasks, but consistency remains significantly lower on more complex tasks. Across three open-source code-capable LLMs and eight tasks, we find that LLMs can produce highly consistent code explanations in several settings. We propose {code explanations to address the mismatch in how LLM explanations are generated versus how they are evaluated: a program explains LLM behavior across a dataset of inputs, and its execution enables automatic verification.",
+        "engineerSummary": "com/rajesh-lab/code-as-explanations. 5, providing the model with consistency feedback and code execution improves explanation consistency across tasks, but consistency remains significantly lower on more complex tasks. Across three open-source code-capable LLMs and eight tasks, we find that LLMs can produce highly consistent code explanations in several settings. We propose {code explanations to address the mismatch in how LLM explanations are generated versus how they are evaluated: a program explains LLM behavior across a dataset of inputs, and its execution enables automatic verification.",
+        "founderSummary": "com/rajesh-lab/code-as-explanations. 5, providing the model with consistency feedback and code execution improves explanation consistency across tasks, but consistency remains significantly lower on more complex tasks. Across three open-source code-capable LLMs and eight tasks, we find that LLMs can produce highly consistent code explanations in several settings. We propose {code explanations to address the mismatch in how LLM explanations are generated versus how they are evaluated: a program explains LLM behavior across a dataset of inputs, and its execution enables automatic verification."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Paired Geometric Supervision for Generalizable Deepfake Detection",
@@ -621,7 +636,12 @@
       "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "Under strict parameter budgets, LayerNorm-only tuning ($\\approx$0. (3) Under LoRA, this regularisation gives a more stable optimisation profile: GSD-LoRA's post-peak validation degradation is $4. On the 17 datasets, GSD-LoRA matches or exceeds every re-evaluated baseline (92. 2\\times$ shallower than plain LoRA at the same parameter footprint, and the time-averaged validation AUC across training is 1.",
+        "engineerSummary": "Under strict parameter budgets, LayerNorm-only tuning ($\\approx$0. (3) Under LoRA, this regularisation gives a more stable optimisation profile: GSD-LoRA's post-peak validation degradation is $4. On the 17 datasets, GSD-LoRA matches or exceeds every re-evaluated baseline (92. 2\\times$ shallower than plain LoRA at the same parameter footprint, and the time-averaged validation AUC across training is 1.",
+        "founderSummary": "Under strict parameter budgets, LayerNorm-only tuning ($\\approx$0. (3) Under LoRA, this regularisation gives a more stable optimisation profile: GSD-LoRA's post-peak validation degradation is $4. On the 17 datasets, GSD-LoRA matches or exceeds every re-evaluated baseline (92. 2\\times$ shallower than plain LoRA at the same parameter footprint, and the time-averaged validation AUC across training is 1."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Leaderboard Hacking: Preference-Based Model Evaluations are Vulnerable to Manipulation",
@@ -636,7 +656,13 @@
       "id": "a36459f304a2d",
       "relevanceScore": 19,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-14T04:52:49.470Z"
+      "addedAt": "2026-11-14T04:52:49.470Z",
+      "insights": {
+        "whatHappened": "Notably, these issues hold for any preference-based evaluation using the Bradley-Terry model that allows open prompting, voting, or model submission. These manipulations boost the rank of nearly every tested model; each attack can boost a model by up to 15-20 places in a ranking and, combined, they can boost a model by up to 45 places. However, we find that these leaderboards are highly vulnerable to several manipulation strategies that unscrupulous providers could use to boost a model's rank: strategic voting (individual votes that boost a model's rank, including votes on irrelevant models), strategic prompting (choosing prompts that favor a model), and strategic nomination (boosting the rank of a model by inserting irrelevant models). These rankings aim to realistically assess model performance using pairwise comparisons of anonymous models on user prompts, aggregating votes via the Bradley-Terry model to produce the final ranking.",
+        "engineerSummary": "Notably, these issues hold for any preference-based evaluation using the Bradley-Terry model that allows open prompting, voting, or model submission. These manipulations boost the rank of nearly every tested model; each attack can boost a model by up to 15-20 places in a ranking and, combined, they can boost a model by up to 45 places. However, we find that these leaderboards are highly vulnerable to several manipulation strategies that unscrupulous providers could use to boost a model's rank: strategic voting (individual votes that boost a model's rank, including votes on irrelevant models), strategic prompting (choosing prompts that favor a model), and strategic nomination (boosting the rank of a model by inserting irrelevant models). These rankings aim to realistically assess model performance using pairwise comparisons of anonymous models on user prompts, aggregating votes via the Bradley-Terry model to produce the final ranking.",
+        "founderSummary": "Notably, these issues hold for any preference-based evaluation using the Bradley-Terry model that allows open prompting, voting, or model submission. These manipulations boost the rank of nearly every tested model; each attack can boost a model by up to 15-20 places in a ranking and, combined, they can boost a model by up to 45 places. However, we find that these leaderboards are highly vulnerable to several manipulation strategies that unscrupulous providers could use to boost a model's rank: strategic voting (individual votes that boost a model's rank, including votes on irrelevant models), strategic prompting (choosing prompts that favor a model), and strategic nomination (boosting the rank of a model by inserting irrelevant models). These rankings aim to realistically assess model performance using pairwise comparisons of anonymous models on user prompts, aggregating votes via the Bradley-Terry model to produce the final ranking."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "AI agent startup LangChain hits $3B valuation",
@@ -652,7 +678,12 @@
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
       "aiSummary": null,
       "addedAt": "2026-11-14T02:28:37.918Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "LangChain now claims 7,000 customers of its model and platform agnostic agent management tool LangSmith.",
+        "engineerSummary": "LangChain now claims 7,000 customers of its model and platform agnostic agent management tool LangSmith.",
+        "founderSummary": "LangChain now claims 7,000 customers of its model and platform agnostic agent management tool LangSmith."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "AI agent startup LangChain hits $3B valuation",
@@ -667,7 +698,13 @@
       "id": "ab96c8f1ce3ea",
       "relevanceScore": 18,
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
-      "addedAt": "2026-11-14T04:52:49.470Z"
+      "addedAt": "2026-11-14T04:52:49.470Z",
+      "insights": {
+        "whatHappened": "LangChain now claims 7,000 customers of its model and platform agnostic agent management tool LangSmith.",
+        "engineerSummary": "LangChain now claims 7,000 customers of its model and platform agnostic agent management tool LangSmith.",
+        "founderSummary": "LangChain now claims 7,000 customers of its model and platform agnostic agent management tool LangSmith."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Trait Hitchhiking in LLM Post-Training",
@@ -683,7 +720,12 @@
       "aiSummary": null,
       "addedAt": "2026-11-14T02:28:37.918Z",
       "image": null,
-      "insights": null
+      "insights": {
+        "whatHappened": "These results identify trait hitchhiking as a mechanism by which RL post-training can silently amplify undesirable traits. arXiv:2611. We use this to develop a mathematical model for what we call \"trait hitchhiking\": the amplification or suppression of non-targeted traits as training redistributes probability across completions. We present a formalism to describe the evolution of \"traits\" during RL post-training and, in doing so, recover the Price equation from evolutionary biology.",
+        "engineerSummary": "These results identify trait hitchhiking as a mechanism by which RL post-training can silently amplify undesirable traits. arXiv:2611. We use this to develop a mathematical model for what we call \"trait hitchhiking\": the amplification or suppression of non-targeted traits as training redistributes probability across completions. We present a formalism to describe the evolution of \"traits\" during RL post-training and, in doing so, recover the Price equation from evolutionary biology.",
+        "founderSummary": "These results identify trait hitchhiking as a mechanism by which RL post-training can silently amplify undesirable traits. arXiv:2611. We use this to develop a mathematical model for what we call \"trait hitchhiking\": the amplification or suppression of non-targeted traits as training redistributes probability across completions. We present a formalism to describe the evolution of \"traits\" during RL post-training and, in doing so, recover the Price equation from evolutionary biology."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Hy ASR 3.0 Technical Report",
@@ -698,7 +740,12 @@
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "0, a large language model (LLM)-based automatic speech recognition (ASR) system that delivers strong recognition accuracy, supports flexible contextual conditioning, and maintains robust recognition performance across diverse speech conditions. Evaluations demonstrate strong contextual recognition in both external-context and intra-utterance settings, as well as robust recognition of long-form speech, children's and older adults' speech, low-volume speech, and speech in noisy environments. 0 supports Mandarin Chinese, English and 13 Chinese dialect groups, including Cantonese. This report describes the model architecture and training methodology and presents evaluations across recognition accuracy, context utilization, and robustness.",
+        "engineerSummary": "0, a large language model (LLM)-based automatic speech recognition (ASR) system that delivers strong recognition accuracy, supports flexible contextual conditioning, and maintains robust recognition performance across diverse speech conditions. Evaluations demonstrate strong contextual recognition in both external-context and intra-utterance settings, as well as robust recognition of long-form speech, children's and older adults' speech, low-volume speech, and speech in noisy environments. 0 supports Mandarin Chinese, English and 13 Chinese dialect groups, including Cantonese. This report describes the model architecture and training methodology and presents evaluations across recognition accuracy, context utilization, and robustness.",
+        "founderSummary": "0, a large language model (LLM)-based automatic speech recognition (ASR) system that delivers strong recognition accuracy, supports flexible contextual conditioning, and maintains robust recognition performance across diverse speech conditions. Evaluations demonstrate strong contextual recognition in both external-context and intra-utterance settings, as well as robust recognition of long-form speech, children's and older adults' speech, low-volume speech, and speech in noisy environments. 0 supports Mandarin Chinese, English and 13 Chinese dialect groups, including Cantonese. This report describes the model architecture and training methodology and presents evaluations across recognition accuracy, context utilization, and robustness."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "GenPFN: An In-Context Tabular Foundation Model Approach for Augmenting Small Datasets in Engineering",
@@ -713,7 +760,13 @@
       "id": "a4acd1d67dd2a",
       "relevanceScore": 18,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-14T04:52:49.470Z"
+      "addedAt": "2026-11-14T04:52:49.470Z",
+      "insights": {
+        "whatHappened": "Evaluated desired designs and their objective values augment the context for regression training. 4% among randomly sampled context designs. 1% relative to context-only training. The context contains evaluated designs labeled desired (Class 1) or undesired (Class 0).",
+        "engineerSummary": "Evaluated desired designs and their objective values augment the context for regression training. 4% among randomly sampled context designs. 1% relative to context-only training. The context contains evaluated designs labeled desired (Class 1) or undesired (Class 0).",
+        "founderSummary": "Evaluated desired designs and their objective values augment the context for regression training. 4% among randomly sampled context designs. 1% relative to context-only training. The context contains evaluated designs labeled desired (Class 1) or undesired (Class 0)."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "SPIRE: Task-agnostic embodied continual learning through autonomous situation inference and causal motor-primitive reuse",
@@ -728,7 +781,13 @@
       "id": "a38cc1fb07936",
       "relevanceScore": 18,
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
-      "addedAt": "2026-11-14T04:52:49.470Z"
+      "addedAt": "2026-11-14T04:52:49.470Z",
+      "insights": {
+        "whatHappened": "Against seven recurrent continual-learning and modular-control comparators, SPIRE achieved 2. These results demonstrate autonomous recovery and causal reuse of motor skills for new learning in continuous embodied control. 14840v1 Announce Type: new \nAbstract: Embodied continual learning requires controllers to infer changing situations, retain prior behavior and reuse motor skills without task labels or known boundaries. Rewinding compatible source actors impaired early acquisition in every matched intervention, demonstrating causal reuse.",
+        "engineerSummary": "Against seven recurrent continual-learning and modular-control comparators, SPIRE achieved 2. These results demonstrate autonomous recovery and causal reuse of motor skills for new learning in continuous embodied control. 14840v1 Announce Type: new \nAbstract: Embodied continual learning requires controllers to infer changing situations, retain prior behavior and reuse motor skills without task labels or known boundaries. Rewinding compatible source actors impaired early acquisition in every matched intervention, demonstrating causal reuse.",
+        "founderSummary": "Against seven recurrent continual-learning and modular-control comparators, SPIRE achieved 2. These results demonstrate autonomous recovery and causal reuse of motor skills for new learning in continuous embodied control. 14840v1 Announce Type: new \nAbstract: Embodied continual learning requires controllers to infer changing situations, retain prior behavior and reuse motor skills without task labels or known boundaries. Rewinding compatible source actors impaired early acquisition in every matched intervention, demonstrating causal reuse."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "SynthCorp: A Platform for Creating Benchmarks for Data Agents",
@@ -744,7 +803,12 @@
       "aiSummary": null,
       "addedAt": "2026-11-14T02:28:37.918Z",
       "image": null,
-      "insights": null
+      "insights": {
+        "whatHappened": "Each data estate combines relational databases, a document store, and a data catalog, paired with evaluation tasks and executable gold programs. Evaluating three models across four data-context settings shows that the benchmarks separate data contexts and model tiers. We present SynthCorp, a platform that creates customizable data estates and benchmarks by simulating how business events produce and modify corporate data over time. We hope the community uses SynthCorp to generate more challenging and useful data estates and benchmarks that foster the development of enterprise data agents.",
+        "engineerSummary": "Each data estate combines relational databases, a document store, and a data catalog, paired with evaluation tasks and executable gold programs. Evaluating three models across four data-context settings shows that the benchmarks separate data contexts and model tiers. We present SynthCorp, a platform that creates customizable data estates and benchmarks by simulating how business events produce and modify corporate data over time. We hope the community uses SynthCorp to generate more challenging and useful data estates and benchmarks that foster the development of enterprise data agents.",
+        "founderSummary": "Each data estate combines relational databases, a document store, and a data catalog, paired with evaluation tasks and executable gold programs. Evaluating three models across four data-context settings shows that the benchmarks separate data contexts and model tiers. We present SynthCorp, a platform that creates customizable data estates and benchmarks by simulating how business events produce and modify corporate data over time. We hope the community uses SynthCorp to generate more challenging and useful data estates and benchmarks that foster the development of enterprise data agents."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Open Challenges and Opportunities in Human-Agent Systems",
@@ -760,7 +824,12 @@
       "aiSummary": null,
       "addedAt": "2026-11-14T02:28:37.918Z",
       "image": null,
-      "insights": null
+      "insights": {
+        "whatHappened": "Successful interaction requires understanding human perspectives, coordinating complementary capabilities, and maintaining productive relationships within socio-technical environments. 14846v1 Announce Type: new \nAbstract: Agentic AI systems increasingly undertake extended tasks and act on people's behalf, making human-agent interaction central to their effectiveness. We consider interactions ranging from individual human-agent partnerships to teams and larger groups, where participants differ in their roles, decision authority, capabilities, and objectives. Together with shared autonomy, argumentation, and cooperative inverse reinforcement learning, these approaches offer foundations for agentic systems that account for evolving human knowledge, intentions, and expectations.",
+        "engineerSummary": "Successful interaction requires understanding human perspectives, coordinating complementary capabilities, and maintaining productive relationships within socio-technical environments. 14846v1 Announce Type: new \nAbstract: Agentic AI systems increasingly undertake extended tasks and act on people's behalf, making human-agent interaction central to their effectiveness. We consider interactions ranging from individual human-agent partnerships to teams and larger groups, where participants differ in their roles, decision authority, capabilities, and objectives. Together with shared autonomy, argumentation, and cooperative inverse reinforcement learning, these approaches offer foundations for agentic systems that account for evolving human knowledge, intentions, and expectations.",
+        "founderSummary": "Successful interaction requires understanding human perspectives, coordinating complementary capabilities, and maintaining productive relationships within socio-technical environments. 14846v1 Announce Type: new \nAbstract: Agentic AI systems increasingly undertake extended tasks and act on people's behalf, making human-agent interaction central to their effectiveness. We consider interactions ranging from individual human-agent partnerships to teams and larger groups, where participants differ in their roles, decision authority, capabilities, and objectives. Together with shared autonomy, argumentation, and cooperative inverse reinforcement learning, these approaches offer foundations for agentic systems that account for evolving human knowledge, intentions, and expectations."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Effective Teacher Support for Reasoning Distillation",
@@ -776,7 +845,12 @@
       "aiSummary": null,
       "addedAt": "2026-11-14T02:28:37.918Z",
       "image": null,
-      "insights": null
+      "insights": {
+        "whatHappened": "Nemotron Nano matches full-vocabulary MMLU-Pro at 0. 01% of the vocabulary causes no observed MMLU-Pro degradation relative to full-vocabulary distillation, although disagreement with the complete teacher distribution increases. 14850v1 Announce Type: new \nAbstract: Forward-KL language-model distillation normally computes dense teacher and student scores over the full vocabulary at every supervised position, making training and stored teacher targets expensive. 01% support, caching the retained next-token scores from the teacher forward pass cuts training step time by 38%, while restricting student output computation to those tokens cuts peak memory by 24%; neither causes observed MMLU-Pro degradation.",
+        "engineerSummary": "Nemotron Nano matches full-vocabulary MMLU-Pro at 0. 01% of the vocabulary causes no observed MMLU-Pro degradation relative to full-vocabulary distillation, although disagreement with the complete teacher distribution increases. 14850v1 Announce Type: new \nAbstract: Forward-KL language-model distillation normally computes dense teacher and student scores over the full vocabulary at every supervised position, making training and stored teacher targets expensive. 01% support, caching the retained next-token scores from the teacher forward pass cuts training step time by 38%, while restricting student output computation to those tokens cuts peak memory by 24%; neither causes observed MMLU-Pro degradation.",
+        "founderSummary": "Nemotron Nano matches full-vocabulary MMLU-Pro at 0. 01% of the vocabulary causes no observed MMLU-Pro degradation relative to full-vocabulary distillation, although disagreement with the complete teacher distribution increases. 14850v1 Announce Type: new \nAbstract: Forward-KL language-model distillation normally computes dense teacher and student scores over the full vocabulary at every supervised position, making training and stored teacher targets expensive. 01% support, caching the retained next-token scores from the teacher forward pass cuts training step time by 38%, while restricting student output computation to those tokens cuts peak memory by 24%; neither causes observed MMLU-Pro degradation."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Abstention Is Not Threshold Compliance: Stated Scoring Rules in Open Language Models",
@@ -791,7 +865,12 @@
       "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "A high abstention rate is not evidence of compliance: evaluations using stated scoring rules should report how often models abstain, whether decisions respond to the stated threshold, and which items they answer. 75, a line limiting the reply to an answer or \"I abstain\" (the abstention format) raised the mean abstention rate from 20% to 91%. On OLMo 3 7B, decisions trained on threshold-conditioned targets did not follow unseen thresholds consistently. Without the line, the higher threshold even lowered abstention, and up to 40% of a checkpoint's items received decisions that no compliant policy with threshold-independent beliefs could make.",
+        "engineerSummary": "A high abstention rate is not evidence of compliance: evaluations using stated scoring rules should report how often models abstain, whether decisions respond to the stated threshold, and which items they answer. 75, a line limiting the reply to an answer or \"I abstain\" (the abstention format) raised the mean abstention rate from 20% to 91%. On OLMo 3 7B, decisions trained on threshold-conditioned targets did not follow unseen thresholds consistently. Without the line, the higher threshold even lowered abstention, and up to 40% of a checkpoint's items received decisions that no compliant policy with threshold-independent beliefs could make.",
+        "founderSummary": "A high abstention rate is not evidence of compliance: evaluations using stated scoring rules should report how often models abstain, whether decisions respond to the stated threshold, and which items they answer. 75, a line limiting the reply to an answer or \"I abstain\" (the abstention format) raised the mean abstention rate from 20% to 91%. On OLMo 3 7B, decisions trained on threshold-conditioned targets did not follow unseen thresholds consistently. Without the line, the higher threshold even lowered abstention, and up to 40% of a checkpoint's items received decisions that no compliant policy with threshold-independent beliefs could make."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Honest Fusion Evaluation for Cross-Domain Deepfake Detection: Leakage Audits and Tail Robustness",
@@ -2188,7 +2267,7 @@
     {
       "name": "didilili/mianstack",
       "description": "🚀 面栈 MianStack｜程序员面试题库天花板！Java、Python、数据库、算法、大模型、AI Agent、RAG 一栈备齐。真实面经关联高频考点，按公司、岗位定向备考；图文题解、精华专题、项目源码拆解，全系标配。面试官出题，面栈出招！免费开源，持续更新。",
-      "stars": 186,
+      "stars": 187,
       "forks": 11,
       "language": "JavaScript",
       "url": "https://github.com/didilili/mianstack"
