@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-14T07:58:37.918+05:30",
+  "generatedAt": "2026-11-14T10:22:49.470+05:30",
   "retentionDays": 7,
-  "totalStories": 106,
-  "newToday": 106,
+  "totalStories": 136,
+  "newToday": 136,
   "articles": [
     {
       "title": "Do Large Language Models Show Racial and Sex Bias in Pain Management? A Counterfactual Audit of GPT, Claude, Gemini, Llama, DeepSeek and Qwen",
@@ -17,7 +17,25 @@
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": null,
+      "insightsAttempted": true
+    },
+    {
+      "title": "UniPipe: Unified Inference Serving and Fine-Tuning for Deadline-Constrained DNN Surrogate Workflows",
+      "summary": "arXiv:2611.14748v1 Announce Type: new \nAbstract: DNN surrogates are increasingly used to accelerate scientific workflows that must process high-rate sensor streams in near real time, exemplified by Ptychographic imaging at next-generation X-ray light sources. Such surrogates deliver 100-1000x higher throughput than iterative solvers, enabling faster steering of experiments. To preserve surrogate accuracy during an experiment, as the input distribution evolves, state-of-the-art deployments freeze the pretrained surrogate or run a separate CUDA context that fine-tunes concurrently with serving. However, multi-context concurrency causes significant contention on the GPU, inflating both the mean and the variance of inference latency, triggering deadline misses in workflows where sensor data has to be processed within a hard per-unit deadline. To address this challenge, we propose UniPipe, a single-context system that unifies inference serving and fine-tuning of a DNN surrogate on a single edge GPU. UniPipe is driven by three key insights: both serving and fine-tuning require a forward pass and can be fused into one; the per-sample latency of modern GPUs is non-linear in batch size; and the workload is repetitive across intervals, enabling offline scheduling. Specifically, UniPipe fuses training and inference data in a single forward pass with a selective backward pass on the training subset, and uses a polynomial-time scheduler that exploits the latency curve to compute the batch composition. We evaluate UniPipe on a real-world Ptychographic reconstruction workflow with sensor rates up to 5000 patterns/sec.; UniPipe lowers reconstruction MSE by up to 30% and inference MSE by up to 50% over a pretrained baseline, and reduces the deadline-miss rate by 13%-22% over a multi-context baseline. UniPipe's unified deployment reduces the latency spread from 106% to 57% of the mean, and increases total throughput compared to multi-context baseline.",
+      "url": "https://arxiv.org/abs/2611.14748",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "Inference",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "ac10310cdcfd4",
+      "relevanceScore": 41,
+      "whyItMatters": "Affects serving cost, throughput, and latency.",
+      "addedAt": "2026-11-14T04:52:49.470Z",
+      "insights": null,
+      "insightsAttempted": true
     },
     {
       "title": "UniPipe: Unified Inference Serving and Fine-Tuning for Deadline-Constrained DNN Surrogate Workflows",
@@ -33,7 +51,8 @@
       "aiSummary": null,
       "addedAt": "2026-11-14T02:28:37.918Z",
       "image": null,
-      "insights": null
+      "insights": null,
+      "insightsAttempted": true
     },
     {
       "title": "CAFIN: CUDA-accelerated Adaptive Fisher Information Matrix Network Optimization via GPU-Native Kernel Fusion",
@@ -49,7 +68,25 @@
       "aiSummary": null,
       "addedAt": "2026-11-14T02:28:37.918Z",
       "image": null,
-      "insights": null
+      "insights": null,
+      "insightsAttempted": true
+    },
+    {
+      "title": "CAFIN: CUDA-accelerated Adaptive Fisher Information Matrix Network Optimization via GPU-Native Kernel Fusion",
+      "summary": "arXiv:2611.14589v1 Announce Type: new \nAbstract: Second-order optimizers improve deep neural network training using curvature information, but their practical efficiency is limited by GPU execution overhead. AdaFisher reduces Fisher Information Matrix (FIM) approximation costs through diagonal Kronecker structures and exponential moving averages, yet its PyTorch implementation requires sequential CUDA kernel launches, intermediate tensor allocations, and repeated memory accesses. We introduce CAFIN, a GPU-native CUDA kernel fusion framework that improves AdaFisher execution efficiency without changing its optimization formulation. The proposed approach progressively integrates FIM preconditioner construction, exponential moving average updates, gradient preconditioning, momentum accumulation, weight decay, and parameter updates into fused CUDA kernels. Shared-memory reuse, register-resident computation, and in-place operations further reduce memory traffic and intermediate allocations. Experiments using ResNet-18 on CIFAR-10, CIFAR-100, and Tiny ImageNet across NVIDIA GTX 1660 Ti and RTX 3060 Laptop GPUs demonstrate up to 78.4% lower isolated FIM construction latency and 2.1-26.9% lower optimizer-step latency. The implementation also eliminates approximately 18.91 MB of intermediate GPU memory allocations per optimizer step. Numerical validation confirms consistency within the predefined FP32 tolerance, while convergence accuracy remains comparable across evaluated datasets and random seeds. These findings demonstrate that CUDA kernel fusion can substantially accelerate second-order optimization while preserving AdaFisher's underlying mathematical formulation and learning behavior.",
+      "url": "https://arxiv.org/abs/2611.14589",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "Inference",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a4bd21d5ca2a1",
+      "relevanceScore": 33,
+      "whyItMatters": "Affects serving cost, throughput, and latency.",
+      "addedAt": "2026-11-14T04:52:49.470Z",
+      "insights": null,
+      "insightsAttempted": true
     },
     {
       "title": "KernelMosaic: An Open Dataset and Agentic Framework for CUDA Kernel Generation",
@@ -65,7 +102,42 @@
       "aiSummary": null,
       "addedAt": "2026-11-14T02:28:37.918Z",
       "image": null,
-      "insights": null
+      "insights": null,
+      "insightsAttempted": true
+    },
+    {
+      "title": "KernelMosaic: An Open Dataset and Agentic Framework for CUDA Kernel Generation",
+      "summary": "arXiv:2611.14604v1 Announce Type: new \nAbstract: Training large language models to generate efficient CUDA kernels requires supervision spanning diverse computational requirements and iterative code optimization. Constructing this supervision is challenging because of heterogeneous specifications, and useful implementations emerge through iterative complicated testing and refinement. We introduce KernelMosaic, an open dataset pairing diverse CUDA tasks with verified solutions and trajectories. Human-guided review and diversity-aware selection curate tasks expressed as natural-language descriptions, reference programs, mathematical specifications, and their intersections. To build the solutions and trajectories, our agentic framework guides a strong LLM through implementation, correctness repair, and performance optimization with reusable CUDA guidance and execution feedback. Supervised fine-tuning of a small open-source model on KernelMosaic raises correctness from 4%, 0%, and 0% to 88%, 82%, and 16% on KernelBench L1, L2, and L3, respectively, while increasing the fraction of tasks with kernels faster than PyTorch eager at every level. Further training experiments show that supervision from the curated trajectories substantially outperforms direct responses and promotes sustained testing and revision. These results demonstrate that KernelMosaic enables a general-purpose model to achieve substantial gains in CUDA kernel generation.",
+      "url": "https://arxiv.org/abs/2611.14604",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "LLM Engineering",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a67626b0f879e",
+      "relevanceScore": 32,
+      "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
+      "addedAt": "2026-11-14T04:52:49.470Z",
+      "insights": null,
+      "insightsAttempted": true
+    },
+    {
+      "title": "Thompson Sampling using Prior-fitted Diffusion Transformers",
+      "summary": "arXiv:2611.14656v1 Announce Type: new \nAbstract: Thompson sampling is natural randomized strategy for optimizing unknown functions in a black-box manner. In continuous global optimization, Thompson sampling has largely been restricted to Gaussian process priors, as these are essentially the only class for which computing the posterior distribution has been tractable in practice. In this work, we introduce \\emph{prior-fitted diffusion transformers}, which are diffusion models that perform Thompson sampling in-context at inference time, after being pre-trained using the prior-fitted network paradigm. To apply these models, we develop a set of practical non-Gaussian priors for general black-box functions---including those that have characteristics that cannot be achieved under Gaussianity, such as priors over unimodal functions. We also quantify the tradeoff between model size and the number of pre-training iterations, and show that these models follow scaling laws akin to those observed in transformers defined over other modalities. Across a set of global optimization benchmarks, we show that prior-fitted diffusion transformers with non-Gaussian priors can achieve improved performance compared to traditional pipelines built on Gaussian processes.",
+      "url": "https://arxiv.org/abs/2611.14656",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "Model Training",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a5cea2a29d109",
+      "relevanceScore": 32,
+      "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
+      "addedAt": "2026-11-14T04:52:49.470Z",
+      "insights": null,
+      "insightsAttempted": true
     },
     {
       "title": "Sophon: A Procedural Diagnostic for Spatial Reasoning in Vision-Language Models",
@@ -80,7 +152,25 @@
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": null,
+      "insightsAttempted": true
+    },
+    {
+      "title": "Together Compiler: Continual Compilation for AI Inference",
+      "summary": "arXiv:2611.14681v1 Announce Type: new \nAbstract: Today's AI workloads are rapidly changing: new models are released more often, model architectures are increasingly diverse, and traffic distributions change frequently. The challenge we face at Together AI is continual optimization for these changing workloads. Compiling a deployment into an optimized forward pass is a challenge that is well-suited for agent hill-climbing. Existing systems struggle with continual compilation due to a tradeoff between measurement throughput and fidelity. Many systems use agents to optimize individual kernels from the inference forward pass using offline benchmarks, but timings are low-fidelity because of data-dependent behavior in primitives like mixture-of-experts (MoE). On the other hand, systems use agents to directly optimize end-to-end engines but suffer from slow engine launch times. To address these challenges, we build Together Compiler (TKCC), the first truly continual agent loop designed for AI inference optimization. To address the throughput-fidelity tradeoff, we propose: (1) a Tiered Persistent Engine that decouples engine launch overheads from forward pass computation; (2) a cost model to select the parallelism configurations that seed the optimization process. We also conduct extensive ablations on agent context management and present our insights on deploying TKCC in production. TKCC outperforms highly-optimized hand-written Megakernels on the Llama 1B workhorse workload by up to 1.7x and the best open source engines on the latest frontier models (Kimi K3, GLM 5.3, MiniMax M3.1 Flash, DeepSeek v4.1 Flash) across hardware platforms by up to 2.6x higher TPS on the InferenceX benchmark. TKCC also sets the state-of-the-art performance at batch size 1, with 1111 TPS on M3.1 Flash and 1205 TPS on DeepSeek v4.1 Flash. Finally, TKCC generalizes beyond frontier language model inference. TKCC serves trillions of tokens across our production fleet.",
+      "url": "https://arxiv.org/abs/2611.14681",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "Inference",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "aa0b5c798ba3b",
+      "relevanceScore": 29,
+      "whyItMatters": "Affects serving cost, throughput, and latency.",
+      "addedAt": "2026-11-14T04:52:49.470Z",
+      "insights": null,
+      "insightsAttempted": true
     },
     {
       "title": "Thompson Sampling using Prior-fitted Diffusion Transformers",
@@ -96,7 +186,25 @@
       "aiSummary": null,
       "addedAt": "2026-11-14T02:28:37.918Z",
       "image": null,
-      "insights": null
+      "insights": null,
+      "insightsAttempted": true
+    },
+    {
+      "title": "SynthCorp: A Platform for Creating Benchmarks for Data Agents",
+      "summary": "arXiv:2611.14765v1 Announce Type: new \nAbstract: Current benchmarks for LLM-driven data agents saturate quickly and cannot target specific capabilities. We present SynthCorp, a platform that creates customizable data estates and benchmarks by simulating how business events produce and modify corporate data over time. Each data estate combines relational databases, a document store, and a data catalog, paired with evaluation tasks and executable gold programs. First, given a scenario and target complexity dimensions, SynthCorp synthesizes reusable event types and compiles each into a program over predefined simulation primitives. Second, SynthCorp schedules event instances on a virtual calendar, interleaving routine and disruption events so that tables, documents, and catalog entries remain consistent. Third, SynthCorp executes the calendar to materialize the data estate and records every operation in a simulation log. Fourth, SynthCorp generates analytical tasks and derives verified gold programs from the log. We use SynthCorp to generate initial evaluation benchmarks comprising seven data estates (up to 1K operational tables) and 256 tasks across five domains. The data estates pass deterministic pipeline checks (such as foreign-key violations, undeclared writes, recurrence violations, and database execution failures) with a near-zero error rate, introduce cross-asset complexities, and cover all requested dimensions. Evaluating three models across four data-context settings shows that the benchmarks separate data contexts and model tiers. Auditing candidate queries against causal provenance in the simulation log verifies gold programs without manual annotation, including on multi-event composite tasks that expose reasoning failures in state-of-the-art agents. We hope the community uses SynthCorp to generate more challenging and useful data estates and benchmarks that foster the development of enterprise data agents.",
+      "url": "https://arxiv.org/abs/2611.14765",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "MLOps",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "acd1f1a3b900c",
+      "relevanceScore": 26,
+      "whyItMatters": "Relevant to deployment, monitoring, and evaluation workflows.",
+      "addedAt": "2026-11-14T04:52:49.470Z",
+      "insights": null,
+      "insightsAttempted": true
     },
     {
       "title": "An LLM Is All You Need: Data-Efficient Adaptation to Full-Duplex, Word-Level Spoken Dialogue",
@@ -111,7 +219,8 @@
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": null,
+      "insightsAttempted": true
     },
     {
       "title": "CoLFA: Collaboration-Guided Lightweight Failure Attribution for LLM-Based Multi-Agent Systems",
@@ -126,7 +235,8 @@
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": null,
+      "insightsAttempted": true
     },
     {
       "title": "What Entropy-Based View Selection Cannot See: An Audit of Test-Time Adaptation for Vision-Language Models",
@@ -141,7 +251,8 @@
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": null,
+      "insightsAttempted": true
     },
     {
       "title": "From Classification to Generation: Vision-Language Models for Roman Imperial Coin Description",
@@ -173,6 +284,66 @@
       "addedAt": "2026-11-14T02:28:37.918Z",
       "image": null,
       "insights": null
+    },
+    {
+      "title": "Robust Task-Aware State Estimation from Pre-trained Perception",
+      "summary": "arXiv:2611.14781v1 Announce Type: new \nAbstract: Agents that perform state estimation using pretrained perception models, e.g., Vision-Language Models (VLMs), face the fundamental challenge that predictions are uncertain. Still, most approaches determinize these predictions into a single best-guess state and make decisions as if it were ground truth. This is brittle because when the guess is wrong, the agent's decisions may be unsafe or infeasible. At the other extreme, maintaining a full probability distribution over symbolic states is often intractable. We propose a middle path, drawing on the underlying probabilities the perception model already produces (e.g., a VLM's output-layer token distributions) to construct a $\\theta$-confidence Minimal Belief Set (MBS$_\\theta$), a minimal subset of states whose cumulative probability meets a user-specified belief-mass threshold. The minimality of an MBS$_\\theta$ ensures that the agent considers only the most likely states, enhancing robustness in downstream decision-making while maintaining computational tractability. Using a novel three-layered belief system, we efficiently approximate individual state probabilities from per-feature predictions and task-level constraints. On this belief construction, we base our MBS$_\\theta$ construction, while maintaining only a lean factored representation of the belief. Our algorithm, Probability-Ranked Valid State Search (PRaVaSS), takes advantage of the unique structure of this belief system to construct an MBS$_\\theta$ with correctness guarantees and polynomial complexity in the unconstrained case. Using a VLM as the backbone of our state estimator, we validate our method's theoretical properties, scalability with problem size, and improvement of downstream decision-making when used in a task-planning pipeline.",
+      "url": "https://arxiv.org/abs/2611.14781",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "ae8ad9ae41ba7",
+      "relevanceScore": 23,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
+    },
+    {
+      "title": "Open Challenges and Opportunities in Human-Agent Systems",
+      "summary": "arXiv:2611.14846v1 Announce Type: new \nAbstract: Agentic AI systems increasingly undertake extended tasks and act on people's behalf, making human-agent interaction central to their effectiveness. Successful interaction requires understanding human perspectives, coordinating complementary capabilities, and maintaining productive relationships within socio-technical environments. This paper examines how foundations developed by the Autonomous Agents and Multi-Agent Systems (AAMAS) community inform these demands. We consider interactions ranging from individual human-agent partnerships to teams and larger groups, where participants differ in their roles, decision authority, capabilities, and objectives. We organize computational approaches around the connected challenges of understanding others and deciding how to interact with them. Theory of Mind, belief-desire-intention architectures, goal and plan recognition, inverse planning, and recursive reasoning provide mechanisms for representing and inferring partially observable mental states. Observer-aware planning, model reconciliation, and decision-theoretic communication connect these inferences to action, explanation, and information exchange. Together with shared autonomy, argumentation, and cooperative inverse reinforcement learning, these approaches offer foundations for agentic systems that account for evolving human knowledge, intentions, and expectations. We argue that progress requires treating human interaction as an ongoing decision problem shaped by uncertainty, interdependence, and potentially conflicting objectives.",
+      "url": "https://arxiv.org/abs/2611.14846",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "AI Agents",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a1c17e7e3955e",
+      "relevanceScore": 23,
+      "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
+    },
+    {
+      "title": "Code as Explanations: Executable and Verifiable LLM Explanations",
+      "summary": "arXiv:2611.14704v1 Announce Type: new \nAbstract: As large language models (LLMs) increasingly make consequential decisions and solve problems alongside humans, we must understand how models arrive at their conclusions. Understanding how an LLM behaves requires observing it across multiple inputs, yet free-text explanations such as chain-of-thought (CoT) are generated per instance and cannot be easily verified on new inputs. We propose {code explanations to address the mismatch in how LLM explanations are generated versus how they are evaluated: a program explains LLM behavior across a dataset of inputs, and its execution enables automatic verification. We define Consistency metric that measures the fraction of inputs on which the program reproduces the LLM's outputs, and use it to evaluate and select candidate programs. Across three open-source code-capable LLMs and eight tasks, we find that LLMs can produce highly consistent code explanations in several settings. Code explanations are also 6$\\times$ to 100$\\times$ shorter than CoT, and better align with model behavior in 9 out of 24 settings. However, consistency is significantly lower on tasks with more complex linguistic components, where generated programs reproduce model outputs no more frequently than an uninformative explanation baseline, and these programs often rely on longer hard-coded patterns. In experiments with Claude Opus 5.5, providing the model with consistency feedback and code execution improves explanation consistency across tasks, but consistency remains significantly lower on more complex tasks. Our findings establish executable code as a novel, verifiable, and compact approach to explaining LLM behavior and highlight verification feedback as a promising direction for improving explanation consistency. The code for this paper is at https://github.com/rajesh-lab/code-as-explanations.",
+      "url": "https://arxiv.org/abs/2611.14704",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "af545d4d2d4e5",
+      "relevanceScore": 23,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
+    },
+    {
+      "title": "Graph Label Alignment: A Diagnostic Atlas for Graph Classification",
+      "summary": "arXiv:2611.14760v1 Announce Type: new \nAbstract: Graph classification benchmarks vary widely in difficulty: some are solved by simple pooled baselines, while others remain challenging for GNNs and graph transformers. We take a data-centric view and ask whether benchmark success is driven by genuine structure--feature reasoning or by label signal already accessible from restricted marginal views. We introduce graph label alignment, a lightweight diagnostic that measures label accessibility through two supervised probes computed without training a graph encoder: structural label alignment (SLA), based on permutation-invariant topological and spectral summaries, and feature label alignment (FLA), based on pooled node features with edges removed. Across real graph classification benchmarks and multiple pooled backbones, the resulting SLA--FLA plane strongly organizes test accuracy, with low-alignment datasets forming a consistent regime where standard pooled pipelines struggle. To probe what lies beyond marginal accessibility, we introduce controlled interaction-dominated stress tests, including heterophilic ego-graphs and synthetic Twins tasks whose structural and feature marginals are matched across classes but whose role--feature couplings differ. These results show that high alignment explains much of easy benchmark performance, while low alignment reveals regimes where success requires preserving structure--feature correspondence beyond standard pooled representations.",
+      "url": "https://arxiv.org/abs/2611.14760",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a4e3b5fa7a415",
+      "relevanceScore": 23,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
     },
     {
       "title": "Benchmarking Multilingual Document Understanding in Vision-Language Models",
@@ -296,6 +467,21 @@
       "insights": null
     },
     {
+      "title": "Trait Hitchhiking in LLM Post-Training",
+      "summary": "arXiv:2611.14683v1 Announce Type: new \nAbstract: Reinforcement learning (RL) is now a standard stage of language model post-training, and the compute devoted to it is growing rapidly. While it has been shown to improve capabilities, particularly for tasks with verifiable rewards, it can also change behaviours and internal properties that the reward does not explicitly target. We present a formalism to describe the evolution of \"traits\" during RL post-training and, in doing so, recover the Price equation from evolutionary biology. We use this to develop a mathematical model for what we call \"trait hitchhiking\": the amplification or suppression of non-targeted traits as training redistributes probability across completions. We evaluate this Price update expression on language models trained with GRPO and show that the Price estimates closely track the sampled trait dynamics. These results identify trait hitchhiking as a mechanism by which RL post-training can silently amplify undesirable traits.",
+      "url": "https://arxiv.org/abs/2611.14683",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "LLM Engineering",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "aa21f2d141556",
+      "relevanceScore": 20,
+      "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
+    },
+    {
       "title": "Build composable, interoperable multi-agent systems with A2A on AWS",
       "summary": "Build a composable, interoperable multi-agent system on AWS with the Agent-to-Agent (A2A) protocol. A LangChain orchestrator on Amazon ECS communicates with a Strands agent on Amazon Bedrock AgentCore across organizational boundaries, using bidirectional, OAuth-authenticated calls, with neither side depending on the other's framework or SDK.",
       "url": "https://aws.amazon.com/blogs/machine-learning/build-composable-interoperable-multi-agent-systems-with-a2a-on-aws/",
@@ -358,6 +544,21 @@
       "insights": null
     },
     {
+      "title": "Leaderboard Hacking: Preference-Based Model Evaluations are Vulnerable to Manipulation",
+      "summary": "arXiv:2611.14769v1 Announce Type: new \nAbstract: Arena-style rankings of language models are a widely used evaluation framework in online leaderboards, research papers, and model evaluation in production. These rankings aim to realistically assess model performance using pairwise comparisons of anonymous models on user prompts, aggregating votes via the Bradley-Terry model to produce the final ranking. However, we find that these leaderboards are highly vulnerable to several manipulation strategies that unscrupulous providers could use to boost a model's rank: strategic voting (individual votes that boost a model's rank, including votes on irrelevant models), strategic prompting (choosing prompts that favor a model), and strategic nomination (boosting the rank of a model by inserting irrelevant models). We demonstrate these effects on public leaderboard data, analyze the circumstances that cause these vulnerabilities, and describe approaches to safeguard against each attack. Notably, these issues hold for any preference-based evaluation using the Bradley-Terry model that allows open prompting, voting, or model submission. These manipulations boost the rank of nearly every tested model; each attack can boost a model by up to 15-20 places in a ranking and, combined, they can boost a model by up to 45 places.",
+      "url": "https://arxiv.org/abs/2611.14769",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a36459f304a2d",
+      "relevanceScore": 19,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
+    },
+    {
       "title": "AI agent startup LangChain hits $3B valuation",
       "summary": "LangChain now claims 7,000 customers of its model and platform agnostic agent management tool LangSmith.",
       "url": "https://techcrunch.com/2026/11/13/ai-agent-startup-langchain-hits-3b-valuation/",
@@ -372,6 +573,21 @@
       "aiSummary": null,
       "addedAt": "2026-11-14T02:28:37.918Z",
       "insights": null
+    },
+    {
+      "title": "AI agent startup LangChain hits $3B valuation",
+      "summary": "LangChain now claims 7,000 customers of its model and platform agnostic agent management tool LangSmith.",
+      "url": "https://techcrunch.com/2026/11/13/ai-agent-startup-langchain-hits-3b-valuation/",
+      "publishedAt": "2026-11-13T19:37:57.000Z",
+      "source": "TechCrunch Startups",
+      "category": "AI Agents",
+      "trusted": true,
+      "image": null,
+      "audience": "founder",
+      "id": "ab96c8f1ce3ea",
+      "relevanceScore": 18,
+      "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
     },
     {
       "title": "Trait Hitchhiking in LLM Post-Training",
@@ -403,6 +619,36 @@
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
       "insights": null
+    },
+    {
+      "title": "GenPFN: An In-Context Tabular Foundation Model Approach for Augmenting Small Datasets in Engineering",
+      "summary": "arXiv:2611.14804v1 Announce Type: new \nAbstract: Costly simulations and experiments limit the data available for engineering design. This paper proposes GenPFN, a training-free candidate generator guided by a pretrained tabular Prior-Data Fitted Network (TabPFN) classifier with fixed weights. The context contains evaluated designs labeled desired (Class 1) or undesired (Class 0). GenPFN interpolates between desired designs and refines candidates using gated classifier gradients and Gaussian noise. Each candidate is evaluated using the problem's constraints and objective functions. Evaluated desired designs and their objective values augment the context for regression training.\n Evaluation spans fourteen selected problems, including a two-parameter benchmark and a 44-parameter hull problem. In paired comparisons, GenPFN with TabPFN v1 achieves higher class satisfaction and lower realism distance than the tested adversarial, variational-autoencoder and diffusion generators. The variational-autoencoder generator provides greater coverage and diversity. Relative to the synthetic minority over-sampling technique (SMOTE), GenPFN provides lower coverage distance and greater diversity. Among observed paired regression fits, augmentation reduces estimated AutoGluon validation mean squared error by 62.1% relative to context-only training. A hull-stern case study yields 99.3% propeller-compatible candidates versus 1.4% among randomly sampled context designs. Generation followed by evaluation produces sample sets that augment limited datasets and support training more accurate predictive models.",
+      "url": "https://arxiv.org/abs/2611.14804",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a4acd1d67dd2a",
+      "relevanceScore": 18,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
+    },
+    {
+      "title": "SPIRE: Task-agnostic embodied continual learning through autonomous situation inference and causal motor-primitive reuse",
+      "summary": "arXiv:2611.14840v1 Announce Type: new \nAbstract: Embodied continual learning requires controllers to infer changing situations, retain prior behavior and reuse motor skills without task labels or known boundaries. The challenge is deciding when to recover earlier behavior and which skills can support new learning. We introduce Situation-guided Primitive Integration for Recurrent Embodiment (SPIRE), a recurrent-spiking system that infers latent contexts from action-outcome evidence and learns context-specific motor actors online. Mature actors become protected sources that combine with a target-context residual to drive recurrent-spiking motor populations. Across coordinate, three-joint and hidden-force control, SPIRE maintained control, autonomously inferred situations, retained prior behavior and accelerated acquisition of an unseen source composition, reducing mean interactions to criterion by approximately 40% relative to matched fresh controllers. Rewinding compatible source actors impaired early acquisition in every matched intervention, demonstrating causal reuse. Against seven recurrent continual-learning and modular-control comparators, SPIRE achieved 2.4 times the mean prior-learning advantage of the strongest eligible task-free alternative selected for each paired stream. These results demonstrate autonomous recovery and causal reuse of motor skills for new learning in continuous embodied control.",
+      "url": "https://arxiv.org/abs/2611.14840",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "AI Agents",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a38cc1fb07936",
+      "relevanceScore": 18,
+      "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
     },
     {
       "title": "SynthCorp: A Platform for Creating Benchmarks for Data Agents",
@@ -483,6 +729,21 @@
       "insights": null
     },
     {
+      "title": "Effective Teacher Support for Reasoning Distillation",
+      "summary": "arXiv:2611.14850v1 Announce Type: new \nAbstract: Forward-KL language-model distillation normally computes dense teacher and student scores over the full vocabulary at every supervised position, making training and stored teacher targets expensive. We instead distill from the teacher's highest-probability vocabulary fraction, renormalizing the retained mass as we sweep support from 100% to 0.01%. Our main study distills Qwen3 4B -> 1.7B. We confirm the broader support-reduction finding on larger Qwen3 8B -> 4B and Nemotron Nano 12B -> 9B pairs and under answer-only supervision. We evaluate generation primarily on MMLU-Pro and secondarily on GPQA-Diamond. Across the Qwen3 settings, retaining 0.01% of the vocabulary causes no observed MMLU-Pro degradation relative to full-vocabulary distillation, although disagreement with the complete teacher distribution increases. Nemotron Nano matches full-vocabulary MMLU-Pro at 0.1%, but smaller fractions fail to emit the closing reasoning tag, showing that the reliable cutoff depends on the model family. At 0.01% support, caching the retained next-token scores from the teacher forward pass cuts training step time by 38%, while restricting student output computation to those tokens cuts peak memory by 24%; neither causes observed MMLU-Pro degradation.",
+      "url": "https://arxiv.org/abs/2611.14850",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "Model Training",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "af6b938cfe6ea",
+      "relevanceScore": 17,
+      "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
+    },
+    {
       "title": "How Natera designed an agentic AI system for lab ops with Amazon Bedrock AgentCore",
       "summary": "Natera built SWARM, an agentic AI system on Amazon Bedrock AgentCore that captures institutional lab-operations knowledge and deploys it at scale. This post walks through the full architecture, from knowledge base construction to deployment and evaluation, delivering about 130x faster first response and 96.2% automated coverage across support tickets.",
       "url": "https://aws.amazon.com/blogs/machine-learning/how-natera-designed-an-agentic-ai-system-for-lab-ops-with-amazon-bedrock-agentcore/",
@@ -529,6 +790,21 @@
       "insights": null
     },
     {
+      "title": "Beyond Row-Level Prediction: Evaluating and Learning Composition for Reusable Table Representations",
+      "summary": "arXiv:2611.14697v1 Announce Type: new \nAbstract: Tables are compositional, with content spread across a schema, cell values, rows, and columns. Large-scale operations such as retrieval, overlap estimation, deduplication, and data curation need these local signals composed into one reusable embedding vector per table. Table representation methods, however, are mostly evaluated through row-level prediction or supervised downstream tasks, which do not measure table-level embedding quality directly. We introduce a benchmark that evaluates table-level embeddings through four desiderata: consistency under partial views, discriminability across label granularities, robustness to benign perturbations, and efficiency. Across twelve methods on synthetic and real corpora, lightweight schema- and text-based fingerprints are among the strongest. The sharpest contrast comes from two tabular foundation models, TabPFN and ConTextTab: although both are strong row-level predictors, their states, composed by mean, max, or three further parameter-free pooling rules, trail the strongest fingerprints. We therefore ask whether the gap lies in the encoder or in the compositional rule. Keeping ConTextTab frozen, we learn only the compositional rule over its cell states, using support-conditioned distribution matching (SCDM), a self-supervised loss we propose that matches the distribution of embedding similarities to the distribution of partition overlaps within and across tables. Across all fifteen head configurations, the learned rule raises the Spearman correlation between embedding similarity and partial-view overlap from 0.04 to 0.43-0.50 on synthetic data and improves triplet ranking, clustering, and retrieval, with smaller but systematic gains on real data. A downstream parent-table retrieval task confirms these findings. How local states are composed, and with what objective, substantially affects the quality of table-level embeddings.",
+      "url": "https://arxiv.org/abs/2611.14697",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "acf72a23123cc",
+      "relevanceScore": 16,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
+    },
+    {
       "title": "Your MCP Servers Are Silently Draining Your Context Window: The Hidden Cost of Tool-Heavy AI Agents",
       "summary": "Why attaching dozens of Model Context Protocol (MCP) tools degrades LLM reasoning, inflates API bills, and how small, focused TypeScript micro-tools fix the problem.",
       "url": "https://dev.to/necoz/your-mcp-servers-are-silently-draining-your-context-window-the-hidden-cost-of-tool-heavy-ai-agents-fkl",
@@ -557,6 +833,21 @@
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
       "insights": null
+    },
+    {
+      "title": "Can an AI Agent Be Epistemically Akratic? Higher-Order Evidence & the Limits of Self-Correction",
+      "summary": "arXiv:2611.14889v1 Announce Type: new \nAbstract: When we judge that our reasoning was defective, it seems plausible that we should abandon the conclusion it produced. This thought has special force for AI agents built to assess and correct their own work. Yet obeying such judgments can make an agent worse at distinguishing sound reasoning from defective reasoning. An AI agent may rely on information about its reasoning when deciding which conclusions to keep, while the part that judges whether those conclusions are justified cannot use that information. The agent can then exercise an epistemic competence by retaining conclusions it judges unjustified, even when its self-assessments are generally reliable. Nor is the difficulty resolved by training the agent to make its conclusions and assessments agree: agreement can be achieved by degrading either one. Crucially, I argue that a negative assessment can remain valuable by identifying conclusions requiring further scrutiny, without having authority to eliminate them. The result challenges a central assumption about AI self-correction: that bringing an agent's beliefs into agreement with its own self-assessment about their justification makes it better at correcting its mistakes.",
+      "url": "https://arxiv.org/abs/2611.14889",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "AI Agents",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "adfd668c04c09",
+      "relevanceScore": 15,
+      "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
     },
     {
       "title": "Migrate to Amazon Bedrock Managed Knowledge Base with your coding agent",
@@ -603,6 +894,51 @@
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
       "insights": null
+    },
+    {
+      "title": "When Should Semantic Priors Enter Partially-Identified Causal Discovery?",
+      "summary": "arXiv:2611.14736v1 Announce Type: new \nAbstract: Observational causal discovery often leaves causal di- rections unresolved or unstable. Large language mod- els (LLMs) can provide semantic information to resolve these directions, but incorrect proposals can exclude the true causal graph and invalidate downstream inference. We study three separate decisions: where to allocate semantic queries, which proposals to admit, and which causal graphs to retain. Our framework distinguishes population non-identifiability from finite-sample insta- bility, evaluates semantic orientation against statistical and random controls, and examines calibrated admis- sion and error-tolerant DAG retention. Experiments across benchmark networks show that semantic infor- mation improves recovery over coin-flip orientations, but targeting unstable edges has no established ad- vantage over matched-random allocation. The tested admission certificate cannot support nontrivial admis- sion with the available calibration tasks. Moreover, downstream retention depends on reference adequacy: learned references contain the true DAG in only three of 80 planned tasks. These findings separate the value of semantic information from the reliability of its alloca- tion, admission, and retention, and identify calibration size and reference adequacy as key limitations.",
+      "url": "https://arxiv.org/abs/2611.14736",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a15e8418a00db",
+      "relevanceScore": 14,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
+    },
+    {
+      "title": "An Asynchronous Federated Learning Platform for Lung Adenocarcinoma Grading via Foundation Models and Structural Pruning",
+      "summary": "arXiv:2611.14590v1 Announce Type: new \nAbstract: Classification of lung adenocarcinoma into poorly differentiated (PD) and well-to-moderately differentiated (WMD) subtypes plays an important role in patient survival; however, consistent classification is difficult due to inter-observer variability among pathologists. Collecting data from multiple hospitals is also challenging due to patient privacy concerns. This study proposes a web-based federated learning system that shares only locally trained model weights without sharing patient data between institutions. The UNI2 foundation model and CLAM-SB were used to classify pathological whole slide images. A four-client federated learning system was constructed, and the NLST cohort was reserved exclusively for external validation. In centralized evaluation, joint training with CPTAC and TCGA outperformed single-institution training on external validation, confirming the necessity of multi-institutional data integration. FedAvg, FedProx, FedBN, and FedNova were compared as federated learning algorithms under identical experimental conditions. Test AUC ranked as FedBN, FedProx, FedNova, and FedAvg. FedNova showed the most balanced classification performance between PD and WMD. L1-norm structural pruning at 20%, 30%, and 40% sparsity was applied to reduce model transmission size. FedAvg, FedProx, and FedBN showed a tendency of decreasing Test AUC under pruning, while FedNova achieved improved Test AUC across all sparsity levels. A web-based application was developed supporting slide upload, local training, AI classification, and attention heatmap-based visualization. The combination of FedNova and 40% pruning was confirmed as a practical approach that improves communication efficiency and classification performance while protecting patient privacy.",
+      "url": "https://arxiv.org/abs/2611.14590",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "ac2516e172926",
+      "relevanceScore": 14,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
+    },
+    {
+      "title": "Generalize Then Personalize: Wearable-Based Heart Rate Forecasting Under Scarce Ruck-March Data",
+      "summary": "arXiv:2611.14849v1 Announce Type: new \nAbstract: Heart rate (HR) forecasting may provide advance information about near-future cardiovascular response, potentially supporting physiological monitoring and workload-management decisions during ruck marching. However, robust model development is constrained by the difficulty of collecting large-scale ruck-march datasets, creating a scarce-data problem in which models must generalize across participants while adapting to individuals from limited personal data. To address this problem, we benchmark population-only training (POT), personalized-from-scratch training (PFST), and population-pretrained fine-tuning (PPFT) for HR forecasting during loaded ruck marching using data from eight active-duty U.S. Army medics across thirteen sessions. LSTM, Attention-LSTM, and CNN-LSTM backbones were evaluated against a persistence baseline at 30 s and 60 s horizons. Across all neural architectures and horizons, PPFT yielded lower mean MAE, RMSE, and endpoint MAE than both POT and PFST. Participant-level paired analysis after averaging across three training seeds showed that, relative to PFST, PPFT reduced trajectory MAE by 2.22-4.30 bpm and endpoint MAE by 1.24-2.88 bpm. All six trajectory-MAE comparisons remained significant after Holm adjustment ($p_{adj}$ = 0.0469), while four of six endpoint-MAE comparisons remained significant after adjustment. At 30 s, persistence achieved the lowest MAE (3.555 $\\pm$ 1.274 bpm), while CNN-LSTM PPFT achieved the lowest RMSE (4.669 $\\pm$ 1.916 bpm); LSTM PPFT achieved the lowest endpoint MAE (5.093 $\\pm$ 2.365 bpm). At 60 s, Attention-LSTM PPFT achieved the lowest MAE (5.573 $\\pm$ 1.939 bpm) and RMSE (7.134 $\\pm$ 2.260 bpm), while CNN-LSTM PPFT achieved the lowest endpoint MAE (7.553 $\\pm$ 2.357 bpm). These results suggest that population pretraining followed by participant-specific fine-tuning may provide a practical strategy for scarce-data wearable HR forecasting.",
+      "url": "https://arxiv.org/abs/2611.14849",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "Model Training",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a7ca1e008cf3c",
+      "relevanceScore": 14,
+      "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
     },
     {
       "title": "Introducing ChatGPT Wallet",
@@ -653,6 +989,21 @@
       "insights": null
     },
     {
+      "title": "Cleaning an Agent's History Hurts When the World Still Holds the Error",
+      "summary": "arXiv:2611.14654v1 Announce Type: new \nAbstract: Tool-using language-model agents accumulate histories of their own mistakes, and a system that compacts, repairs or hands off such a history decides what it says about those mistakes while their effects stay in the world. Prior work cleans the history at a fixed world, where showing a corrected step and saying it is done move together. We ask whether the same correct content helps or hurts depending on how the history states it and what the world holds. We freeze an agent mid-task with its exact world state, edit the history or the world, and let a receiver model continue. On AgentCE-Bench, after the agent commits a wrong value, we hold the world fixed and add the correct value by two natural edits: a truthful note beside the preserved error or the agent's own completed action. The note raises recovery, the share of remaining targets the receiver gets right, from 51% under a matched neutral note to 66%. The completed action lowers it below the unedited history, from 50% to 44%, so the value's presence alone does not predict the effect. On AppWorld, after a database write, we vary whether its receipt reports success or failure and whether its effect is present. A success receipt lowers whole-task success from 45% to 28% while the effect is absent and raises it from 38% to 49% once present. The two effects differ by 27 points pooled over two receivers, a difference positive in six of eight receivers at 97.5% and seven at 95%. A history edit's effect thus depends on the world it describes, and a history made to look clean while the world still holds the error can leave an agent worse off than no edit at all.",
+      "url": "https://arxiv.org/abs/2611.14654",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "AI Agents",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "ac44ac57feedc",
+      "relevanceScore": 13,
+      "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
+    },
+    {
       "title": "Optimizing cost per task and proving agent ROI on Amazon Bedrock",
       "summary": "Comparing per-token prices hides the real cost of running a model on Amazon Bedrock. This post shows how to calculate the true cost per task across four hidden cost drivers, reduce it with caching, routing, and output constraints, and prove agent ROI with human baselines, holdout experiments, and a five-dimension scorecard.",
       "url": "https://aws.amazon.com/blogs/machine-learning/optimizing-cost-per-task-and-proving-agent-roi-on-amazon-bedrock/",
@@ -696,6 +1047,21 @@
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
       "insights": null
+    },
+    {
+      "title": "How AI Is Helping Care Teams Get Patients the Right Care, Sooner",
+      "summary": "From pediatric research to smart hospitals, AI is helping care teams spend less time on routine tasks and more time with patients.  \n\n\n Health systems and startups are putting it to work across healthcare, from matching patients to clinical trials to supporting radiologists, hospital teams and patients at home. Clinicians stay at the center, reviewing AI outputs and guiding decisions, while NVIDIA technologies provide the compute behind the applications. \n\n\n Read on to learn how healthcare teams are using AI to improve and speed patient care. \n\n\n \n Friday, Nov. 13, 5:00 a.m. PT \n\n\n Dyania Health Uses AI to Turn Decades of Patient Records Into Better Care  \n Hospitals hold decades of patient history, most of it written in free text, as physicians&#8217; notes, operative reports, imaging and pathology reads and discharge summaries. To understand one patient’s full story, a clinician would need to read through years of charts .  \n\n\n Dyania Health , a New Jersey-based clinical AI company, built Synapsis AI to do just that. Synapsis AI is a clinical reasoning engine: It works across every note, report and lab result in a patient&#8217;s record, connecting findings that may be years apart to answer clinical questions the way a specialist reviewing the chart would.  \n\n\n The output is a set of clinical signals, each traceable to its source in the record, that tells care teams which patients need attention and why. Clinicians review the evidence and make every decision.  \n\n\n Keeping Patient Data Inside the Hospital Walls \n Synapsis AI runs on NVIDIA-accelerated computing inside a health system’s own firewall.  The entire health system’s patient records can be processed onsite, so patient data is never shared and never leaves the hospital.  \n\n\n Processing records this way takes chart review off the desks of clinical teams and lets them spend that time with patients. But Synapsis AI still requires clinician input — it’s an assistive tool that surfaces evidence from medical records that a clinician must still confirm and act on.  \n\n\n Dyania builds and trains its clinical models with NVIDIA NeMo open libraries, then uses NVIDIA TensorRT and TensorRT-LLM to optimize them to run faster and more efficiently on the hospital’s own GPU servers.  \n\n\n Synapsis AI in the Real World \n Cleveland Clinic used Synapsis AI to support a study of more than 7,800 aortic valve replacement patients between 2005 and 2021.  \n\n\n Synapsis AI reasoned across each patient’s record, including every echocardiogram added in the years after surgery, and used this information to build a predictive model of valve deterioration and reintervention risk at the three-, five- and ten-year mark after a patient undergoes an aortic valve replacement procedure. The AI platform completed chart review across the full cohort that would have taken clinicians years to complete by hand.  \n\n\n “Using technology to bring together and analyze information that can help us predict the duration of implanted heart valves is a promising step towards enhanced outcomes and more personalized care for patients,” said Dr. Lars Svensson , chief of the Heart, Vascular &amp; Thoracic Institute at Cleveland Clinic. \n\n\n The same approach can be applied to any healthcare challenge where the answer sits inside the medical record, such as identifying patients eligible for clinical trials, closing care gaps in cardiology and oncology, and populating clinical registries. \n\n\n Learn more about Dyania Health .",
+      "url": "https://blogs.nvidia.com/blog/how-ai-is-helping-care-teams/",
+      "publishedAt": "2026-11-13T13:00:42.000Z",
+      "source": "NVIDIA",
+      "category": "Research",
+      "trusted": true,
+      "image": "https://blogs.nvidia.com/wp-content/uploads/2026/11/Screenshot-2026-11-12-at-9.25.28-AM-scaled.png",
+      "audience": "ai_engineer",
+      "id": "aa0730e6c360a",
+      "relevanceScore": 12,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
     },
     {
       "title": "MuEdit: An efficient multi-task editing method towards inter-domain knowledge conflicts",
@@ -788,6 +1154,51 @@
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
       "insights": null
+    },
+    {
+      "title": "Rational Use of Time for Social Coordination in Humans and AI",
+      "summary": "arXiv:2611.14766v1 Announce Type: new \nAbstract: All social interactions are situated in time. Previous studies have shown that humans are able to use implicit temporal cues, such as the duration of a pause, to infer others' mental states. But how do humans use temporal cues for dynamic, fine-grained social coordination? And can AI systems do the same, without ``experiencing'' continuous real-time as humans do? We study these questions using a cooperative card game task called The Mind, which requires players to achieve a shared goal across repeated interactions but forbids explicit communication: the only available signal is the passage of time. We evaluate 150 humans, and two classes of AI models which reflect different ways of operationalizing time in artificial systems: computer-use agents (CUAs), and standard text-prompted LLMs. We find that human behavior is best captured by a Bayesian strategy that infers a partner's belief from their timing---and similarly for frontier models. However, unlike humans, none of the tested models seem to efficiently adapt their behaviors to their partners' over the course of the game. From a cognitive perspective, our findings suggest that humans perform implicit probabilistic reasoning about continuous-time signals in dynamic social settings, and that such reasoning mechanisms may emerge without real-time experience. Practically, our study highlights new challenges for AI systems to coordinate efficiently with other agents by learning to interpret and adapt to their implicit signals in dynamic settings.",
+      "url": "https://arxiv.org/abs/2611.14766",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a49296ad60c9a",
+      "relevanceScore": 12,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
+    },
+    {
+      "title": "When Is Proof-Step Verification Worth Its Cost? Operating Requirements of Certify-or-Decline Verification for Open-Weight Mathematical Reasoning",
+      "summary": "arXiv:2611.14794v1 Announce Type: new \nAbstract: Proof-step verification rewrites a solver's answer into typed steps and uses LLM judges to certify or decline. We evaluate this pipeline on open-weight models across GPQA, AIME-2025, and a MATH-500 subset. Certification raises answer-key-match precision by 31 percentage points on the strong GPQA configuration and 46 on AIME, while answering only 35% and 21% of attempts. On near-ceiling MATH-500, gains are at most 5 points at a loss of 13-27 points of coverage. An output-token-matched self-consistency selector obtains 82.9% precision at 35% coverage, compared with the verifier's pooled 87.6% (paired difference: +4.8 points, 95% interval [-8.2, 18.5]). A diagnostic sample reveals a distinct failure mode: 52 of 88 completed problems end in invalid proof construction without ever reaching a judge. Finally, external-LLM acceptance of rendered certified chains is 61.0-67.6%, compared with 87.6% answer-key match. These audits lack human or formal-kernel ground truth. Open-weight auditor pairs show near-zero chance-corrected agreement, which measures consistency rather than accuracy against proof truth. These results motivate separate reporting of execution failures, selected-answer precision, and independently assessed proof validity. We provide per-configuration results and evaluation details in the supplement.",
+      "url": "https://arxiv.org/abs/2611.14794",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "MLOps",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "aba68d014b0c0",
+      "relevanceScore": 12,
+      "whyItMatters": "Relevant to deployment, monitoring, and evaluation workflows.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
+    },
+    {
+      "title": "MuEdit: An efficient multi-task editing method towards inter-domain knowledge conflicts",
+      "summary": "arXiv:2611.14910v1 Announce Type: new \nAbstract: Large language models (LLMs) require frequent knowledge updates across heterogeneous domains, but existing editing methods fail when applied sequentially to multi-task settings. We trace this collapse to inter-domain null-space misalignment: heterogeneous tasks induce distinct Jacobian geometries, causing their common null space to shrink dramatically and leaving insufficient admissible directions for conflict-free updates. We propose the Conflict Index to quantify this geometric interference, and introduce Mu-Edit, which mitigates multi-task conflicts via (1) conflict-aware ordering to minimize cumulative interference, and (2) dynamic low-rank approximation to expand the null space when ordering alone is insufficient. Experiments across five functional domains and three backbones show that Mu-Edit significantly outperforms existing baselines in multi-task editing performance while preserving general capabilities, and remains effective under incremental task arrival.",
+      "url": "https://arxiv.org/abs/2611.14910",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "LLM Engineering",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "affa1f59686fc",
+      "relevanceScore": 12,
+      "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
     },
     {
       "title": "Cleaning an Agent's History Hurts When the World Still Holds the Error",
@@ -931,6 +1342,51 @@
       "insights": null
     },
     {
+      "title": "Zugwise: Domain-Aware Game Reconstruction for Digitizing Handwritten Chess Scoresheets",
+      "summary": "arXiv:2611.14544v1 Announce Type: new \nAbstract: Digitizing handwritten chess scoresheets has been studied as a handwriting-recognition problem: read the move in each box and check that it is legal. This framing misses the errors that matter most. A misread that yields an illegal move is loud. One that yields a legal-but-wrong move is silent, because a legality-only pipeline accepts it and reads every later move against a wrong position. We therefore treat the task as game reconstruction and present Zugwise, which repurposes computer-chess machinery (quiescence search, static exchange evaluation, pin detection) to ask not \"what should be played?\" but \"could a human plausibly have written this?\" An absurdity detector makes silent errors loud at or near where they occur, and a backward search traces late symptoms to their cause. Candidate ranking excludes chess-quality signals. A Needleman-Wunsch merge adds the second player's sheet as evidence, and review stops send every disagreement between the sheets' legal readings to a human. In oracle replay of two tournament sections, a release adding them cuts silent errors from 16 to 1 and from 50 to 13. Two learned signals, CTC re-scoring against the recognizer's raw output and a Maia-style human-move prior, raise the correct fix's top-rank rate from 58.8% to 78.0% of the replacement decisions where it is a candidate, and hold without refitting on a later section. On the first section, the human-verified output matches an independent expert transcription move for move on 34 of 45 games, and adjudication against the sheets found errors in both records, on different plies. We do not establish that either workflow is faster or more accurate. The system runs entirely in the browser and is free, private, and offline-capable; alongside it we offer a three-way adjudication protocol for a domain where no single record is ground truth.",
+      "url": "https://arxiv.org/abs/2611.14544",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "MLOps",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "aa9c0a0c8a7ad",
+      "relevanceScore": 10,
+      "whyItMatters": "Relevant to deployment, monitoring, and evaluation workflows.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
+    },
+    {
+      "title": "AutoAssumption: Searching over Assumptions Discovers ML-Systems Algorithms",
+      "summary": "arXiv:2611.14844v1 Announce Type: new \nAbstract: Many advances in ML systems came from breaking an assumption that earlier methods took for granted: speculative decoding dropped the assumption that a model needs one forward pass per token. Yet algorithms rarely state their assumptions, so experts and discovery harnesses search over programs, where one edit changes several design choices and gains are difficult to attribute. Searching over the assumptions themselves remains largely unexplored. Writing algorithms as proofs makes their assumptions explicit and turns algorithm design into a search over a small, structured space that an LLM can explore and a proof checker can audit. We formalize 89 algorithms from KV-cache eviction, weight pruning and speculative decoding as proof graphs with explicit assumptions, checked in Lean. Our harness, AutoAssumption, relaxes one assumption of a published method, re-derives and re-proves it, and generates its code. In KV-cache eviction and weight pruning, this search improved on every published algorithm we ran and produced state-of-the-art algorithms. The eviction algorithm has the highest RULER-4K score of the published methods we ran, and the pruning algorithm the lowest perplexity of thirteen on four LLaMA models. At equal budget, the harness scores within a point of OpenEvolve, an open-source implementation of AlphaEvolve, with a lower standard deviation across repeats. Future work will formalize more fields and combine them through the principal assumptions they share.",
+      "url": "https://arxiv.org/abs/2611.14844",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "LLM Engineering",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "aeef01a785311",
+      "relevanceScore": 10,
+      "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
+    },
+    {
+      "title": "From Nodes to Pixels: Topological and Structural Two-View Graph Imaging",
+      "summary": "arXiv:2611.14750v1 Announce Type: new \nAbstract: Graph learning still lacks a broadly reusable input interface comparable to patches in vision or tokens in language. Unlike images or text, graphs are irregular, vary in size and density, and are invariant under many equivalent node labelings, making it difficult to standardize inputs across tasks and architectures. We introduce G2Image, a fixed-budget graph imaging framework that converts each graph into two complementary image-like views. TopoGrid provides a stable topological view by encoding an intrinsic bifiltration as a compact multipersistence surface grid, while GraphGrid provides a higher-bandwidth structural view by aggregating edge densities between groups defined by intrinsic node scores. Both views are permutation-invariant and come with resolution-controlled stability guarantees. Because the resulting representations are fixed-size tensors, they can be processed by lightweight 2D encoders and aligned through a supervised cross-view contrastive objective. Across graph classification and molecular prediction benchmarks, G2Image achieves strong average performance among the compared methods, improves over single-view and standard fusion variants, and extends to attribute-rich molecular graphs without changing the overall architecture. These results suggest that fixed-budget graph images offer a practical and reusable interface for graph representation learning.",
+      "url": "https://arxiv.org/abs/2611.14750",
+      "publishedAt": "2026-11-13T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a669709c67211",
+      "relevanceScore": 10,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
+    },
+    {
       "title": "llama.cpp v1.0.0 : A stronger foundation for the local AI ecosystem",
       "summary": "",
       "url": "https://huggingface.co/blog/ggml-org/llama-cpp-v1",
@@ -945,6 +1401,21 @@
       "aiSummary": null,
       "addedAt": "2026-11-14T02:28:37.918Z",
       "insights": null
+    },
+    {
+      "title": "llama.cpp v1.0.0 : A stronger foundation for the local AI ecosystem",
+      "summary": "",
+      "url": "https://huggingface.co/blog/ggml-org/llama-cpp-v1",
+      "publishedAt": "2026-11-13T14:05:22.000Z",
+      "source": "Hugging Face",
+      "category": "LLM Engineering",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a6841e619fcd7",
+      "relevanceScore": 9,
+      "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
+      "addedAt": "2026-11-14T04:52:49.470Z"
     },
     {
       "title": "Google’s new Gemini model is better at understanding complicated questions",
@@ -1659,6 +2130,14 @@
       "url": "https://github.com/Jumbomuffin777/Frontier-UI"
     },
     {
+      "name": "b44x/ai-polish-skills",
+      "description": "🇵🇱 Open-source skills that connect AI agents with Polish APIs, services and public data. Built for Claude Code, Cursor, Windsurf and other AI agents.",
+      "stars": 58,
+      "forks": 1,
+      "language": "Python",
+      "url": "https://github.com/b44x/ai-polish-skills"
+    },
+    {
       "name": "kokoc30/Auto-Stitch",
       "description": "AI-powered video editing platform for transforming long-form content into short, engaging videos. Public product showcase.",
       "stars": 49,
@@ -1673,23 +2152,15 @@
       "forks": 0,
       "language": "JavaScript",
       "url": "https://github.com/rohitjee7022-blip/Anonymous-Campus"
-    },
-    {
-      "name": "DjibrilM/MagicVoiceAI",
-      "description": " An offline desktop Text-to-Speech (TTS) studio built with Electron and the Qvac sdk ",
-      "stars": 35,
-      "forks": 4,
-      "language": "TypeScript",
-      "url": "https://github.com/DjibrilM/MagicVoiceAI"
     }
   ],
   "jobs": [
     {
-      "title": "Data Engineer",
-      "company": "Addepto",
+      "title": "Software Engineer AI Tooling",
+      "company": "Supabase",
       "location": "Remote",
       "salary": "Competitive",
-      "url": "https://remoteOK.com/remote-jobs/remote-data-engineer-addepto-1137714"
+      "url": "https://remoteOK.com/remote-jobs/remote-software-engineer-ai-tooling-supabase-1137793"
     },
     {
       "title": "Senior Agentic AI Engineer NDA",
@@ -1709,7 +2180,7 @@
       "title": "Feltsense AI Engineer",
       "company": "Silver.dev",
       "location": "Remote",
-      "salary": "$60k - $110k",
+      "salary": "60k - 110k",
       "url": "https://remoteOK.com/remote-jobs/remote-feltsense-ai-engineer-silver-dev-1137691"
     },
     {
