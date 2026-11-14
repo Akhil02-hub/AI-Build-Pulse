@@ -40,6 +40,7 @@ const fmtDate = iso => {
 // Security: Ensure URLs are safe (prevent javascript: XSS injection)
 const safeUrl = (url) => {
     if (!url) return '';
+    if (url.startsWith('//')) return 'https:' + url;
     return /^(http|https):\/\//i.test(url) ? url : '';
 };
 
@@ -283,10 +284,16 @@ async function loadNews() {
         if (!r.ok) throw new Error('news.json not found');
         state.news = await r.json();
 
-        // Data Contract Validation
+        // Data Contract Validation + Deduplication safety net
         const REQUIRED = ['id', 'title', 'url', 'publishedAt'];
+        const seenIds = new Set();
         state.articles = (state.news.articles || [])
             .filter(a => a && REQUIRED.every(k => typeof a[k] === 'string' && a[k].trim()))
+            .filter(a => {
+                if (seenIds.has(a.id)) return false;
+                seenIds.add(a.id);
+                return true;
+            })
             .map(a => ({
                 ...a,
                 source: a.source || 'Unknown',
@@ -360,7 +367,7 @@ function cardHTML(a) {
     const saved = state.bookmarks.has(a.id);
     const imgSrc = safeUrl(a.image);
     const imageContent = imgSrc
-        ? `<img src="${imgSrc}" alt="${esc(a.title)}" loading="lazy" decoding="async" class="card-img-real" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        ? `<img src="${imgSrc}" alt="${esc(a.title)}" referrerpolicy="no-referrer" loading="lazy" decoding="async" class="card-img-real" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
            <div class="card-img-fallback" style="display:none;">
              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                ${getCategorySVG(a.category)}
@@ -546,7 +553,7 @@ function renderArticle() {
                 
                 <div class="content-section">
                     <h2>What happened?</h2>
-                    <p style="line-height: 1.8; word-break: break-word; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;">
+                    <p style="line-height: 1.8; word-break: break-word;">
                         ${highlightKeywords((ins.whatHappened || (state.persona === 'engineer' ? ins.engineerSummary : ins.founderSummary) || article.summary || 'No details available.').trim())}
                     </p>
                 </div>

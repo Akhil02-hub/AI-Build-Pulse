@@ -253,9 +253,35 @@ const WHY = {
     'General AI': 'Broadly relevant context for AI engineering decisions.',
 };
 
+/* ---------- Custom Fallback Summarizer ---------- */
+function fallbackSummarizer(text) {
+    if (!text) return "No details available.";
+    // Remove trailing "..." from the RSS feed
+    let cleanText = text.replace(/\.\.\.$/, '').trim();
+    const sentences = cleanText.match(/[^.!?]+[.!?]+/g) || [cleanText];
+    if (sentences.length <= 3) return cleanText; // If it's already short, return it
+
+    // Simple word-frequency scoring to find the most important sentences
+    const stopWords = new Set(['the', 'and', 'a', 'to', 'of', 'in', 'i', 'is', 'that', 'it', 'on', 'you', 'this', 'for', 'but', 'with', 'are', 'have', 'be', 'at', 'or', 'as', 'was', 'so', 'if', 'out', 'not']);
+    const words = cleanText.toLowerCase().match(/\b\w+\b/g) || [];
+    const freq = {};
+    words.forEach(w => { if (!stopWords.has(w) && w.length > 2) freq[w] = (freq[w] || 0) + 1; });
+
+    const scored = sentences.map(s => {
+        const sWords = s.toLowerCase().match(/\b\w+\b/g) || [];
+        let score = 0;
+        sWords.forEach(w => { if (freq[w]) score += freq[w]; });
+        return { sentence: s.trim(), score: score / (sWords.length || 1) };
+    });
+
+    // Sort by score and pick the top 4 sentences
+    scored.sort((a, b) => b.score - a.score);
+    return scored.slice(0, 4).map(s => s.sentence).join(' ');
+}
+
 /* ---------- AI summaries (GitHub Models) ---------- */
 async function aiSummary(client, a) {
-    const safeSummary = (a.summary || '').slice(0, 1500);
+    const safeSummary = (a.summary || '').replace(/\.\.\.$/, '').slice(0, 1500);
     try {
         const r = await client.chat.completions.create({
             model: 'gpt-4o-mini',
@@ -267,7 +293,7 @@ async function aiSummary(client, a) {
                     `Analyze this AI news for two personas: AI Engineer and Founder. Output a JSON object with these exact keys:
                     "engineerSummary" (3-4 sentences on tech impact),
                     "founderSummary" (3-4 sentences on business impact),
-                    "whatHappened" (Write a detailed summary of the core news in exactly 60 words, strictly no more than 5 lines),
+                    "whatHappened" (Write a highly detailed, comprehensive summary of the core news. It MUST be at least 100 words long. Do NOT cut it short),
                     "whatChanged" (1 short sentence),
                     "techDetails" (1 short sentence on models/tools),
                     "businessImpact" (1 short sentence on market),
@@ -316,9 +342,21 @@ async function enrich(list) {
     }
     return list.map(a => {
         const wasAttempted = map.has(a.id);
+        let finalInsights = wasAttempted ? (map.get(a.id) ?? a.insights ?? null) : (a.insights ?? null);
+
+        // FALLBACK BOT: If AI failed or returned null, use our custom summarizer
+        if (!finalInsights) {
+            const localSum = fallbackSummarizer(a.summary);
+            finalInsights = {
+                whatHappened: localSum,
+                engineerSummary: localSum,
+                founderSummary: localSum
+            };
+        }
+
         return {
             ...a,
-            insights: wasAttempted ? (map.get(a.id) ?? a.insights ?? null) : (a.insights ?? null),
+            insights: finalInsights,
             insightsAttempted: a.insightsAttempted || wasAttempted
         };
     });
@@ -371,7 +409,9 @@ async function main() {
     console.log(`Fresh (last 24h): ${freshRaw.length}`);
 
     /* 4. Score + categorise fresh items, dedupe by URL + normalized title */
-    const seenUrl = new Set(), seenTitle = new Set();
+    // Pre-populate sets with existing articles to prevent duplicates across runs
+    const seenUrl = new Set(existing.map(a => a.url ? canon(a.url) : ''));
+    const seenTitle = new Set(existing.map(a => a.title ? norm(a.title) : ''));
     let freshScored = [];
     for (const a of freshRaw) {
         if (!a.url || !a.title) continue;
