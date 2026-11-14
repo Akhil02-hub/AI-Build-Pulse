@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T10:22:49.470+05:30",
+  "generatedAt": "2026-11-14T11:23:11.800+05:30",
   "retentionDays": 7,
   "totalStories": 136,
   "newToday": 136,
@@ -267,7 +267,12 @@
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "We separate the two sides of each coin, extract and normalize legends and descriptions, and standardize obverse descriptions against a bust-type taxonomy. We instead formulate coin description as image-to-text generation and adapt an open-weight vision-language model (VLM), Qwen3-VL-8B-Instruct, to four tasks: transcribing the obverse and reverse legends, and describing the obverse and reverse imagery. To obtain training data, we convert approximately 30,000 auction records into structured image-text pairs. 14821v1 Announce Type: new Abstract: Cataloguing a Roman Imperial coin involves reading its legends and identifying its imagery in order to match it to an entry in the standard reference catalogue.",
+        "engineerSummary": "We separate the two sides of each coin, extract and normalize legends and descriptions, and standardize obverse descriptions against a bust-type taxonomy. We instead formulate coin description as image-to-text generation and adapt an open-weight vision-language model (VLM), Qwen3-VL-8B-Instruct, to four tasks: transcribing the obverse and reverse legends, and describing the obverse and reverse imagery. To obtain training data, we convert approximately 30,000 auction records into structured image-text pairs. 14821v1 Announce Type: new Abstract: Cataloguing a Roman Imperial coin involves reading its legends and identifying its imagery in order to match it to an entry in the standard reference catalogue.",
+        "founderSummary": "We separate the two sides of each coin, extract and normalize legends and descriptions, and standardize obverse descriptions against a bust-type taxonomy. We instead formulate coin description as image-to-text generation and adapt an open-weight vision-language model (VLM), Qwen3-VL-8B-Instruct, to four tasks: transcribing the obverse and reverse legends, and describing the obverse and reverse imagery. To obtain training data, we convert approximately 30,000 auction records into structured image-text pairs. 14821v1 Announce Type: new Abstract: Cataloguing a Roman Imperial coin involves reading its legends and identifying its imagery in order to match it to an entry in the standard reference catalogue."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Together Compiler: Continual Compilation for AI Inference",
@@ -283,7 +288,12 @@
       "aiSummary": null,
       "addedAt": "2026-11-14T02:28:37.918Z",
       "image": null,
-      "insights": null
+      "insights": {
+        "whatHappened": "Finally, TKCC generalizes beyond frontier language model inference. 1 Flash. TKCC serves trillions of tokens across our production fleet. To address these challenges, we build Together Compiler (TKCC), the first truly continual agent loop designed for AI inference optimization.",
+        "engineerSummary": "Finally, TKCC generalizes beyond frontier language model inference. 1 Flash. TKCC serves trillions of tokens across our production fleet. To address these challenges, we build Together Compiler (TKCC), the first truly continual agent loop designed for AI inference optimization.",
+        "founderSummary": "Finally, TKCC generalizes beyond frontier language model inference. 1 Flash. TKCC serves trillions of tokens across our production fleet. To address these challenges, we build Together Compiler (TKCC), the first truly continual agent loop designed for AI inference optimization."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Robust Task-Aware State Estimation from Pre-trained Perception",
@@ -298,7 +308,13 @@
       "id": "ae8ad9ae41ba7",
       "relevanceScore": 23,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-14T04:52:49.470Z"
+      "addedAt": "2026-11-14T04:52:49.470Z",
+      "insights": {
+        "whatHappened": "On this belief construction, we base our MBS$_\\theta$ construction, while maintaining only a lean factored representation of the belief. , a VLM's output-layer token distributions) to construct a $\\theta$-confidence Minimal Belief Set (MBS$_\\theta$), a minimal subset of states whose cumulative probability meets a user-specified belief-mass threshold. Using a novel three-layered belief system, we efficiently approximate individual state probabilities from per-feature predictions and task-level constraints. 14781v1 Announce Type: new \nAbstract: Agents that perform state estimation using pretrained perception models, e.",
+        "engineerSummary": "On this belief construction, we base our MBS$_\\theta$ construction, while maintaining only a lean factored representation of the belief. , a VLM's output-layer token distributions) to construct a $\\theta$-confidence Minimal Belief Set (MBS$_\\theta$), a minimal subset of states whose cumulative probability meets a user-specified belief-mass threshold. Using a novel three-layered belief system, we efficiently approximate individual state probabilities from per-feature predictions and task-level constraints. 14781v1 Announce Type: new \nAbstract: Agents that perform state estimation using pretrained perception models, e.",
+        "founderSummary": "On this belief construction, we base our MBS$_\\theta$ construction, while maintaining only a lean factored representation of the belief. , a VLM's output-layer token distributions) to construct a $\\theta$-confidence Minimal Belief Set (MBS$_\\theta$), a minimal subset of states whose cumulative probability meets a user-specified belief-mass threshold. Using a novel three-layered belief system, we efficiently approximate individual state probabilities from per-feature predictions and task-level constraints. 14781v1 Announce Type: new \nAbstract: Agents that perform state estimation using pretrained perception models, e."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Open Challenges and Opportunities in Human-Agent Systems",
@@ -313,7 +329,13 @@
       "id": "a1c17e7e3955e",
       "relevanceScore": 23,
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
-      "addedAt": "2026-11-14T04:52:49.470Z"
+      "addedAt": "2026-11-14T04:52:49.470Z",
+      "insights": {
+        "whatHappened": "Successful interaction requires understanding human perspectives, coordinating complementary capabilities, and maintaining productive relationships within socio-technical environments. 14846v1 Announce Type: new \nAbstract: Agentic AI systems increasingly undertake extended tasks and act on people's behalf, making human-agent interaction central to their effectiveness. We consider interactions ranging from individual human-agent partnerships to teams and larger groups, where participants differ in their roles, decision authority, capabilities, and objectives. Together with shared autonomy, argumentation, and cooperative inverse reinforcement learning, these approaches offer foundations for agentic systems that account for evolving human knowledge, intentions, and expectations.",
+        "engineerSummary": "Successful interaction requires understanding human perspectives, coordinating complementary capabilities, and maintaining productive relationships within socio-technical environments. 14846v1 Announce Type: new \nAbstract: Agentic AI systems increasingly undertake extended tasks and act on people's behalf, making human-agent interaction central to their effectiveness. We consider interactions ranging from individual human-agent partnerships to teams and larger groups, where participants differ in their roles, decision authority, capabilities, and objectives. Together with shared autonomy, argumentation, and cooperative inverse reinforcement learning, these approaches offer foundations for agentic systems that account for evolving human knowledge, intentions, and expectations.",
+        "founderSummary": "Successful interaction requires understanding human perspectives, coordinating complementary capabilities, and maintaining productive relationships within socio-technical environments. 14846v1 Announce Type: new \nAbstract: Agentic AI systems increasingly undertake extended tasks and act on people's behalf, making human-agent interaction central to their effectiveness. We consider interactions ranging from individual human-agent partnerships to teams and larger groups, where participants differ in their roles, decision authority, capabilities, and objectives. Together with shared autonomy, argumentation, and cooperative inverse reinforcement learning, these approaches offer foundations for agentic systems that account for evolving human knowledge, intentions, and expectations."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Code as Explanations: Executable and Verifiable LLM Explanations",
@@ -328,7 +350,13 @@
       "id": "af545d4d2d4e5",
       "relevanceScore": 23,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-14T04:52:49.470Z"
+      "addedAt": "2026-11-14T04:52:49.470Z",
+      "insights": {
+        "whatHappened": "com/rajesh-lab/code-as-explanations. 5, providing the model with consistency feedback and code execution improves explanation consistency across tasks, but consistency remains significantly lower on more complex tasks. Across three open-source code-capable LLMs and eight tasks, we find that LLMs can produce highly consistent code explanations in several settings. We propose {code explanations to address the mismatch in how LLM explanations are generated versus how they are evaluated: a program explains LLM behavior across a dataset of inputs, and its execution enables automatic verification.",
+        "engineerSummary": "com/rajesh-lab/code-as-explanations. 5, providing the model with consistency feedback and code execution improves explanation consistency across tasks, but consistency remains significantly lower on more complex tasks. Across three open-source code-capable LLMs and eight tasks, we find that LLMs can produce highly consistent code explanations in several settings. We propose {code explanations to address the mismatch in how LLM explanations are generated versus how they are evaluated: a program explains LLM behavior across a dataset of inputs, and its execution enables automatic verification.",
+        "founderSummary": "com/rajesh-lab/code-as-explanations. 5, providing the model with consistency feedback and code execution improves explanation consistency across tasks, but consistency remains significantly lower on more complex tasks. Across three open-source code-capable LLMs and eight tasks, we find that LLMs can produce highly consistent code explanations in several settings. We propose {code explanations to address the mismatch in how LLM explanations are generated versus how they are evaluated: a program explains LLM behavior across a dataset of inputs, and its execution enables automatic verification."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Graph Label Alignment: A Diagnostic Atlas for Graph Classification",
@@ -343,7 +371,13 @@
       "id": "a4e3b5fa7a415",
       "relevanceScore": 23,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-14T04:52:49.470Z"
+      "addedAt": "2026-11-14T04:52:49.470Z",
+      "insights": {
+        "whatHappened": "We introduce graph label alignment, a lightweight diagnostic that measures label accessibility through two supervised probes computed without training a graph encoder: structural label alignment (SLA), based on permutation-invariant topological and spectral summaries, and feature label alignment (FLA), based on pooled node features with edges removed. These results show that high alignment explains much of easy benchmark performance, while low alignment reveals regimes where success requires preserving structure--feature correspondence beyond standard pooled representations. Across real graph classification benchmarks and multiple pooled backbones, the resulting SLA--FLA plane strongly organizes test accuracy, with low-alignment datasets forming a consistent regime where standard pooled pipelines struggle. 14760v1 Announce Type: new \nAbstract: Graph classification benchmarks vary widely in difficulty: some are solved by simple pooled baselines, while others remain challenging for GNNs and graph transformers.",
+        "engineerSummary": "We introduce graph label alignment, a lightweight diagnostic that measures label accessibility through two supervised probes computed without training a graph encoder: structural label alignment (SLA), based on permutation-invariant topological and spectral summaries, and feature label alignment (FLA), based on pooled node features with edges removed. These results show that high alignment explains much of easy benchmark performance, while low alignment reveals regimes where success requires preserving structure--feature correspondence beyond standard pooled representations. Across real graph classification benchmarks and multiple pooled backbones, the resulting SLA--FLA plane strongly organizes test accuracy, with low-alignment datasets forming a consistent regime where standard pooled pipelines struggle. 14760v1 Announce Type: new \nAbstract: Graph classification benchmarks vary widely in difficulty: some are solved by simple pooled baselines, while others remain challenging for GNNs and graph transformers.",
+        "founderSummary": "We introduce graph label alignment, a lightweight diagnostic that measures label accessibility through two supervised probes computed without training a graph encoder: structural label alignment (SLA), based on permutation-invariant topological and spectral summaries, and feature label alignment (FLA), based on pooled node features with edges removed. These results show that high alignment explains much of easy benchmark performance, while low alignment reveals regimes where success requires preserving structure--feature correspondence beyond standard pooled representations. Across real graph classification benchmarks and multiple pooled backbones, the resulting SLA--FLA plane strongly organizes test accuracy, with low-alignment datasets forming a consistent regime where standard pooled pipelines struggle. 14760v1 Announce Type: new \nAbstract: Graph classification benchmarks vary widely in difficulty: some are solved by simple pooled baselines, while others remain challenging for GNNs and graph transformers."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Benchmarking Multilingual Document Understanding in Vision-Language Models",
@@ -358,7 +392,12 @@
       "whyItMatters": "Expands what AI systems can perceive and generate.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "How well current VLMs generalize across languages, tasks, styles and layouts therefore remains unclear. The tasks isolate complementary capabilities, from surface-level text and Markdown extraction through summarization, classification and named-entity recognition to layout-sensitive passage and layout extraction. 0, only eight of the 45 evaluated systems reach 65, and the two best results come from 27B models rather than from the largest systems we evaluate. 14758v1 Announce Type: new Abstract: Recent Vision-Language Models (VLMs) perform strongly on multimodal tasks, Document Understanding (DU) among them, but the benchmarks that measure them mostly cover English documents and narrow problems.",
+        "engineerSummary": "How well current VLMs generalize across languages, tasks, styles and layouts therefore remains unclear. The tasks isolate complementary capabilities, from surface-level text and Markdown extraction through summarization, classification and named-entity recognition to layout-sensitive passage and layout extraction. 0, only eight of the 45 evaluated systems reach 65, and the two best results come from 27B models rather than from the largest systems we evaluate. 14758v1 Announce Type: new Abstract: Recent Vision-Language Models (VLMs) perform strongly on multimodal tasks, Document Understanding (DU) among them, but the benchmarks that measure them mostly cover English documents and narrow problems.",
+        "founderSummary": "How well current VLMs generalize across languages, tasks, styles and layouts therefore remains unclear. The tasks isolate complementary capabilities, from surface-level text and Markdown extraction through summarization, classification and named-entity recognition to layout-sensitive passage and layout extraction. 0, only eight of the 45 evaluated systems reach 65, and the two best results come from 27B models rather than from the largest systems we evaluate. 14758v1 Announce Type: new Abstract: Recent Vision-Language Models (VLMs) perform strongly on multimodal tasks, Document Understanding (DU) among them, but the benchmarks that measure them mostly cover English documents and narrow problems."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "ToolTurns: Benchmarking LLM Agents in Multi-Turn Dialogue",
@@ -373,7 +412,12 @@
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "ToolTurns provides a testbed for evaluating whether agents sustain task success across multi-turn dialogue with tools. Each dialogue begins with an intentionally underspecified request and continues through two context-dependent follow-ups, testing clarification, tool use, and retention of conversational context. Under this evaluation protocol, every evaluated model receives lower success scores on follow-up requests than on the initial request, and dialogue-quality rubric scores and task success can rank models very differently. Paired turn-level evaluation shows that the checker--fixer reduces detected dialogue defects, and blind human evaluation favors the revised turns.",
+        "engineerSummary": "ToolTurns provides a testbed for evaluating whether agents sustain task success across multi-turn dialogue with tools. Each dialogue begins with an intentionally underspecified request and continues through two context-dependent follow-ups, testing clarification, tool use, and retention of conversational context. Under this evaluation protocol, every evaluated model receives lower success scores on follow-up requests than on the initial request, and dialogue-quality rubric scores and task success can rank models very differently. Paired turn-level evaluation shows that the checker--fixer reduces detected dialogue defects, and blind human evaluation favors the revised turns.",
+        "founderSummary": "ToolTurns provides a testbed for evaluating whether agents sustain task success across multi-turn dialogue with tools. Each dialogue begins with an intentionally underspecified request and continues through two context-dependent follow-ups, testing clarification, tool use, and retention of conversational context. Under this evaluation protocol, every evaluated model receives lower success scores on follow-up requests than on the initial request, and dialogue-quality rubric scores and task success can rank models very differently. Paired turn-level evaluation shows that the checker--fixer reduces detected dialogue defects, and blind human evaluation favors the revised turns."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Jensen Huang is out. What did China want from him?",
@@ -388,7 +432,12 @@
       "whyItMatters": "Expands what AI systems can perceive and generate.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "” There’s that divergence there. They talk a lot. ” So there’s already that divergence there. There was technology transfer.",
+        "engineerSummary": "” There’s that divergence there. They talk a lot. ” So there’s already that divergence there. There was technology transfer.",
+        "founderSummary": "” There’s that divergence there. They talk a lot. ” So there’s already that divergence there. There was technology transfer."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Graph Label Alignment: A Diagnostic Atlas for Graph Classification",
@@ -404,7 +453,12 @@
       "aiSummary": null,
       "addedAt": "2026-11-14T02:28:37.918Z",
       "image": null,
-      "insights": null
+      "insights": {
+        "whatHappened": "We introduce graph label alignment, a lightweight diagnostic that measures label accessibility through two supervised probes computed without training a graph encoder: structural label alignment (SLA), based on permutation-invariant topological and spectral summaries, and feature label alignment (FLA), based on pooled node features with edges removed. These results show that high alignment explains much of easy benchmark performance, while low alignment reveals regimes where success requires preserving structure--feature correspondence beyond standard pooled representations. Across real graph classification benchmarks and multiple pooled backbones, the resulting SLA--FLA plane strongly organizes test accuracy, with low-alignment datasets forming a consistent regime where standard pooled pipelines struggle. 14760v1 Announce Type: new \nAbstract: Graph classification benchmarks vary widely in difficulty: some are solved by simple pooled baselines, while others remain challenging for GNNs and graph transformers.",
+        "engineerSummary": "We introduce graph label alignment, a lightweight diagnostic that measures label accessibility through two supervised probes computed without training a graph encoder: structural label alignment (SLA), based on permutation-invariant topological and spectral summaries, and feature label alignment (FLA), based on pooled node features with edges removed. These results show that high alignment explains much of easy benchmark performance, while low alignment reveals regimes where success requires preserving structure--feature correspondence beyond standard pooled representations. Across real graph classification benchmarks and multiple pooled backbones, the resulting SLA--FLA plane strongly organizes test accuracy, with low-alignment datasets forming a consistent regime where standard pooled pipelines struggle. 14760v1 Announce Type: new \nAbstract: Graph classification benchmarks vary widely in difficulty: some are solved by simple pooled baselines, while others remain challenging for GNNs and graph transformers.",
+        "founderSummary": "We introduce graph label alignment, a lightweight diagnostic that measures label accessibility through two supervised probes computed without training a graph encoder: structural label alignment (SLA), based on permutation-invariant topological and spectral summaries, and feature label alignment (FLA), based on pooled node features with edges removed. These results show that high alignment explains much of easy benchmark performance, while low alignment reveals regimes where success requires preserving structure--feature correspondence beyond standard pooled representations. Across real graph classification benchmarks and multiple pooled backbones, the resulting SLA--FLA plane strongly organizes test accuracy, with low-alignment datasets forming a consistent regime where standard pooled pipelines struggle. 14760v1 Announce Type: new \nAbstract: Graph classification benchmarks vary widely in difficulty: some are solved by simple pooled baselines, while others remain challenging for GNNs and graph transformers."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Distributionally Robust BEST-RQ For Speech Representation Learning",
@@ -419,7 +473,12 @@
       "whyItMatters": "Affects serving cost, throughput, and latency.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "To address this issue, we propose a distributionally robust extension of BEST-RQ that seeks representations robust across multiple quantization configurations. Rather than optimizing solely for the average loss across groups, our approach adaptively reweights groups to emphasize those performing poorly. We evaluate our approach on the Multilingual LibriSpeech dataset and show that the distributionally robust BEST-RQ achieves superior performance over the conventional uniform average across multiple codebooks. However, in BEST-RQ representations learned by random quantization can be sensitive to the choice of quantization targets.",
+        "engineerSummary": "To address this issue, we propose a distributionally robust extension of BEST-RQ that seeks representations robust across multiple quantization configurations. Rather than optimizing solely for the average loss across groups, our approach adaptively reweights groups to emphasize those performing poorly. We evaluate our approach on the Multilingual LibriSpeech dataset and show that the distributionally robust BEST-RQ achieves superior performance over the conventional uniform average across multiple codebooks. However, in BEST-RQ representations learned by random quantization can be sensitive to the choice of quantization targets.",
+        "founderSummary": "To address this issue, we propose a distributionally robust extension of BEST-RQ that seeks representations robust across multiple quantization configurations. Rather than optimizing solely for the average loss across groups, our approach adaptively reweights groups to emphasize those performing poorly. We evaluate our approach on the Multilingual LibriSpeech dataset and show that the distributionally robust BEST-RQ achieves superior performance over the conventional uniform average across multiple codebooks. However, in BEST-RQ representations learned by random quantization can be sensitive to the choice of quantization targets."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "LLMs and the Homogenization of Teaching",
@@ -434,7 +493,12 @@
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "We evaluate direct prompting, two diversity prompting methods, and post-training. Diversity prompting and post-training increase variation largely through surface features without broadening the instructional repertoire. We study diversity in two educational generation tasks: math items and essay feedback. We compare frontier and open-weight models with human-authored reference distributions using lexical, semantic, and domain-grounded measures.",
+        "engineerSummary": "We evaluate direct prompting, two diversity prompting methods, and post-training. Diversity prompting and post-training increase variation largely through surface features without broadening the instructional repertoire. We study diversity in two educational generation tasks: math items and essay feedback. We compare frontier and open-weight models with human-authored reference distributions using lexical, semantic, and domain-grounded measures.",
+        "founderSummary": "We evaluate direct prompting, two diversity prompting methods, and post-training. Diversity prompting and post-training increase variation largely through surface features without broadening the instructional repertoire. We study diversity in two educational generation tasks: math items and essay feedback. We compare frontier and open-weight models with human-authored reference distributions using lexical, semantic, and domain-grounded measures."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "BirdDreams: Joint Perspective and BEV Video Generation for a Plausible, Reactive Driving World Model",
@@ -449,7 +513,12 @@
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "On PhysicalAI-AV and nuScenes, BirdDreams follows input ego trajectories more faithfully than prior driving world models and generates more plausible ego motion without ego-action conditioning. This requires plausible motion of surrounding vehicles as well as precise ego-trajectory control. Learning vehicle motion from perspective video alone is challenging because motion is entangled with appearance and vehicles can be occluded. Prior work therefore conditions video generation on layouts that specify vehicle motion, providing control over surrounding vehicles but requiring their future trajectories as inputs.",
+        "engineerSummary": "On PhysicalAI-AV and nuScenes, BirdDreams follows input ego trajectories more faithfully than prior driving world models and generates more plausible ego motion without ego-action conditioning. This requires plausible motion of surrounding vehicles as well as precise ego-trajectory control. Learning vehicle motion from perspective video alone is challenging because motion is entangled with appearance and vehicles can be occluded. Prior work therefore conditions video generation on layouts that specify vehicle motion, providing control over surrounding vehicles but requiring their future trajectories as inputs.",
+        "founderSummary": "On PhysicalAI-AV and nuScenes, BirdDreams follows input ego trajectories more faithfully than prior driving world models and generates more plausible ego motion without ego-action conditioning. This requires plausible motion of surrounding vehicles as well as precise ego-trajectory control. Learning vehicle motion from perspective video alone is challenging because motion is entangled with appearance and vehicles can be occluded. Prior work therefore conditions video generation on layouts that specify vehicle motion, providing control over surrounding vehicles but requiring their future trajectories as inputs."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "MITRA-Swarm: Injecting Explicit Linguistic Structure into Foundation Models for Classical Machine Translation",
@@ -464,7 +533,12 @@
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "44$ MQM ($p_{\\text{adj}}=0. 51$ MQM ($p_{\\text{adj}}=0. 63$, $p_{\\text{adj}}=0. 0288$).",
+        "engineerSummary": "44$ MQM ($p_{\\text{adj}}=0. 51$ MQM ($p_{\\text{adj}}=0. 63$, $p_{\\text{adj}}=0. 0288$).",
+        "founderSummary": "44$ MQM ($p_{\\text{adj}}=0. 51$ MQM ($p_{\\text{adj}}=0. 63$, $p_{\\text{adj}}=0. 0288$)."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Trait Hitchhiking in LLM Post-Training",
@@ -479,7 +553,13 @@
       "id": "aa21f2d141556",
       "relevanceScore": 20,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
-      "addedAt": "2026-11-14T04:52:49.470Z"
+      "addedAt": "2026-11-14T04:52:49.470Z",
+      "insights": {
+        "whatHappened": "These results identify trait hitchhiking as a mechanism by which RL post-training can silently amplify undesirable traits. arXiv:2611. We use this to develop a mathematical model for what we call \"trait hitchhiking\": the amplification or suppression of non-targeted traits as training redistributes probability across completions. We present a formalism to describe the evolution of \"traits\" during RL post-training and, in doing so, recover the Price equation from evolutionary biology.",
+        "engineerSummary": "These results identify trait hitchhiking as a mechanism by which RL post-training can silently amplify undesirable traits. arXiv:2611. We use this to develop a mathematical model for what we call \"trait hitchhiking\": the amplification or suppression of non-targeted traits as training redistributes probability across completions. We present a formalism to describe the evolution of \"traits\" during RL post-training and, in doing so, recover the Price equation from evolutionary biology.",
+        "founderSummary": "These results identify trait hitchhiking as a mechanism by which RL post-training can silently amplify undesirable traits. arXiv:2611. We use this to develop a mathematical model for what we call \"trait hitchhiking\": the amplification or suppression of non-targeted traits as training redistributes probability across completions. We present a formalism to describe the evolution of \"traits\" during RL post-training and, in doing so, recover the Price equation from evolutionary biology."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Build composable, interoperable multi-agent systems with A2A on AWS",
@@ -2132,7 +2212,7 @@
     {
       "name": "b44x/ai-polish-skills",
       "description": "🇵🇱 Open-source skills that connect AI agents with Polish APIs, services and public data. Built for Claude Code, Cursor, Windsurf and other AI agents.",
-      "stars": 58,
+      "stars": 62,
       "forks": 1,
       "language": "Python",
       "url": "https://github.com/b44x/ai-polish-skills"
