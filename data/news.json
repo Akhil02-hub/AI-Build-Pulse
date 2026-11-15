@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-15T04:43:08.588+05:30",
+  "generatedAt": "2026-11-15T09:56:35.971+05:30",
   "retentionDays": 7,
   "totalStories": 136,
-  "newToday": 69,
+  "newToday": 30,
   "articles": [
     {
       "title": "Do Large Language Models Show Racial and Sex Bias in Pain Management? A Counterfactual Audit of GPT, Claude, Gemini, Llama, DeepSeek and Qwen",
@@ -1813,7 +1813,13 @@
       "id": "a6841e619fcd7",
       "relevanceScore": 9,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
-      "addedAt": "2026-11-14T04:52:49.470Z"
+      "addedAt": "2026-11-14T04:52:49.470Z",
+      "insights": {
+        "whatHappened": "No details available.",
+        "engineerSummary": "No details available.",
+        "founderSummary": "No details available."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Google’s new Gemini model is better at understanding complicated questions",
@@ -1828,7 +1834,12 @@
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "Google says its new Gemini 4 Hydrogen model can give more helpful answers to complex questions, including \"questions with multiple parts, hard-to-understand typos, or highly specific requests. \" Google says Gemini 4 Hydrog … Read the full story at The Verge. \" The new model can break down your questions and address each part in its responses. It's available starting today in search, the Gemini app, all tiers of Google AI Studio, the Gemini API, Gemini for business, and in Google Antigravity for Google AI Pro and Ultra subscribers.",
+        "engineerSummary": "Google says its new Gemini 4 Hydrogen model can give more helpful answers to complex questions, including \"questions with multiple parts, hard-to-understand typos, or highly specific requests. \" Google says Gemini 4 Hydrog … Read the full story at The Verge. \" The new model can break down your questions and address each part in its responses. It's available starting today in search, the Gemini app, all tiers of Google AI Studio, the Gemini API, Gemini for business, and in Google Antigravity for Google AI Pro and Ultra subscribers.",
+        "founderSummary": "Google says its new Gemini 4 Hydrogen model can give more helpful answers to complex questions, including \"questions with multiple parts, hard-to-understand typos, or highly specific requests. \" Google says Gemini 4 Hydrog … Read the full story at The Verge. \" The new model can break down your questions and address each part in its responses. It's available starting today in search, the Gemini app, all tiers of Google AI Studio, the Gemini API, Gemini for business, and in Google Antigravity for Google AI Pro and Ultra subscribers."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "No, AI agents did not discover a previously unknown Maya site",
@@ -1843,7 +1854,12 @@
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "| Image: Pietro Miotti Armed with a team of AI agents, Google researcher Pietro Miotti claimed earlier this week to have discovered a potentially unmapped Maya site in Mexico. ' They had found lots of villages and other regular shapes that looked like structures or houses,“ Pietro Miotti wrote on his blog. 'DAMN! Local communities are often already well aware of sites in their area.",
+        "engineerSummary": "| Image: Pietro Miotti Armed with a team of AI agents, Google researcher Pietro Miotti claimed earlier this week to have discovered a potentially unmapped Maya site in Mexico. ' They had found lots of villages and other regular shapes that looked like structures or houses,“ Pietro Miotti wrote on his blog. 'DAMN! Local communities are often already well aware of sites in their area.",
+        "founderSummary": "| Image: Pietro Miotti Armed with a team of AI agents, Google researcher Pietro Miotti claimed earlier this week to have discovered a potentially unmapped Maya site in Mexico. ' They had found lots of villages and other regular shapes that looked like structures or houses,“ Pietro Miotti wrote on his blog. 'DAMN! Local communities are often already well aware of sites in their area."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Nectar launches an AI agent to automate creator discovery and outreach for brands",
@@ -1858,7 +1874,12 @@
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "Nectar's new AI agent automates influencer marketing, helping brands discover creators, manage outreach and partnerships, and track campaign results.",
+        "engineerSummary": "Nectar's new AI agent automates influencer marketing, helping brands discover creators, manage outreach and partnerships, and track campaign results.",
+        "founderSummary": "Nectar's new AI agent automates influencer marketing, helping brands discover creators, manage outreach and partnerships, and track campaign results."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "LLMON: An LLM-Native Markup Language, now in Granite 4.1 3B and 8B",
@@ -1873,7 +1894,12 @@
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "No details available.",
+        "engineerSummary": "No details available.",
+        "founderSummary": "No details available."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Introducing Gemini 4 Hydrogen",
@@ -1888,7 +1914,12 @@
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "No details available.",
+        "engineerSummary": "No details available.",
+        "founderSummary": "No details available."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "United Airlines blocks AI agents from booking flights, citing cybersecurity risks",
@@ -1903,7 +1934,12 @@
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "The airline said it will not allow customers to use AI agents to book flights and manage reservations.",
+        "engineerSummary": "The airline said it will not allow customers to use AI agents to book flights and manage reservations.",
+        "founderSummary": "The airline said it will not allow customers to use AI agents to book flights and manage reservations."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "When Should Semantic Priors Enter Partially-Identified Causal Discovery?",
@@ -1919,7 +1955,12 @@
       "aiSummary": null,
       "addedAt": "2026-11-14T02:28:37.918Z",
       "image": null,
-      "insights": null
+      "insights": {
+        "whatHappened": "Large language mod- els (LLMs) can provide semantic information to resolve these directions, but incorrect proposals can exclude the true causal graph and invalidate downstream inference. We study three separate decisions: where to allocate semantic queries, which proposals to admit, and which causal graphs to retain. 14736v1 Announce Type: new \nAbstract: Observational causal discovery often leaves causal di- rections unresolved or unstable. Our framework distinguishes population non-identifiability from finite-sample insta- bility, evaluates semantic orientation against statistical and random controls, and examines calibrated admis- sion and error-tolerant DAG retention.",
+        "engineerSummary": "Large language mod- els (LLMs) can provide semantic information to resolve these directions, but incorrect proposals can exclude the true causal graph and invalidate downstream inference. We study three separate decisions: where to allocate semantic queries, which proposals to admit, and which causal graphs to retain. 14736v1 Announce Type: new \nAbstract: Observational causal discovery often leaves causal di- rections unresolved or unstable. Our framework distinguishes population non-identifiability from finite-sample insta- bility, evaluates semantic orientation against statistical and random controls, and examines calibrated admis- sion and error-tolerant DAG retention.",
+        "founderSummary": "Large language mod- els (LLMs) can provide semantic information to resolve these directions, but incorrect proposals can exclude the true causal graph and invalidate downstream inference. We study three separate decisions: where to allocate semantic queries, which proposals to admit, and which causal graphs to retain. 14736v1 Announce Type: new \nAbstract: Observational causal discovery often leaves causal di- rections unresolved or unstable. Our framework distinguishes population non-identifiability from finite-sample insta- bility, evaluates semantic orientation against statistical and random controls, and examines calibrated admis- sion and error-tolerant DAG retention."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Rational Use of Time for Social Coordination in Humans and AI",
@@ -1935,7 +1976,12 @@
       "aiSummary": null,
       "addedAt": "2026-11-14T02:28:37.918Z",
       "image": null,
-      "insights": null
+      "insights": {
+        "whatHappened": "From a cognitive perspective, our findings suggest that humans perform implicit probabilistic reasoning about continuous-time signals in dynamic social settings, and that such reasoning mechanisms may emerge without real-time experience. But how do humans use temporal cues for dynamic, fine-grained social coordination? And can AI systems do the same, without ``experiencing'' continuous real-time as humans do? 14766v1 Announce Type: new \nAbstract: All social interactions are situated in time.",
+        "engineerSummary": "From a cognitive perspective, our findings suggest that humans perform implicit probabilistic reasoning about continuous-time signals in dynamic social settings, and that such reasoning mechanisms may emerge without real-time experience. But how do humans use temporal cues for dynamic, fine-grained social coordination? And can AI systems do the same, without ``experiencing'' continuous real-time as humans do? 14766v1 Announce Type: new \nAbstract: All social interactions are situated in time.",
+        "founderSummary": "From a cognitive perspective, our findings suggest that humans perform implicit probabilistic reasoning about continuous-time signals in dynamic social settings, and that such reasoning mechanisms may emerge without real-time experience. But how do humans use temporal cues for dynamic, fine-grained social coordination? And can AI systems do the same, without ``experiencing'' continuous real-time as humans do? 14766v1 Announce Type: new \nAbstract: All social interactions are situated in time."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "AutoAssumption: Searching over Assumptions Discovers ML-Systems Algorithms",
@@ -1951,7 +1997,12 @@
       "aiSummary": null,
       "addedAt": "2026-11-14T02:28:37.918Z",
       "image": null,
-      "insights": null
+      "insights": {
+        "whatHappened": "Searching over the assumptions themselves remains largely unexplored. We formalize 89 algorithms from KV-cache eviction, weight pruning and speculative decoding as proof graphs with explicit assumptions, checked in Lean. Yet algorithms rarely state their assumptions, so experts and discovery harnesses search over programs, where one edit changes several design choices and gains are difficult to attribute. In KV-cache eviction and weight pruning, this search improved on every published algorithm we ran and produced state-of-the-art algorithms.",
+        "engineerSummary": "Searching over the assumptions themselves remains largely unexplored. We formalize 89 algorithms from KV-cache eviction, weight pruning and speculative decoding as proof graphs with explicit assumptions, checked in Lean. Yet algorithms rarely state their assumptions, so experts and discovery harnesses search over programs, where one edit changes several design choices and gains are difficult to attribute. In KV-cache eviction and weight pruning, this search improved on every published algorithm we ran and produced state-of-the-art algorithms.",
+        "founderSummary": "Searching over the assumptions themselves remains largely unexplored. We formalize 89 algorithms from KV-cache eviction, weight pruning and speculative decoding as proof graphs with explicit assumptions, checked in Lean. Yet algorithms rarely state their assumptions, so experts and discovery harnesses search over programs, where one edit changes several design choices and gains are difficult to attribute. In KV-cache eviction and weight pruning, this search improved on every published algorithm we ran and produced state-of-the-art algorithms."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "An Asynchronous Federated Learning Platform for Lung Adenocarcinoma Grading via Foundation Models and Structural Pruning",
@@ -1967,7 +2018,12 @@
       "aiSummary": null,
       "addedAt": "2026-11-14T02:28:37.918Z",
       "image": null,
-      "insights": null
+      "insights": {
+        "whatHappened": "Test AUC ranked as FedBN, FedProx, FedNova, and FedAvg. FedAvg, FedProx, FedBN, and FedNova were compared as federated learning algorithms under identical experimental conditions. FedAvg, FedProx, and FedBN showed a tendency of decreasing Test AUC under pruning, while FedNova achieved improved Test AUC across all sparsity levels. FedNova showed the most balanced classification performance between PD and WMD.",
+        "engineerSummary": "Test AUC ranked as FedBN, FedProx, FedNova, and FedAvg. FedAvg, FedProx, FedBN, and FedNova were compared as federated learning algorithms under identical experimental conditions. FedAvg, FedProx, and FedBN showed a tendency of decreasing Test AUC under pruning, while FedNova achieved improved Test AUC across all sparsity levels. FedNova showed the most balanced classification performance between PD and WMD.",
+        "founderSummary": "Test AUC ranked as FedBN, FedProx, FedNova, and FedAvg. FedAvg, FedProx, FedBN, and FedNova were compared as federated learning algorithms under identical experimental conditions. FedAvg, FedProx, and FedBN showed a tendency of decreasing Test AUC under pruning, while FedNova achieved improved Test AUC across all sparsity levels. FedNova showed the most balanced classification performance between PD and WMD."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "From Nodes to Pixels: Topological and Structural Two-View Graph Imaging",
@@ -1983,7 +2039,12 @@
       "aiSummary": null,
       "addedAt": "2026-11-14T02:28:37.918Z",
       "image": null,
-      "insights": null
+      "insights": {
+        "whatHappened": "These results suggest that fixed-budget graph images offer a practical and reusable interface for graph representation learning. We introduce G2Image, a fixed-budget graph imaging framework that converts each graph into two complementary image-like views. Across graph classification and molecular prediction benchmarks, G2Image achieves strong average performance among the compared methods, improves over single-view and standard fusion variants, and extends to attribute-rich molecular graphs without changing the overall architecture. 14750v1 Announce Type: new \nAbstract: Graph learning still lacks a broadly reusable input interface comparable to patches in vision or tokens in language.",
+        "engineerSummary": "These results suggest that fixed-budget graph images offer a practical and reusable interface for graph representation learning. We introduce G2Image, a fixed-budget graph imaging framework that converts each graph into two complementary image-like views. Across graph classification and molecular prediction benchmarks, G2Image achieves strong average performance among the compared methods, improves over single-view and standard fusion variants, and extends to attribute-rich molecular graphs without changing the overall architecture. 14750v1 Announce Type: new \nAbstract: Graph learning still lacks a broadly reusable input interface comparable to patches in vision or tokens in language.",
+        "founderSummary": "These results suggest that fixed-budget graph images offer a practical and reusable interface for graph representation learning. We introduce G2Image, a fixed-budget graph imaging framework that converts each graph into two complementary image-like views. Across graph classification and molecular prediction benchmarks, G2Image achieves strong average performance among the compared methods, improves over single-view and standard fusion variants, and extends to attribute-rich molecular graphs without changing the overall architecture. 14750v1 Announce Type: new \nAbstract: Graph learning still lacks a broadly reusable input interface comparable to patches in vision or tokens in language."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "SyntheIce: A Synthetic Radargram Annotation Benchmark for Englacial Layer Reconstruction",
@@ -1998,7 +2059,12 @@
       "whyItMatters": "Relevant to retrieval-augmented generation accuracy and latency.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "Our findings extend beyond ice science: when spatial features are fragmented but retain consistent local geometry, trajectory-based linking is more reliable than appearance-based matching. We address two challenges: reconstructing complete layers from partial detections across radargram profiles and validating layer continuity across adjacent tile boundaries. For quantitative evaluation, we generate SyntheIce, a synthetic dataset of 600 radargrams spanning multiple complexity levels and realistic noise conditions, including 150 wide radargrams divided into four adjacent tiles. Evaluation against expert-labeled real radargrams demonstrates high precision, recall, F1-score, and mean IoU, supporting the method's transfer to real-world data.",
+        "engineerSummary": "Our findings extend beyond ice science: when spatial features are fragmented but retain consistent local geometry, trajectory-based linking is more reliable than appearance-based matching. We address two challenges: reconstructing complete layers from partial detections across radargram profiles and validating layer continuity across adjacent tile boundaries. For quantitative evaluation, we generate SyntheIce, a synthetic dataset of 600 radargrams spanning multiple complexity levels and realistic noise conditions, including 150 wide radargrams divided into four adjacent tiles. Evaluation against expert-labeled real radargrams demonstrates high precision, recall, F1-score, and mean IoU, supporting the method's transfer to real-world data.",
+        "founderSummary": "Our findings extend beyond ice science: when spatial features are fragmented but retain consistent local geometry, trajectory-based linking is more reliable than appearance-based matching. We address two challenges: reconstructing complete layers from partial detections across radargram profiles and validating layer continuity across adjacent tile boundaries. For quantitative evaluation, we generate SyntheIce, a synthetic dataset of 600 radargrams spanning multiple complexity levels and realistic noise conditions, including 150 wide radargrams divided into four adjacent tiles. Evaluation against expert-labeled real radargrams demonstrates high precision, recall, F1-score, and mean IoU, supporting the method's transfer to real-world data."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Neural Compression for Scientific Particle Data: Perspectives on How Learning Can Help",
@@ -2013,7 +2079,12 @@
       "whyItMatters": "Relevant to deployment, monitoring, and evaluation workflows.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "Neural point cloud compression (PCC) methods excel on computer vision (CV) benchmarks, but do they transfer to scientific particle data? Neural codecs achieve only marginal bitrate reductions over the traditional G-PCC baseline on scientific data, revealing a significant performance gap. 14832v1 Announce Type: new Abstract: As particle-based simulations grow in scale, efficient compression of scientific data becomes critical. This key difference limits the effectiveness of the octree data structure that underpins most PCC methods.",
+        "engineerSummary": "Neural point cloud compression (PCC) methods excel on computer vision (CV) benchmarks, but do they transfer to scientific particle data? Neural codecs achieve only marginal bitrate reductions over the traditional G-PCC baseline on scientific data, revealing a significant performance gap. 14832v1 Announce Type: new Abstract: As particle-based simulations grow in scale, efficient compression of scientific data becomes critical. This key difference limits the effectiveness of the octree data structure that underpins most PCC methods.",
+        "founderSummary": "Neural point cloud compression (PCC) methods excel on computer vision (CV) benchmarks, but do they transfer to scientific particle data? Neural codecs achieve only marginal bitrate reductions over the traditional G-PCC baseline on scientific data, revealing a significant performance gap. 14832v1 Announce Type: new Abstract: As particle-based simulations grow in scale, efficient compression of scientific data becomes critical. This key difference limits the effectiveness of the octree data structure that underpins most PCC methods."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "HeadIO: Body-Frame Heading Decomposition for Neural Inertial Odometry on Head-Mounted Devices",
@@ -2028,7 +2099,12 @@
       "whyItMatters": "Relevant to deployment, monitoring, and evaluation workflows.",
       "aiSummary": null,
       "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": null
+      "insights": {
+        "whatHappened": "We propose HeadIO, which combines a body-frame heading decomposition with a bidirectional Mamba backbone for head-mounted inertial odometry. Prior IO methods operate in a gravity-aligned world frame, which is not yaw-equivariant. While raw body-frame IMU inputs are inherently yaw-invariant, head tilt redistributes both gravity and motion signals across device axes, making the representation tilt-variant. Our decomposition achieves tilt invariance by separating gravity-aligned and horizontal components using only the tilt component of device orientation.",
+        "engineerSummary": "We propose HeadIO, which combines a body-frame heading decomposition with a bidirectional Mamba backbone for head-mounted inertial odometry. Prior IO methods operate in a gravity-aligned world frame, which is not yaw-equivariant. While raw body-frame IMU inputs are inherently yaw-invariant, head tilt redistributes both gravity and motion signals across device axes, making the representation tilt-variant. Our decomposition achieves tilt invariance by separating gravity-aligned and horizontal components using only the tilt component of device orientation.",
+        "founderSummary": "We propose HeadIO, which combines a body-frame heading decomposition with a bidirectional Mamba backbone for head-mounted inertial odometry. Prior IO methods operate in a gravity-aligned world frame, which is not yaw-equivariant. While raw body-frame IMU inputs are inherently yaw-invariant, head tilt redistributes both gravity and motion signals across device axes, making the representation tilt-variant. Our decomposition achieves tilt invariance by separating gravity-aligned and horizontal components using only the tilt component of device orientation."
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Fine-grained access control for Amazon Bedrock Managed Knowledge Base tools",
@@ -2506,48 +2582,48 @@
     {
       "name": "Significant-Gravitas/AutoGPT",
       "description": "AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
-      "stars": 188026,
-      "forks": 45865,
+      "stars": 188031,
+      "forks": 45866,
       "language": "Python",
       "url": "https://github.com/Significant-Gravitas/AutoGPT"
     },
     {
       "name": "f/prompts.chat",
       "description": "f.k.a. Awesome ChatGPT Prompts. Share, discover, and collect prompts from the community. Free and open source — self-host for your organization with complete privacy.",
-      "stars": 177352,
-      "forks": 22607,
+      "stars": 177409,
+      "forks": 22613,
       "language": "MDX",
       "url": "https://github.com/f/prompts.chat"
     },
     {
       "name": "thedotmack/claude-mem",
       "description": "Persistent Context Across Sessions for Every Agent –  Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
-      "stars": 117103,
-      "forks": 10164,
+      "stars": 117156,
+      "forks": 10172,
       "language": "TypeScript",
       "url": "https://github.com/thedotmack/claude-mem"
     },
     {
       "name": "rasbt/LLMs-from-scratch",
       "description": "Implement a ChatGPT-like LLM in PyTorch from scratch, step by step",
-      "stars": 108414,
-      "forks": 16774,
+      "stars": 108422,
+      "forks": 16775,
       "language": "Jupyter Notebook",
       "url": "https://github.com/rasbt/LLMs-from-scratch"
     },
     {
       "name": "hacksider/Deep-Live-Cam",
       "description": "real time face swap and one-click video deepfake with only a single image",
-      "stars": 98115,
-      "forks": 14319,
+      "stars": 98124,
+      "forks": 14322,
       "language": "Python",
       "url": "https://github.com/hacksider/Deep-Live-Cam"
     },
     {
       "name": "OpenHands/OpenHands",
       "description": "🙌 OpenHands: AI-Driven Development",
-      "stars": 93477,
-      "forks": 12513,
+      "stars": 93485,
+      "forks": 12514,
       "language": "TypeScript",
       "url": "https://github.com/OpenHands/OpenHands"
     }
@@ -2568,13 +2644,6 @@
       "url": "https://remoteOK.com/remote-jobs/remote-senior-agentic-ai-engineer-nda-gt-1137710"
     },
     {
-      "title": "AI Developer",
-      "company": "Salvo Software",
-      "location": "Remote",
-      "salary": "Competitive",
-      "url": "https://remoteOK.com/remote-jobs/remote-ai-developer-salvo-software-1137701"
-    },
-    {
       "title": "Feltsense AI Engineer",
       "company": "Silver.dev",
       "location": "Remote",
@@ -2587,6 +2656,13 @@
       "location": "Anywhere in the World",
       "salary": "Competitive",
       "url": "https://remoteOK.com/remote-jobs/remote-operations-expert-with-python-for-ai-supply-chain-task-design-toptal-1137690"
+    },
+    {
+      "title": "ML Inference Engineer â Terminal-Bench Task Designer (vLLM / SGLang / TensorRT-LLM)",
+      "company": "Toptal",
+      "location": "Anywhere in the World",
+      "salary": "Competitive",
+      "url": "https://remoteOK.com/remote-jobs/remote-ml-inference-engineer-terminal-bench-task-designer-vllm-sglang-tensorrt-llm-toptal-1137689"
     }
   ]
 }
