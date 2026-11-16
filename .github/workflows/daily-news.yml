@@ -2,12 +2,7 @@ name: Daily AI Engineer News
 
 on:
   schedule:
-    - cron: '0 0 * * *'
-      timezone: 'Asia/Kolkata'
-    - cron: '30 0 * * *'
-      timezone: 'Asia/Kolkata'
-    - cron: '0 1 * * *'
-      timezone: 'Asia/Kolkata'
+    - cron: '30 18 * * *'
   workflow_dispatch:
 
 # Prevent overlapping runs from clashing

@@ -320,7 +320,7 @@ async function loadNews() {
     const feed = $('#newsFeed');
     if (feed) feed.innerHTML = Array(3).fill('<div class="skeleton-card"></div>').join('');
     try {
-        const r = await fetch('./data/news.json', { cache: 'no-store' });
+        const r = await fetch(`${BASE_PATH}/data/news.json`, { cache: 'no-store' });
         if (!r.ok) throw new Error('news.json not found');
         state.news = await r.json();
         if (!state.news || typeof state.news !== 'object' || Array.isArray(state.news)) throw new Error('Invalid news.json shape');
@@ -501,7 +501,7 @@ function applyFilters(list) {
     return list.filter(a => {
         // 1. FILTER BY PERSONA (AUDIENCE)
         if (state.persona === 'engineer' && a.audience === 'founder') return false;
-        if (state.persona === 'founder' && a.audience !== 'founder' && a.audience !== 'all') return false;
+        if (state.persona === 'founder' && a.audience && a.audience !== 'founder' && a.audience !== 'all') return false;
 
         // 2. Other filters
         if (cat && a.category !== cat) return false;
@@ -911,7 +911,7 @@ function renderBriefing() {
         if (new Date(a.publishedAt).getTime() < cutoff) return false;
         if (state.persona === 'engineer' && a.audience === 'founder') return false;
         // STRICT FILTER: Only show articles tagged as founder or all
-        if (state.persona === 'founder' && a.audience !== 'founder' && a.audience !== 'all') return false;
+        if (state.persona === 'founder' && a.audience && a.audience !== 'founder' && a.audience !== 'all') return false;
         return true;
     });
 
@@ -1006,7 +1006,7 @@ function renderTrends() {
     // Filter by persona ONLY (ignore search/date inputs to prevent stale filter data)
     const filtered = state.articles.filter(a => {
         if (state.persona === 'engineer' && a.audience === 'founder') return false;
-        if (state.persona === 'founder' && a.audience !== 'founder' && a.audience !== 'all') return false;
+        if (state.persona === 'founder' && a.audience && a.audience !== 'founder' && a.audience !== 'all') return false;
         return true;
     });
     filtered.forEach(a => { cats[a.category] = (cats[a.category] || 0) + 1; });
