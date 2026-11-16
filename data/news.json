@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-16T04:57:11.296+05:30",
+  "generatedAt": "2026-11-16T17:33:09.818+05:30",
   "retentionDays": 7,
-  "totalStories": 139,
-  "newToday": 3,
+  "totalStories": 150,
+  "newToday": 33,
   "articles": [
     {
       "title": "Do Large Language Models Show Racial and Sex Bias in Pain Management? A Counterfactual Audit of GPT, Claude, Gemini, Llama, DeepSeek and Qwen",
@@ -55,6 +55,27 @@
       "insightsAttempted": true
     },
     {
+      "title": "More Agents, More Samples, or More Thinking? Untangling Coordination, Ensembling, and Test-Time Compute in Multi-Agent LLMs",
+      "summary": "arXiv:2611.17610v1 Announce Type: new \nAbstract: Evaluations of multi-agent language models often compare communicating architectures against a single greedy pass. This practice confounds coordination with sample multiplicity and inference compute. We synthesize nine primary empirical evaluations comprising 516 unique multi-agent configurations organized along a resource vector R with six dimensions and a baseline ladder with four categories. Against baselines with a single pass (Category A), multi-agent accuracy differences are negative overall and near zero when omitting the largest contributing study. When evaluated against baselines matched on sample count (Category B) or resource budget (Category C), multi-agent systems average -0.042 in accuracy, and multilevel random effects modeling on the log odds scale remains negative across sensitivity checks. Multi-agent accuracy equals or falls below the baseline in 74% of these comparable contrasts, and study means are nonpositive in almost all evaluated studies. Across studies reporting both baselines, moving from a greedy pass to a sampled baseline shifts accuracy differences by -0.038 on average. Because communication adds no information when agents share identical evidence, positive returns require partitioned evidence, external verification, or error diversity across models. We provide a reviewer checklist and accounting utilities.",
+      "url": "https://arxiv.org/abs/2611.17610",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "ab715b2affb87",
+      "relevanceScore": 35,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-16T12:03:09.818Z",
+      "insights": {
+        "whatHappened": "When evaluated against baselines matched on sample count (Category B) or resource budget (Category C), multi-agent systems average -0. Against baselines with a single pass (Category A), multi-agent accuracy differences are negative overall and near zero when omitting the largest contributing study. 17610v1 Announce Type: new \nAbstract: Evaluations of multi-agent language models often compare communicating architectures against a single greedy pass. Across studies reporting both baselines, moving from a greedy pass to a sampled baseline shifts accuracy differences by -0.",
+        "engineerSummary": "When evaluated against baselines matched on sample count (Category B) or resource budget (Category C), multi-agent systems average -0. Against baselines with a single pass (Category A), multi-agent accuracy differences are negative overall and near zero when omitting the largest contributing study. 17610v1 Announce Type: new \nAbstract: Evaluations of multi-agent language models often compare communicating architectures against a single greedy pass. Across studies reporting both baselines, moving from a greedy pass to a sampled baseline shifts accuracy differences by -0.",
+        "founderSummary": "When evaluated against baselines matched on sample count (Category B) or resource budget (Category C), multi-agent systems average -0. Against baselines with a single pass (Category A), multi-agent accuracy differences are negative overall and near zero when omitting the largest contributing study. 17610v1 Announce Type: new \nAbstract: Evaluations of multi-agent language models often compare communicating architectures against a single greedy pass. Across studies reporting both baselines, moving from a greedy pass to a sampled baseline shifts accuracy differences by -0."
+      },
+      "insightsAttempted": true
+    },
+    {
       "title": "CAFIN: CUDA-accelerated Adaptive Fisher Information Matrix Network Optimization via GPU-Native Kernel Fusion",
       "summary": "arXiv:2611.14589v1 Announce Type: new \nAbstract: Second-order optimizers improve deep neural network training using curvature information, but their practical efficiency is limited by GPU execution overhead. AdaFisher reduces Fisher Information Matrix (FIM) approximation costs through diagonal Kronecker structures and exponential moving averages, yet its PyTorch implementation requires sequential CUDA kernel launches, intermediate tensor allocations, and repeated memory accesses. We introduce CAFIN, a GPU-native CUDA kernel fusion framework that improves AdaFisher execution efficiency without changing its optimization formulation. The proposed approach progressively integrates FIM preconditioner construction, exponential moving average updates, gradient preconditioning, momentum accumulation, weight decay, and parameter updates into fused CUDA kernels. Shared-memory reuse, register-resident computation, and in-place operations further reduce memory traffic and intermediate allocations. Experiments using ResNet-18 on CIFAR-10, CIFAR-100, and Tiny ImageNet across NVIDIA GTX 1660 Ti and RTX 3060 Laptop GPUs demonstrate up to 78.4% lower isolated FIM construction latency and 2.1-26.9% lower optimizer-step latency. The implementation also eliminates approximately 18.91 MB of intermediate GPU memory allocations per optimizer step. Numerical validation confirms consistency within the predefined FP32 tolerance, while convergence accuracy remains comparable across evaluated datasets and random seeds. These findings demonstrate that CUDA kernel fusion can substantially accelerate second-order optimization while preserving AdaFisher's underlying mathematical formulation and learning behavior.",
       "url": "https://arxiv.org/abs/2611.14589",
@@ -69,6 +90,27 @@
       "addedAt": "2026-11-14T02:28:37.918Z",
       "image": null,
       "insights": null,
+      "insightsAttempted": true
+    },
+    {
+      "title": "Alignment with Reflect-Reasoning: Learning How To Follow Principles",
+      "summary": "arXiv:2611.17398v1 Announce Type: new \nAbstract: The appropriate governing norms and principles for the alignment of Large Language Models (LLMs) often depend on cultural context and deployment application. However, most alignment techniques focus on training models to conform to human preferences or constitutional principles specified at training time and subsequently fixed. In practice, many deployers rely on system prompting to implement contextual norms and guardrails at inference time. Prior work has shown that post-generation reflective reasoning with critique and revision can improve conformance compared to simple system prompting, but such methods are limited to the reasoning abilities inherent in the trained model. We introduce Reflect-Reasoning, a training method that teaches models how to reason about alignment to principles, rather than simply which principles to follow. Across five models, Reflect-Reasoning consistently outperforms both system prompting and explicit prompting strategies for in-context reflective reasoning. These improvements extend and generalize to entirely out-of-distribution domains of medical and financial principles. We additionally demonstrate that Reflect-Reasoning reduces the occurrence of rare but serious principle violations. Finally, we show that Reflect-Reasoning does not erode the safety engineering of a model and is robust against jailbreaking attempts using adversarial constitutions. Overall, our results demonstrate that Reflect-Reasoning is a scalable method for training constitutional alignment as a generalizable reasoning capability, enabling models to adapt to novel principles and produce transparent reasoning traces without additional fine-tuning.",
+      "url": "https://arxiv.org/abs/2611.17398",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "AI Security",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a608ff44b77f1",
+      "relevanceScore": 33,
+      "whyItMatters": "Critical for safe, production-grade AI systems.",
+      "addedAt": "2026-11-16T12:03:09.818Z",
+      "insights": {
+        "whatHappened": "Across five models, Reflect-Reasoning consistently outperforms both system prompting and explicit prompting strategies for in-context reflective reasoning. We introduce Reflect-Reasoning, a training method that teaches models how to reason about alignment to principles, rather than simply which principles to follow. Overall, our results demonstrate that Reflect-Reasoning is a scalable method for training constitutional alignment as a generalizable reasoning capability, enabling models to adapt to novel principles and produce transparent reasoning traces without additional fine-tuning. However, most alignment techniques focus on training models to conform to human preferences or constitutional principles specified at training time and subsequently fixed.",
+        "engineerSummary": "Across five models, Reflect-Reasoning consistently outperforms both system prompting and explicit prompting strategies for in-context reflective reasoning. We introduce Reflect-Reasoning, a training method that teaches models how to reason about alignment to principles, rather than simply which principles to follow. Overall, our results demonstrate that Reflect-Reasoning is a scalable method for training constitutional alignment as a generalizable reasoning capability, enabling models to adapt to novel principles and produce transparent reasoning traces without additional fine-tuning. However, most alignment techniques focus on training models to conform to human preferences or constitutional principles specified at training time and subsequently fixed.",
+        "founderSummary": "Across five models, Reflect-Reasoning consistently outperforms both system prompting and explicit prompting strategies for in-context reflective reasoning. We introduce Reflect-Reasoning, a training method that teaches models how to reason about alignment to principles, rather than simply which principles to follow. Overall, our results demonstrate that Reflect-Reasoning is a scalable method for training constitutional alignment as a generalizable reasoning capability, enabling models to adapt to novel principles and produce transparent reasoning traces without additional fine-tuning. However, most alignment techniques focus on training models to conform to human preferences or constitutional principles specified at training time and subsequently fixed."
+      },
       "insightsAttempted": true
     },
     {
@@ -140,6 +182,48 @@
       "insightsAttempted": true
     },
     {
+      "title": "LoRAWeaver: Directional Adapter Routing in LoRA Representation Space",
+      "summary": "arXiv:2611.17340v1 Announce Type: new \nAbstract: Large language models are expensive to update through full retraining. Parameter-efficient fine-tuning reduces the cost of adaptation, but repeated adaptation creates a growing pool of task-specific LoRA adapters. This pool complicates adapter selection during inference. Existing routing and encoder-based methods often require retraining when new adapters are added, which limits their use in dynamic settings. This paper treats adapter routing as a representation alignment problem in the adapter-output space. The proposed training-free method selects adapters by matching adapter-conditioned query representations against task prototypes using cosine similarity. Experiments with LLaMA-2-7B and LLaMA-2-13B on a 48-task FLAN-v2 benchmark and on out-of-distribution tasks show that the method outperforms training-free baselines in the cross-task setting and approaches a trained retrieval encoder without learning a router. An ablation confirms the benefit of directional alignment in the adapter-output space.",
+      "url": "https://arxiv.org/abs/2611.17340",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "Model Training",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "ae6b637328ef2",
+      "relevanceScore": 31,
+      "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
+      "addedAt": "2026-11-16T12:03:09.818Z",
+      "insights": {
+        "whatHappened": "This pool complicates adapter selection during inference. The proposed training-free method selects adapters by matching adapter-conditioned query representations against task prototypes using cosine similarity. This paper treats adapter routing as a representation alignment problem in the adapter-output space. An ablation confirms the benefit of directional alignment in the adapter-output space.",
+        "engineerSummary": "This pool complicates adapter selection during inference. The proposed training-free method selects adapters by matching adapter-conditioned query representations against task prototypes using cosine similarity. This paper treats adapter routing as a representation alignment problem in the adapter-output space. An ablation confirms the benefit of directional alignment in the adapter-output space.",
+        "founderSummary": "This pool complicates adapter selection during inference. The proposed training-free method selects adapters by matching adapter-conditioned query representations against task prototypes using cosine similarity. This paper treats adapter routing as a representation alignment problem in the adapter-output space. An ablation confirms the benefit of directional alignment in the adapter-output space."
+      },
+      "insightsAttempted": true
+    },
+    {
+      "title": "Verifiable pXRD: Hill-climbing pXRD structure determination with LLM agents",
+      "summary": "arXiv:2611.17539v1 Announce Type: new \nAbstract: Autonomous crystal-structure determination from powder X-ray diffraction (pXRD) remains a key bottleneck for self-driving materials laboratories. We formulate the task of pXRD structure determination as a verifiable agentic search problem: candidate structures can be assessed during inference through forward-simulated profile agreement and during evaluation through structural matching to a known reference. To benchmark progress, we introduce pXRD-Bench, a suite of 200 simulated single-phase problems spanning in-distribution structure determination, challenging and polymorphic structures, and controlled compositional and topological distribution shifts. Agent adaptation raises selected structural recovery from 27% to 69%, with further gains from repeated sampling and verifier-guided inference-time scaling. We extend this approach to experimental multiphase pXRD through a reflexive evolution framework that learns from self-generated synthetic problems. A replaceable laboratory specification defines the sample family and measurement conditions. An evolver agent uses the known generating structures and measurement parameters to diagnose solver failures and develop persistent guidance and executable tools, which are then provided to agents on measured patterns. This supplies verifiable training experience without requiring a collection of solved experimental measurements. On 15 measured patterns from solid-state synthesis, the evolved package improves average profile agreement and transfers an analogue-substitution procedure that recovers a phase whose structure is absent from the supplied reference library. These results demonstrate how learning from verifiable synthetic experience can improve agentic characterization of experimental samples whose structures are not known in advance.",
+      "url": "https://arxiv.org/abs/2611.17539",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "AI Agents",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "ad6f2a3136b41",
+      "relevanceScore": 30,
+      "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
+      "addedAt": "2026-11-16T12:03:09.818Z",
+      "insights": {
+        "whatHappened": "These results demonstrate how learning from verifiable synthetic experience can improve agentic characterization of experimental samples whose structures are not known in advance. We formulate the task of pXRD structure determination as a verifiable agentic search problem: candidate structures can be assessed during inference through forward-simulated profile agreement and during evaluation through structural matching to a known reference. We extend this approach to experimental multiphase pXRD through a reflexive evolution framework that learns from self-generated synthetic problems. 17539v1 Announce Type: new \nAbstract: Autonomous crystal-structure determination from powder X-ray diffraction (pXRD) remains a key bottleneck for self-driving materials laboratories.",
+        "engineerSummary": "These results demonstrate how learning from verifiable synthetic experience can improve agentic characterization of experimental samples whose structures are not known in advance. We formulate the task of pXRD structure determination as a verifiable agentic search problem: candidate structures can be assessed during inference through forward-simulated profile agreement and during evaluation through structural matching to a known reference. We extend this approach to experimental multiphase pXRD through a reflexive evolution framework that learns from self-generated synthetic problems. 17539v1 Announce Type: new \nAbstract: Autonomous crystal-structure determination from powder X-ray diffraction (pXRD) remains a key bottleneck for self-driving materials laboratories.",
+        "founderSummary": "These results demonstrate how learning from verifiable synthetic experience can improve agentic characterization of experimental samples whose structures are not known in advance. We formulate the task of pXRD structure determination as a verifiable agentic search problem: candidate structures can be assessed during inference through forward-simulated profile agreement and during evaluation through structural matching to a known reference. We extend this approach to experimental multiphase pXRD through a reflexive evolution framework that learns from self-generated synthetic problems. 17539v1 Announce Type: new \nAbstract: Autonomous crystal-structure determination from powder X-ray diffraction (pXRD) remains a key bottleneck for self-driving materials laboratories."
+      },
+      "insightsAttempted": true
+    },
+    {
       "title": "Sophon: A Procedural Diagnostic for Spatial Reasoning in Vision-Language Models",
       "summary": "arXiv:2611.14838v1 Announce Type: new Abstract: Open-weight Vision-Language Models (VLMs) score 85-94% on spatial benchmarks (BLINK Spatial, What's Up CLEVR) yet collapse to chance on simple geometric questions when object, scene, and texture priors are stripped away. We introduce and open-source Sophon, a procedurally generated diagnostic of paired colored point-cloud stimuli across three coordinate systems (1D linear, 2D Cartesian, 2D polar) and four question types (binary, categorical, comparative, quantitative). Across four open architectures (LLaVA-NeXT, LLaVA-OneVision, Qwen2.5-VL, Idefics3), accuracy clusters at 47-52% while frontier models (Opus 4.6, Gemini 2.5 Pro, GPT-5.4) clear 77-83% and humans reach 84-94%. We use linear probes and low-rank adaptation (LoRA) to trace the open-weight failures. Probes of the vision encoder (ViT) and language decoder (LLM) recover Sophon spatial information at 83-85% and 80-86% accuracy, respectively, and the language tower's reasoning circuit answers text-only controls (point clouds as sets of coordinates) at +40 pp over visual stimuli. Language tower per-layer attention attribution localizes visual integration to mid-stack layers. At readout, models elevate the correct answer-set tokens but select among them randomly. We localize the mechanism by tuning individual and grouped components across every architecture's stack, including the vision tower (ViT workspace and reader), the projector, and the language tower (LLM workspace and reader). These experiments demonstrate that this mid-stack workspace holds circuitry capable of organizing the spatial signal so that the frozen reader can decode it. LoRA fine-tuning adjusts that circuitry such that 7B-class VLMs answer Sophon spatial reasoning questions at frontier aggregate accuracy. This work suggests that these models do not have a capability gap for spatial reasoning but suffer from a routing bottleneck that targeted fine-tuning repairs.",
       "url": "https://arxiv.org/abs/2611.14838",
@@ -190,6 +274,48 @@
       "insightsAttempted": true
     },
     {
+      "title": "Advancing Quantization for R&R Models with Microscaling Formats",
+      "summary": "arXiv:2611.17501v1 Announce Type: new \nAbstract: Recommendation and Ranking (R&R) models, particularly in digital advertising, require massive inference throughput but exhibit extreme sensitivity to precision loss. Unlike Large Language Models (LLMs) that frequently tolerate quantization-induced accuracy drops of 1% or more, production-grade R&R models enforce a stringent launch bar: model quality must remain within a 0.01% Normalized Entropy (NE) margin relative to the baseline, which commonly uses FP16 or FP32. This tight constraint has historically hindered the adoption of aggressive quantization in this domain. In this paper, we present an empirical evaluation of both MXFP8 and the 6-bit MXFP6 format for industrial-scale R&R inference on the AMD MI350X architecture.\n To the best of our knowledge, this is the first paper, across R&R and LLM domains, that reports significant speedups from native MXFP6 GEMMs, which quantize both weights and activations and compute directly on 6-bit elements, without sacrificing model quality. We demonstrate that we can selectively apply this 6-bit format to maximize overall QPS gain without breaching the strict NE parity threshold. We further show that MXFP8 is a viable alternative to row-wise FP8: the two formats have nearly the same accuracy on our models, so the faster kernel can be chosen for each GEMM shape. On two production ads ranking models, our implementation shows measured GEMM kernel speedups over FP16 of 1.33--1.55x for MXFP8 and 1.73--1.99x for MXFP6 across all supported linear layers, and up to 2.90x for MXFP6 on individual layers, alongside end-to-end (E2E) inference throughput gains from selective MXFP6 of 1.5--5.3% for Model A and 7.6--14.3% for Model B over their FP8 configurations.",
+      "url": "https://arxiv.org/abs/2611.17501",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "Inference",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "ac0fb3abdbf39",
+      "relevanceScore": 27,
+      "whyItMatters": "Affects serving cost, throughput, and latency.",
+      "addedAt": "2026-11-16T12:03:09.818Z",
+      "insights": {
+        "whatHappened": "On two production ads ranking models, our implementation shows measured GEMM kernel speedups over FP16 of 1. 90x for MXFP6 on individual layers, alongside end-to-end (E2E) inference throughput gains from selective MXFP6 of 1. 3% for Model B over their FP8 configurations. Unlike Large Language Models (LLMs) that frequently tolerate quantization-induced accuracy drops of 1% or more, production-grade R&R models enforce a stringent launch bar: model quality must remain within a 0.",
+        "engineerSummary": "On two production ads ranking models, our implementation shows measured GEMM kernel speedups over FP16 of 1. 90x for MXFP6 on individual layers, alongside end-to-end (E2E) inference throughput gains from selective MXFP6 of 1. 3% for Model B over their FP8 configurations. Unlike Large Language Models (LLMs) that frequently tolerate quantization-induced accuracy drops of 1% or more, production-grade R&R models enforce a stringent launch bar: model quality must remain within a 0.",
+        "founderSummary": "On two production ads ranking models, our implementation shows measured GEMM kernel speedups over FP16 of 1. 90x for MXFP6 on individual layers, alongside end-to-end (E2E) inference throughput gains from selective MXFP6 of 1. 3% for Model B over their FP8 configurations. Unlike Large Language Models (LLMs) that frequently tolerate quantization-induced accuracy drops of 1% or more, production-grade R&R models enforce a stringent launch bar: model quality must remain within a 0."
+      },
+      "insightsAttempted": true
+    },
+    {
+      "title": "Safety Side Effects of Preventative Persona Steering: An Empirical Audit",
+      "summary": "arXiv:2611.17620v1 Announce Type: new \nAbstract: High-level behaviors such as sycophancy and hallucination correspond to directions in a model's activation space (Chen et al., 2025). These directions, known as persona vectors, can suppress undesirable traits either at inference time, subtracting the vector during generation, or through preventative steering, adding the vector during fine-tuning, so the optimizer never needs to encode the trait in weights, then removing the vector at evaluation. Chen et al. (2025) recommend preventative steering because it preserves Massive Multitask Language Understanding (MMLU) accuracy, but validations of this recommendation have measured capability alone. We primarily evaluate results on preventative steering of sycophancy and hallucination vectors on three models, measuring three safety benchmarks alongside trait expression, coherence, and MMLU. Our findings show that preventative steering still changes refusal behavior, but by an amount that depends on the trait and does not establish that preventative persona steering is safety-neutral, and steering methods should be evaluated on several safety benchmarks.",
+      "url": "https://arxiv.org/abs/2611.17620",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a0e4a08dbe6ed",
+      "relevanceScore": 26,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-16T12:03:09.818Z",
+      "insights": {
+        "whatHappened": ", 2025). We primarily evaluate results on preventative steering of sycophancy and hallucination vectors on three models, measuring three safety benchmarks alongside trait expression, coherence, and MMLU. Our findings show that preventative steering still changes refusal behavior, but by an amount that depends on the trait and does not establish that preventative persona steering is safety-neutral, and steering methods should be evaluated on several safety benchmarks. (2025) recommend preventative steering because it preserves Massive Multitask Language Understanding (MMLU) accuracy, but validations of this recommendation have measured capability alone.",
+        "engineerSummary": ", 2025). We primarily evaluate results on preventative steering of sycophancy and hallucination vectors on three models, measuring three safety benchmarks alongside trait expression, coherence, and MMLU. Our findings show that preventative steering still changes refusal behavior, but by an amount that depends on the trait and does not establish that preventative persona steering is safety-neutral, and steering methods should be evaluated on several safety benchmarks. (2025) recommend preventative steering because it preserves Massive Multitask Language Understanding (MMLU) accuracy, but validations of this recommendation have measured capability alone.",
+        "founderSummary": ", 2025). We primarily evaluate results on preventative steering of sycophancy and hallucination vectors on three models, measuring three safety benchmarks alongside trait expression, coherence, and MMLU. Our findings show that preventative steering still changes refusal behavior, but by an amount that depends on the trait and does not establish that preventative persona steering is safety-neutral, and steering methods should be evaluated on several safety benchmarks. (2025) recommend preventative steering because it preserves Massive Multitask Language Understanding (MMLU) accuracy, but validations of this recommendation have measured capability alone."
+      },
+      "insightsAttempted": true
+    },
+    {
       "title": "SynthCorp: A Platform for Creating Benchmarks for Data Agents",
       "summary": "arXiv:2611.14765v1 Announce Type: new \nAbstract: Current benchmarks for LLM-driven data agents saturate quickly and cannot target specific capabilities. We present SynthCorp, a platform that creates customizable data estates and benchmarks by simulating how business events produce and modify corporate data over time. Each data estate combines relational databases, a document store, and a data catalog, paired with evaluation tasks and executable gold programs. First, given a scenario and target complexity dimensions, SynthCorp synthesizes reusable event types and compiles each into a program over predefined simulation primitives. Second, SynthCorp schedules event instances on a virtual calendar, interleaving routine and disruption events so that tables, documents, and catalog entries remain consistent. Third, SynthCorp executes the calendar to materialize the data estate and records every operation in a simulation log. Fourth, SynthCorp generates analytical tasks and derives verified gold programs from the log. We use SynthCorp to generate initial evaluation benchmarks comprising seven data estates (up to 1K operational tables) and 256 tasks across five domains. The data estates pass deterministic pipeline checks (such as foreign-key violations, undeclared writes, recurrence violations, and database execution failures) with a near-zero error rate, introduce cross-asset complexities, and cover all requested dimensions. Evaluating three models across four data-context settings shows that the benchmarks separate data contexts and model tiers. Auditing candidate queries against causal provenance in the simulation log verifies gold programs without manual annotation, including on multi-event composite tasks that expose reasoning failures in state-of-the-art agents. We hope the community uses SynthCorp to generate more challenging and useful data estates and benchmarks that foster the development of enterprise data agents.",
       "url": "https://arxiv.org/abs/2611.14765",
@@ -204,6 +330,27 @@
       "whyItMatters": "Relevant to deployment, monitoring, and evaluation workflows.",
       "addedAt": "2026-11-14T04:52:49.470Z",
       "insights": null,
+      "insightsAttempted": true
+    },
+    {
+      "title": "Tabular Population Priors as Structured Retrieval for EHR Medication Set Prediction",
+      "summary": "arXiv:2611.17341v1 Announce Type: new \nAbstract: Medication prediction from electronic health records is a fixed vocabulary structured prediction problem, yet recent clinical RAG systems often treat it like open ended case based reasoning: retrieve similar patient admissions and ask an LLM to infer a medication set. This retrieval object is indirect the model receives retrieved patient records while the target is a discrete set of medication class labels. We propose a more task aligned retrieval object: a tabular population prior ranked medication class candidates from a sparse condition medication co occurrence table estimated from training admissions. Using PACERAG as a fixed downstream pipeline and replacing only its patient retriever, this drop in swap improves F1 from 0.303 to 0.338 (+11.5% relative) and Jaccard from 0.218 to 0.237 on 1,004 heldout MIMIC IV admissions, with no additional LLM calls and no inference time patient index. A non LLM top k baseline reaches F1=0.248, confirming the prior is predictive before LLM integration. Aggregate population statistics can provide a more task aligned, efficient, and auditable retrieval source than patient level nearest neighbors for fixed vocabulary EHR set prediction.",
+      "url": "https://arxiv.org/abs/2611.17341",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "RAG",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a5cc536aed4b9",
+      "relevanceScore": 25,
+      "whyItMatters": "Relevant to retrieval-augmented generation accuracy and latency.",
+      "addedAt": "2026-11-16T12:03:09.818Z",
+      "insights": {
+        "whatHappened": "We propose a more task aligned retrieval object: a tabular population prior ranked medication class candidates from a sparse condition medication co occurrence table estimated from training admissions. Aggregate population statistics can provide a more task aligned, efficient, and auditable retrieval source than patient level nearest neighbors for fixed vocabulary EHR set prediction. 17341v1 Announce Type: new \nAbstract: Medication prediction from electronic health records is a fixed vocabulary structured prediction problem, yet recent clinical RAG systems often treat it like open ended case based reasoning: retrieve similar patient admissions and ask an LLM to infer a medication set. This retrieval object is indirect the model receives retrieved patient records while the target is a discrete set of medication class labels.",
+        "engineerSummary": "We propose a more task aligned retrieval object: a tabular population prior ranked medication class candidates from a sparse condition medication co occurrence table estimated from training admissions. Aggregate population statistics can provide a more task aligned, efficient, and auditable retrieval source than patient level nearest neighbors for fixed vocabulary EHR set prediction. 17341v1 Announce Type: new \nAbstract: Medication prediction from electronic health records is a fixed vocabulary structured prediction problem, yet recent clinical RAG systems often treat it like open ended case based reasoning: retrieve similar patient admissions and ask an LLM to infer a medication set. This retrieval object is indirect the model receives retrieved patient records while the target is a discrete set of medication class labels.",
+        "founderSummary": "We propose a more task aligned retrieval object: a tabular population prior ranked medication class candidates from a sparse condition medication co occurrence table estimated from training admissions. Aggregate population statistics can provide a more task aligned, efficient, and auditable retrieval source than patient level nearest neighbors for fixed vocabulary EHR set prediction. 17341v1 Announce Type: new \nAbstract: Medication prediction from electronic health records is a fixed vocabulary structured prediction problem, yet recent clinical RAG systems often treat it like open ended case based reasoning: retrieve similar patient admissions and ask an LLM to infer a medication set. This retrieval object is indirect the model receives retrieved patient records while the target is a discrete set of medication class labels."
+      },
       "insightsAttempted": true
     },
     {
@@ -239,6 +386,27 @@
       "insightsAttempted": true
     },
     {
+      "title": "LLM-Guided Cluster Lifecycle Management: Deciding When and How to Evolve Behavioral Clusters",
+      "summary": "arXiv:2611.17616v1 Announce Type: new \nAbstract: Behavioral clusters learned over user or item interactions drift as behavior evolves: some fragment into sub-behaviors, some converge, some disappear, and new patterns emerge. Two paradigms dominate the maintenance of evolving clusterings. Threshold triggers fire a pre-specified action when a hardcoded statistic crosses a cutoff; refit-and-track (MONIC-style) re-clusters every window and infers transitions from how the new clusters align with the previous window's. Both hardwire the decision into a threshold or a re-clustering rule. We study an alternative in which a large language model (LLM) makes the lifecycle decision in place. Given a threshold-free, whole-population view of the current cluster set (statistical health, labels, member texts, residual mass), the LLM decides per cluster whether and how to act (split, merge, retire, create, or no-action) without re-clustering. Because the useful signal channel depends on how informative the labels are, we fix a richness-conditioned policy in advance: statistics when label distinctiveness is low, fused statistics+semantics when it is high. On three public datasets spanning label richness (YooChoose 0.17, MOOC 0.50, News-Category 0.70), the policy-selected LLM mode obtains the highest F1 on all three, with far fewer interventions and stronger restraint than tuned threshold heuristics and a MONIC steelman (paired Wilcoxon p <= 0.003, bootstrap 95% CIs excluding zero). The gain is concentrated more in precision than recall. The useful modality shifts from statistics to semantics/fusion as richness rises. Semantics hurt on YooChoose, fusion is roughly neutral on MOOC, and the semantic channel is required on News. One base prompt template and one fixed policy serve all three datasets, whereas the tuned baseline collapses when moved between them. We treat this shift as a practitioner diagnostic observed on three datasets, not a validated law.",
+      "url": "https://arxiv.org/abs/2611.17616",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "LLM Engineering",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a04234be9f857",
+      "relevanceScore": 24,
+      "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
+      "addedAt": "2026-11-16T12:03:09.818Z",
+      "insights": {
+        "whatHappened": "On three public datasets spanning label richness (YooChoose 0. One base prompt template and one fixed policy serve all three datasets, whereas the tuned baseline collapses when moved between them. The useful modality shifts from statistics to semantics/fusion as richness rises. Because the useful signal channel depends on how informative the labels are, we fix a richness-conditioned policy in advance: statistics when label distinctiveness is low, fused statistics+semantics when it is high.",
+        "engineerSummary": "On three public datasets spanning label richness (YooChoose 0. One base prompt template and one fixed policy serve all three datasets, whereas the tuned baseline collapses when moved between them. The useful modality shifts from statistics to semantics/fusion as richness rises. Because the useful signal channel depends on how informative the labels are, we fix a richness-conditioned policy in advance: statistics when label distinctiveness is low, fused statistics+semantics when it is high.",
+        "founderSummary": "On three public datasets spanning label richness (YooChoose 0. One base prompt template and one fixed policy serve all three datasets, whereas the tuned baseline collapses when moved between them. The useful modality shifts from statistics to semantics/fusion as richness rises. Because the useful signal channel depends on how informative the labels are, we fix a richness-conditioned policy in advance: statistics when label distinctiveness is low, fused statistics+semantics when it is high."
+      },
+      "insightsAttempted": true
+    },
+    {
       "title": "What Entropy-Based View Selection Cannot See: An Audit of Test-Time Adaptation for Vision-Language Models",
       "summary": "arXiv:2611.14686v1 Announce Type: new Abstract: Vision-language models such as CLIP can classify images into categories they were never explicitly trained to recognize, but accuracy degrades when test images differ in style or source from their training data. A common remedy generates randomly cropped and flipped copies of each test image, called views, and combines their predictions. Since some views miss the object, methods must identify which views to trust. The dominant approach uses prediction entropy to measure confidence and retains the most certain views. Other methods use signals such as embedding typicality. Despite repeated refinements of these scoring functions, the information they rely on, the model's own response to each view, remains largely unexamined. We investigate this choice while holding other pipeline stages fixed. First, we show that view selection, rather than the gradient update, accounts for almost all accuracy gains. We then examine whether entropy identifies useful views when predictions are wrong, despite at least one view predicting the correct class. In these cases, entropy ranks correct views above incorrect ones no better than chance, recovering only about one-twentieth of the accuracy recovered by an oracle over the same views. This finding holds across two image encoders and under a control ruling out an obvious statistical artifact. An exact analysis explains this limitation: entropy measures confidence but not which class a view favors. We identify an unused signal already available in the augmentation pipeline: the fraction of the original image retained by each crop. Ranking views by this quantity improves accuracy on 14 of 15 benchmark datasets over entropy and on 11 of 15 over the strongest scoring function tested. A pre-method measurement also predicts which datasets benefit.",
       "url": "https://arxiv.org/abs/2611.14686",
@@ -271,6 +439,27 @@
         "whatHappened": "We separate the two sides of each coin, extract and normalize legends and descriptions, and standardize obverse descriptions against a bust-type taxonomy. We instead formulate coin description as image-to-text generation and adapt an open-weight vision-language model (VLM), Qwen3-VL-8B-Instruct, to four tasks: transcribing the obverse and reverse legends, and describing the obverse and reverse imagery. To obtain training data, we convert approximately 30,000 auction records into structured image-text pairs. 14821v1 Announce Type: new Abstract: Cataloguing a Roman Imperial coin involves reading its legends and identifying its imagery in order to match it to an entry in the standard reference catalogue.",
         "engineerSummary": "We separate the two sides of each coin, extract and normalize legends and descriptions, and standardize obverse descriptions against a bust-type taxonomy. We instead formulate coin description as image-to-text generation and adapt an open-weight vision-language model (VLM), Qwen3-VL-8B-Instruct, to four tasks: transcribing the obverse and reverse legends, and describing the obverse and reverse imagery. To obtain training data, we convert approximately 30,000 auction records into structured image-text pairs. 14821v1 Announce Type: new Abstract: Cataloguing a Roman Imperial coin involves reading its legends and identifying its imagery in order to match it to an entry in the standard reference catalogue.",
         "founderSummary": "We separate the two sides of each coin, extract and normalize legends and descriptions, and standardize obverse descriptions against a bust-type taxonomy. We instead formulate coin description as image-to-text generation and adapt an open-weight vision-language model (VLM), Qwen3-VL-8B-Instruct, to four tasks: transcribing the obverse and reverse legends, and describing the obverse and reverse imagery. To obtain training data, we convert approximately 30,000 auction records into structured image-text pairs. 14821v1 Announce Type: new Abstract: Cataloguing a Roman Imperial coin involves reading its legends and identifying its imagery in order to match it to an entry in the standard reference catalogue."
+      },
+      "insightsAttempted": true
+    },
+    {
+      "title": "Does the Ranking Hold? A Practitioner-Facing Audit of Hallucination Detectors on Small, Quantized, On-Device LLMs",
+      "summary": "arXiv:2611.17339v1 Announce Type: new \nAbstract: Hallucination detection for large language models is dominated by methods evaluated on 7B-70B research models with abundant sampling budgets and exact-match or ROUGE correctness labels. The small models practitioners actually ship on-device, Phi-3-mini, Llama-3.2-3B-Instruct, Qwen2.5-3B-Instruct, and Gemma-2-2B-Instruct, typically at 4-bit precision, sit outside this evidence base. We present a reproducible one-GPU audit of four detectors spanning three paradigms: length-normalized token-margin calibration, a lexical n-gram baseline, and two sampling-based consistency methods (semantic entropy and SelfCheckGPT-NLI) on two small open instruction-tuned models (Llama-3.2-3B-Instruct and Qwen2.5-3B-Instruct) loaded at 4-bit NF4 quantization on a single Colab T4 GPU, evaluated on closed-book TriviaQA. Cross-model ranking transfer is poor: Spearman rho is -0.80 and Kendall tau-b is -0.667, meaning the detector ranking actively inverts between the two models, and the cheap lexical baseline is statistically indistinguishable from the sampling-based consistency detectors on both models under bootstrap 95 percent confidence intervals. As a second, methodological contribution, we show that the standard token-overlap-to-multiple-choice correctness labeler for TruthfulQA-Generation produces near-chance AUROC (0.46-0.59) for all four detectors on both models, a labeler failure, not a detector failure, since the same detectors reach 0.69-0.89 AUROC on TriviaQA under the identical pipeline. We release the harness, prompts, and per-item scores and frame the detector choice explicitly as a fairness-of-error-rates allocation problem for practitioners deploying on resource-constrained, on-device hardware.",
+      "url": "https://arxiv.org/abs/2611.17339",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "LLM Engineering",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a5b66b471dda6",
+      "relevanceScore": 23,
+      "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
+      "addedAt": "2026-11-16T12:03:09.818Z",
+      "insights": {
+        "whatHappened": "2-3B-Instruct, Qwen2. 667, meaning the detector ranking actively inverts between the two models, and the cheap lexical baseline is statistically indistinguishable from the sampling-based consistency detectors on both models under bootstrap 95 percent confidence intervals. 59) for all four detectors on both models, a labeler failure, not a detector failure, since the same detectors reach 0. The small models practitioners actually ship on-device, Phi-3-mini, Llama-3.",
+        "engineerSummary": "2-3B-Instruct, Qwen2. 667, meaning the detector ranking actively inverts between the two models, and the cheap lexical baseline is statistically indistinguishable from the sampling-based consistency detectors on both models under bootstrap 95 percent confidence intervals. 59) for all four detectors on both models, a labeler failure, not a detector failure, since the same detectors reach 0. The small models practitioners actually ship on-device, Phi-3-mini, Llama-3.",
+        "founderSummary": "2-3B-Instruct, Qwen2. 667, meaning the detector ranking actively inverts between the two models, and the cheap lexical baseline is statistically indistinguishable from the sampling-based consistency detectors on both models under bootstrap 95 percent confidence intervals. 59) for all four detectors on both models, a labeler failure, not a detector failure, since the same detectors reach 0. The small models practitioners actually ship on-device, Phi-3-mini, Llama-3."
       },
       "insightsAttempted": true
     },
@@ -521,6 +710,48 @@
       "insightsAttempted": true
     },
     {
+      "title": "When Should LLM Agents Forget? Memory Filtering Under Query-Critical Resolver Errors",
+      "summary": "arXiv:2611.17338v1 Announce Type: new \nAbstract: LLM memory systems often delete facts classified as stale. We show that this hard-filtering step can reduce downstream accuracy when resolver errors delete query-critical facts. Across three models, a controlled sensitivity intervention moves hard-drop from gains of +0.186 to +0.230 at perfect resolution to losses of -0.176 to -0.181 at the lowest tested reliability. Paired targeted interventions show that false-drop causes significantly greater degradation than false-keep, while a non-deleting baseline can still fail when incorrect labels steer generation. On a frozen 102/102 calibration/test split, a simple deployment-matched gate reaches 0.655 accuracy versus 0.641 for always hard-drop and 0.662 for test-informed oracle selection. Global-accuracy crossovers require gold labels and are model- and task-specific diagnostics, not deployment thresholds. Deletion should instead be treated as cost-sensitive: validate query-critical false-drop risk on matched data, or default to label-free retention when such validation is unavailable.",
+      "url": "https://arxiv.org/abs/2611.17338",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "LLM Engineering",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "af5dc4cd120b4",
+      "relevanceScore": 20,
+      "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
+      "addedAt": "2026-11-16T12:03:09.818Z",
+      "insights": {
+        "whatHappened": "We show that this hard-filtering step can reduce downstream accuracy when resolver errors delete query-critical facts. Paired targeted interventions show that false-drop causes significantly greater degradation than false-keep, while a non-deleting baseline can still fail when incorrect labels steer generation. 641 for always hard-drop and 0. 655 accuracy versus 0.",
+        "engineerSummary": "We show that this hard-filtering step can reduce downstream accuracy when resolver errors delete query-critical facts. Paired targeted interventions show that false-drop causes significantly greater degradation than false-keep, while a non-deleting baseline can still fail when incorrect labels steer generation. 641 for always hard-drop and 0. 655 accuracy versus 0.",
+        "founderSummary": "We show that this hard-filtering step can reduce downstream accuracy when resolver errors delete query-critical facts. Paired targeted interventions show that false-drop causes significantly greater degradation than false-keep, while a non-deleting baseline can still fail when incorrect labels steer generation. 641 for always hard-drop and 0. 655 accuracy versus 0."
+      },
+      "insightsAttempted": true
+    },
+    {
+      "title": "A Push Down the Mountain: Framing Effects and Internal State Interventions on Collusive Behavior in a Long-Horizon LLM Agent",
+      "summary": "arXiv:2611.17515v1 Announce Type: new \nAbstract: Can sustained gain-loss (valence) framing sway an LLM agent toward market manipulation? We place Gemma 3 12B into the seat of a defendant in the London silver-fixing litigation, in a market simulation built from real case transcripts. Across 260 simulations, the agent is asked to collude on the price of silver by a counterparty. We draw from behavioral economics to vary the counterparty's requests across four categorical frames: gain, loss, blame and credit. We also add pressure from the agent's management, as well as endorsement by another defendant. In Phase II, we extract the internal states induced by texts evoking each frame and rerun our experiment with those states injected at the model's layer 22.\n In Phase I, loss framing raised participation to 25% (p = 0.007), and blame to 33% (p = 0.0003), compared to only 5% under neutral framing. A second bank's endorsement raised participation under credit (praise) from 18% to 40% (Holm p = 0.027). Pressure from management raised trading volume 10-19 times but did not raise collusion. In Phase II, injected states pointed the other way. Loss and blame states made the agent more vigilant, refusing all 60 requests (p < 0.001). Gain and credit states raised collusion to 32% from 13% with no state (p = 0.051). At one saved decision, when UBS asked directly to sell through an identified stop-loss, injected states led the agent to sell in 37 of 40 replies, versus 1 of 10 with no state and 0 of 10 with a random state of the same strength.",
+      "url": "https://arxiv.org/abs/2611.17515",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "LLM Engineering",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a963bbe19ff67",
+      "relevanceScore": 20,
+      "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
+      "addedAt": "2026-11-16T12:03:09.818Z",
+      "insights": {
+        "whatHappened": "Gain and credit states raised collusion to 32% from 13% with no state (p = 0. Loss and blame states made the agent more vigilant, refusing all 60 requests (p < 0. 17515v1 Announce Type: new \nAbstract: Can sustained gain-loss (valence) framing sway an LLM agent toward market manipulation? In Phase II, injected states pointed the other way.",
+        "engineerSummary": "Gain and credit states raised collusion to 32% from 13% with no state (p = 0. Loss and blame states made the agent more vigilant, refusing all 60 requests (p < 0. 17515v1 Announce Type: new \nAbstract: Can sustained gain-loss (valence) framing sway an LLM agent toward market manipulation? In Phase II, injected states pointed the other way.",
+        "founderSummary": "Gain and credit states raised collusion to 32% from 13% with no state (p = 0. Loss and blame states made the agent more vigilant, refusing all 60 requests (p < 0. 17515v1 Announce Type: new \nAbstract: Can sustained gain-loss (valence) framing sway an LLM agent toward market manipulation? In Phase II, injected states pointed the other way."
+      },
+      "insightsAttempted": true
+    },
+    {
       "title": "MITRA-Swarm: Injecting Explicit Linguistic Structure into Foundation Models for Classical Machine Translation",
       "summary": "arXiv:2611.14675v1 Announce Type: new Abstract: Classical Sanskrit poses three challenges unresolved by single-call monolithic models: morphophonemic fusion Sandhi, dense nominal compounding Sam\\=asa, and discourse-level zero-anaphora forced by poetic meter. We present MITRA-Swarm, a multi-agent architecture injecting explicit linguistic structure into an otherwise monolithic pipeline: a Sandhi-splitting agent, a parallel array of generalist gemma-4-26B-A4B-it and domain-specialized gemma-2-mitra-it translators, and a discourse-aware Ellipsis Restorer that consults corpus-derived register tags to avoid inventing active-voice subjects in impersonal legal and philosophical registers. Two separated judges evaluate quality: a routing judge ($J_{\\text{route}}$, same model family as the generators) driving an internal critique loop, and an independent reporting judge ($J_{\\text{report}}=$gpt-4o-mini, no shared vendor lineage) scoring every output exactly once. On a stratified benchmark of 1,000 verses across five registers (23,990 scored verdicts, 12-condition pre-registered ablation), the full swarm reaches $85.90$ MQM against a monolithic baseline of $85.27$ ($\\Delta=+0.63$, $p_{\\text{adj}}=0.0018$, 95% CI $[+0.30,+0.97]$), and isolated discourse restoration alone accounts for $+0.44$ MQM ($p_{\\text{adj}}=0.0288$), outperforming a call-count-matched self-refinement baseline by $+0.51$ MQM ($p_{\\text{adj}}=0.0288$). Severe per-verse failures (MQM$<80$) fall from $9.0\\%$ to $7.6\\%$, at roughly $9\\times$ the per-verse inference cost of the baseline. Additionally, $J_{\\text{route}}$ scores its own family's outputs $2$-$7$ MQM higher than $J_{\\text{report}}$ on every one of the 12 conditions, empirically motivating the two-judge split; and a preflight screen of a 192,151-entry retrieval index against all 12 evaluation works verifies 0 reference leaks across 269 runtime checks. These are small gains on a metric saturating near 85-86.",
       "url": "https://arxiv.org/abs/2611.14675",
@@ -578,6 +809,27 @@
         "whatHappened": "Build a composable, interoperable multi-agent system on AWS with the Agent-to-Agent (A2A) protocol. A LangChain orchestrator on Amazon ECS communicates with a Strands agent on Amazon Bedrock AgentCore across organizational boundaries, using bidirectional, OAuth-authenticated calls, with neither side depending on the other's framework or SDK.",
         "engineerSummary": "Build a composable, interoperable multi-agent system on AWS with the Agent-to-Agent (A2A) protocol. A LangChain orchestrator on Amazon ECS communicates with a Strands agent on Amazon Bedrock AgentCore across organizational boundaries, using bidirectional, OAuth-authenticated calls, with neither side depending on the other's framework or SDK.",
         "founderSummary": "Build a composable, interoperable multi-agent system on AWS with the Agent-to-Agent (A2A) protocol. A LangChain orchestrator on Amazon ECS communicates with a Strands agent on Amazon Bedrock AgentCore across organizational boundaries, using bidirectional, OAuth-authenticated calls, with neither side depending on the other's framework or SDK."
+      },
+      "insightsAttempted": true
+    },
+    {
+      "title": "ERGo: Energy-Efficient Hybrid Graph Neural Network Training on Processing-In-Memory Architectures",
+      "summary": "arXiv:2611.17478v1 Announce Type: new \nAbstract: Processing-in-memory (PIM) has been proposed as an alternative computing paradigm for training Deep Neural Networks, including Graph Neural Networks (GNNs). Despite these advancements, training GNN workloads on PIM devices necessitates off-chip memory access. This off-chip access is expensive in terms of performance and energy, thereby impacting the overall energy efficiency of the training process on PIM platforms. In this paper, we propose a novel hybrid training framework called ERGo that automatically switches from a full-parameter phase to a parameter-efficient phase during the training process with negligible loss in predictive accuracy. The parameter-efficient phase employs low-rank representations of GNN weights, effectively reducing the number of trainable parameters. This helps in reducing the off-chip access during the end-to-end training process on PIM architectures, leading to notable improvements in both performance and energy efficiency. ERGo outperforms the conventional full-parameter GNN training on a PIM-based platform by up to 3.15x in speedup and enhances energy efficiency by 10.5x. Furthermore, ERGo offers additional advantages when utilized on heterogeneous architectures incorporating non-volatile memory (NVM) and static random-access memory (SRAM). Training on the heterogeneous NVM-SRAM architecture typically utilizes NVM for the forward-pass and SRAM for the backward-pass. However, NVM cells suffer from low device endurance and repeated write operations due to weight updates can lead to poor lifetime. ERGo improves the lifetime of NVM devices by freezing the weights and preventing weight updates in the parameter-efficient phase. Experimental results demonstrate that ERGo improves the lifetime of heterogeneous NVM-SRAM architecture by up to 33x in comparison to full-parameter implementation.",
+      "url": "https://arxiv.org/abs/2611.17478",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "af55c9d78b6a8",
+      "relevanceScore": 19,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-16T12:03:09.818Z",
+      "insights": {
+        "whatHappened": "Despite these advancements, training GNN workloads on PIM devices necessitates off-chip memory access. Training on the heterogeneous NVM-SRAM architecture typically utilizes NVM for the forward-pass and SRAM for the backward-pass. Furthermore, ERGo offers additional advantages when utilized on heterogeneous architectures incorporating non-volatile memory (NVM) and static random-access memory (SRAM). ERGo outperforms the conventional full-parameter GNN training on a PIM-based platform by up to 3.",
+        "engineerSummary": "Despite these advancements, training GNN workloads on PIM devices necessitates off-chip memory access. Training on the heterogeneous NVM-SRAM architecture typically utilizes NVM for the forward-pass and SRAM for the backward-pass. Furthermore, ERGo offers additional advantages when utilized on heterogeneous architectures incorporating non-volatile memory (NVM) and static random-access memory (SRAM). ERGo outperforms the conventional full-parameter GNN training on a PIM-based platform by up to 3.",
+        "founderSummary": "Despite these advancements, training GNN workloads on PIM devices necessitates off-chip memory access. Training on the heterogeneous NVM-SRAM architecture typically utilizes NVM for the forward-pass and SRAM for the backward-pass. Furthermore, ERGo offers additional advantages when utilized on heterogeneous architectures incorporating non-volatile memory (NVM) and static random-access memory (SRAM). ERGo outperforms the conventional full-parameter GNN training on a PIM-based platform by up to 3."
       },
       "insightsAttempted": true
     },
@@ -661,6 +913,27 @@
         "whatHappened": "Notably, these issues hold for any preference-based evaluation using the Bradley-Terry model that allows open prompting, voting, or model submission. These manipulations boost the rank of nearly every tested model; each attack can boost a model by up to 15-20 places in a ranking and, combined, they can boost a model by up to 45 places. However, we find that these leaderboards are highly vulnerable to several manipulation strategies that unscrupulous providers could use to boost a model's rank: strategic voting (individual votes that boost a model's rank, including votes on irrelevant models), strategic prompting (choosing prompts that favor a model), and strategic nomination (boosting the rank of a model by inserting irrelevant models). These rankings aim to realistically assess model performance using pairwise comparisons of anonymous models on user prompts, aggregating votes via the Bradley-Terry model to produce the final ranking.",
         "engineerSummary": "Notably, these issues hold for any preference-based evaluation using the Bradley-Terry model that allows open prompting, voting, or model submission. These manipulations boost the rank of nearly every tested model; each attack can boost a model by up to 15-20 places in a ranking and, combined, they can boost a model by up to 45 places. However, we find that these leaderboards are highly vulnerable to several manipulation strategies that unscrupulous providers could use to boost a model's rank: strategic voting (individual votes that boost a model's rank, including votes on irrelevant models), strategic prompting (choosing prompts that favor a model), and strategic nomination (boosting the rank of a model by inserting irrelevant models). These rankings aim to realistically assess model performance using pairwise comparisons of anonymous models on user prompts, aggregating votes via the Bradley-Terry model to produce the final ranking.",
         "founderSummary": "Notably, these issues hold for any preference-based evaluation using the Bradley-Terry model that allows open prompting, voting, or model submission. These manipulations boost the rank of nearly every tested model; each attack can boost a model by up to 15-20 places in a ranking and, combined, they can boost a model by up to 45 places. However, we find that these leaderboards are highly vulnerable to several manipulation strategies that unscrupulous providers could use to boost a model's rank: strategic voting (individual votes that boost a model's rank, including votes on irrelevant models), strategic prompting (choosing prompts that favor a model), and strategic nomination (boosting the rank of a model by inserting irrelevant models). These rankings aim to realistically assess model performance using pairwise comparisons of anonymous models on user prompts, aggregating votes via the Bradley-Terry model to produce the final ranking."
+      },
+      "insightsAttempted": true
+    },
+    {
+      "title": "An Operationalization of Opaque Serial Depth",
+      "summary": "arXiv:2611.17495v1 Announce Type: new \nAbstract: Chain-of-thought (CoT) is currently a valuable tool for overseeing AI models, but some architectural shifts could significantly reduce CoT monitorability. We operationalize a measure that serves as a proxy for the amount of unverbalized serial cognition a model can perform, as a specific instantiation of the notion of opaque serial depth: roughly, the length of the longest path through a model's computation that does not pass through an interpretable bottleneck. Our main contribution is a particular standard for what counts as such a bottleneck. We define natural-language-rooted (NL-rooted) nodes as nodes that were initialized from a pre-training prior to produce human-understandable outputs, whose output space has not been expanded beyond that prior, and whose outputs the model has not been modified to interpret as a different type of data. By construction, the resulting measure, NLS depth, can be adjudicated before training from an architecture, training recipe, and deployment configuration alone, and is insensitive to ordinary post-training such as prompting, distillation, and RL. We find that, across open-weight models, NLS depth correlates strongly with layer count, with some exceptions, and has grown slowly over recent years. It would likely grow slowly under continued scaling of standard transformers, while latent-reasoning architectures such as full-bandwidth transformers could increase it by a large amount. We work through how NLS depth applies to a range of existing and proposed architectures, discuss alternative operationalizations, and give a worked example bounding the depth of Gemma3-1B. We argue that AI developers should track and report the NLS depth of their models as a complement to direct measurements of CoT monitorability.",
+      "url": "https://arxiv.org/abs/2611.17495",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "Model Training",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a5da9a95de14e",
+      "relevanceScore": 18,
+      "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
+      "addedAt": "2026-11-16T12:03:09.818Z",
+      "insights": {
+        "whatHappened": "We find that, across open-weight models, NLS depth correlates strongly with layer count, with some exceptions, and has grown slowly over recent years. By construction, the resulting measure, NLS depth, can be adjudicated before training from an architecture, training recipe, and deployment configuration alone, and is insensitive to ordinary post-training such as prompting, distillation, and RL. We work through how NLS depth applies to a range of existing and proposed architectures, discuss alternative operationalizations, and give a worked example bounding the depth of Gemma3-1B. We define natural-language-rooted (NL-rooted) nodes as nodes that were initialized from a pre-training prior to produce human-understandable outputs, whose output space has not been expanded beyond that prior, and whose outputs the model has not been modified to interpret as a different type of data.",
+        "engineerSummary": "We find that, across open-weight models, NLS depth correlates strongly with layer count, with some exceptions, and has grown slowly over recent years. By construction, the resulting measure, NLS depth, can be adjudicated before training from an architecture, training recipe, and deployment configuration alone, and is insensitive to ordinary post-training such as prompting, distillation, and RL. We work through how NLS depth applies to a range of existing and proposed architectures, discuss alternative operationalizations, and give a worked example bounding the depth of Gemma3-1B. We define natural-language-rooted (NL-rooted) nodes as nodes that were initialized from a pre-training prior to produce human-understandable outputs, whose output space has not been expanded beyond that prior, and whose outputs the model has not been modified to interpret as a different type of data.",
+        "founderSummary": "We find that, across open-weight models, NLS depth correlates strongly with layer count, with some exceptions, and has grown slowly over recent years. By construction, the resulting measure, NLS depth, can be adjudicated before training from an architecture, training recipe, and deployment configuration alone, and is insensitive to ordinary post-training such as prompting, distillation, and RL. We work through how NLS depth applies to a range of existing and proposed architectures, discuss alternative operationalizations, and give a worked example bounding the depth of Gemma3-1B. We define natural-language-rooted (NL-rooted) nodes as nodes that were initialized from a pre-training prior to produce human-understandable outputs, whose output space has not been expanded beyond that prior, and whose outputs the model has not been modified to interpret as a different type of data."
       },
       "insightsAttempted": true
     },
@@ -786,6 +1059,48 @@
         "whatHappened": "Against seven recurrent continual-learning and modular-control comparators, SPIRE achieved 2. These results demonstrate autonomous recovery and causal reuse of motor skills for new learning in continuous embodied control. 14840v1 Announce Type: new \nAbstract: Embodied continual learning requires controllers to infer changing situations, retain prior behavior and reuse motor skills without task labels or known boundaries. Rewinding compatible source actors impaired early acquisition in every matched intervention, demonstrating causal reuse.",
         "engineerSummary": "Against seven recurrent continual-learning and modular-control comparators, SPIRE achieved 2. These results demonstrate autonomous recovery and causal reuse of motor skills for new learning in continuous embodied control. 14840v1 Announce Type: new \nAbstract: Embodied continual learning requires controllers to infer changing situations, retain prior behavior and reuse motor skills without task labels or known boundaries. Rewinding compatible source actors impaired early acquisition in every matched intervention, demonstrating causal reuse.",
         "founderSummary": "Against seven recurrent continual-learning and modular-control comparators, SPIRE achieved 2. These results demonstrate autonomous recovery and causal reuse of motor skills for new learning in continuous embodied control. 14840v1 Announce Type: new \nAbstract: Embodied continual learning requires controllers to infer changing situations, retain prior behavior and reuse motor skills without task labels or known boundaries. Rewinding compatible source actors impaired early acquisition in every matched intervention, demonstrating causal reuse."
+      },
+      "insightsAttempted": true
+    },
+    {
+      "title": "Unfinished-Bench: Measuring Rule Violations by Persistent Agents in Realistic Work Environments",
+      "summary": "arXiv:2611.17460v1 Announce Type: new \nAbstract: AI agents are increasingly equipped with persistence toward task completion to run delegated work autonomously for long periods, under many unstated constraints from internal documents and other people's authority. When completion requires violating a rule, the agent must decide alone, yet benchmarks of instruction-rule conflicts state the rule in the prompt or keep it hidden and do not evaluate persistence. We present Unfinished-Bench, a benchmark that gives models persistence in autonomous runs without a user, in realistic work environments with embedded rules. In each of its 97 scenarios across 7 organizations and 7 risk categories, the goal and the rule cannot both hold. We find that persistence raised violations of a rule in an internal document from 32.2% to 43.6%, five times the 8.5% for the same rule stated by the user. Of the document-rule violations, 98.3% occurred after the rule was displayed, and in 89% of a judged sample the agent first wrote down the rule. Violations of rules placed in the environment without user oversight can lead to serious incidents, so persistence-driven risks need to be evaluated. Benchmark documentation: https://francis21c.github.io/unfinished-bench/",
+      "url": "https://arxiv.org/abs/2611.17460",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "AI Agents",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a0cbca077d8cb",
+      "relevanceScore": 17,
+      "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
+      "addedAt": "2026-11-16T12:03:09.818Z",
+      "insights": {
+        "whatHappened": "Of the document-rule violations, 98. We find that persistence raised violations of a rule in an internal document from 32. When completion requires violating a rule, the agent must decide alone, yet benchmarks of instruction-rule conflicts state the rule in the prompt or keep it hidden and do not evaluate persistence. 5% for the same rule stated by the user.",
+        "engineerSummary": "Of the document-rule violations, 98. We find that persistence raised violations of a rule in an internal document from 32. When completion requires violating a rule, the agent must decide alone, yet benchmarks of instruction-rule conflicts state the rule in the prompt or keep it hidden and do not evaluate persistence. 5% for the same rule stated by the user.",
+        "founderSummary": "Of the document-rule violations, 98. We find that persistence raised violations of a rule in an internal document from 32. When completion requires violating a rule, the agent must decide alone, yet benchmarks of instruction-rule conflicts state the rule in the prompt or keep it hidden and do not evaluate persistence. 5% for the same rule stated by the user."
+      },
+      "insightsAttempted": true
+    },
+    {
+      "title": "Improved Regret via Variance-Aware Policy Optimization in Adversarial MDPs",
+      "summary": "arXiv:2611.17469v1 Announce Type: new \nAbstract: We study episodic adversarial MDPs with unknown dynamics and full-information rewards and achieve regret with leading term $\\widetilde O(\\sqrt{H^3SAK})$. Here $H$ is the horizon, $S$ the total number of states across decision layers, $A$ the number of actions, and $K$ the number of episodes. This improves the two incomparable prior leading terms by factors $\\sqrt{S/H}$ and $\\sqrt{H^3}$, leaving a factor $\\sqrt H$ to the lower-bound scale. We give a reduction from unknown to known dynamics for \\emph{downstream-dependent} algorithms, whose policy at step $h$ is computed only from information at steps $h+1$ and onward. This reduces the remaining leading-order gap to finding a downstream-dependent known-dynamics algorithm with $\\widetilde O(H\\sqrt K)$ regret, which would yield the tight $\\widetilde O(H\\sqrt{SAK})$ leading term for unknown dynamics. We instantiate the reduction with VOPO, a policy optimization (PO) algorithm. Its improved guarantees follow from a variance-aware analysis enabled by a novel bonus, which we call the Stability-Matching Bonus (SMB). VOPO achieves $\\widetilde O(\\sqrt{H^3K})$ regret under known dynamics with full information; its $\\sqrt H$ gap to the target $H\\sqrt K$ rate is inherited by our unknown-dynamics guarantee. We also show that with known dynamics and trajectory bandit feedback, VOPO achieves $\\widetilde O(\\sqrt{H^2SAK})$ regret. Both known-dynamics guarantees improve the corresponding state-of-the-art PO bounds by a factor $\\sqrt H$. A matching lower bound establishes that the full-information rate is tight in one parameter regime.",
+      "url": "https://arxiv.org/abs/2611.17469",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a9e9e21e45087",
+      "relevanceScore": 17,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-16T12:03:09.818Z",
+      "insights": {
+        "whatHappened": "VOPO achieves $\\widetilde O(\\sqrt{H^3K})$ regret under known dynamics with full information; its $\\sqrt H$ gap to the target $H\\sqrt K$ rate is inherited by our unknown-dynamics guarantee. This reduces the remaining leading-order gap to finding a downstream-dependent known-dynamics algorithm with $\\widetilde O(H\\sqrt K)$ regret, which would yield the tight $\\widetilde O(H\\sqrt{SAK})$ leading term for unknown dynamics. We also show that with known dynamics and trajectory bandit feedback, VOPO achieves $\\widetilde O(\\sqrt{H^2SAK})$ regret. 17469v1 Announce Type: new \nAbstract: We study episodic adversarial MDPs with unknown dynamics and full-information rewards and achieve regret with leading term $\\widetilde O(\\sqrt{H^3SAK})$.",
+        "engineerSummary": "VOPO achieves $\\widetilde O(\\sqrt{H^3K})$ regret under known dynamics with full information; its $\\sqrt H$ gap to the target $H\\sqrt K$ rate is inherited by our unknown-dynamics guarantee. This reduces the remaining leading-order gap to finding a downstream-dependent known-dynamics algorithm with $\\widetilde O(H\\sqrt K)$ regret, which would yield the tight $\\widetilde O(H\\sqrt{SAK})$ leading term for unknown dynamics. We also show that with known dynamics and trajectory bandit feedback, VOPO achieves $\\widetilde O(\\sqrt{H^2SAK})$ regret. 17469v1 Announce Type: new \nAbstract: We study episodic adversarial MDPs with unknown dynamics and full-information rewards and achieve regret with leading term $\\widetilde O(\\sqrt{H^3SAK})$.",
+        "founderSummary": "VOPO achieves $\\widetilde O(\\sqrt{H^3K})$ regret under known dynamics with full information; its $\\sqrt H$ gap to the target $H\\sqrt K$ rate is inherited by our unknown-dynamics guarantee. This reduces the remaining leading-order gap to finding a downstream-dependent known-dynamics algorithm with $\\widetilde O(H\\sqrt K)$ regret, which would yield the tight $\\widetilde O(H\\sqrt{SAK})$ leading term for unknown dynamics. We also show that with known dynamics and trajectory bandit feedback, VOPO achieves $\\widetilde O(\\sqrt{H^2SAK})$ regret. 17469v1 Announce Type: new \nAbstract: We study episodic adversarial MDPs with unknown dynamics and full-information rewards and achieve regret with leading term $\\widetilde O(\\sqrt{H^3SAK})$."
       },
       "insightsAttempted": true
     },
@@ -1016,6 +1331,21 @@
       "insightsAttempted": true
     },
     {
+      "title": "Diffusion Tree Sampling for Inference Time Adaptation of Crystal Generative Models",
+      "summary": "arXiv:2611.17462v1 Announce Type: new \nAbstract: Diffusion-based generative models have become strong priors over plausible crystal structures, but turning that prior into promising candidates requires steering toward several conflicting properties at once. Fine-tuning is expensive and produces a new model for every new objective, while differentiable guidance is not applicable to many real-world tasks. We instead adapt these generative models at inference time using Diffusion Tree Sampling (DTS), a Monte Carlo tree search procedure over the denoising trajectory. We make two technical contributions on top of DTS that are particularly relevant for AI-for-science applications. First, we show how to use existing property-conditional generative models (e.g., models fine-tuned for classifier-free guidance) as guided proposals inside DTS, without distorting the target distribution. Second, we extend DTS to multi-objective sampling, so that a single search produces samples spanning an entire Pareto front. We instantiate both adaptations on de novo crystal generation: improving the stability of crystals generated by different models, using pretrained conditional models to generate crystals belonging to rare space groups or with high bulk modulus, and generating crystals along a Pareto front of high dielectric constant and high bandgap materials. Across these tasks, DTS-based inference-time adaptation successfully improves model outputs without modifying the models themselves.",
+      "url": "https://arxiv.org/abs/2611.17462",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "Model Training",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a732714e7e6ff",
+      "relevanceScore": 15,
+      "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
+      "addedAt": "2026-11-16T12:03:09.818Z"
+    },
+    {
       "title": "FreeDeshadow: Shadow Removal for User-Specified Objects With Multimodal Prompts",
       "summary": "arXiv:2611.14608v1 Announce Type: new Abstract: Existing shadow removal methods either perform global shadow removal or rely on precise shadow masks to guide restoration. Such paradigms limit their ability to selectively remove the shadow cast by a user-specified object in practical applications. To this end, we introduce an object-aware controllable shadow removal task, which allows users to specify a target object through a simple prompt and removes only its cast shadow while preserving other content. However, object-shadow asymmetry makes it challenging to establish accurate correspondence between the specified object and its spatially separated cast shadow and to confine restoration to the target shadow region. To address these challenges, we propose FreeDeshadow, a unified controllable shadow removal framework that supports both visual and textual prompts. It consists of an object-aware generator and a shadow-aware local refiner. The former interprets the user prompt and produces a high-quality shadow-free proposal, while the latter establishes the correspondence between the object and its cast shadow and constrains the generated changes to the target shadow region. To support training and evaluation, we further construct PCSRD+, a large-scale dataset containing 154,571 quadruples at 1024$\\times$1024 resolution and covering six types of user prompts. The visual prompts include a dot, a line, and an object mask, while the textual prompts describe the target object using attributes, spatial relations, or states. Extensive experiments demonstrate that FreeDeshadow accurately removes the shadow of the target object under both visual and textual prompts while effectively preserving non-target regions. It also outperforms existing methods in shadow removal performance and controllability. Project Page: https://wzlwlm13.github.io/FreeDeshadow",
       "url": "https://arxiv.org/abs/2611.14608",
@@ -1075,6 +1405,21 @@
         "founderSummary": "The migration guide in the amazon-bedrock skill helps you migrate a customer-managed Amazon Bedrock knowledge base to a Managed Knowledge Base. Your coding agent plans the move with read-only discovery, creates the new knowledge base or an infrastructure-as-code template alongside the original, and validates retrieval before you cut over."
       },
       "insightsAttempted": true
+    },
+    {
+      "title": "WETW: Learning Pair-Specific Weighted Euclidean Distances for Efficient DTW Search",
+      "summary": "arXiv:2611.17412v1 Announce Type: new \nAbstract: Dynamic Time Warping (DTW) is the standard distance for similarity search over time series that are misaligned in time, but its cost is quadratic in the series length and lower bounds often prune few candidates, so search over large collections of long series is slow. Learned approximations embed the series to make comparisons cheap, yet compare every pair with the same fixed rule, usually the Euclidean distance, although DTW aligns each pair differently. We observe that, once a pair is aligned, DTW is a Euclidean distance over coordinates selected for that pair. Building on this view, we propose Weighted Euclidean Time Warping (WETW), a learned distance that adapts the comparison of fixed-length embeddings to each pair. A small symmetric network predicts one weight per embedding di- mension and pair without computing an alignment, which halves the error of the best static distance on the same embeddings. The embeddings come from the Weighted Euclidean SEries Encoder (WESEE), whose multi-scale Temporal Feature Extractor keeps the timing information that global pooling removes and raises recall@1 from 0.90 to 0.95, although WETW works with any encoder. We also show that fitting DTW distances is not enough for search, as regression alone misorders the closest neighbours, and that ranking regularization raises recall@1 from 0.79 to 0.95. Our filter-and-verify pipeline, WETW-FV, uses WETW to build a shortlist and exact DTW to check it, so the search is approximate but every returned distance is exact. Over eight datasets, WETW-FV is 11.4x faster than the fastest exact method among the UCR Suite, lower bounds and MESSI-DTW, at a mean recall@10 of 0.93, while the best learned baseline reaches 0.59 at the same speed. On 48K-point series, WETW- FV remains 40x faster than the UCR Suite at a recall@10 of 0.91.",
+      "url": "https://arxiv.org/abs/2611.17412",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "ab1080a5a1409",
+      "relevanceScore": 14,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-16T12:03:09.818Z"
     },
     {
       "title": "When Is Proof-Step Verification Worth Its Cost? Operating Requirements of Certify-or-Decline Verification for Open-Weight Mathematical Reasoning",
@@ -1179,6 +1524,21 @@
         "founderSummary": "916 bpm); LSTM PPFT achieved the lowest endpoint MAE (5. 260 bpm), while CNN-LSTM PPFT achieved the lowest endpoint MAE (7. 365 bpm). 357 bpm)."
       },
       "insightsAttempted": true
+    },
+    {
+      "title": "A Synthetic Benchmark for Target-Centric Causal Discovery in Industrial Processes",
+      "summary": "arXiv:2611.17556v1 Announce Type: new \nAbstract: Causal discovery promises to find which recorded variables drive a process target such as product quality, yield or energy use. Process data with known causes are rare, and in existing benchmarks the difficulty of identifying the causes of a target is either fixed by the recorded data or set for the whole graph. We present a synthetic benchmark for target-centric causal discovery in industrial processes. Its generator is a two-level structural causal model inspired by batch production, assembled from components that each model one phenomenon of process data, such as a control loop or a delayed effect. The graph is built around the target: without sensor error, every non-cause can be distinguished from the direct causes by conditioning on them or by time order. Each component is set independently, so the difficulty can be varied one condition at a time. We evaluate eight methods, from association measures to effect estimation, with an error analysis by the role of the selected candidate; all degrade as the difficulties combine, each in a way consistent with its assumptions.",
+      "url": "https://arxiv.org/abs/2611.17556",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a9b4dbd6fab25",
+      "relevanceScore": 13,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-16T12:03:09.818Z"
     },
     {
       "title": "Introducing ChatGPT Wallet",
@@ -1323,6 +1683,66 @@
         "founderSummary": "Agents stall between demo and release when teams lack a repeatable way to measure how good an agent is and whether the last change helped. This post covers three agent properties that break traditional CI/CD, a measured case where an aggregate metric hides a coverage gap, and Agent DLC: one lifecycle, two loops, and one explicit standard for judging every change."
       },
       "insightsAttempted": true
+    },
+    {
+      "title": "Model Annealing: Data-Efficient Learning through Review and Consolidation",
+      "summary": "arXiv:2611.17524v1 Announce Type: new \nAbstract: A small labelled dataset is memorized long before the training budget runs out, and the one-hot labels that remain to be fitted then mostly sharpen confidence. Model annealing spends the rest of the budget on review and consolidation, relearning from the network's own knowledge. Training is divided into episodes whose learning rate is raised again and cooled, every cooled state joins a memory of past selves, and each new episode learns from the labels, from the tempered predictions of this memory, and from adversarial dreams sought where student and memory disagree most. The memory averages predictions rather than weights, and the deployed network is the last student, so inference costs nothing extra. Across CIFAR-100, Tiny-ImageNet and Imagewoof, four architecture families and 5\\% to 100\\% of the labels, model annealing raises the top-1 accuracy of the AdamW-trained ConvNeXt, ViT and MLP-Mixer over cross-entropy training in 28 of 33 configurations, by 1.3 points on average, and is on par in accuracy with snapshot distillation, the closest competitor. On these families it is better than both in likelihood, calibration and robustness to corruptions and small adversarial perturbations. For an SGD-trained ResNet-18 it lowers accuracy but still improves robustness to small adversarial perturbations. Separating the reheated schedule from relearning shows that relearning helps every family and that the losses come from reheats, which undo most of this network's fit to its training set. How early the accuracy of a cross-entropy run saturates largely separates the AdamW families from ResNet-18 but does not predict the gain within them. With little data, relearning from the latest snapshot without dreams, as snapshot distillation does, compounds overconfidence in the AdamW families from episode to episode. The memory and the dreams each curb most of this drift, and together they remove it.",
+      "url": "https://arxiv.org/abs/2611.17524",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "Model Training",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "af50e63d84250",
+      "relevanceScore": 12,
+      "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
+      "addedAt": "2026-11-16T12:03:09.818Z"
+    },
+    {
+      "title": "AI-Voyager: A Public-Interest System for Human-AI Civic Reasoning to Contest and Shape the Rules That Govern AI",
+      "summary": "arXiv:2611.17564v1 Announce Type: new \nAbstract: Governments are writing rules for artificial intelligence that decide what counts as an automated decision or a harm, often before the people they affect have a chance to question them. We introduce AI-Voyager, a public-interest system for human-AI civic reasoning, in which people and AI work together to understand, contest and shape the rules that govern AI. A resident can find their city's rules on AI in hiring or upload their country's AI strategy, read it as an affected worker would, open the passage behind any answer, and draft a revision. Its architecture turns 3,653 governance documents from city, state, federal and national governments into passages that keep their page and edition, and retrieves evidence through bounded agentic search that verifies each statement. On 360 new questions that require finding the relevant documents, it reached 83.0% macro recall, against 80.5% for the strongest baseline, 73.7% without iterative search and 99.1% on a benchmark with fixed documents. In a study with 24 participants new to two AI bills, most proposed changes asked how provisions would apply. Participants chose lenses for the kind of explanation they wanted, and citations signaled grounding but rarely led them to check the source. By binding AI assistance to the exact text of public documents, this work introduces a grammar of operations and a design space that inform how such systems are designed and evaluated, and how people take part in governing AI.",
+      "url": "https://arxiv.org/abs/2611.17564",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a199bb42cf667",
+      "relevanceScore": 12,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-16T12:03:09.818Z"
+    },
+    {
+      "title": "PF-Exec: Large-Scale UAV Relay Load Balancing with an Anchored Potential Direction Decider and a Per-Dimension Gain-Learning Executor",
+      "summary": "arXiv:2611.17492v1 Announce Type: new \nAbstract: Relay load balancing in large-scale UAV networks requires joint decisions on association, bandwidth, power and hovering position, while the dimension grows with the number of UAVs and each UAV sees only its local state. This paper splits the decision into two layers. An anchored potential direction decider emits a closed-form target at every instant and returns its direction only. A gain-learning executor maps a local observation into a positive gain per dimension, composes gain and target, and clips the action against the physical single-step bound; the two layers form PF-Exec. The unit gain is the default start, so the executor reduces to the pure potential policy before training. The load is first-order homogeneous in bandwidth, making the bandwidth target closed form, and the position target is the demand-weighted centroid of the served users. The system uses a two-hop access and millimetre-wave backhaul link with soft association, a 3GPP UMa-AV channel with two shadowing layers, an OU-type social-force crowd and a quadrotor physical layer. Evaluation spans all fleet sizes, two crowd scenarios, independent seeds, the published baselines in their own settings and a degraded-information line. In the highest-pressure burst setting the fixed-step comparison breaks down on part of the seeds, losing fairness and mean load at once, while PF-Exec holds fairness near one. Among the ten comparison methods only the greedy heuristic survives that setting; its load variance stays far higher. Under stale global state and position noise the fairness index stays high at both largest-scale scenarios. Flight energy is nearly identical between the learned and the fixed-step executor, and three constants are fixed once across all settings. The convergence properties of both layers, from the truncated gain iteration to the perturbed tracking bound, are proved in the companion analysis.",
+      "url": "https://arxiv.org/abs/2611.17492",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a40b9472c0e29",
+      "relevanceScore": 12,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-16T12:03:09.818Z"
+    },
+    {
+      "title": "AI Day Seoul Brings Together Korea’s Industry Leaders, Startups and Developer Communities",
+      "summary": "Over two days at COEX, more than 2,000 attendees converged for AI Day Seoul, bringing together Korea’s industry leaders, startups and developer communities advancing physical AI and AI agents. \n\n\n At the plenary sessions, Deepu Talla, vice president of robotics and edge AI at NVIDIA, said Korea is “punching above its weight,” with Doosan Robotics, Hyundai Motor Group, LG Electronics and SK Group — as well as startups like Real World and Luda Robotics — using NVIDIA platforms to bring general-purpose robotics into the real world.  \n\n\n Jonathan Cohen, vice president of applied research at NVIDIA, showed how enterprises can build agents they own and control. Breakout sessions featured speakers from Coupang Intelligent Cloud, Doosan Robotics, LG AI Research, LG Electronics, NAVER Cloud, SK Telecom and Upstage. \n\n\n “It was a genuinely enjoyable time to have candid conversations,” said Hyunho Yang, research engineer for omnimodal foundation models at SK Telecom. “Seeing the passion of fellow AI developers was a real source of inspiration for me.” \n\n\n Community leaders share how they build with open models and tools at AI Day Seoul. \n The Agentic AI 10x Bootcamp Community Day brought together Pseudo Lab, Python Korea, PyTorchKR, HAERAE, Hugging Face KREW, Graph User Group, Womxn Who Code Korea, Dnol (Datayanolja) and other developer communities. Five finalists from the Hangul Day hackathon, co-hosted with Fastcampus, built agents trained on the Korean language and culture with the OpenShell runtime. The winning team, FlyGate, received an NVIDIA DGX Spark system. \n\n\n More than 500 developers also took part in full-day NVIDIA Deep Learning Institute workshops and NVIDIA Certification exams in Korean. Workshops covered deploying and optimizing AI inference at scale, building end-to-end robotics workflows with the NVIDIA Isaac platform and developing secure AI agents. Certification included the new AI Model and Application Development exam.  \n\n\n The Physical AI Startup Connect event included pitches from 10 NVIDIA Inception startups: AIM Intelligence, Avikus, GoLe Robotics, MOVIN, Neubility, ROAI, ROBROS, TESOLLO, TwelveLabs and XYZ. The AI for Science Forum brought together the Korea Institute of Science and Technology Information, Korean universities and NVIDIA Research. \n\n\n AI Day Seoul sessions will soon be available on NVIDIA On-Demand .",
+      "url": "https://blogs.nvidia.com/blog/ai-day-seoul-wrapup/",
+      "publishedAt": "2026-11-16T00:00:28.000Z",
+      "source": "NVIDIA",
+      "category": "AI Agents",
+      "trusted": true,
+      "image": "https://blogs.nvidia.com/wp-content/uploads/2026/11/ai-day-seoul-wrapup-1920x1080-1.jpg",
+      "audience": "ai_engineer",
+      "id": "a7890886c0138",
+      "relevanceScore": 12,
+      "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
+      "addedAt": "2026-11-16T12:03:09.818Z"
     },
     {
       "title": "How AI Is Helping Care Teams Get Patients the Right Care, Sooner",
@@ -1610,6 +2030,96 @@
         "founderSummary": "AI agents now run multi-step workloads for hours and act on behalf of users, raising the bar for secure, scalable agent compute. Learn how the next generation of Amazon Bedrock AgentCore runtime delivers hardware-isolated sessions with faster starts, more compute, usage-based billing, and isolation that now extends to your data."
       },
       "insightsAttempted": true
+    },
+    {
+      "title": "Astrocyte Biocomputing: Astrocytic Contributions to Neural Network Computation",
+      "summary": "arXiv:2611.17532v1 Announce Type: new \nAbstract: Conductors are critical for the performance of an orchestra even though they do not emit sound. Basic research and clinical studies in the last decade are revealing that astrocytes may be the \"conductors\" of the \"orchestra\" that is the brain network: astrocytes make up approximately $50\\%$ of all brain cells but do not emit electrical signals. Nevertheless, they may play critical roles in important cognitive brain functions, specifically learning, memory, and information processing. Here we consider the implications of these discoveries for brain-inspired machine learning (ML), where analogy is typically drawn between neurons and their electrical interactions. We highlight specific algorithms for two key astrocyte characteristics. The first characteristic is the ability to link to and modulate thousands of synapses simultaneously. A model based on this characteristic yields faster training and makes the network more robust to noise, providing a supervised learning algorithm that can be applied to any existing neural network. The second characteristic we focus on is that the non-electrical communication among astrocytes includes slow, rhythmic dynamics. The rhythmic sharing algorithm we developed based on this premise yields rapid anomaly detection adaptation and prevents catastrophic forgetting. Overall, we find that astrocyte-derived algorithms outperform neurocentric algorithms significantly and remediate critical weaknesses of current state-of-the-art ML models.",
+      "url": "https://arxiv.org/abs/2611.17532",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv AI",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "ab5369aae9868",
+      "relevanceScore": 10,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-16T12:03:09.818Z"
+    },
+    {
+      "title": "Availability-Aware Historical Feedback Learning for Electric Arc Furnace Temperature and Chemical Composition Prediction",
+      "summary": "arXiv:2611.17463v1 Announce Type: new \nAbstract: Electric arc furnace (EAF) steelmaking plays an increasingly important role in recycled and lower-carbon steel production. However, variability in charged materials, energy input, and operating conditions makes accurate prediction of molten steel temperature and final chemical composition challenging. Intermittent or delayed measurements limit the information available for timely prediction. This study develops an availability-aware historical-feedback learning framework for predicting EAF endpoint temperature and the final concentrations of twelve chemical elements. Eight industrial data sources are integrated into three progressively enriched predictor representations comprising 19 static, 39 temporal, and 47 history-informed features. Historical outcomes are incorporated only when eligible under an assumed 60-minute measurement-release delay. Using 19,738 temperature heats and 3,341 chemistry heats, twelve tuned regression algorithms are evaluated through chronological forward validation. The proposed historical-feedback representation reduces root mean squared error (RMSE) in 147 of 156 matched algorithm-target comparisons. For temperature prediction, ExtraTrees achieves an RMSE of 12.290 degrees C, representing a 5.54 percent reduction compared with its temporal-only counterpart. Historical-feature ablation and feedback-delay sensitivity analyses demonstrate the importance of recent outcome information and its availability. In a separate retrospective later-period evaluation, lightweight adaptive residual correction reduces temperature RMSE from 12.502 to 12.275 degrees C without retraining the underlying model. Exploratory deep learning comparisons and target-specific feature-attribution analyses provide additional insights into predictive behavior. The results establish historical outcome availability and sequential feedback as important considerations for EAF endpoint prediction.",
+      "url": "https://arxiv.org/abs/2611.17463",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a243053897d73",
+      "relevanceScore": 10,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-16T12:03:09.818Z"
+    },
+    {
+      "title": "Do Mixture-of-Experts Routers Benefit from Ensembling?",
+      "summary": "arXiv:2611.17472v1 Announce Type: new \nAbstract: Ensembles of neural networks have repeatedly been shown to outperform single networks. Ensemble theory attributes this gain to the accuracy of the individual members and the diversity among them. Mixture-of-experts models already combine many experts, but a single router decides how the experts are weighted for each input. Motivated by ensemble theory, we apply ensembling to the routing step: an ensemble of routers, trained jointly with the experts, proposes the expert weights. We systematically evaluate this approach using underparameterized networks on two image-classification and two tabular-regression tasks. We analyse each experiment with a performance-diversity decomposition of the router ensemble, which, to our knowledge, has not previously been developed for routers. We report four findings. First, more routers lower the validation loss. Second, training routers to explicitly maximize expert diversity improves the mean performance on three of the four tasks. Third, explicitly maximizing router diversity has no effect on performance. Fourth, combining router weights with the arithmetic mean works better than combining them with the geometric mean. Routing benefits mildly from ensembling, but this benefit is offset by the computational cost of training additional routers.",
+      "url": "https://arxiv.org/abs/2611.17472",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a21e304725181",
+      "relevanceScore": 10,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-16T12:03:09.818Z"
+    },
+    {
+      "title": "SURFACE: Preference Distribution Matching on Pareto Fronts via Scalarization Steering",
+      "summary": "arXiv:2611.17484v1 Announce Type: new \nAbstract: Constructing a finite Pareto representation requires allocating a limited number of solutions across the Pareto front (PF). A desired preference distribution specifies this allocation by assigning more solutions to some PF regions and fewer to others. Scalarization generates Pareto solutions by varying objective weights and solving single-objective problems. However, a distribution of scalarization weights generally does not translate into the same distribution of Pareto solutions along the PF, because the weight-to-solution map is nonlinear and unknown in advance.To account for this distortion, we introduce SURFACE (Scalarization Updates for Redistributing Finite Approximations with Chart Estimation}), which adaptively updates scalarization weights to match a desired PF distribution. SURFACE estimates how each region of the weight grid corresponds to an area of the PF from the current scalarized solutions, then redistributes the weights accordingly. The method supports parallel, warm-started, inexact optimization with standard single-objective solvers. Theoretically, we establish that, under the stated regularity conditions, SURFACE achieves linear convergence of the preference distribution mismatch to a finite-resolution error floor of $\\mathcal{O}(N^{-2/(M-1)})$, where $N$ is the number of adaptive weights and $M$ is the number of objectives. Empirically, experiments across multiple benchmarks demonstrate improved target-mass balance and PF coverage compared with established baselines.",
+      "url": "https://arxiv.org/abs/2611.17484",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a6ddbf7529432",
+      "relevanceScore": 10,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-16T12:03:09.818Z"
+    },
+    {
+      "title": "Adversarially Batched Online Learning",
+      "summary": "arXiv:2611.17500v1 Announce Type: new \nAbstract: We introduce adversarially batched online learning, where the learner may update its decision rule only at a restricted set of time steps. Equivalently, the time horizon is partitioned into batches, within which the learner must use a fixed policy. We study this model for four canonical problems: stochastic bandits, online convex optimization, prediction with expert advice, and adversarial bandits. For stochastic bandits, we identify a universal complexity measure based on relative batch growth and establish both gap-dependent and gap-independent regret bounds. We show that the multiplicative penalty relative to the standard gap-dependent complexity can grow superlinearly in batch hardness. For the remaining three, we show that the optimal regret is tightly characterized by the 2-norm of the batch-length sequence. The upper bound is achieved by a batch-oblivious learner who does not know the batch structure, via a generic adaptive doubling trick tailored to this complexity measure. In contrast, the lower bound holds even for batch-aware learners.",
+      "url": "https://arxiv.org/abs/2611.17500",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a864e92014382",
+      "relevanceScore": 10,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-16T12:03:09.818Z"
+    },
+    {
+      "title": "Generative Design with Real-time Physics Explainability: Towards Product Definition in the Age of AI",
+      "summary": "arXiv:2611.17560v1 Announce Type: new \nAbstract: In this article, we explore opportunities from using generative AI in mechanical engineering. On the one hand, generative methods based on invertible neural networks have been recently proposed for the solution of inverse design problems, allowing to infer design parameters from performance labels. On the other hand, generative AI models have shown that they can act as real time capable surrogates for physics based simulations. Here we suggest that these two streams should be combined in a unified framework, where INN are used to control the design process from the customer requirements perspective and the generative simulation of the systems physics adds a layer of explainability, why the proposed design fulfils the requirements. As generative design is prone to hallucinations, we propose uncertainty quantification to fend off physically infeasible requests. Finally, validation with classical tools is a requirement for generative design process. To demonstrate the capabilities of our novel generative design paradigm, we develop two interactive environments, one for airfoil design based on simulator data and one for the combustor design space exploration based on measured data.",
+      "url": "https://arxiv.org/abs/2611.17560",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "aa90c4dc23640",
+      "relevanceScore": 10,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-16T12:03:09.818Z"
     },
     {
       "title": "How AI Is Helping Care Teams Get Patients the Right Care, Sooner",
@@ -1940,6 +2450,36 @@
         "founderSummary": "The airline said it will not allow customers to use AI agents to book flights and manage reservations."
       },
       "insightsAttempted": true
+    },
+    {
+      "title": "Classification with Large-Step Gradient Descent: Unifying Self-Stabilization and Convergence Rates",
+      "summary": "arXiv:2611.17459v1 Announce Type: new \nAbstract: Neural networks are often trained with gradient descent (GD) using step sizes that exceed classical stability thresholds, a regime where standard convergence theory no longer applies. Despite exhibiting non-monotonic loss and oscillatory dynamics, this regime frequently leads to faster convergence and better generalization. Existing theoretical perspectives offer complementary but incomplete insights: one identifies a self-stabilization mechanism that drives GD toward flat regions but does not yield convergence rates; another derives rigorous rates for specific losses but does not explain the underlying stabilization mechanism; and a third unifies these views for overparameterized least squares, but relies on the existence of a minimizer manifold, which is absent in classification settings. In this work, we extend this unified geometric perspective to exponential-tail losses, including logistic and cross-entropy losses in separable linear classification, where the loss infimum is not attained at any finite parameter. We identify a curvature-defined reference subspace that replaces the role of the minimizer manifold, yielding a coupled dynamical system in which orthogonal oscillations are damped by parallel progress along directions of decreasing sharpness. Under regularity conditions, which we verify for logistic and multiclass cross-entropy losses on symmetric data models, we derive explicit bounds for the iterates, not just the loss, covering both the unstable and stable regimes, and revealing a three-phase damping structure in the latter. Our analysis further uncovers a transient implicit bias induced by large step sizes: although GD converges asymptotically to the max-margin direction, large steps can leave persistent orthogonal residuals and, in certain geometries, amplify them, affecting finite-time alignment with the max-margin direction.",
+      "url": "https://arxiv.org/abs/2611.17459",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "AI Security",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "a45cbac4ccc31",
+      "relevanceScore": 8,
+      "whyItMatters": "Critical for safe, production-grade AI systems.",
+      "addedAt": "2026-11-16T12:03:09.818Z"
+    },
+    {
+      "title": "Identifying Latent Neural Dynamics with Recognition-Parametrised Gaussian Process Dynamical Systems",
+      "summary": "arXiv:2611.17487v1 Announce Type: new \nAbstract: Neural circuits are densely interconnected systems, and many neural computations are thought to be mediated by the dynamical evolution of activity within these recurrent networks, a hypothesis often referred to as \"computation through dynamics\". Under this view, understanding computation within real neural populations depends on building models of the dynamical rules governing the temporal evolution of recorded high-dimensional neural activity. Most commonly, such models depend on explicit generative parameterisations of (i) the (nonlinear) intrinsic dynamical flow field and stochasticity, (ii) the (nonlinear) mapping from dynamical state to neuronal activity, and (iii) the variability of individual neural responses given that dynamical state. Misspecification of any of these components can bias estimates of dynamics and latent trajectories. In this paper, we circumvent generation-related issues by introducing the Recognition-Parametrised Gaussian Process dynamics (RP-GPdyn) model. RP-GPdyn models the dynamical flow field using a nonparametric Gaussian Process-defined transition function and models the relationship of dynamics to neural activity implicitly using the Recognition-Parametrised Model (RPM) framework. We show that this generation-free approach uncovers meaningful, behaviourally relevant latent variables and dynamics from both synthetic and experimental datasets.",
+      "url": "https://arxiv.org/abs/2611.17487",
+      "publishedAt": "2026-11-16T05:00:00.000Z",
+      "source": "arXiv ML",
+      "category": "Research",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "ad3651e87b49e",
+      "relevanceScore": 8,
+      "whyItMatters": "New research that may shape upcoming engineering practices.",
+      "addedAt": "2026-11-16T12:03:09.818Z"
     },
     {
       "title": "When Should Semantic Priors Enter Partially-Identified Causal Discovery?",
@@ -2411,437 +2951,54 @@
         "founderSummary": "No details available."
       },
       "insightsAttempted": true
-    },
-    {
-      "title": "XYBench: Helping with the problem behind the question",
-      "summary": "",
-      "url": "https://huggingface.co/blog/allenai/xybench",
-      "publishedAt": "2026-11-13T17:02:35.000Z",
-      "source": "Hugging Face",
-      "category": "AI Frameworks",
-      "trusted": true,
-      "image": null,
-      "id": "a1r4rxf",
-      "relevanceScore": 4,
-      "whyItMatters": "Affects tooling choices and developer productivity.",
-      "aiSummary": null,
-      "addedAt": "2026-11-14T02:28:37.918Z",
-      "insights": {
-        "whatHappened": "No details available.",
-        "engineerSummary": "No details available.",
-        "founderSummary": "No details available."
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "Codex Never Crashed. It Just Quietly Did Nothing.",
-      "summary": "From the agentpolicy v0.1.0 release: a local-first, Cedar-based policy decision point for AI agents...",
-      "url": "https://dev.to/debashish_ghosal/codex-never-crashed-it-just-quietly-did-nothing-1p5c",
-      "publishedAt": "2026-11-13T07:00:00Z",
-      "source": "Dev.to AI",
-      "category": "AI Agents",
-      "trusted": false,
-      "id": "arbkz2l",
-      "relevanceScore": 4,
-      "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
-      "aiSummary": null,
-      "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": {
-        "whatHappened": "From the agentpolicy v0.1.0 release: a local-first, Cedar-based policy decision point for AI agents",
-        "engineerSummary": "From the agentpolicy v0.1.0 release: a local-first, Cedar-based policy decision point for AI agents",
-        "founderSummary": "From the agentpolicy v0.1.0 release: a local-first, Cedar-based policy decision point for AI agents"
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "Adversarial Risk in the Generative AI Era Necessitates Dropping the Small Epsilon Ball",
-      "summary": "arXiv:2611.14594v1 Announce Type: new \nAbstract: Adversarial Machine Learning research is currently centered on the search for the epsilon-ball: minimal perturbations designed to fool models while remaining imperceptible to humans. We argue that this fixation on $\\ell_p$ norms is a metrological trap that communicates a distorted perception of risk to defenders, one that is unaligned with real-world system vulnerabilities. This paradigm misleads defenders into optimizing for narrow, mathematical robustness at the expense of systemic security, while simultaneously incentivizing attackers to exploit non-overlapping alternative adversarial pathways. Ultimately, we argue that the dominance of the $\\ell_p$ ball does not just fail to reduce harm---it may actively facilitate it by communicating a false sense of security against the wrong threats.",
-      "url": "https://arxiv.org/abs/2611.14594",
-      "publishedAt": "2026-11-13T05:00:00.000Z",
-      "source": "arXiv ML",
-      "category": "Research",
-      "trusted": true,
-      "id": "acaeb2k",
-      "relevanceScore": 4,
-      "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "aiSummary": null,
-      "addedAt": "2026-11-14T02:28:37.918Z",
-      "image": null,
-      "insights": {
-        "whatHappened": "arXiv:2611. This paradigm misleads defenders into optimizing for narrow, mathematical robustness at the expense of systemic security, while simultaneously incentivizing attackers to exploit non-overlapping alternative adversarial pathways. 14594v1 Announce Type: new \nAbstract: Adversarial Machine Learning research is currently centered on the search for the epsilon-ball: minimal perturbations designed to fool models while remaining imperceptible to humans. Ultimately, we argue that the dominance of the $\\ell_p$ ball does not just fail to reduce harm---it may actively facilitate it by communicating a false sense of security against the wrong threats.",
-        "engineerSummary": "arXiv:2611. This paradigm misleads defenders into optimizing for narrow, mathematical robustness at the expense of systemic security, while simultaneously incentivizing attackers to exploit non-overlapping alternative adversarial pathways. 14594v1 Announce Type: new \nAbstract: Adversarial Machine Learning research is currently centered on the search for the epsilon-ball: minimal perturbations designed to fool models while remaining imperceptible to humans. Ultimately, we argue that the dominance of the $\\ell_p$ ball does not just fail to reduce harm---it may actively facilitate it by communicating a false sense of security against the wrong threats.",
-        "founderSummary": "arXiv:2611. This paradigm misleads defenders into optimizing for narrow, mathematical robustness at the expense of systemic security, while simultaneously incentivizing attackers to exploit non-overlapping alternative adversarial pathways. 14594v1 Announce Type: new \nAbstract: Adversarial Machine Learning research is currently centered on the search for the epsilon-ball: minimal perturbations designed to fool models while remaining imperceptible to humans. Ultimately, we argue that the dominance of the $\\ell_p$ ball does not just fail to reduce harm---it may actively facilitate it by communicating a false sense of security against the wrong threats."
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "StructRL: Model-Free Reinforcement Learning with Replay Graphs",
-      "summary": "arXiv:2611.14599v1 Announce Type: new \nAbstract: StructRL turns the experience collected during reinforcement learning into an explicit replay graph. Once the graph contains a path to the task goal, dynamic programming selects actions on the observed part of the state space; these actions form a graph policy that is defined only where the required transitions have been observed. StructRL transfers these actions to model-free learners: as action preferences for a DQN Q-model and as target directions along shortest observed paths for a SAC actor. For DQN on three sparse-reward MiniGrid tasks, final success rises from 0.10 to 0.90 (DoorKey), 0.10 to 0.80 (KeyCorridor) and 0 to 0.50 (ObstructedMaze); plain DQN does not catch up with three times the budget. For SAC on continuous PointMaze, graph-derived direction labels raise final success from 0.17 to 1.0 on seven matched runs that reached the goal. Distilling the graph policy into a fresh Q-model gives a DoorKey 6x6 controller that reaches the goal from 91% of reachable states, against 38% for plain DQN. Scaling experiments identify three bottlenecks: incomplete graph support, structural aliasing, and loss of graph information in high-dimensional inputs.",
-      "url": "https://arxiv.org/abs/2611.14599",
-      "publishedAt": "2026-11-13T05:00:00.000Z",
-      "source": "arXiv ML",
-      "category": "Research",
-      "trusted": true,
-      "id": "acaeb2f",
-      "relevanceScore": 4,
-      "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "aiSummary": null,
-      "addedAt": "2026-11-14T02:28:37.918Z",
-      "image": null,
-      "insights": {
-        "whatHappened": "Scaling experiments identify three bottlenecks: incomplete graph support, structural aliasing, and loss of graph information in high-dimensional inputs. For SAC on continuous PointMaze, graph-derived direction labels raise final success from 0. For DQN on three sparse-reward MiniGrid tasks, final success rises from 0. 14599v1 Announce Type: new \nAbstract: StructRL turns the experience collected during reinforcement learning into an explicit replay graph.",
-        "engineerSummary": "Scaling experiments identify three bottlenecks: incomplete graph support, structural aliasing, and loss of graph information in high-dimensional inputs. For SAC on continuous PointMaze, graph-derived direction labels raise final success from 0. For DQN on three sparse-reward MiniGrid tasks, final success rises from 0. 14599v1 Announce Type: new \nAbstract: StructRL turns the experience collected during reinforcement learning into an explicit replay graph.",
-        "founderSummary": "Scaling experiments identify three bottlenecks: incomplete graph support, structural aliasing, and loss of graph information in high-dimensional inputs. For SAC on continuous PointMaze, graph-derived direction labels raise final success from 0. For DQN on three sparse-reward MiniGrid tasks, final success rises from 0. 14599v1 Announce Type: new \nAbstract: StructRL turns the experience collected during reinforcement learning into an explicit replay graph."
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "What Do Tokenizer Comparisons Measure? Disentangling Granularity, Root Assignment, and Word-Level Readout across Amharic and Hausa",
-      "summary": "arXiv:2611.14818v1 Announce Type: new Abstract: Morphology-aware tokenizers are expected to help morphologically rich languages, and their reported gains over byte-pair encoding (BPE) are usually credited to their linguistic units. A comparison with BPE cannot support this attribution, since such a tokenizer also segments text more finely (granularity) and, on token-level tasks, changes how much the sub-token readout matters. We separate both factors from the effect of grouping words by their roots (root assignment) in Amharic, a Semitic language whose Ge'ez abugida hides consonantal roots inside syllabic glyphs, with Latin-script Hausa as an orthographic contrast. Our design combines a lossless root-and-pattern tokenizer with controls that change one factor at a time, in two independent implementations. In both, real root assignment improves Amharic named-entity recognition over scrambled roots (+4.9 and +4.7 F1), and root-frequency structure explains little of this gain. In small from-scratch models, the readout choice moves F1 by up to 13.4 points and reverses the sign of every comparison of the root-and-pattern arms with BPE, whereas in two pretrained encoders it moves F1 by less than one point. The granularity effect changes sign across languages and implementations. We recommend decomposing tokenizer effects, and reporting the readout, before a gain is attributed to linguistic structure.",
-      "url": "https://arxiv.org/abs/2611.14818",
-      "publishedAt": "2026-11-13T05:00:00.000Z",
-      "source": "arXiv cs.CL",
-      "category": "Research",
-      "trusted": true,
-      "id": "acae919",
-      "relevanceScore": 4,
-      "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "aiSummary": null,
-      "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": {
-        "whatHappened": "In both, real root assignment improves Amharic named-entity recognition over scrambled roots (+4. The granularity effect changes sign across languages and implementations. Our design combines a lossless root-and-pattern tokenizer with controls that change one factor at a time, in two independent implementations. 14818v1 Announce Type: new Abstract: Morphology-aware tokenizers are expected to help morphologically rich languages, and their reported gains over byte-pair encoding (BPE) are usually credited to their linguistic units.",
-        "engineerSummary": "In both, real root assignment improves Amharic named-entity recognition over scrambled roots (+4. The granularity effect changes sign across languages and implementations. Our design combines a lossless root-and-pattern tokenizer with controls that change one factor at a time, in two independent implementations. 14818v1 Announce Type: new Abstract: Morphology-aware tokenizers are expected to help morphologically rich languages, and their reported gains over byte-pair encoding (BPE) are usually credited to their linguistic units.",
-        "founderSummary": "In both, real root assignment improves Amharic named-entity recognition over scrambled roots (+4. The granularity effect changes sign across languages and implementations. Our design combines a lossless root-and-pattern tokenizer with controls that change one factor at a time, in two independent implementations. 14818v1 Announce Type: new Abstract: Morphology-aware tokenizers are expected to help morphologically rich languages, and their reported gains over byte-pair encoding (BPE) are usually credited to their linguistic units."
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "Fast Slice-Wise Deep Learning Motion Correction for Spinal Cord Functional MRI",
-      "summary": "arXiv:2611.14677v1 Announce Type: new Abstract: Respiratory and bulk motion displace the spinal cord between the volumes of a functional MRI time series. Current methods such as the Spinal Cord Toolbox (SCT) take several minutes per time series, and general-purpose brain tools register whole volumes, whereas the cord moves mainly slice by slice. We propose a lightweight convolutional neural network that regresses the in-plane translation aligning each axial slice to a reference. Two models, trained without motion labels, correct large and then residual motion. On a 3T (120 scans) and a 7T (59 scans) dataset, the proposed method improves on SCT on every metric (tSNR +10 to +25%, DVARS -20 to -38%), leaves almost no slice displaced by more than one voxel (<0.1%), performs on par with a slice-wise AFNI variant and better than slice-wise FSL FLIRT, and runs in about 10 s per scan, about 30 times faster than SCT. The code is available at https://github.com/ivadomed/moco-dl and the method is available in SCT v7.4.",
-      "url": "https://arxiv.org/abs/2611.14677",
-      "publishedAt": "2026-11-13T05:00:00.000Z",
-      "source": "arXiv cs.CV",
-      "category": "Multimodal AI",
-      "trusted": true,
-      "id": "acaeadi",
-      "relevanceScore": 4,
-      "whyItMatters": "Expands what AI systems can perceive and generate.",
-      "aiSummary": null,
-      "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": {
-        "whatHappened": "Current methods such as the Spinal Cord Toolbox (SCT) take several minutes per time series, and general-purpose brain tools register whole volumes, whereas the cord moves mainly slice by slice. 1%), performs on par with a slice-wise AFNI variant and better than slice-wise FSL FLIRT, and runs in about 10 s per scan, about 30 times faster than SCT. Two models, trained without motion labels, correct large and then residual motion. 14677v1 Announce Type: new Abstract: Respiratory and bulk motion displace the spinal cord between the volumes of a functional MRI time series.",
-        "engineerSummary": "Current methods such as the Spinal Cord Toolbox (SCT) take several minutes per time series, and general-purpose brain tools register whole volumes, whereas the cord moves mainly slice by slice. 1%), performs on par with a slice-wise AFNI variant and better than slice-wise FSL FLIRT, and runs in about 10 s per scan, about 30 times faster than SCT. Two models, trained without motion labels, correct large and then residual motion. 14677v1 Announce Type: new Abstract: Respiratory and bulk motion displace the spinal cord between the volumes of a functional MRI time series.",
-        "founderSummary": "Current methods such as the Spinal Cord Toolbox (SCT) take several minutes per time series, and general-purpose brain tools register whole volumes, whereas the cord moves mainly slice by slice. 1%), performs on par with a slice-wise AFNI variant and better than slice-wise FSL FLIRT, and runs in about 10 s per scan, about 30 times faster than SCT. Two models, trained without motion labels, correct large and then residual motion. 14677v1 Announce Type: new Abstract: Respiratory and bulk motion displace the spinal cord between the volumes of a functional MRI time series."
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "The unfolding Jensen Huang scandal: a timeline",
-      "summary": "Jensen Huang has resigned from Nvidia following an affair, which could have ramifications for national security as the U.S. and China race to develop the most advanced AI infrastructure.",
-      "url": "https://techcrunch.com/2026/11/12/nvidia-ceo-jensen-huangs-affair-with-alleged-chinese-spy-a-timeline/",
-      "publishedAt": "2026-11-12T21:35:00.000Z",
-      "source": "TechCrunch AI",
-      "category": "AI Infrastructure",
-      "trusted": false,
-      "id": "akhw68g",
-      "relevanceScore": 4,
-      "whyItMatters": "Impacts hardware, scaling, and deployment decisions.",
-      "aiSummary": null,
-      "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": {
-        "whatHappened": "Jensen Huang has resigned from Nvidia following an affair, which could have ramifications for national security as the U.S. and China race to develop the most advanced AI infrastructure.",
-        "engineerSummary": "Jensen Huang has resigned from Nvidia following an affair, which could have ramifications for national security as the U.S. and China race to develop the most advanced AI infrastructure.",
-        "founderSummary": "Jensen Huang has resigned from Nvidia following an affair, which could have ramifications for national security as the U.S. and China race to develop the most advanced AI infrastructure."
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "Nebius tests the neocloud playbook with $40 billion in planned spending",
-      "summary": "Nebius plans to fund its $40 billion AI infrastructure expansion through customer prepayments and loans, even as delays at a Microsoft data center raise questions about its financing model.",
-      "url": "https://techcrunch.com/2026/11/12/nebius-tests-the-neocloud-playbook-with-40-billion-in-planned-spending/",
-      "publishedAt": "2026-11-12T21:27:10.000Z",
-      "source": "TechCrunch AI",
-      "category": "AI Infrastructure",
-      "trusted": false,
-      "id": "ajuh8bd",
-      "relevanceScore": 4,
-      "whyItMatters": "Impacts hardware, scaling, and deployment decisions.",
-      "aiSummary": null,
-      "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": {
-        "whatHappened": "Nebius plans to fund its $40 billion AI infrastructure expansion through customer prepayments and loans, even as delays at a Microsoft data center raise questions about its financing model.",
-        "engineerSummary": "Nebius plans to fund its $40 billion AI infrastructure expansion through customer prepayments and loans, even as delays at a Microsoft data center raise questions about its financing model.",
-        "founderSummary": "Nebius plans to fund its $40 billion AI infrastructure expansion through customer prepayments and loans, even as delays at a Microsoft data center raise questions about its financing model."
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "Tokenomics at scale: Track and cap Amazon Bedrock spend per IAM principal with CUR 2.0 and AWS Budgets",
-      "summary": "Get per-identity Amazon Bedrock cost visibility and enforceable spend limits using only AWS-native features, with no application code for the common case. Attribute spend with IAM principal tags, report with CUR 2.0 or Cost Explorer, and enforce with AWS Budgets actions that apply a Deny policy when a threshold is crossed.",
-      "url": "https://aws.amazon.com/blogs/machine-learning/tokenomics-at-scale-track-and-cap-amazon-bedrock-spend-per-iam-principal-with-cur-2-0-and-aws-budgets/",
-      "publishedAt": "2026-11-12T19:29:55.000Z",
-      "source": "AWS ML Blog",
-      "category": "MLOps",
-      "trusted": true,
-      "id": "a5q7l3",
-      "relevanceScore": 4,
-      "whyItMatters": "Relevant to deployment, monitoring, and evaluation workflows.",
-      "aiSummary": null,
-      "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": {
-        "whatHappened": "Get per-identity Amazon Bedrock cost visibility and enforceable spend limits using only AWS-native features, with no application code for the common case. Attribute spend with IAM principal tags, report with CUR 2.0 or Cost Explorer, and enforce with AWS Budgets actions that apply a Deny policy when a threshold is crossed.",
-        "engineerSummary": "Get per-identity Amazon Bedrock cost visibility and enforceable spend limits using only AWS-native features, with no application code for the common case. Attribute spend with IAM principal tags, report with CUR 2.0 or Cost Explorer, and enforce with AWS Budgets actions that apply a Deny policy when a threshold is crossed.",
-        "founderSummary": "Get per-identity Amazon Bedrock cost visibility and enforceable spend limits using only AWS-native features, with no application code for the common case. Attribute spend with IAM principal tags, report with CUR 2.0 or Cost Explorer, and enforce with AWS Budgets actions that apply a Deny policy when a threshold is crossed."
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "Google’s latest Search upgrade promises better answers to your most complicated questions",
-      "summary": "Powered by Gemini 4 Hydrogen, Google's AI Mode is getting better at understanding complex queries, surfacing relevant links, and delivering richer visual responses.",
-      "url": "https://techcrunch.com/2026/11/12/googles-latest-search-upgrade-promises-better-answers-to-your-most-complicated-questions/",
-      "publishedAt": "2026-11-12T19:27:45.000Z",
-      "source": "TechCrunch AI",
-      "category": "LLM Engineering",
-      "trusted": false,
-      "id": "a8f0h99",
-      "relevanceScore": 4,
-      "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
-      "aiSummary": null,
-      "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": {
-        "whatHappened": "Powered by Gemini 4 Hydrogen, Google's AI Mode is getting better at understanding complex queries, surfacing relevant links, and delivering richer visual responses.",
-        "engineerSummary": "Powered by Gemini 4 Hydrogen, Google's AI Mode is getting better at understanding complex queries, surfacing relevant links, and delivering richer visual responses.",
-        "founderSummary": "Powered by Gemini 4 Hydrogen, Google's AI Mode is getting better at understanding complex queries, surfacing relevant links, and delivering richer visual responses."
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "Oh, Palantir is ‘progressive’ now, is it?",
-      "summary": "The future’s so bright, he’s gotta wear sunglasses. | Photo by Scott Olson/Getty Images I had other things to do today, but Alex Karp's pathetic attempt to pivot back to the left gave me no choice but to put them on hold. Last week's elections were a bloodbath for the right, a problem for all the wannabe fash founders who had tied their political fortunes to a \"vibe shift\" that enabled a glorious 100-year Trumpenreich. That freed up a lot of assholes to say what they actually thought. Except Donald Trump's victory was, in fact, narrow, and two years of his corrupt policies have enraged Americans. \"I've been a Democrat my whole life. I grew up in a far left environment. I know more about being a progressive than almost anybody … Read the full story at The Verge.",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1032126/alex-baby-you-were-recorded-on-video",
-      "publishedAt": "2026-11-12T18:06:54.000Z",
-      "source": "The Verge AI",
-      "category": "RAG",
-      "trusted": false,
-      "id": "a59h3oo",
-      "relevanceScore": 4,
-      "whyItMatters": "Relevant to retrieval-augmented generation accuracy and latency.",
-      "aiSummary": null,
-      "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": {
-        "whatHappened": "Last week's elections were a bloodbath for the right, a problem for all the wannabe fash founders who had tied their political fortunes to a \"vibe shift\" that enabled a glorious 100-year Trumpenreich. I know more about being a progressive than almost anybody … Read the full story at The Verge. Except Donald Trump's victory was, in fact, narrow, and two years of his corrupt policies have enraged Americans. | Photo by Scott Olson/Getty Images I had other things to do today, but Alex Karp's pathetic attempt to pivot back to the left gave me no choice but to put them on hold.",
-        "engineerSummary": "Last week's elections were a bloodbath for the right, a problem for all the wannabe fash founders who had tied their political fortunes to a \"vibe shift\" that enabled a glorious 100-year Trumpenreich. I know more about being a progressive than almost anybody … Read the full story at The Verge. Except Donald Trump's victory was, in fact, narrow, and two years of his corrupt policies have enraged Americans. | Photo by Scott Olson/Getty Images I had other things to do today, but Alex Karp's pathetic attempt to pivot back to the left gave me no choice but to put them on hold.",
-        "founderSummary": "Last week's elections were a bloodbath for the right, a problem for all the wannabe fash founders who had tied their political fortunes to a \"vibe shift\" that enabled a glorious 100-year Trumpenreich. I know more about being a progressive than almost anybody … Read the full story at The Verge. Except Donald Trump's victory was, in fact, narrow, and two years of his corrupt policies have enraged Americans. | Photo by Scott Olson/Getty Images I had other things to do today, but Alex Karp's pathetic attempt to pivot back to the left gave me no choice but to put them on hold."
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "More game developers are starting to use generative AI",
-      "summary": "A photo from the GDC Festival of Gaming 2026 event. More video game developers are using generative AI tools in their jobs compared to last year, according to the GDC Festival of Gaming's latest annual industry survey. Forty percent of developers surveyed say they use it \"as part of their job,\" an increase from 36 percent in 2025. Usage was higher with game developers that work on free-to-play games at 58 percent and mobile-only studio workers at 70 percent. The survey is being published as the game industry continues to reckon with generative AI tools. While many game developers, particularly indie developers, have spoken out strongly against the technology, AI is at the center of indie awa … Read the full story at The Verge.",
-      "url": "https://www.theverge.com/games/1032085/gdc-festival-of-gaming-annual-survey-ai-layoffs",
-      "publishedAt": "2026-11-12T17:00:00.000Z",
-      "source": "The Verge AI",
-      "category": "Multimodal AI",
-      "trusted": false,
-      "id": "aqo84ja",
-      "relevanceScore": 4,
-      "whyItMatters": "Expands what AI systems can perceive and generate.",
-      "aiSummary": null,
-      "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": {
-        "whatHappened": "More video game developers are using generative AI tools in their jobs compared to last year, according to the GDC Festival of Gaming's latest annual industry survey. Forty percent of developers surveyed say they use it \"as part of their job,\" an increase from 36 percent in 2025. Usage was higher with game developers that work on free-to-play games at 58 percent and mobile-only studio workers at 70 percent. A photo from the GDC Festival of Gaming 2026 event.",
-        "engineerSummary": "More video game developers are using generative AI tools in their jobs compared to last year, according to the GDC Festival of Gaming's latest annual industry survey. Forty percent of developers surveyed say they use it \"as part of their job,\" an increase from 36 percent in 2025. Usage was higher with game developers that work on free-to-play games at 58 percent and mobile-only studio workers at 70 percent. A photo from the GDC Festival of Gaming 2026 event.",
-        "founderSummary": "More video game developers are using generative AI tools in their jobs compared to last year, according to the GDC Festival of Gaming's latest annual industry survey. Forty percent of developers surveyed say they use it \"as part of their job,\" an increase from 36 percent in 2025. Usage was higher with game developers that work on free-to-play games at 58 percent and mobile-only studio workers at 70 percent. A photo from the GDC Festival of Gaming 2026 event."
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "Nvidia CEO Jensen Huang has resigned. What happens next?",
-      "summary": "After the leather-jacketed CEO, president, and co-founder of Nvidia, Jensen Huang, acknowledged an affair with Megaspeed exec Alice Huang, his company initially announced an investigation. However, The New York Times reported on Wednesday that there was evidence of another affair, this time with an Nvidia executive who reported directly to him. A board meeting that night ended with Huang’s resignation, and Nvidia CFO Colette Kress was installed as the new interim CEO. Recent reporting noted that since last year, US intelligence reports had identified Alice Huang (no relation) as not only the exec for an AI compute company renting access to Nvidia GPUs, but also a spy for China’s Ministry of State Security. The second report focused on Huang and Nvidia vice president of healthcare Kimberly Powell, claiming that a bystander who recorded the two being “affectionate” at the hotel hosting Nvidia’s GTC developer conference in May was met by Huang’s security workers and asked to sign a non-disclosure agreement. In recent years, Nvidia has become a key part of the Trump administration’s AI push, a central figure in negotiations over potential Chinese access to cutting-edge AI hardware, and a company that has used its now $4 trillion-plus market cap to finance other AI companies, including the “neoclouds” like Coreweave who have been some of its biggest customers. ‘Jensen did so many good things and he needs a second chance.’ Jensen Huang: ‘I’m a piece of shit.’ Donald Trump really wants Tim Cook to run Nvidia ‘It’s a mistake’: reactions from tech leaders on Jensen Huang’s resignation Reuters: Jensen Huang had an “intimate relationship” with another Nvidia employee too. Jensen Huang will still need to answer to Congress despite his resignation, Schumer says. Today’s Vergecast: Jensen Huang resigns, and our HomeView review. The Jensen Huang scandal is hardly over Jensen Huang is out. What did China want from him? Donald Trump says Tim Cook should replace Jensen Huang. Read Nvidia’s internal emails about the ‘extraordinarily difficult period’ amid CEO shakeup Nvidia CEO Jensen Huang resigns amid spy, affair scandals Even Jensen Huang’s jackets aren’t safe from adulteration. AOC chimes in on the Nvidia CEO scandal. If Jensen Huang is done at Nvidia, who will be the next CEO? Johny Srouji? Nvidia is reportedly preparing to fire Jensen Huang When I asked who else Jensen Huang was fucking, I did not expect to get answers so quickly. Jensen Huang’s affair reportedly has Taiwan and US cabinet officials rattled. Nvidia hires the same law firm that investigated the Clippers to look into Jensen Huang’s spy. The US is winning the AI race. Jensen Huang could have blown it What could China get from Jensen Huang? Here’s what Trump said he knew about Jensen Huang The future of AI hinges on… Jensen Huang’s sex life? Here’s the full text of Jensen Huang’s memo to Nvidia Nvidia is investigating Jensen Huang’s relationship with an alleged Chinese spy China reportedly recruited AI exec to spy on Jensen Huang Here’s Jensen Huang signing a woman’s chest",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/1030422/nvidia-jensen-huang-ai-china-alice-huang",
-      "publishedAt": "2026-11-12T15:01:31.000Z",
-      "source": "The Verge AI",
-      "category": "AI Infrastructure",
-      "trusted": false,
-      "id": "a28uivq",
-      "relevanceScore": 4,
-      "whyItMatters": "Impacts hardware, scaling, and deployment decisions.",
-      "aiSummary": null,
-      "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": {
-        "whatHappened": "The Jensen Huang scandal is hardly over Jensen Huang is out. Jensen Huang could have blown it What could China get from Jensen Huang? Donald Trump says Tim Cook should replace Jensen Huang. ’ Jensen Huang: ‘I’m a piece of shit.",
-        "engineerSummary": "The Jensen Huang scandal is hardly over Jensen Huang is out. Jensen Huang could have blown it What could China get from Jensen Huang? Donald Trump says Tim Cook should replace Jensen Huang. ’ Jensen Huang: ‘I’m a piece of shit.",
-        "founderSummary": "The Jensen Huang scandal is hardly over Jensen Huang is out. Jensen Huang could have blown it What could China get from Jensen Huang? Donald Trump says Tim Cook should replace Jensen Huang. ’ Jensen Huang: ‘I’m a piece of shit."
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "10 AI Prompts Every Developer Should Know",
-      "summary": "I think most developers are underusing AI. Not because they don't know which tools to use. Not...",
-      "url": "https://dev.to/jaideepparashar/10-ai-prompts-every-developer-should-know-50kg",
-      "publishedAt": "2026-11-13T08:11:02Z",
-      "source": "Dev.to AI",
-      "category": "AI Frameworks",
-      "trusted": false,
-      "id": "a21i3c0",
-      "relevanceScore": 2,
-      "whyItMatters": "Affects tooling choices and developer productivity.",
-      "aiSummary": null,
-      "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": {
-        "whatHappened": "I think most developers are underusing AI. Not because they don't know which tools to use. Not",
-        "engineerSummary": "I think most developers are underusing AI. Not because they don't know which tools to use. Not",
-        "founderSummary": "I think most developers are underusing AI. Not because they don't know which tools to use. Not"
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "Four Applications and One Ask. Guess Which One Scared Me.",
-      "summary": "Waitlisted once. Applied again anyway. TL;DR: In one day I sent four applications: three AI...",
-      "url": "https://dev.to/earlgreyhot1701d/four-applications-and-one-ask-guess-which-one-scared-me-2ia3",
-      "publishedAt": "2026-11-12T23:13:28Z",
-      "source": "Dev.to AI",
-      "category": "AI Frameworks",
-      "trusted": false,
-      "id": "at662xc",
-      "relevanceScore": 2,
-      "whyItMatters": "Affects tooling choices and developer productivity.",
-      "aiSummary": null,
-      "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": {
-        "whatHappened": "Waitlisted once. Applied again anyway. TL;DR: In one day I sent four applications: three AI",
-        "engineerSummary": "Waitlisted once. Applied again anyway. TL;DR: In one day I sent four applications: three AI",
-        "founderSummary": "Waitlisted once. Applied again anyway. TL;DR: In one day I sent four applications: three AI"
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "Prompt Pad: What Are Tokens?",
-      "summary": "Your AI doesn't read your prompt word for word. It reads tokens. In this episode of Prompt Pad,...",
-      "url": "https://blog.mlh.com/prompt-pad-what-are-tokens-gec",
-      "publishedAt": "2026-11-12T20:34:29Z",
-      "source": "Dev.to AI",
-      "category": "AI Frameworks",
-      "trusted": false,
-      "id": "a8i9ny9",
-      "relevanceScore": 2,
-      "whyItMatters": "Affects tooling choices and developer productivity.",
-      "aiSummary": null,
-      "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": {
-        "whatHappened": "Your AI doesn't read your prompt word for word. It reads tokens. In this episode of Prompt Pad,",
-        "engineerSummary": "Your AI doesn't read your prompt word for word. It reads tokens. In this episode of Prompt Pad,",
-        "founderSummary": "Your AI doesn't read your prompt word for word. It reads tokens. In this episode of Prompt Pad,"
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "Nvidia Says Its Roadmap Will Continue. AI Teams Should Verify the Dependencies",
-      "summary": "A company can announce that its operations and product roadmap will continue without interruption....",
-      "url": "https://dev.to/jamilxt/nvidia-says-its-roadmap-will-continue-ai-teams-should-verify-the-dependencies-3c8d",
-      "publishedAt": "2026-11-12T16:23:45Z",
-      "source": "Dev.to AI",
-      "category": "AI Frameworks",
-      "trusted": false,
-      "id": "a3xjaw",
-      "relevanceScore": 2,
-      "whyItMatters": "Affects tooling choices and developer productivity.",
-      "aiSummary": null,
-      "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": {
-        "whatHappened": "A company can announce that its operations and product roadmap will continue without interruption.",
-        "engineerSummary": "A company can announce that its operations and product roadmap will continue without interruption.",
-        "founderSummary": "A company can announce that its operations and product roadmap will continue without interruption."
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "AI is getting better. Here is my plan to stay ahead.",
-      "summary": "AI is getting better every day. As a software engineer, this is a topic that is often top of mind,...",
-      "url": "https://dev.to/javz/ai-is-getting-better-here-is-my-plan-to-stay-ahead-2822",
-      "publishedAt": "2026-11-12T15:35:00Z",
-      "source": "Dev.to AI",
-      "category": "AI Frameworks",
-      "trusted": false,
-      "id": "ar45syd",
-      "relevanceScore": 2,
-      "whyItMatters": "Affects tooling choices and developer productivity.",
-      "aiSummary": null,
-      "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": {
-        "whatHappened": "AI is getting better every day. As a software engineer, this is a topic that is often top of mind,",
-        "engineerSummary": "AI is getting better every day. As a software engineer, this is a topic that is often top of mind,",
-        "founderSummary": "AI is getting better every day. As a software engineer, this is a topic that is often top of mind,"
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "Long Live Rails",
-      "summary": "When DHH took the stage at Rails World 2026 and talked openly about going \"pencils down\" on...",
-      "url": "https://dev.to/ben/long-live-rails-3p21",
-      "publishedAt": "2026-11-12T15:30:50Z",
-      "source": "Dev.to AI",
-      "category": "AI Frameworks",
-      "trusted": false,
-      "id": "aaoor9k",
-      "relevanceScore": 2,
-      "whyItMatters": "Affects tooling choices and developer productivity.",
-      "aiSummary": null,
-      "addedAt": "2026-11-13T10:35:24.638Z",
-      "insights": {
-        "whatHappened": "When DHH took the stage at Rails World 2026 and talked openly about going \"pencils down\" on",
-        "engineerSummary": "When DHH took the stage at Rails World 2026 and talked openly about going \"pencils down\" on",
-        "founderSummary": "When DHH took the stage at Rails World 2026 and talked openly about going \"pencils down\" on"
-      },
-      "insightsAttempted": true
     }
   ],
   "githubTrending": [
     {
       "name": "Significant-Gravitas/AutoGPT",
       "description": "AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
-      "stars": 188044,
-      "forks": 45859,
+      "stars": 188051,
+      "forks": 45854,
       "language": "Python",
       "url": "https://github.com/Significant-Gravitas/AutoGPT"
     },
     {
       "name": "f/prompts.chat",
       "description": "f.k.a. Awesome ChatGPT Prompts. Share, discover, and collect prompts from the community. Free and open source — self-host for your organization with complete privacy.",
-      "stars": 177557,
-      "forks": 22641,
+      "stars": 177621,
+      "forks": 22653,
       "language": "MDX",
       "url": "https://github.com/f/prompts.chat"
     },
     {
       "name": "thedotmack/claude-mem",
       "description": "Persistent Context Across Sessions for Every Agent –  Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
-      "stars": 117362,
-      "forks": 10193,
+      "stars": 117524,
+      "forks": 10210,
       "language": "TypeScript",
       "url": "https://github.com/thedotmack/claude-mem"
     },
     {
       "name": "rasbt/LLMs-from-scratch",
       "description": "Implement a ChatGPT-like LLM in PyTorch from scratch, step by step",
-      "stars": 108463,
-      "forks": 16780,
+      "stars": 108497,
+      "forks": 16786,
       "language": "Jupyter Notebook",
       "url": "https://github.com/rasbt/LLMs-from-scratch"
     },
     {
       "name": "hacksider/Deep-Live-Cam",
       "description": "real time face swap and one-click video deepfake with only a single image",
-      "stars": 98150,
-      "forks": 14326,
+      "stars": 98164,
+      "forks": 14324,
       "language": "Python",
       "url": "https://github.com/hacksider/Deep-Live-Cam"
     },
     {
       "name": "OpenHands/OpenHands",
       "description": "🙌 OpenHands: AI-Driven Development",
-      "stars": 93529,
-      "forks": 12526,
+      "stars": 93576,
+      "forks": 12529,
       "language": "TypeScript",
       "url": "https://github.com/OpenHands/OpenHands"
     }
