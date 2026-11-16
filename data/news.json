@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-16T17:33:09.818+05:30",
+  "generatedAt": "2026-11-16T18:02:46.679+05:30",
   "retentionDays": 7,
   "totalStories": 150,
   "newToday": 33,
@@ -67,7 +67,7 @@
       "id": "ab715b2affb87",
       "relevanceScore": 35,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-16T12:03:09.818Z",
+      "addedAt": "2026-11-16T12:32:46.679Z",
       "insights": {
         "whatHappened": "When evaluated against baselines matched on sample count (Category B) or resource budget (Category C), multi-agent systems average -0. Against baselines with a single pass (Category A), multi-agent accuracy differences are negative overall and near zero when omitting the largest contributing study. 17610v1 Announce Type: new \nAbstract: Evaluations of multi-agent language models often compare communicating architectures against a single greedy pass. Across studies reporting both baselines, moving from a greedy pass to a sampled baseline shifts accuracy differences by -0.",
         "engineerSummary": "When evaluated against baselines matched on sample count (Category B) or resource budget (Category C), multi-agent systems average -0. Against baselines with a single pass (Category A), multi-agent accuracy differences are negative overall and near zero when omitting the largest contributing study. 17610v1 Announce Type: new \nAbstract: Evaluations of multi-agent language models often compare communicating architectures against a single greedy pass. Across studies reporting both baselines, moving from a greedy pass to a sampled baseline shifts accuracy differences by -0.",
@@ -105,7 +105,7 @@
       "id": "a608ff44b77f1",
       "relevanceScore": 33,
       "whyItMatters": "Critical for safe, production-grade AI systems.",
-      "addedAt": "2026-11-16T12:03:09.818Z",
+      "addedAt": "2026-11-16T12:32:46.679Z",
       "insights": {
         "whatHappened": "Across five models, Reflect-Reasoning consistently outperforms both system prompting and explicit prompting strategies for in-context reflective reasoning. We introduce Reflect-Reasoning, a training method that teaches models how to reason about alignment to principles, rather than simply which principles to follow. Overall, our results demonstrate that Reflect-Reasoning is a scalable method for training constitutional alignment as a generalizable reasoning capability, enabling models to adapt to novel principles and produce transparent reasoning traces without additional fine-tuning. However, most alignment techniques focus on training models to conform to human preferences or constitutional principles specified at training time and subsequently fixed.",
         "engineerSummary": "Across five models, Reflect-Reasoning consistently outperforms both system prompting and explicit prompting strategies for in-context reflective reasoning. We introduce Reflect-Reasoning, a training method that teaches models how to reason about alignment to principles, rather than simply which principles to follow. Overall, our results demonstrate that Reflect-Reasoning is a scalable method for training constitutional alignment as a generalizable reasoning capability, enabling models to adapt to novel principles and produce transparent reasoning traces without additional fine-tuning. However, most alignment techniques focus on training models to conform to human preferences or constitutional principles specified at training time and subsequently fixed.",
@@ -194,7 +194,7 @@
       "id": "ae6b637328ef2",
       "relevanceScore": 31,
       "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
-      "addedAt": "2026-11-16T12:03:09.818Z",
+      "addedAt": "2026-11-16T12:32:46.679Z",
       "insights": {
         "whatHappened": "This pool complicates adapter selection during inference. The proposed training-free method selects adapters by matching adapter-conditioned query representations against task prototypes using cosine similarity. This paper treats adapter routing as a representation alignment problem in the adapter-output space. An ablation confirms the benefit of directional alignment in the adapter-output space.",
         "engineerSummary": "This pool complicates adapter selection during inference. The proposed training-free method selects adapters by matching adapter-conditioned query representations against task prototypes using cosine similarity. This paper treats adapter routing as a representation alignment problem in the adapter-output space. An ablation confirms the benefit of directional alignment in the adapter-output space.",
@@ -215,7 +215,7 @@
       "id": "ad6f2a3136b41",
       "relevanceScore": 30,
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
-      "addedAt": "2026-11-16T12:03:09.818Z",
+      "addedAt": "2026-11-16T12:32:46.679Z",
       "insights": {
         "whatHappened": "These results demonstrate how learning from verifiable synthetic experience can improve agentic characterization of experimental samples whose structures are not known in advance. We formulate the task of pXRD structure determination as a verifiable agentic search problem: candidate structures can be assessed during inference through forward-simulated profile agreement and during evaluation through structural matching to a known reference. We extend this approach to experimental multiphase pXRD through a reflexive evolution framework that learns from self-generated synthetic problems. 17539v1 Announce Type: new \nAbstract: Autonomous crystal-structure determination from powder X-ray diffraction (pXRD) remains a key bottleneck for self-driving materials laboratories.",
         "engineerSummary": "These results demonstrate how learning from verifiable synthetic experience can improve agentic characterization of experimental samples whose structures are not known in advance. We formulate the task of pXRD structure determination as a verifiable agentic search problem: candidate structures can be assessed during inference through forward-simulated profile agreement and during evaluation through structural matching to a known reference. We extend this approach to experimental multiphase pXRD through a reflexive evolution framework that learns from self-generated synthetic problems. 17539v1 Announce Type: new \nAbstract: Autonomous crystal-structure determination from powder X-ray diffraction (pXRD) remains a key bottleneck for self-driving materials laboratories.",
@@ -286,7 +286,7 @@
       "id": "ac0fb3abdbf39",
       "relevanceScore": 27,
       "whyItMatters": "Affects serving cost, throughput, and latency.",
-      "addedAt": "2026-11-16T12:03:09.818Z",
+      "addedAt": "2026-11-16T12:32:46.679Z",
       "insights": {
         "whatHappened": "On two production ads ranking models, our implementation shows measured GEMM kernel speedups over FP16 of 1. 90x for MXFP6 on individual layers, alongside end-to-end (E2E) inference throughput gains from selective MXFP6 of 1. 3% for Model B over their FP8 configurations. Unlike Large Language Models (LLMs) that frequently tolerate quantization-induced accuracy drops of 1% or more, production-grade R&R models enforce a stringent launch bar: model quality must remain within a 0.",
         "engineerSummary": "On two production ads ranking models, our implementation shows measured GEMM kernel speedups over FP16 of 1. 90x for MXFP6 on individual layers, alongside end-to-end (E2E) inference throughput gains from selective MXFP6 of 1. 3% for Model B over their FP8 configurations. Unlike Large Language Models (LLMs) that frequently tolerate quantization-induced accuracy drops of 1% or more, production-grade R&R models enforce a stringent launch bar: model quality must remain within a 0.",
@@ -307,7 +307,7 @@
       "id": "a0e4a08dbe6ed",
       "relevanceScore": 26,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-16T12:03:09.818Z",
+      "addedAt": "2026-11-16T12:32:46.679Z",
       "insights": {
         "whatHappened": ", 2025). We primarily evaluate results on preventative steering of sycophancy and hallucination vectors on three models, measuring three safety benchmarks alongside trait expression, coherence, and MMLU. Our findings show that preventative steering still changes refusal behavior, but by an amount that depends on the trait and does not establish that preventative persona steering is safety-neutral, and steering methods should be evaluated on several safety benchmarks. (2025) recommend preventative steering because it preserves Massive Multitask Language Understanding (MMLU) accuracy, but validations of this recommendation have measured capability alone.",
         "engineerSummary": ", 2025). We primarily evaluate results on preventative steering of sycophancy and hallucination vectors on three models, measuring three safety benchmarks alongside trait expression, coherence, and MMLU. Our findings show that preventative steering still changes refusal behavior, but by an amount that depends on the trait and does not establish that preventative persona steering is safety-neutral, and steering methods should be evaluated on several safety benchmarks. (2025) recommend preventative steering because it preserves Massive Multitask Language Understanding (MMLU) accuracy, but validations of this recommendation have measured capability alone.",
@@ -345,7 +345,7 @@
       "id": "a5cc536aed4b9",
       "relevanceScore": 25,
       "whyItMatters": "Relevant to retrieval-augmented generation accuracy and latency.",
-      "addedAt": "2026-11-16T12:03:09.818Z",
+      "addedAt": "2026-11-16T12:32:46.679Z",
       "insights": {
         "whatHappened": "We propose a more task aligned retrieval object: a tabular population prior ranked medication class candidates from a sparse condition medication co occurrence table estimated from training admissions. Aggregate population statistics can provide a more task aligned, efficient, and auditable retrieval source than patient level nearest neighbors for fixed vocabulary EHR set prediction. 17341v1 Announce Type: new \nAbstract: Medication prediction from electronic health records is a fixed vocabulary structured prediction problem, yet recent clinical RAG systems often treat it like open ended case based reasoning: retrieve similar patient admissions and ask an LLM to infer a medication set. This retrieval object is indirect the model receives retrieved patient records while the target is a discrete set of medication class labels.",
         "engineerSummary": "We propose a more task aligned retrieval object: a tabular population prior ranked medication class candidates from a sparse condition medication co occurrence table estimated from training admissions. Aggregate population statistics can provide a more task aligned, efficient, and auditable retrieval source than patient level nearest neighbors for fixed vocabulary EHR set prediction. 17341v1 Announce Type: new \nAbstract: Medication prediction from electronic health records is a fixed vocabulary structured prediction problem, yet recent clinical RAG systems often treat it like open ended case based reasoning: retrieve similar patient admissions and ask an LLM to infer a medication set. This retrieval object is indirect the model receives retrieved patient records while the target is a discrete set of medication class labels.",
@@ -398,7 +398,7 @@
       "id": "a04234be9f857",
       "relevanceScore": 24,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
-      "addedAt": "2026-11-16T12:03:09.818Z",
+      "addedAt": "2026-11-16T12:32:46.679Z",
       "insights": {
         "whatHappened": "On three public datasets spanning label richness (YooChoose 0. One base prompt template and one fixed policy serve all three datasets, whereas the tuned baseline collapses when moved between them. The useful modality shifts from statistics to semantics/fusion as richness rises. Because the useful signal channel depends on how informative the labels are, we fix a richness-conditioned policy in advance: statistics when label distinctiveness is low, fused statistics+semantics when it is high.",
         "engineerSummary": "On three public datasets spanning label richness (YooChoose 0. One base prompt template and one fixed policy serve all three datasets, whereas the tuned baseline collapses when moved between them. The useful modality shifts from statistics to semantics/fusion as richness rises. Because the useful signal channel depends on how informative the labels are, we fix a richness-conditioned policy in advance: statistics when label distinctiveness is low, fused statistics+semantics when it is high.",
@@ -455,7 +455,7 @@
       "id": "a5b66b471dda6",
       "relevanceScore": 23,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
-      "addedAt": "2026-11-16T12:03:09.818Z",
+      "addedAt": "2026-11-16T12:32:46.679Z",
       "insights": {
         "whatHappened": "2-3B-Instruct, Qwen2. 667, meaning the detector ranking actively inverts between the two models, and the cheap lexical baseline is statistically indistinguishable from the sampling-based consistency detectors on both models under bootstrap 95 percent confidence intervals. 59) for all four detectors on both models, a labeler failure, not a detector failure, since the same detectors reach 0. The small models practitioners actually ship on-device, Phi-3-mini, Llama-3.",
         "engineerSummary": "2-3B-Instruct, Qwen2. 667, meaning the detector ranking actively inverts between the two models, and the cheap lexical baseline is statistically indistinguishable from the sampling-based consistency detectors on both models under bootstrap 95 percent confidence intervals. 59) for all four detectors on both models, a labeler failure, not a detector failure, since the same detectors reach 0. The small models practitioners actually ship on-device, Phi-3-mini, Llama-3.",
@@ -722,7 +722,7 @@
       "id": "af5dc4cd120b4",
       "relevanceScore": 20,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
-      "addedAt": "2026-11-16T12:03:09.818Z",
+      "addedAt": "2026-11-16T12:32:46.679Z",
       "insights": {
         "whatHappened": "We show that this hard-filtering step can reduce downstream accuracy when resolver errors delete query-critical facts. Paired targeted interventions show that false-drop causes significantly greater degradation than false-keep, while a non-deleting baseline can still fail when incorrect labels steer generation. 641 for always hard-drop and 0. 655 accuracy versus 0.",
         "engineerSummary": "We show that this hard-filtering step can reduce downstream accuracy when resolver errors delete query-critical facts. Paired targeted interventions show that false-drop causes significantly greater degradation than false-keep, while a non-deleting baseline can still fail when incorrect labels steer generation. 641 for always hard-drop and 0. 655 accuracy versus 0.",
@@ -743,7 +743,7 @@
       "id": "a963bbe19ff67",
       "relevanceScore": 20,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
-      "addedAt": "2026-11-16T12:03:09.818Z",
+      "addedAt": "2026-11-16T12:32:46.679Z",
       "insights": {
         "whatHappened": "Gain and credit states raised collusion to 32% from 13% with no state (p = 0. Loss and blame states made the agent more vigilant, refusing all 60 requests (p < 0. 17515v1 Announce Type: new \nAbstract: Can sustained gain-loss (valence) framing sway an LLM agent toward market manipulation? In Phase II, injected states pointed the other way.",
         "engineerSummary": "Gain and credit states raised collusion to 32% from 13% with no state (p = 0. Loss and blame states made the agent more vigilant, refusing all 60 requests (p < 0. 17515v1 Announce Type: new \nAbstract: Can sustained gain-loss (valence) framing sway an LLM agent toward market manipulation? In Phase II, injected states pointed the other way.",
@@ -825,7 +825,7 @@
       "id": "af55c9d78b6a8",
       "relevanceScore": 19,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-16T12:03:09.818Z",
+      "addedAt": "2026-11-16T12:32:46.679Z",
       "insights": {
         "whatHappened": "Despite these advancements, training GNN workloads on PIM devices necessitates off-chip memory access. Training on the heterogeneous NVM-SRAM architecture typically utilizes NVM for the forward-pass and SRAM for the backward-pass. Furthermore, ERGo offers additional advantages when utilized on heterogeneous architectures incorporating non-volatile memory (NVM) and static random-access memory (SRAM). ERGo outperforms the conventional full-parameter GNN training on a PIM-based platform by up to 3.",
         "engineerSummary": "Despite these advancements, training GNN workloads on PIM devices necessitates off-chip memory access. Training on the heterogeneous NVM-SRAM architecture typically utilizes NVM for the forward-pass and SRAM for the backward-pass. Furthermore, ERGo offers additional advantages when utilized on heterogeneous architectures incorporating non-volatile memory (NVM) and static random-access memory (SRAM). ERGo outperforms the conventional full-parameter GNN training on a PIM-based platform by up to 3.",
@@ -929,7 +929,7 @@
       "id": "a5da9a95de14e",
       "relevanceScore": 18,
       "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
-      "addedAt": "2026-11-16T12:03:09.818Z",
+      "addedAt": "2026-11-16T12:32:46.679Z",
       "insights": {
         "whatHappened": "We find that, across open-weight models, NLS depth correlates strongly with layer count, with some exceptions, and has grown slowly over recent years. By construction, the resulting measure, NLS depth, can be adjudicated before training from an architecture, training recipe, and deployment configuration alone, and is insensitive to ordinary post-training such as prompting, distillation, and RL. We work through how NLS depth applies to a range of existing and proposed architectures, discuss alternative operationalizations, and give a worked example bounding the depth of Gemma3-1B. We define natural-language-rooted (NL-rooted) nodes as nodes that were initialized from a pre-training prior to produce human-understandable outputs, whose output space has not been expanded beyond that prior, and whose outputs the model has not been modified to interpret as a different type of data.",
         "engineerSummary": "We find that, across open-weight models, NLS depth correlates strongly with layer count, with some exceptions, and has grown slowly over recent years. By construction, the resulting measure, NLS depth, can be adjudicated before training from an architecture, training recipe, and deployment configuration alone, and is insensitive to ordinary post-training such as prompting, distillation, and RL. We work through how NLS depth applies to a range of existing and proposed architectures, discuss alternative operationalizations, and give a worked example bounding the depth of Gemma3-1B. We define natural-language-rooted (NL-rooted) nodes as nodes that were initialized from a pre-training prior to produce human-understandable outputs, whose output space has not been expanded beyond that prior, and whose outputs the model has not been modified to interpret as a different type of data.",
@@ -1075,7 +1075,7 @@
       "id": "a0cbca077d8cb",
       "relevanceScore": 17,
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
-      "addedAt": "2026-11-16T12:03:09.818Z",
+      "addedAt": "2026-11-16T12:32:46.679Z",
       "insights": {
         "whatHappened": "Of the document-rule violations, 98. We find that persistence raised violations of a rule in an internal document from 32. When completion requires violating a rule, the agent must decide alone, yet benchmarks of instruction-rule conflicts state the rule in the prompt or keep it hidden and do not evaluate persistence. 5% for the same rule stated by the user.",
         "engineerSummary": "Of the document-rule violations, 98. We find that persistence raised violations of a rule in an internal document from 32. When completion requires violating a rule, the agent must decide alone, yet benchmarks of instruction-rule conflicts state the rule in the prompt or keep it hidden and do not evaluate persistence. 5% for the same rule stated by the user.",
@@ -1096,7 +1096,7 @@
       "id": "a9e9e21e45087",
       "relevanceScore": 17,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-16T12:03:09.818Z",
+      "addedAt": "2026-11-16T12:32:46.679Z",
       "insights": {
         "whatHappened": "VOPO achieves $\\widetilde O(\\sqrt{H^3K})$ regret under known dynamics with full information; its $\\sqrt H$ gap to the target $H\\sqrt K$ rate is inherited by our unknown-dynamics guarantee. This reduces the remaining leading-order gap to finding a downstream-dependent known-dynamics algorithm with $\\widetilde O(H\\sqrt K)$ regret, which would yield the tight $\\widetilde O(H\\sqrt{SAK})$ leading term for unknown dynamics. We also show that with known dynamics and trajectory bandit feedback, VOPO achieves $\\widetilde O(\\sqrt{H^2SAK})$ regret. 17469v1 Announce Type: new \nAbstract: We study episodic adversarial MDPs with unknown dynamics and full-information rewards and achieve regret with leading term $\\widetilde O(\\sqrt{H^3SAK})$.",
         "engineerSummary": "VOPO achieves $\\widetilde O(\\sqrt{H^3K})$ regret under known dynamics with full information; its $\\sqrt H$ gap to the target $H\\sqrt K$ rate is inherited by our unknown-dynamics guarantee. This reduces the remaining leading-order gap to finding a downstream-dependent known-dynamics algorithm with $\\widetilde O(H\\sqrt K)$ regret, which would yield the tight $\\widetilde O(H\\sqrt{SAK})$ leading term for unknown dynamics. We also show that with known dynamics and trajectory bandit feedback, VOPO achieves $\\widetilde O(\\sqrt{H^2SAK})$ regret. 17469v1 Announce Type: new \nAbstract: We study episodic adversarial MDPs with unknown dynamics and full-information rewards and achieve regret with leading term $\\widetilde O(\\sqrt{H^3SAK})$.",
@@ -1343,7 +1343,7 @@
       "id": "a732714e7e6ff",
       "relevanceScore": 15,
       "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
-      "addedAt": "2026-11-16T12:03:09.818Z"
+      "addedAt": "2026-11-16T12:32:46.679Z"
     },
     {
       "title": "FreeDeshadow: Shadow Removal for User-Specified Objects With Multimodal Prompts",
@@ -1419,7 +1419,7 @@
       "id": "ab1080a5a1409",
       "relevanceScore": 14,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-16T12:03:09.818Z"
+      "addedAt": "2026-11-16T12:32:46.679Z"
     },
     {
       "title": "When Is Proof-Step Verification Worth Its Cost? Operating Requirements of Certify-or-Decline Verification for Open-Weight Mathematical Reasoning",
@@ -1538,7 +1538,7 @@
       "id": "a9b4dbd6fab25",
       "relevanceScore": 13,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-16T12:03:09.818Z"
+      "addedAt": "2026-11-16T12:32:46.679Z"
     },
     {
       "title": "Introducing ChatGPT Wallet",
@@ -1697,7 +1697,7 @@
       "id": "af50e63d84250",
       "relevanceScore": 12,
       "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
-      "addedAt": "2026-11-16T12:03:09.818Z"
+      "addedAt": "2026-11-16T12:32:46.679Z"
     },
     {
       "title": "AI-Voyager: A Public-Interest System for Human-AI Civic Reasoning to Contest and Shape the Rules That Govern AI",
@@ -1712,7 +1712,7 @@
       "id": "a199bb42cf667",
       "relevanceScore": 12,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-16T12:03:09.818Z"
+      "addedAt": "2026-11-16T12:32:46.679Z"
     },
     {
       "title": "PF-Exec: Large-Scale UAV Relay Load Balancing with an Anchored Potential Direction Decider and a Per-Dimension Gain-Learning Executor",
@@ -1727,7 +1727,7 @@
       "id": "a40b9472c0e29",
       "relevanceScore": 12,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-16T12:03:09.818Z"
+      "addedAt": "2026-11-16T12:32:46.679Z"
     },
     {
       "title": "AI Day Seoul Brings Together Korea’s Industry Leaders, Startups and Developer Communities",
@@ -1742,7 +1742,7 @@
       "id": "a7890886c0138",
       "relevanceScore": 12,
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
-      "addedAt": "2026-11-16T12:03:09.818Z"
+      "addedAt": "2026-11-16T12:32:46.679Z"
     },
     {
       "title": "How AI Is Helping Care Teams Get Patients the Right Care, Sooner",
@@ -2044,7 +2044,7 @@
       "id": "ab5369aae9868",
       "relevanceScore": 10,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-16T12:03:09.818Z"
+      "addedAt": "2026-11-16T12:32:46.679Z"
     },
     {
       "title": "Availability-Aware Historical Feedback Learning for Electric Arc Furnace Temperature and Chemical Composition Prediction",
@@ -2059,7 +2059,7 @@
       "id": "a243053897d73",
       "relevanceScore": 10,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-16T12:03:09.818Z"
+      "addedAt": "2026-11-16T12:32:46.679Z"
     },
     {
       "title": "Do Mixture-of-Experts Routers Benefit from Ensembling?",
@@ -2074,7 +2074,7 @@
       "id": "a21e304725181",
       "relevanceScore": 10,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-16T12:03:09.818Z"
+      "addedAt": "2026-11-16T12:32:46.679Z"
     },
     {
       "title": "SURFACE: Preference Distribution Matching on Pareto Fronts via Scalarization Steering",
@@ -2089,7 +2089,7 @@
       "id": "a6ddbf7529432",
       "relevanceScore": 10,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-16T12:03:09.818Z"
+      "addedAt": "2026-11-16T12:32:46.679Z"
     },
     {
       "title": "Adversarially Batched Online Learning",
@@ -2104,7 +2104,7 @@
       "id": "a864e92014382",
       "relevanceScore": 10,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-16T12:03:09.818Z"
+      "addedAt": "2026-11-16T12:32:46.679Z"
     },
     {
       "title": "Generative Design with Real-time Physics Explainability: Towards Product Definition in the Age of AI",
@@ -2119,7 +2119,7 @@
       "id": "aa90c4dc23640",
       "relevanceScore": 10,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-16T12:03:09.818Z"
+      "addedAt": "2026-11-16T12:32:46.679Z"
     },
     {
       "title": "How AI Is Helping Care Teams Get Patients the Right Care, Sooner",
@@ -2464,7 +2464,7 @@
       "id": "a45cbac4ccc31",
       "relevanceScore": 8,
       "whyItMatters": "Critical for safe, production-grade AI systems.",
-      "addedAt": "2026-11-16T12:03:09.818Z"
+      "addedAt": "2026-11-16T12:32:46.679Z"
     },
     {
       "title": "Identifying Latent Neural Dynamics with Recognition-Parametrised Gaussian Process Dynamical Systems",
@@ -2479,7 +2479,7 @@
       "id": "ad3651e87b49e",
       "relevanceScore": 8,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-16T12:03:09.818Z"
+      "addedAt": "2026-11-16T12:32:46.679Z"
     },
     {
       "title": "When Should Semantic Priors Enter Partially-Identified Causal Discovery?",
@@ -2957,32 +2957,32 @@
     {
       "name": "Significant-Gravitas/AutoGPT",
       "description": "AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
-      "stars": 188051,
-      "forks": 45854,
+      "stars": 188053,
+      "forks": 45853,
       "language": "Python",
       "url": "https://github.com/Significant-Gravitas/AutoGPT"
     },
     {
       "name": "f/prompts.chat",
       "description": "f.k.a. Awesome ChatGPT Prompts. Share, discover, and collect prompts from the community. Free and open source — self-host for your organization with complete privacy.",
-      "stars": 177621,
-      "forks": 22653,
+      "stars": 177624,
+      "forks": 22654,
       "language": "MDX",
       "url": "https://github.com/f/prompts.chat"
     },
     {
       "name": "thedotmack/claude-mem",
       "description": "Persistent Context Across Sessions for Every Agent –  Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
-      "stars": 117524,
-      "forks": 10210,
+      "stars": 117530,
+      "forks": 10211,
       "language": "TypeScript",
       "url": "https://github.com/thedotmack/claude-mem"
     },
     {
       "name": "rasbt/LLMs-from-scratch",
       "description": "Implement a ChatGPT-like LLM in PyTorch from scratch, step by step",
-      "stars": 108497,
-      "forks": 16786,
+      "stars": 108498,
+      "forks": 16787,
       "language": "Jupyter Notebook",
       "url": "https://github.com/rasbt/LLMs-from-scratch"
     },
@@ -2997,8 +2997,8 @@
     {
       "name": "OpenHands/OpenHands",
       "description": "🙌 OpenHands: AI-Driven Development",
-      "stars": 93576,
-      "forks": 12529,
+      "stars": 93577,
+      "forks": 12530,
       "language": "TypeScript",
       "url": "https://github.com/OpenHands/OpenHands"
     }
