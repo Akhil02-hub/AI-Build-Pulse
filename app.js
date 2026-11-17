@@ -388,7 +388,7 @@ function checkStaleness() {
         banner.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline; vertical-align:middle; margin-right:6px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Unable to determine data freshness.`;
         return;
     }
-    const STALE_HOURS = 26;   // 24h + 2h buffer for GitHub Action delay
+    const STALE_HOURS = 168;   // 7 days buffer for GitHub Action delay
     if (age > STALE_HOURS * 3600 * 1000) {
         banner.classList.remove('hidden');
         banner.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline; vertical-align:middle; margin-right:6px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Last update was ${Math.round(age / 3600000)}h ago. The scheduled workflow may be delayed.`;
@@ -494,7 +494,7 @@ function applyFilters(list) {
 
     const H = 3600 * 1000;
     let cutoff = 0;
-    if (state.view === 'today') cutoff = Date.now() - 36 * H;
+    if (state.view === 'today') cutoff = Date.now() - 7 * 24 * H;
     // (Briefing cutoff is handled inside renderBriefing)
     else if (state.view === 'weekly') cutoff = Date.now() - 7 * 24 * H;
 
@@ -883,10 +883,10 @@ function renderFeed() {
         const emptyStyle = "grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 4rem 2rem; color: var(--muted); width: 100%;";
 
         if (state.view === 'today') {
-            let msg = state.persona === 'founder' ? 'No founder-focused news from the last 24 hours.' : 'No news from the last 24 hours.';
+            let msg = state.persona === 'founder' ? 'No founder-focused news from the last 7 days.' : 'No news from the last 7 days.';
             if (state.news && state.news.generatedAt) {
                 const age = Date.now() - new Date(state.news.generatedAt).getTime();
-                if (age > 36 * 3600 * 1000) {
+                if (age > 7 * 24 * 3600 * 1000) {
                     msg = 'The daily news update is currently delayed. Please check the Weekly Overview for older articles.';
                 }
             }
@@ -911,8 +911,8 @@ function renderBriefing() {
     if (trends) trends.classList.add('hidden');
     if (feed) feed.classList.remove('hidden');
 
-    // 1. Today's articles (last 36h, matches applyFilters) + persona filter
-    const cutoff = Date.now() - 36 * 3600 * 1000;
+    // 1. Today's articles (last 7 days, matches applyFilters) + persona filter
+    const cutoff = Date.now() - 7 * 24 * 3600 * 1000;
     const todayArticles = state.articles.filter(a => {
         if (new Date(a.publishedAt).getTime() < cutoff) return false;
         if (state.persona === 'engineer' && a.audience === 'founder') return false;
