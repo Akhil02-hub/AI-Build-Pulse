@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17T21:01:57.327+05:30",
+  "generatedAt": "2026-11-17T21:10:19.289+05:30",
   "retentionDays": 7,
   "totalStories": 150,
   "newToday": 38,
@@ -3065,7 +3065,7 @@
     {
       "name": "Significant-Gravitas/AutoGPT",
       "description": "AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
-      "stars": 188072,
+      "stars": 188073,
       "forks": 45866,
       "language": "Python",
       "url": "https://github.com/Significant-Gravitas/AutoGPT"
@@ -3081,7 +3081,7 @@
     {
       "name": "thedotmack/claude-mem",
       "description": "Persistent Context Across Sessions for Every Agent –  Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
-      "stars": 117892,
+      "stars": 117894,
       "forks": 10244,
       "language": "TypeScript",
       "url": "https://github.com/thedotmack/claude-mem"
@@ -3105,7 +3105,7 @@
     {
       "name": "OpenHands/OpenHands",
       "description": "🙌 OpenHands: AI-Driven Development",
-      "stars": 93645,
+      "stars": 93647,
       "forks": 12540,
       "language": "TypeScript",
       "url": "https://github.com/OpenHands/OpenHands"
