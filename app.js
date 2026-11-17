@@ -134,8 +134,9 @@ function getRouteFromPath() {
     }
     const view = routes[path];
     if (!view) {
-        safeReplaceState({ view: 'today' }, '', buildPath('/today'));
-        return 'today';
+        // Redirect to the actual static 404 page
+        window.location.href = buildPath('/404.html');
+        return 'today'; // Fallback to prevent JS errors while redirecting
     }
     return view;
 }
