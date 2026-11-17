@@ -152,3 +152,13 @@ jobs:
 
           echo "::error::Push failed after 5 attempts."
           exit 1
+
+      # 7. Trigger Vercel Deployment
+      - name: Trigger Vercel Deployment
+        run: |
+          if [ -n "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}" ]; then
+            curl -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}"
+          else
+            echo "::error::VERCEL_DEPLOY_HOOK_URL secret is not set!"
+            exit 1
+          fi
