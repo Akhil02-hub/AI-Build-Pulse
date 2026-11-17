@@ -1,7 +1,9 @@
 {
+    "buildCommand": "",
+    "outputDirectory": ".",
     "rewrites": [
         {
-            "source": "/((?!.*\\.(css|js|png|json|svg|ico|woff2?)$).*)",
+            "source": "/((?!.*\\.(css|js|png|json|svg|ico|woff2?|html)$).*)",
             "destination": "/index.html"
         }
     ],
@@ -16,7 +18,7 @@
             ]
         },
         {
-            "source": "/(styles|config|app).(css|js)",
+            "source": "/(styles|config|app)\\.(css|js)",
             "headers": [
                 {
                     "key": "Cache-Control",
