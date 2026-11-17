@@ -1,89 +1,144 @@
+
 name: Daily AI Engineer News
 
 on:
   schedule:
-    # Run every midnight at 12:00 AM (UTC)
+    # Every day at 12:00 AM UTC (5:30 AM IST)
     - cron: '0 0 * * *'
   workflow_dispatch:
 
-# Prevent overlapping runs from clashing
+# Prevent overlapping runs
 concurrency:
-  group: daily-news-${{ github.ref }}
+  group: daily-news-main
   cancel-in-progress: false
 
+# Required permissions
 permissions:
   contents: write
   models: read
 
 jobs:
   collect:
+    name: Collect and Update Daily News
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+
     steps:
+      # 1. Checkout main branch
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
-          # Fetch all history so we can rebase
+          ref: main
           fetch-depth: 0
 
+      # 2. Setup Node.js
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: 22
+          node-version: '22'
+          package-manager-cache: false
 
+      # 3. Install dependencies when required
       - name: Install dependencies
-        run: npm install
-
-      - name: Collect + prune feed (24h fetch · 7-day retention)
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: node scripts/collect-news.mjs
-
-      - name: Commit and Push
+        shell: bash
         run: |
-          set -e
+          set -euo pipefail
 
-          git config user.name "akhil02-hub"
-          git config user.email "amarachinthaakhil@gmail.com"
+          if [[ -f package-lock.json || -f npm-shrinkwrap.json ]]; then
+            echo "Installing from lockfile..."
+            npm ci --no-audit --no-fund
+          elif [[ -f package.json ]]; then
+            echo "No lockfile found. Installing from package.json..."
+            npm install --no-audit --no-fund
+          else
+            echo "No package.json found. Assuming zero dependencies."
+          fi
 
-          git add data/
+      # 4. Collect news and apply retention
+      - name: Collect and prune news
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          node scripts/collect-news.mjs
+
+      # 5. Commit and safely push generated data
+      - name: Commit and Push
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          # Verify generated data directory
+          if [[ ! -d data ]]; then
+            echo "::error::The collector did not create the data directory."
+            exit 1
+          fi
+
+          # Preserve the exact generated output for conflict recovery
+          SNAPSHOT_DIR="${RUNNER_TEMP}/daily-news-data"
+          rm -rf "$SNAPSHOT_DIR"
+          mkdir -p "$SNAPSHOT_DIR"
+          cp -a data/. "$SNAPSHOT_DIR/"
+
+          # Configure Git identity
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Stage additions, modifications and deletions
+          git add -A -- data/
+
+          # Avoid empty commits
           if git diff --cached --quiet; then
-            echo "No changes to commit — exiting cleanly."
+            echo "No changes detected. Nothing to commit."
             exit 0
           fi
 
-          git commit -m "Update daily news (retention: 7 days)"
-          OUR_COMMIT=$(git rev-parse HEAD)
-          echo "Our commit: $OUR_COMMIT"
+          git commit -m "Update daily AI engineer news"
 
+          # Retry if main changes during the push
           for attempt in 1 2 3 4 5; do
-            echo "──────── Push attempt $attempt ────────"
-            git fetch origin main
+            echo "========== Push attempt $attempt/5 =========="
 
-            # If remote advanced, rebase onto it
-            if ! git merge-base --is-ancestor origin/main HEAD; then
-              echo "Remote has new commits — rebasing..."
-              if ! git rebase origin/main; then
-                echo "⚠️  Rebase conflict — resolving by keeping our fresh data"
-                git rebase --abort 2>/dev/null || true
+            # Fetch the latest main branch
+            git fetch --no-tags origin \
+              +refs/heads/main:refs/remotes/origin/main
 
-                # Reset to remote, then re-apply our data on top
-                git reset --hard origin/main
-                git checkout "$OUR_COMMIT" -- data/
-                git add data/
-                git commit -m "Update daily news (retention: 7 days)"
-                OUR_COMMIT=$(git rev-parse HEAD)
-                echo "New commit after conflict resolution: $OUR_COMMIT"
+            # Rebase generated commit onto latest main
+            if ! git rebase origin/main; then
+              echo "Rebase conflict detected."
+              echo "Restoring generated data on latest main..."
+
+              # Abort incomplete rebase
+              git rebase --abort 2>/dev/null || true
+
+              # Reset to latest remote branch
+              git reset --hard origin/main
+
+              # Restore exact generated data, including deletions
+              rm -rf data
+              mkdir -p data
+              cp -a "$SNAPSHOT_DIR/." data/
+
+              git add -A -- data/
+
+              # Check whether remote already contains our changes
+              if git diff --cached --quiet; then
+                echo "No new changes remain. Exiting successfully."
+                exit 0
               fi
+
+              git commit -m "Update daily AI engineer news"
             fi
 
-            if git push origin HEAD:main; then
-              echo "✅ Push succeeded on attempt $attempt"
+            # Push without force
+            if git push origin HEAD:refs/heads/main; then
+              echo "Successfully pushed daily news."
               exit 0
             fi
 
-            echo "⏳ Push rejected — retrying in 5s..."
+            echo "Push rejected. Fetching latest changes before retry..."
             sleep 5
           done
 
-          echo "❌ Failed to push after 5 attempts"
+          echo "::error::Push failed after 5 attempts."
           exit 1
