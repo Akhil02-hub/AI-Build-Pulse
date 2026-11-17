@@ -320,7 +320,7 @@ async function loadNews() {
     const feed = $('#newsFeed');
     if (feed) feed.innerHTML = Array(3).fill('<div class="skeleton-card"></div>').join('');
     try {
-        const r = await fetch(`${BASE_PATH}/data/news.json`, { cache: 'no-store' });
+        const r = await fetch(`${BASE_PATH}/data/news.json?t=${Date.now()}`, { cache: 'no-store' });
         if (!r.ok) throw new Error('news.json not found');
         state.news = await r.json();
         if (!state.news || typeof state.news !== 'object' || Array.isArray(state.news)) throw new Error('Invalid news.json shape');

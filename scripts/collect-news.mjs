@@ -107,12 +107,9 @@ async function rss(s) {
             }
 
             return {
-                title: i.title || '',
-                summary: clean(rawContent), // Now stores the full clean text
-                url: canon(i.link || ''),
-                publishedAt: i.isoDate || i.pubDate || new Date().toISOString(),
-                source: s.name, category: s.category, trusted: s.trusted, image: imageUrl,
-                audience: s.audience
+                title: i.title || '', summary: clean(rawContent),
+                url: canon(i.link || ''), publishedAt: (() => { const d = new Date(i.isoDate || i.pubDate); return isNaN(d.getTime()) ? new Date().toISOString() : d.toISOString(); })(),
+                source: s.name, category: s.category, trusted: s.trusted, image: imageUrl, audience: s.audience
             };
         });
     } catch (e) { console.warn(`RSS ${s.name}: ${e.message}`); return []; }
@@ -124,9 +121,8 @@ async function hn(s) {
         return (d.hits || []).map(h => ({
             title: h.title || '', summary: `${h.points} points · ${h.num_comments || 0} comments`,
             url: h.url || `https://news.ycombinator.com/item?id=${h.objectID}`,
-            publishedAt: h.created_at || new Date().toISOString(),
-            source: s.name, category: 'General AI', trusted: false,
-            audience: s.audience
+            publishedAt: (() => { const d = new Date(h.created_at); return isNaN(d.getTime()) ? new Date().toISOString() : d.toISOString(); })(),
+            source: s.name, category: 'General AI', trusted: false, audience: s.audience
         }));
     } catch (e) { console.warn(`HN: ${e.message}`); return []; }
 }
@@ -136,9 +132,8 @@ async function devto(s) {
         const d = await r.json();
         return d.map(a => ({
             title: a.title || '', summary: clean(a.description || ''),
-            url: canon(a.url || ''), publishedAt: a.published_at || new Date().toISOString(),
-            source: s.name, category: 'AI Frameworks', trusted: false,
-            audience: s.audience
+            url: canon(a.url || ''), publishedAt: (() => { const d = new Date(a.published_at); return isNaN(d.getTime()) ? new Date().toISOString() : d.toISOString(); })(),
+            source: s.name, category: 'AI Frameworks', trusted: false, audience: s.audience
         }));
     } catch (e) { console.warn(`Dev.to: ${e.message}`); return []; }
 }
@@ -150,9 +145,8 @@ async function gnews(s) {
         ]);
         return (f.items || []).slice(0, 10).map(i => ({
             title: i.title || '', summary: clean(i.contentSnippet || i.content || ''),
-            url: canon(i.link || ''), publishedAt: i.isoDate || i.pubDate || new Date().toISOString(),
-            source: s.name, category: 'General AI', trusted: false,
-            audience: s.audience
+            url: canon(i.link || ''), publishedAt: (() => { const d = new Date(i.isoDate || i.pubDate); return isNaN(d.getTime()) ? new Date().toISOString() : d.toISOString(); })(),
+            source: s.name, category: 'General AI', trusted: false, audience: s.audience
         }));
     } catch (e) { console.warn(`GNews ${s.name}: ${e.message}`); return []; }
 }
