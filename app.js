@@ -883,7 +883,13 @@ function renderFeed() {
         const emptyStyle = "grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 4rem 2rem; color: var(--muted); width: 100%;";
 
         if (state.view === 'today') {
-            const msg = state.persona === 'founder' ? 'No founder-focused news from the last 24 hours.' : 'No news from the last 24 hours.';
+            let msg = state.persona === 'founder' ? 'No founder-focused news from the last 24 hours.' : 'No news from the last 24 hours.';
+            if (state.news && state.news.generatedAt) {
+                const age = Date.now() - new Date(state.news.generatedAt).getTime();
+                if (age > 36 * 3600 * 1000) {
+                    msg = 'The daily news update is currently delayed. Please check the Weekly Overview for older articles.';
+                }
+            }
             feed.innerHTML = `<div style="${emptyStyle}">${msg}<br><br><button class="btn primary" onclick="navigateTo('weekly')">Check Weekly Overview</button></div>`;
         } else if (state.view === 'research') {
             feed.innerHTML = `<div style="${emptyStyle}">No new research papers today. Try checking the Weekly Overview.</div>`;

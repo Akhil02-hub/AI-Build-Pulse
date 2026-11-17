@@ -2,7 +2,8 @@ name: Daily AI Engineer News
 
 on:
   schedule:
-    - cron: '30 18 * * *'
+    # Run every midnight at 12:00 AM (UTC)
+    - cron: '0 0 * * *'
   workflow_dispatch:
 
 # Prevent overlapping runs from clashing

@@ -13,6 +13,19 @@ const RETENTION_MS = 7 * 24 * 3600 * 1000; // keep 7 days
 const MAX_ARTICLES = 30;                 // per run (fresh items)
 const MAX_AI_SUMMARIES = 15;
 const AI_DELAY_MS = 1500;
+const FETCH_TIMEOUT_MS = 15000;
+
+const fetchWithTimeout = async (url, options = {}, timeout = FETCH_TIMEOUT_MS) => {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeout);
+    try {
+        return await fetch(url, { ...options, signal: controller.signal });
+    } finally {
+        clearTimeout(id);
+    }
+};
+
+const timeoutPromise = (ms) => new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), ms));
 
 const KEYWORDS = {
     'LLM Engineering': ['llm', 'gpt', 'gpt-4', 'gpt-4o', 'transformer', 'tokenization', 'language model', 'claude', 'gemini', 'llama'],
@@ -67,7 +80,10 @@ function canon(url) {
 /* ---------- Fetchers (unchanged behaviour) ---------- */
 async function rss(s) {
     try {
-        const f = await parser.parseURL(s.url);
+        const f = await Promise.race([
+            parser.parseURL(s.url),
+            timeoutPromise(FETCH_TIMEOUT_MS)
+        ]);
         return (f.items || []).slice(0, 15).map(i => {
             // Try to get the full HTML content first, then fallback to snippets
             const rawContent = i.contentEncoded || i.content || i.contentSnippet || '';
@@ -103,7 +119,7 @@ async function rss(s) {
 }
 async function hn(s) {
     try {
-        const r = await fetch(`https://hn.algolia.com/api/v1/search?query=${encodeURIComponent(s.query)}&tags=story&numericFilters=points>${s.minPoints || 50}&hitsPerPage=15`);
+        const r = await fetchWithTimeout(`https://hn.algolia.com/api/v1/search?query=${encodeURIComponent(s.query)}&tags=story&numericFilters=points>${s.minPoints || 50}&hitsPerPage=15`);
         const d = await r.json();
         return (d.hits || []).map(h => ({
             title: h.title || '', summary: `${h.points} points · ${h.num_comments || 0} comments`,
@@ -116,7 +132,7 @@ async function hn(s) {
 }
 async function devto(s) {
     try {
-        const r = await fetch(`https://dev.to/api/articles?tag=${encodeURIComponent(s.tag)}&per_page=${s.perPage || 15}`);
+        const r = await fetchWithTimeout(`https://dev.to/api/articles?tag=${encodeURIComponent(s.tag)}&per_page=${s.perPage || 15}`);
         const d = await r.json();
         return d.map(a => ({
             title: a.title || '', summary: clean(a.description || ''),
@@ -128,7 +144,10 @@ async function devto(s) {
 }
 async function gnews(s) {
     try {
-        const f = await parser.parseURL(`https://news.google.com/rss/search?q=${encodeURIComponent(s.query)}&hl=en-IN&gl=IN&ceid=IN:en`);
+        const f = await Promise.race([
+            parser.parseURL(`https://news.google.com/rss/search?q=${encodeURIComponent(s.query)}&hl=en-IN&gl=IN&ceid=IN:en`),
+            timeoutPromise(FETCH_TIMEOUT_MS)
+        ]);
         return (f.items || []).slice(0, 10).map(i => ({
             title: i.title || '', summary: clean(i.contentSnippet || i.content || ''),
             url: canon(i.link || ''), publishedAt: i.isoDate || i.pubDate || new Date().toISOString(),
@@ -162,7 +181,7 @@ async function fetchGitHubTrending() {
         const headers = { 'User-Agent': 'AI-Engineer-Pulse' };
         if (process.env.GH_TOKEN) headers.Authorization = `Bearer ${process.env.GH_TOKEN}`;
 
-        const r = await fetch(`https://api.github.com/search/repositories?q=topic:artificial-intelligence+stars:>500&sort=stars&order=desc&per_page=6`, { headers });
+        const r = await fetchWithTimeout(`https://api.github.com/search/repositories?q=topic:artificial-intelligence+stars:>500&sort=stars&order=desc&per_page=6`, { headers });
         const data = await r.json();
         return (data.items || []).map(repo => ({
             name: repo.full_name,
@@ -182,7 +201,7 @@ async function fetchGitHubTrending() {
 async function fetchJobs() {
     try {
         // Fetch remote AI/ML jobs from a public API
-        const r = await fetch(`https://remoteok.com/api`, {
+        const r = await fetchWithTimeout(`https://remoteok.com/api`, {
             headers: { 'User-Agent': 'AI-Engineer-Pulse', 'Accept': 'application/json' }
         });
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
