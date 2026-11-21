@@ -31,6 +31,20 @@ function highlightKeywords(str) {
     const rx = new RegExp(`\\b(${escWords.join('|')})\\b`, 'gi');
     return safe.replace(rx, '<strong style="color: var(--accent); font-weight: 700;">$1</strong>');
 }
+
+function summaryPoints(value, fallback = '') {
+    const raw = Array.isArray(value) ? value : String(value || fallback || '');
+    let points = Array.isArray(raw)
+        ? raw.map(point => String(point).replace(/^\s*(?:[-*•]|\d+[.)])\s*/, '').trim()).filter(Boolean)
+        : raw.split(/\n+|(?<=[.!?])\s+(?=[A-Z0-9])/).map(point => point.trim()).filter(Boolean);
+    if (points.length > 3) points = [...points.slice(0, 2), points.slice(2).join(' ')];
+    while (points.length < 3) points.push('No additional sourced detail is available.');
+    return points;
+}
+
+function summaryListHTML(value, fallback = '') {
+    return `<ul class="summary-points">${summaryPoints(value, fallback).map(point => `<li>${highlightKeywords(point)}</li>`).join('')}</ul>`;
+}
 const fmtDate = iso => {
     try {
         const d = new Date(iso);
@@ -438,14 +452,10 @@ function cardHTML(a) {
     const fresh = Number.isFinite(ts) ? Math.max(60, Math.min(99, 99 - Math.round((Date.now() - ts) / 7200000))) : null;
     const scoreBadge = fresh !== null ? `<span class="impact-badge" title="Freshness score">★ ${fresh}</span>` : '';
 
-    let summaryToDisplay = a.summary || '';
-    if (a.insights) {
-        if (state.persona === 'engineer' && a.insights.engineerSummary) {
-            summaryToDisplay = a.insights.engineerSummary;
-        } else if (state.persona === 'founder' && a.insights.founderSummary) {
-            summaryToDisplay = a.insights.founderSummary;
-        }
-    }
+    const summaryAudience = state.persona === 'engineer' ? 'AI Engineer' : 'Founder';
+    const selectedSummary = state.persona === 'engineer'
+        ? a.insights?.engineerSummary
+        : a.insights?.founderSummary;
 
     return `
   <article class="card" data-id="${esc(a.id)}" tabindex="0" role="button" onclick="navigateToArticle(this.dataset.id, event)">
@@ -463,8 +473,9 @@ function cardHTML(a) {
         <span>${fmtDate(a.publishedAt)}</span>
         ${scoreBadge}
       </div>
-      <div class="ai-summary" style="margin-top: 0.5rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
-        ${esc(summaryToDisplay || a.summary || 'Click to read more')}
+      <div class="ai-summary" style="margin-top: 0.5rem;">
+        <strong class="summary-audience">For ${summaryAudience}</strong>
+        ${summaryListHTML(selectedSummary, a.summary || 'Click to read more')}
       </div>
       <div class="card-actions" style="margin-top: 1rem; display: flex; gap: 0.5rem;" onclick="event.stopPropagation()">
         <a href="${safeUrl(a.url) || '#'}" target="_blank" rel="noopener" class="btn primary" style="flex: 1; padding: 0.4rem; font-size: 0.8rem;">Read Original</a>
@@ -515,7 +526,7 @@ function applyFilters(list) {
 
         if (cutoff > 0 && new Date(a.publishedAt).getTime() < cutoff) return false;
 
-        const insText = a.insights ? `${a.insights.engineerSummary || ''} ${a.insights.founderSummary || ''}` : '';
+        const insText = a.insights ? `${summaryPoints(a.insights.engineerSummary).join(' ')} ${summaryPoints(a.insights.founderSummary).join(' ')}` : '';
         if (q && !`${a.title} ${a.summary} ${insText}`.toLowerCase().includes(q)) return false;
 
         return true;
@@ -550,7 +561,7 @@ function renderArticle() {
     const notesKey = `notes_${article.id}`;
     const savedNotes = safeGet(notesKey, '');
     const ins = article.insights || {};
-    const textForReading = (article.summary || '') + (ins.whatHappened || '') + (ins.engineerSummary || '');
+    const textForReading = `${article.summary || ''} ${ins.whatHappened || ''} ${summaryPoints(ins.engineerSummary).join(' ')}`;
     const words = textForReading.trim().split(/\s+/).filter(Boolean).length;
     const readMins = words === 0 ? 1 : Math.max(1, Math.ceil(words / 200));
     // ---------------------------------------------------
@@ -623,11 +634,11 @@ function renderArticle() {
                     <h2>Why is it important?</h2>
                     <div class="insight-box">
                         <strong>For Engineers</strong>
-                        <p>${highlightKeywords(ins.engineerSummary || article.whyItMatters || 'Engineering impact analysis pending. Please read the full original article for technical details.')}</p>
+                        ${summaryListHTML(ins.engineerSummary, article.whyItMatters || article.summary || 'Engineering summary is not available yet.')}
                     </div>
                     <div class="insight-box" style="border-left-color: #10b981;">
                         <strong>For Founders</strong>
-                        <p>${highlightKeywords(ins.founderSummary || 'Business impact analysis pending. Please read the full original article for market context.')}</p>
+                        ${summaryListHTML(ins.founderSummary, article.whyItMatters || article.summary || 'Business summary is not available yet.')}
                     </div>
                 </div>
                 
@@ -973,8 +984,7 @@ function renderBriefing() {
 
 function briefCardHTML(a) {
     const ins = a.insights || {};
-    let brief = ins.whatHappened ||
-        (state.persona === 'engineer' ? ins.engineerSummary : ins.founderSummary);
+    let brief = state.persona === 'engineer' ? ins.engineerSummary : ins.founderSummary;
 
     // Fallback: If AI failed, extract only the first 2 sentences from the raw RSS text
     if (!brief && a.summary) {
@@ -998,7 +1008,7 @@ function briefCardHTML(a) {
                     onclick="toggleBookmark(this.dataset.saveId, event)"
                     aria-label="Save">${saved ? '★' : '☆'}</button>
             </div>
-            <p class="brief-body">${highlightKeywords(brief)}</p>
+        <div class="brief-body"><strong>For ${state.persona === 'engineer' ? 'AI Engineer' : 'Founder'}</strong>${summaryListHTML(brief, a.summary || 'No summary available.')}</div>
             <div class="brief-meta">
                 <span>${esc(a.source)}</span>
                 <span>•</span>

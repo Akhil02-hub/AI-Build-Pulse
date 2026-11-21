@@ -634,6 +634,31 @@ select:focus {
     display: none !important;
 }
 
+.summary-audience {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--muted);
+    font-size: 0.76rem;
+}
+
+.summary-points {
+    margin: 0.35rem 0 0;
+    padding-left: 1.2rem;
+}
+
+.summary-points li {
+    margin: 0.25rem 0;
+}
+
+.card .summary-points {
+    font-size: 0.84rem;
+    line-height: 1.45;
+}
+
+.brief-body .summary-points {
+    margin-top: 0.55rem;
+}
+
 .skip-link {
     position: fixed;
     top: 0.75rem;

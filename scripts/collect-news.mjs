@@ -295,6 +295,19 @@ function fallbackSummarizer(text) {
     return scored.slice(0, 4).map(s => s.sentence).join(' ');
 }
 
+function threeSummaryPoints(value, fallback = '') {
+    const raw = Array.isArray(value) ? value : String(value || fallback || '');
+    let points = Array.isArray(raw)
+        ? raw.map(point => String(point).replace(/^\s*(?:[-*•]|\d+[.)])\s*/, '').trim()).filter(Boolean)
+        : raw.split(/\n+|(?<=[.!?])\s+(?=[A-Z0-9])/).map(point => point.trim()).filter(Boolean);
+    if (points.length > 3) {
+        const tail = points.slice(2).join(' ');
+        points = [...points.slice(0, 2), tail];
+    }
+    while (points.length < 3) points.push('No additional sourced detail is available.');
+    return points;
+}
+
 /* ---------- AI summaries (GitHub Models) ---------- */
 async function aiSummary(client, a) {
     const safeSummary = (a.summary || '').replace(/\.\.\.$/, '').slice(0, 1500);
@@ -307,8 +320,8 @@ async function aiSummary(client, a) {
             }, {
                 role: 'user', content:
                     `Analyze this AI news for two personas: AI Engineer and Founder. Output a JSON object with these exact keys:
-                    "engineerSummary" (3-4 sentences on tech impact),
-                    "founderSummary" (3-4 sentences on business impact),
+                    "engineerSummary" (an array of exactly 3 concise, distinct bullet point strings about technical impact),
+                    "founderSummary" (an array of exactly 3 concise, distinct bullet point strings about business impact),
                     "whatHappened" (Write a highly detailed, comprehensive summary of the core news. It MUST be at least 100 words long. Do NOT cut it short),
                     "whatChanged" (1 short sentence),
                     "techDetails" (1 short sentence on models/tools),
@@ -320,9 +333,12 @@ async function aiSummary(client, a) {
                     Source: ${a.source}
                     Excerpt: ${safeSummary}`
             }],
-            max_tokens: 800, temperature: 0.3,
+            max_tokens: 1200, temperature: 0.3,
         });
-        return JSON.parse(r.choices[0].message.content);
+        const result = JSON.parse(r.choices[0].message.content);
+        result.engineerSummary = threeSummaryPoints(result.engineerSummary, safeSummary);
+        result.founderSummary = threeSummaryPoints(result.founderSummary, safeSummary);
+        return result;
     } catch (err) {
         console.warn(`AI Error for "${a.title}":`, err.message);
         // Throw on transient errors (network, rate limit, server down) so we don't permanently skip
@@ -342,7 +358,19 @@ async function aiSummary(client, a) {
 }
 async function enrich(list) {
     const token = process.env.GH_TOKEN;
-    if (!token) return list.map(a => ({ ...a, insights: null, insightsAttempted: false }));
+    if (!token) return list.map(a => {
+        const localSum = fallbackSummarizer(a.summary);
+        return {
+            ...a,
+            insights: {
+                ...(a.insights || {}),
+                whatHappened: a.insights?.whatHappened || localSum,
+                engineerSummary: threeSummaryPoints(a.insights?.engineerSummary || localSum, a.summary || a.title),
+                founderSummary: threeSummaryPoints(a.insights?.founderSummary || localSum, a.summary || a.title)
+            },
+            insightsAttempted: a.insightsAttempted || false
+        };
+    });
     const client = new OpenAI({ baseURL: 'https://models.github.ai/inference', apiKey: token });
     const map = new Map();
     for (const a of list) {
@@ -366,8 +394,14 @@ async function enrich(list) {
             const localSum = fallbackSummarizer(a.summary);
             finalInsights = {
                 whatHappened: localSum,
-                engineerSummary: localSum,
-                founderSummary: localSum
+                engineerSummary: threeSummaryPoints(localSum, a.title),
+                founderSummary: threeSummaryPoints(localSum, a.title)
+            };
+        } else {
+            finalInsights = {
+                ...finalInsights,
+                engineerSummary: threeSummaryPoints(finalInsights.engineerSummary, a.summary || a.title),
+                founderSummary: threeSummaryPoints(finalInsights.founderSummary, a.summary || a.title)
             };
         }
 
