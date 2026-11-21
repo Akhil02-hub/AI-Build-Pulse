@@ -3,7 +3,7 @@
   <url><loc>https://aibuildpulse.vercel.app/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
   <url><loc>https://aibuildpulse.vercel.app/today</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
   <url><loc>https://aibuildpulse.vercel.app/weekly</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-  <url><loc>https://aibuildpulse.vercel.app/briefy</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://aibuildpulse.vercel.app/briefing</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://aibuildpulse.vercel.app/research</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://aibuildpulse.vercel.app/tools</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://aibuildpulse.vercel.app/trends</loc><changefreq>daily</changefreq><priority>0.7</priority></url>

@@ -117,6 +117,7 @@ async function rss(s) {
 async function hn(s) {
     try {
         const r = await fetchWithTimeout(`https://hn.algolia.com/api/v1/search?query=${encodeURIComponent(s.query)}&tags=story&numericFilters=points>${s.minPoints || 50}&hitsPerPage=15`);
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
         const d = await r.json();
         return (d.hits || []).map(h => ({
             title: h.title || '', summary: `${h.points} points · ${h.num_comments || 0} comments`,
@@ -129,6 +130,7 @@ async function hn(s) {
 async function devto(s) {
     try {
         const r = await fetchWithTimeout(`https://dev.to/api/articles?tag=${encodeURIComponent(s.tag)}&per_page=${s.perPage || 15}`);
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
         const d = await r.json();
         return d.map(a => ({
             title: a.title || '', summary: clean(a.description || ''),
@@ -409,6 +411,21 @@ async function main() {
         existingObj = JSON.parse(await fs.readFile(NEWS_FILE, 'utf8'));
         existing = Array.isArray(existingObj.articles) ? existingObj.articles : [];
     } catch { /* first run */ }
+    // Drop expired/malformed records before deduplication. Otherwise an expired
+    // copy can suppress a newly published article with the same URL or title.
+    const retainedUrls = new Set();
+    const retainedTitles = new Set();
+    existing = existing.filter(a => {
+        if (!a || typeof a !== 'object' || !a.url || !a.title) return false;
+        const published = Date.parse(a.publishedAt);
+        if (!Number.isFinite(published) || published < retainCutoff || published > now.getTime() + 24 * 3600 * 1000) return false;
+        const url = canon(a.url);
+        const title = norm(a.title);
+        if (retainedUrls.has(url) || retainedTitles.has(title)) return false;
+        retainedUrls.add(url);
+        retainedTitles.add(title);
+        return true;
+    });
     console.log(`Loaded existing: ${existing.length}`);
 
     /* 2. Fetch sources */
@@ -419,7 +436,7 @@ async function main() {
     /* 3. Keep only last 24h from fresh fetch */
     const freshRaw = raw.filter(a => {
         const t = new Date(a.publishedAt).getTime();
-        return t >= freshCutoff;
+        return Number.isFinite(t) && t >= freshCutoff && t <= now.getTime() + 24 * 3600 * 1000;
     });
     console.log(`Fresh (last 24h): ${freshRaw.length}`);
 

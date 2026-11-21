@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4f46e5">
     <title>Free AI News for AI Engineers | AI Engineer Pulse</title>
 
     <!-- Perfect SEO Meta Tags -->
@@ -13,6 +14,7 @@
         content="free ai news, ai news for engineers, ai engineering news, machine learning news, llm updates, ai infrastructure, tech news">
     <meta name="author" content="amarachinthaakhil">
     <link rel="canonical" href="https://aibuildpulse.vercel.app/" />
+    <link rel="manifest" href="/manifest.json">
     <meta property="og:title" content="Free AI News for AI Engineers | AI Engineer Pulse">
     <meta property="og:description"
         content="The #1 source for free AI news for AI Engineers. Daily curated updates on LLMs, RAG, AI agents, MLOps, and AI infrastructure.">
@@ -99,6 +101,8 @@
 </head>
 
 <body>
+
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
 
     <!-- Mobile Sidebar Overlay -->
     <div id="sidebarOverlay" class="sidebar-overlay hidden"></div>
@@ -232,7 +236,7 @@
         </aside>
 
         <!-- MAIN CONTENT -->
-        <main class="main-content">
+        <main id="mainContent" class="main-content" tabindex="-1">
             <header class="top-header">
                 <button id="openSidebarBtn" class="icon-btn mobile-only" aria-label="Open Sidebar">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
