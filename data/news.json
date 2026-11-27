@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-26T12:46:27.163+05:30",
+  "generatedAt": "2026-11-27T12:42:44.645+05:30",
   "retentionDays": 7,
-  "totalStories": 135,
-  "newToday": 60,
+  "totalStories": 137,
+  "newToday": 32,
   "articles": [
     {
       "title": "Dynamic Reasoning in Next-Gen Detection and Response: An Empirical Study of LLM Triage, Reinforcement Tuning, and Adversarial Evasion",
@@ -1704,7 +1704,21 @@
       "id": "adee6b374d67d",
       "relevanceScore": 17,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
-      "addedAt": "2026-11-26T07:16:27.163Z"
+      "addedAt": "2026-11-26T07:16:27.163Z",
+      "insights": {
+        "whatHappened": "A word's vector, rotated from a text-only language model's J-space into the visual patch tokens of a vision-language model, changes the object the vision-language model says is in the image (and only in the image region where it is added). In this work, we ask whether vision and language models also converge in how they act on these representations: precisely, in how these internal representations affect the models' output. Rotated into an image generator's text conditioning, a word's vector changes the object in the generated image. Previous work has found evidence for the PRH in the activations of vision and language models.",
+        "engineerSummary": [
+          "A word's vector, rotated from a text-only language model's J-space into the visual patch tokens of a vision-language model, changes the object the vision-language model says is in the image (and only in the image region where it is added).",
+          "In this work, we ask whether vision and language models also converge in how they act on these representations: precisely, in how these internal representations affect the models' output.",
+          "Rotated into an image generator's text conditioning, a word's vector changes the object in the generated image. Previous work has found evidence for the PRH in the activations of vision and language models."
+        ],
+        "founderSummary": [
+          "A word's vector, rotated from a text-only language model's J-space into the visual patch tokens of a vision-language model, changes the object the vision-language model says is in the image (and only in the image region where it is added).",
+          "In this work, we ask whether vision and language models also converge in how they act on these representations: precisely, in how these internal representations affect the models' output.",
+          "Rotated into an image generator's text conditioning, a word's vector changes the object in the generated image. Previous work has found evidence for the PRH in the activations of vision and language models."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Partial Routing: Trace-Tuned Delegation for Resource-Efficient Agentic Workflows",
@@ -1719,7 +1733,21 @@
       "id": "a67c9e709c057",
       "relevanceScore": 17,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-26T07:16:27.163Z"
+      "addedAt": "2026-11-26T07:16:27.163Z",
+      "insights": {
+        "whatHappened": "We introduce partial routing, which guides a frontier lead model to delegate suitable subtasks to a cheaper worker model. 0, partial routing achieves higher mean task performance than the lead alone and task-level routing. Model routing exploits this by sending easier tasks to cheaper models. From both models' past runs, we identify recurring subtasks and measure each model's quality and cost on them.",
+        "engineerSummary": [
+          "We introduce partial routing, which guides a frontier lead model to delegate suitable subtasks to a cheaper worker model.",
+          "0, partial routing achieves higher mean task performance than the lead alone and task-level routing.",
+          "Model routing exploits this by sending easier tasks to cheaper models. From both models' past runs, we identify recurring subtasks and measure each model's quality and cost on them."
+        ],
+        "founderSummary": [
+          "We introduce partial routing, which guides a frontier lead model to delegate suitable subtasks to a cheaper worker model.",
+          "0, partial routing achieves higher mean task performance than the lead alone and task-level routing.",
+          "Model routing exploits this by sending easier tasks to cheaper models. From both models' past runs, we identify recurring subtasks and measure each model's quality and cost on them."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Semantic Density Does Not Predict Agent-Memory Collapse",
@@ -1734,7 +1762,21 @@
       "id": "aa8004f5e7c90",
       "relevanceScore": 17,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
-      "addedAt": "2026-11-26T07:16:27.163Z"
+      "addedAt": "2026-11-26T07:16:27.163Z",
+      "insights": {
+        "whatHappened": "We ask whether memory-store statistics warn before held-out accuracy declines. These methods store trajectories, rules, workflows, strategies, or linked records, using selective retrieval or whole-store prompting. Thus, global semantic density did not provide a reliable warning, while local crowding did not transfer consistently across memory designs. In these long-horizon runs, size-limited stores remained stable, while the sole failure arose when unbounded whole-store prompting exceeded model input capacity, which token growth predicted directly.",
+        "engineerSummary": [
+          "We ask whether memory-store statistics warn before held-out accuracy declines.",
+          "These methods store trajectories, rules, workflows, strategies, or linked records, using selective retrieval or whole-store prompting.",
+          "Thus, global semantic density did not provide a reliable warning, while local crowding did not transfer consistently across memory designs. In these long-horizon runs, size-limited stores remained stable, while the sole failure arose when unbounded whole-store prompting exceeded model input capacity, which token growth predicted directly."
+        ],
+        "founderSummary": [
+          "We ask whether memory-store statistics warn before held-out accuracy declines.",
+          "These methods store trajectories, rules, workflows, strategies, or linked records, using selective retrieval or whole-store prompting.",
+          "Thus, global semantic density did not provide a reliable warning, while local crowding did not transfer consistently across memory designs. In these long-horizon runs, size-limited stores remained stable, while the sole failure arose when unbounded whole-store prompting exceeded model input capacity, which token growth predicted directly."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "One Step, Four Clocks: How GUI Agents Fall Out of Step",
@@ -1749,7 +1791,21 @@
       "id": "aef76d82c3fbc",
       "relevanceScore": 17,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-25T07:28:08.145Z"
+      "addedAt": "2026-11-25T07:28:08.145Z",
+      "insights": {
+        "whatHappened": "Across five tasks, agents can fail in Live despite succeeding when responses remain valid, even when actions meet deadlines. Our accelerator-resident GUI controller, Chronotope, maintains compact interaction history and selectively keeps, updates, or redecides pending actions. Latency alone cannot explain these failures because actions may become invalid at different interaction stages. 31522v1 Announce Type: new \nAbstract: GUI agents can choose correct actions yet fail as interfaces change during deliberation.",
+        "engineerSummary": [
+          "Across five tasks, agents can fail in Live despite succeeding when responses remain valid, even when actions meet deadlines.",
+          "Our accelerator-resident GUI controller, Chronotope, maintains compact interaction history and selectively keeps, updates, or redecides pending actions.",
+          "Latency alone cannot explain these failures because actions may become invalid at different interaction stages. 31522v1 Announce Type: new Abstract: GUI agents can choose correct actions yet fail as interfaces change during deliberation."
+        ],
+        "founderSummary": [
+          "Across five tasks, agents can fail in Live despite succeeding when responses remain valid, even when actions meet deadlines.",
+          "Our accelerator-resident GUI controller, Chronotope, maintains compact interaction history and selectively keeps, updates, or redecides pending actions.",
+          "Latency alone cannot explain these failures because actions may become invalid at different interaction stages. 31522v1 Announce Type: new Abstract: GUI agents can choose correct actions yet fail as interfaces change during deliberation."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Is 4 Bits Enough for EEG Sleep Staging? A Subject-Level Benchmark of MXFP4, NVFP4 and FP8",
@@ -1764,7 +1820,21 @@
       "id": "a74cd8308320f",
       "relevanceScore": 17,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-25T07:28:08.145Z"
+      "addedAt": "2026-11-25T07:28:08.145Z",
+      "insights": {
+        "whatHappened": "Keeping the first and last layers in FP8 brings both tested 4-bit formats within 0. In our emulation, NVFP4 with FP8 first and last layers thus loses little accuracy without QAT in both cohorts. On the nested Sleep-EDF-20 subset, NVFP4 with FP8 first and last layers again stays within 0. At equal block size, NVFP4 outperforms MXFP4.",
+        "engineerSummary": [
+          "Keeping the first and last layers in FP8 brings both tested 4-bit formats within 0.",
+          "In our emulation, NVFP4 with FP8 first and last layers thus loses little accuracy without QAT in both cohorts.",
+          "On the nested Sleep-EDF-20 subset, NVFP4 with FP8 first and last layers again stays within 0. At equal block size, NVFP4 outperforms MXFP4."
+        ],
+        "founderSummary": [
+          "Keeping the first and last layers in FP8 brings both tested 4-bit formats within 0.",
+          "In our emulation, NVFP4 with FP8 first and last layers thus loses little accuracy without QAT in both cohorts.",
+          "On the nested Sleep-EDF-20 subset, NVFP4 with FP8 first and last layers again stays within 0. At equal block size, NVFP4 outperforms MXFP4."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "AV-FLARE: Feature-Level Reliability Estimation for Multimodal Emotion Recognition",
@@ -1779,7 +1849,21 @@
       "id": "ad54d6db56a38",
       "relevanceScore": 17,
       "whyItMatters": "Expands what AI systems can perceive and generate.",
-      "addedAt": "2026-11-24T08:51:41.782Z"
+      "addedAt": "2026-11-24T08:51:41.782Z",
+      "insights": {
+        "whatHappened": "These signals are combined to provide both task-driven and distribution-aware reliability estimates. These results suggest that incorporating explicit input reliability estimation may improve robustness in multimodal emotion recognition under the evaluated setting. We propose AV-FLARE, a framework that explicitly estimates fine-grained reliability scores across both temporal and feature dimensions prior to temporal modeling and uses them to modulate feature representations. 28327v1 Announce Type: new \nAbstract: Multimodal emotion recognition (MMER) systems typically rely on learned feature representations and attention mechanisms that implicitly weight information across time and modalities.",
+        "engineerSummary": [
+          "These signals are combined to provide both task-driven and distribution-aware reliability estimates.",
+          "These results suggest that incorporating explicit input reliability estimation may improve robustness in multimodal emotion recognition under the evaluated setting.",
+          "We propose AV-FLARE, a framework that explicitly estimates fine-grained reliability scores across both temporal and feature dimensions prior to temporal modeling and uses them to modulate feature representations. 28327v1 Announce Type: new Abstract: Multimodal emotion recognition (MMER) systems typically rely on learned feature representations and attention mechanisms that implicitly weight information across time and modalities."
+        ],
+        "founderSummary": [
+          "These signals are combined to provide both task-driven and distribution-aware reliability estimates.",
+          "These results suggest that incorporating explicit input reliability estimation may improve robustness in multimodal emotion recognition under the evaluated setting.",
+          "We propose AV-FLARE, a framework that explicitly estimates fine-grained reliability scores across both temporal and feature dimensions prior to temporal modeling and uses them to modulate feature representations. 28327v1 Announce Type: new Abstract: Multimodal emotion recognition (MMER) systems typically rely on learned feature representations and attention mechanisms that implicitly weight information across time and modalities."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "CodeReviewBench: An Automated Benchmark for Evaluating the Software Factory",
@@ -1881,7 +1965,21 @@
       "id": "a5fdbb2793f33",
       "relevanceScore": 16,
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
-      "addedAt": "2026-11-24T08:51:41.782Z"
+      "addedAt": "2026-11-24T08:51:41.782Z",
+      "insights": {
+        "whatHappened": "To bridge this gap, we present MatHarness, an agent harness designed for open-ended, long-horizon computational materials research spanning the complete lifecycle from initial ideation to manuscript writing. MatHarness couples three mechanisms: execution robustness through pre-flight verification, expert-distilled skills, and just-in-time auditing; epistemic adaptability through persistent research artifacts and an evolving scientific mental model; and collective intelligence through a heterogeneous multi-agent round table under targeted human oversight. 28324v1 Announce Type: new \nAbstract: Materials science research is a non-linear, long-horizon process. Existing scientific agents, however, largely rely on specific task execution or predefined workflows, rendering them brittle in open-ended settings.",
+        "engineerSummary": [
+          "To bridge this gap, we present MatHarness, an agent harness designed for open-ended, long-horizon computational materials research spanning the complete lifecycle from initial ideation to manuscript writing.",
+          "MatHarness couples three mechanisms: execution robustness through pre-flight verification, expert-distilled skills, and just-in-time auditing; epistemic adaptability through persistent research artifacts and an evolving scientific mental model; and collective intelligence through a heterogeneous multi-agent round table under targeted human oversight.",
+          "28324v1 Announce Type: new Abstract: Materials science research is a non-linear, long-horizon process. Existing scientific agents, however, largely rely on specific task execution or predefined workflows, rendering them brittle in open-ended settings."
+        ],
+        "founderSummary": [
+          "To bridge this gap, we present MatHarness, an agent harness designed for open-ended, long-horizon computational materials research spanning the complete lifecycle from initial ideation to manuscript writing.",
+          "MatHarness couples three mechanisms: execution robustness through pre-flight verification, expert-distilled skills, and just-in-time auditing; epistemic adaptability through persistent research artifacts and an evolving scientific mental model; and collective intelligence through a heterogeneous multi-agent round table under targeted human oversight.",
+          "28324v1 Announce Type: new Abstract: Materials science research is a non-linear, long-horizon process. Existing scientific agents, however, largely rely on specific task execution or predefined workflows, rendering them brittle in open-ended settings."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "RefineKV: Query-Adaptive KV Cache Compression via Attention-Error Bounds",
@@ -1896,7 +1994,21 @@
       "id": "a394fb6a9c4d1",
       "relevanceScore": 16,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-24T08:51:41.782Z"
+      "addedAt": "2026-11-24T08:51:41.782Z",
+      "insights": {
+        "whatHappened": "We find that small query-specific subsets can accurately approximate full attention, yet their union covers nearly the entire cache, motivating query-adaptive access for the KV cache. 66x faster decoding, establishing a new quality-latency Pareto frontier. Experiments on two models and three benchmarks demonstrate that RefineKV retains near-full-attention quality while achieving up to 7. We derive a selection criterion from an upper bound on attention-output error, which reveals two complementary factors governing the error: importance measures the impact of a cluster, while distortion measures how faithfully the cluster can be represented.",
+        "engineerSummary": [
+          "We find that small query-specific subsets can accurately approximate full attention, yet their union covers nearly the entire cache, motivating query-adaptive access for the KV cache.",
+          "66x faster decoding, establishing a new quality-latency Pareto frontier.",
+          "Experiments on two models and three benchmarks demonstrate that RefineKV retains near-full-attention quality while achieving up to 7. We derive a selection criterion from an upper bound on attention-output error, which reveals two complementary factors governing the error: importance measures the impact of a cluster, while distortion measures how faithfully the cluster can be represented."
+        ],
+        "founderSummary": [
+          "We find that small query-specific subsets can accurately approximate full attention, yet their union covers nearly the entire cache, motivating query-adaptive access for the KV cache.",
+          "66x faster decoding, establishing a new quality-latency Pareto frontier.",
+          "Experiments on two models and three benchmarks demonstrate that RefineKV retains near-full-attention quality while achieving up to 7. We derive a selection criterion from an upper bound on attention-output error, which reveals two complementary factors governing the error: importance measures the impact of a cluster, while distortion measures how faithfully the cluster can be represented."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Improving the Optimisation Landscape for Particle Mixtures",
@@ -1982,7 +2094,21 @@
       "id": "a6c8b5b03e075",
       "relevanceScore": 15,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
-      "addedAt": "2026-11-24T08:51:41.782Z"
+      "addedAt": "2026-11-24T08:51:41.782Z",
+      "insights": {
+        "whatHappened": "These results highlight the importance of appropriate field representation and parameter-space coverage for data-efficient neural-operator prediction of viscoplastic flows. However, their applicability to viscoplastic systems and their efficacy in recovering realistic flows remain poorly understood. The data regimes in which RheOFormer remains accurate and those in which errors emerge are identified, particularly for plug-dominated flows and for conditions outside the velocity scales or flow structures represented during training. Finally, a single partially developed snapshot suffices for an accurate steady-state prediction, and the model outperforms simply copying its input throughout flow development.",
+        "engineerSummary": [
+          "These results highlight the importance of appropriate field representation and parameter-space coverage for data-efficient neural-operator prediction of viscoplastic flows.",
+          "However, their applicability to viscoplastic systems and their efficacy in recovering realistic flows remain poorly understood.",
+          "The data regimes in which RheOFormer remains accurate and those in which errors emerge are identified, particularly for plug-dominated flows and for conditions outside the velocity scales or flow structures represented during training. Finally, a single partially developed snapshot suffices for an accurate steady-state prediction, and the model outperforms simply copying its input throughout flow development."
+        ],
+        "founderSummary": [
+          "These results highlight the importance of appropriate field representation and parameter-space coverage for data-efficient neural-operator prediction of viscoplastic flows.",
+          "However, their applicability to viscoplastic systems and their efficacy in recovering realistic flows remain poorly understood.",
+          "The data regimes in which RheOFormer remains accurate and those in which errors emerge are identified, particularly for plug-dominated flows and for conditions outside the velocity scales or flow structures represented during training. Finally, a single partially developed snapshot suffices for an accurate steady-state prediction, and the model outperforms simply copying its input throughout flow development."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "SONATI: Spatio-temporal ocean neighbourhood asymmetric transformer for imputation of sparse, tabular data with uncertainty",
@@ -1997,7 +2123,21 @@
       "id": "acc4d33e83422",
       "relevanceScore": 15,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
-      "addedAt": "2026-11-24T08:51:41.782Z"
+      "addedAt": "2026-11-24T08:51:41.782Z",
+      "insights": {
+        "whatHappened": "Best results were achieved by factorised time-space attention and combined geographic and per-sample masking. 3% compared to per-sample masking only. The combined masking strategy reduced the imputation error by 14. Attention type and masking strategy strongly affected imputation accuracy and smoothness of the produced oceanographic fields.",
+        "engineerSummary": [
+          "Best results were achieved by factorised time-space attention and combined geographic and per-sample masking.",
+          "3% compared to per-sample masking only.",
+          "The combined masking strategy reduced the imputation error by 14. Attention type and masking strategy strongly affected imputation accuracy and smoothness of the produced oceanographic fields."
+        ],
+        "founderSummary": [
+          "Best results were achieved by factorised time-space attention and combined geographic and per-sample masking.",
+          "3% compared to per-sample masking only.",
+          "The combined masking strategy reduced the imputation error by 14. Attention type and masking strategy strongly affected imputation accuracy and smoothness of the produced oceanographic fields."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Adding One More Agent: How AI Team Size and Formation Shape Productivity and Diversity in Human-AI Brainstorming Teams",
@@ -2012,7 +2152,21 @@
       "id": "acd02a86f3416",
       "relevanceScore": 15,
       "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
-      "addedAt": "2026-11-23T06:17:06.164Z"
+      "addedAt": "2026-11-23T06:17:06.164Z",
+      "insights": {
+        "whatHappened": "Two-AI rooms posted more ideas to the shared board, but human-authored ideas dropped substantially. AI social talk predicted more human posts, while AI posting volume predicted fewer. Humans continued talking but converted fewer ideas into board posts. We crossed AI partnership (one versus two) with behavioral formation (calibrated to average human behavior versus customized by the participant) in a brainstorming experiment ($N$=168) with human-human dyads as reference.",
+        "engineerSummary": [
+          "Two-AI rooms posted more ideas to the shared board, but human-authored ideas dropped substantially.",
+          "AI social talk predicted more human posts, while AI posting volume predicted fewer.",
+          "Humans continued talking but converted fewer ideas into board posts. We crossed AI partnership (one versus two) with behavioral formation (calibrated to average human behavior versus customized by the participant) in a brainstorming experiment ($N$=168) with human-human dyads as reference."
+        ],
+        "founderSummary": [
+          "Two-AI rooms posted more ideas to the shared board, but human-authored ideas dropped substantially.",
+          "AI social talk predicted more human posts, while AI posting volume predicted fewer.",
+          "Humans continued talking but converted fewer ideas into board posts. We crossed AI partnership (one versus two) with behavioral formation (calibrated to average human behavior versus customized by the participant) in a brainstorming experiment ($N$=168) with human-human dyads as reference."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Right Numbers, Wrong Story: When LLMs Narrate Financial Changes Beyond Their Inputs",
@@ -2027,7 +2181,21 @@
       "id": "ab3dd5830b7fd",
       "relevanceScore": 15,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-23T06:17:06.164Z"
+      "addedAt": "2026-11-23T06:17:06.164Z",
+      "insights": {
+        "whatHappened": "In the input? com/seunghan96/framecheck. We call these additions unsupported framing and find them far more often in LLM drafts than in reports written by proInput facts Revenue +3% Higher prices 10-K filings Revenue increased 3% on higher prices. No extra model call Judgment word Unsupported cause Supported cause tween the LLM and human review to keep each draft within its input.",
+        "engineerSummary": [
+          "In the input? com/seunghan96/framecheck.",
+          "We call these additions unsupported framing and find them far more often in LLM drafts than in reports written by proInput facts Revenue +3% Higher prices 10-K filings Revenue increased 3% on higher prices.",
+          "No extra model call Judgment word Unsupported cause Supported cause tween the LLM and human review to keep each draft within its input."
+        ],
+        "founderSummary": [
+          "In the input? com/seunghan96/framecheck.",
+          "We call these additions unsupported framing and find them far more often in LLM drafts than in reports written by proInput facts Revenue +3% Higher prices 10-K filings Revenue increased 3% on higher prices.",
+          "No extra model call Judgment word Unsupported cause Supported cause tween the LLM and human review to keep each draft within its input."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Fast and Memory-Light Evaluation of Density-Based Clusterings with the DISCO Index in R",
@@ -2051,6 +2219,21 @@
       "insightsAttempted": true
     },
     {
+      "title": "Introducing the llama.cpp benchmark dashboard for AMD Ryzen and Radeon",
+      "summary": "",
+      "url": "https://huggingface.co/blog/ggml-org/llamacpp-amd-bench",
+      "publishedAt": "2026-11-26T11:37:17.000Z",
+      "source": "Hugging Face",
+      "category": "LLM Engineering",
+      "trusted": true,
+      "image": null,
+      "audience": "ai_engineer",
+      "id": "aa734da9d3a1d",
+      "relevanceScore": 14,
+      "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
+      "addedAt": "2026-11-27T07:12:44.645Z"
+    },
+    {
       "title": "Building on Nemotron 3.5 Parse: Open Data, Fine-Tuning, and Faster Inference",
       "summary": "",
       "url": "https://huggingface.co/blog/nvidia/building-on-nemotron-35-parse-open-data-fine-tunin",
@@ -2063,7 +2246,21 @@
       "id": "a3d2697b636d7",
       "relevanceScore": 14,
       "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
-      "addedAt": "2026-11-26T07:16:27.163Z"
+      "addedAt": "2026-11-26T07:16:27.163Z",
+      "insights": {
+        "whatHappened": "No details available.",
+        "engineerSummary": [
+          "No details available.",
+          "No additional sourced detail is available.",
+          "No additional sourced detail is available."
+        ],
+        "founderSummary": [
+          "No details available.",
+          "No additional sourced detail is available.",
+          "No additional sourced detail is available."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Code availability is not enough: schemas for documenting and extending data analysis",
@@ -2078,7 +2275,21 @@
       "id": "a5c44d89dba60",
       "relevanceScore": 14,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-26T07:16:27.163Z"
+      "addedAt": "2026-11-26T07:16:27.163Z",
+      "insights": {
+        "whatHappened": "33167v1 Announce Type: new \nAbstract: A data analysis involves a sequence of decisions, from data cleaning to model specification, each of which can affect the reported result. In this work, we propose a schema that represents a data analysis as a collection of decisions in natural language, from which large language models (LLMs) can generate and validate analysis scripts directly. This workflow can also expand a single analysis into a full multiverse of alternatives, specified in an alternative file, ready for comparison. In the first, we construct a schema for a published regression analysis of heaped smoking data and show that it reproduces the reported estimates, and that a reviewer-suggested alternative can be specified through the alternative file and turned into code automatically.",
+        "engineerSummary": [
+          "33167v1 Announce Type: new",
+          "Abstract: A data analysis involves a sequence of decisions, from data cleaning to model specification, each of which can affect the reported result.",
+          "In this work, we propose a schema that represents a data analysis as a collection of decisions in natural language, from which large language models (LLMs) can generate and validate analysis scripts directly. This workflow can also expand a single analysis into a full multiverse of alternatives, specified in an alternative file, ready for comparison. In the first, we construct a schema for a published regression analysis of heaped smoking data and show that it reproduces the reported estimates, and that a reviewer-suggested alternative can be specified through the alternative file and turned into code automatically."
+        ],
+        "founderSummary": [
+          "33167v1 Announce Type: new",
+          "Abstract: A data analysis involves a sequence of decisions, from data cleaning to model specification, each of which can affect the reported result.",
+          "In this work, we propose a schema that represents a data analysis as a collection of decisions in natural language, from which large language models (LLMs) can generate and validate analysis scripts directly. This workflow can also expand a single analysis into a full multiverse of alternatives, specified in an alternative file, ready for comparison. In the first, we construct a schema for a published regression analysis of heaped smoking data and show that it reproduces the reported estimates, and that a reviewer-suggested alternative can be specified through the alternative file and turned into code automatically."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "REI: Learning Ideation from Repository Evolution",
@@ -2093,7 +2304,21 @@
       "id": "a0d14209f3e1d",
       "relevanceScore": 14,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-26T07:16:27.163Z"
+      "addedAt": "2026-11-26T07:16:27.163Z",
+      "insights": {
+        "whatHappened": "Experiments on public benchmarks and a real-world industrial setting demonstrate improvements in ideation quality, method diversity, cross-task generalization, and long-tail exploration. We further identify a hidden failure mode in quality-driven ideation optimization: semantic diversity collapse. Based on this observation, we propose REI, a Repository Evolution-driven Ideation framework that learns reusable ideation policies from repository evolution, injecting domain-specific technical experience into model parameters and reducing reliance on costly trial-and-error. Although generated ideas can remain lexically diverse, they increasingly concentrate in a small number of dominant method families, limiting cross-task generalization and long-tail exploration.",
+        "engineerSummary": [
+          "Experiments on public benchmarks and a real-world industrial setting demonstrate improvements in ideation quality, method diversity, cross-task generalization, and long-tail exploration.",
+          "We further identify a hidden failure mode in quality-driven ideation optimization: semantic diversity collapse.",
+          "Based on this observation, we propose REI, a Repository Evolution-driven Ideation framework that learns reusable ideation policies from repository evolution, injecting domain-specific technical experience into model parameters and reducing reliance on costly trial-and-error. Although generated ideas can remain lexically diverse, they increasingly concentrate in a small number of dominant method families, limiting cross-task generalization and long-tail exploration."
+        ],
+        "founderSummary": [
+          "Experiments on public benchmarks and a real-world industrial setting demonstrate improvements in ideation quality, method diversity, cross-task generalization, and long-tail exploration.",
+          "We further identify a hidden failure mode in quality-driven ideation optimization: semantic diversity collapse.",
+          "Based on this observation, we propose REI, a Repository Evolution-driven Ideation framework that learns reusable ideation policies from repository evolution, injecting domain-specific technical experience into model parameters and reducing reliance on costly trial-and-error. Although generated ideas can remain lexically diverse, they increasingly concentrate in a small number of dominant method families, limiting cross-task generalization and long-tail exploration."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Hidden Clues in WM-811K: Uncovering the Spatial Signals Behind Wafer Map Prediction",
@@ -2603,6 +2828,21 @@
       "addedAt": "2026-11-25T07:28:08.145Z"
     },
     {
+      "title": "Come for the Games, Stay for the Community With GeForce NOW",
+      "summary": "Good games bring people together. This GFN Thursday, GeForce NOW is celebrating the members, creators and community moderators who turn every session into something worth sharing. \n\n\n From friendships formed in online lobbies to new worlds explored on everyday devices, GeForce NOW Ambassadors share their reasons to love cloud gaming. Those ready to find their own can get 30% off six-month Performance and Ultimate memberships in the Black Friday sale and a special seasonal offer through Amazon Fire TV Sticks. \n\n\n Plus, War Thunder gets a new look with NVIDIA DLSS 5 for Ultimate members and a Ready for Battle Pack reward is now available across all membership tiers. Rounding out the week, 12 new games join the GeForce NOW library . \n\n\n The Gamers Behind the Cloud \n Behind every screenshot, helpful tip and play session is a gamer with a story. GeForce NOW Ambassadors share what keeps them playing. \n\n\n For Discord moderator Luna, a low-spec laptop was the start of lasting connections: “Without GFN, I might’ve not been able to meet certain close friends … It has extended to me being given the privilege to be a moderator of an ever-growing community that links people together and continues to allow friends or partners to play with each other, regardless of what they own at home.” \n\n\n After years helping moderate the community’s Reddit and Discord spaces, Hamza went from an aging laptop to cloud gaming across a TV, phone, tablet and desktop: “ I’m genuinely thankful not just for the technology that keeps me gaming effortlessly wherever I am, but for the amazing community and friendships I’ve built along the way, and I look forward to what the future holds for cloud gaming.”  \n\n\n GeForce NOW kept new releases within reach for moderator Flacz , without needing frequent hardware upgrades: “GeForce NOW allowed me to enjoy games and adventures I’ve never imagined to be possible and it continues to be a part of my daily gaming experience till this day.” \n\n\n The cloud brings the games. The community brings them to life. “Cyberpunk 2077” photo by Flacz. \n For creators such as Warwick , playing is only part of the picture: “GFN has allowed me to play the games I want, as soon as they come out. The support GFN has given me to create content for them and be partnered with them means the world and encourages me to get better each day.” \n\n\n Freedom to play and create resonates with Nads : “Being able to jump into my favorite games in an instant without worrying about downloads, storage limits or constant hardware upgrades feels like magic … Being able to play my game and stream on YouTube at the same time is something I never could have imagined before.”  \n\n\n Nigiri21Sushi also turns to the cloud when games stretch a local PC: “As a gaming content-creator, my current PC sometimes struggles showcasing new-release games that are CPU/GPU-intensive … Hence, huge thank you to GFN for allowing me to produce fluid content via cloud-gaming.” \n\n\n For Marchief , demanding games on Steam Deck are the draw: “I’m thankful that GeForce NOW allows me to play the top AAA games on the Steam Deck … Having the power of an RTX 5080 in a handheld is just absolutely mindblowing.”  \n\n\n Markys enjoys the comfort of the couch with his favorite game, World of Warcraft: Forever : “No high-end gaming PC needed, just my controller, my TV and the freedom to play wherever I want.” \n\n\n Anytime Anywhere Gaming shared a video that shared why GeForce NOW is  “ really fantastic in a whole lot of ways. ” \n\n\n Keep the conversation going on the community-run GeForce NOW Reddit and Discord . \n\n\n More Play, Less to Pay \n A little less spending. A lot more playing. \n There’s still time to save 30% on the first six-month term of a Performance or Ultimate membership . The Black Friday sale runs through Monday, Nov. 30, for new memberships and eligible upgrades in select regions, while supplies last. \n\n\n Go Ultimate for GeForce RTX 5080-class performance across PCs, Macs, Steam Deck and other supported handhelds, mobile devices, compatible TVs and more . Experience DLSS 5 in supported games, ray tracing and streaming at up to 5K resolution or up to 360 frames per second, with sessions lasting up to eight hours. GeForce NOW handles downloads, patches and updates for Ready-to-Play games, saving local storage for everyday essentials. \n\n\n Choose a six-month membership before the sale wraps up and settle in for a season of gaming. \n\n\n For big-screen play, GeForce NOW also supports Amazon Fire TV Stick devices, with a separate offer for 90% off the first month of Performance or Ultimate when purchased directly through Amazon in participating regions. Check out the supported devices and offer details . \n\n\n Ready for Battle, Rewarded in the Cloud \n A new look. A battle-ready bonus. \n Gaijin Entertainment’s War Thunder now supports NVIDIA DLSS 5 on GeForce NOW, bringing air, land and naval combat into sharper focus. Its 3D-Guided Neural Rendering technology adds lifelike lighting and materials, from tank armor to the water around a warship. \n\n\n Ultimate members can experience the visual update with GeForce RTX 5080-class performance in the cloud across supported devices, without an expensive PC upgrade. Keep the focus on the next maneuver and let GeForce NOW handle the power in the cloud. \n\n\n To celebrate, GeForce NOW members across all membership tiers can claim the Ready for Battle Pack, now available. \n\n\n The pack includes an M3A1 Stuart tank and F2A-1 aircraft, each with a unique skin, seven days of Premium account time, 100,000 Silver Lions, a 50% booster for Research Points and Silver Lions, and the “Overclocked” title. \n\n\n Sign in to a GeForce NOW account and head to the Account Portal to claim the reward code, then activate it on Gaijin’s redemption page . The reward is available through Friday, Dec. 25, at 11:59 p.m. PT, or while supplies last, with a limit of one per customer. Keep the great gaming going with this week’s additions to the GeForce NOW library: \n\n\n \n Sniper Ghost Warrior Contracts 2 ( Xbox , available on Game Pass Nov. 24) \n Arctic Drive (New release on Steam , Nov. 25) \n Appulse (New release on Steam , Nov. 26) \n GONE Fishing ( Steam ) \n Incursion Red River ( Steam ) \n John Carpenter’s Toxic Commando ( Xbox , available on Game Pass) \n Quasimorph ( Steam ) \n Ski-E-O! Ski Resort Tycoon ( Steam ) \n The Spell Brigade ( Steam ) \n World of Tanks: Blitz ( Wargaming.net ) \n Village in the Shade ( Steam ) \n Zombies Aren&#8217;t Real ( Steam ) \n \n Plus, Ultimate Members streaming from RTX 5080 cloud gaming rigs can experience Where Winds Mee t with DLSS 5 , enhancing the environments and characters of its wuxia open-world action role-playing game. \n\n\n Dates listed above reflect when games are released on their respective stores. GeForce NOW availability may vary, as games are onboarded after release and added throughout the week. Keep an eye on GeForce NOW channels and GFN Thursdays for availability updates on announced titles. \n\n\n Experience the best in GeForce NOW cloud gaming. Grab a day pass to try Performance or Ultimate before committing to a monthly membership, with the day pass cost applicable toward that first month. \n\n\n What’s the best part of gaming with GeForce NOW? Share it on X or in the comments below.",
+      "url": "https://blogs.nvidia.com/blog/geforce-now-thursday-community-war-thunder-reward/",
+      "publishedAt": "2026-11-26T14:00:22.000Z",
+      "source": "NVIDIA",
+      "category": "AI Infrastructure",
+      "trusted": true,
+      "image": "https://blogs.nvidia.com/wp-content/uploads/2026/11/GFN_Thursday-November_26.jpg",
+      "audience": "ai_engineer",
+      "id": "abfa1ad995803",
+      "relevanceScore": 10,
+      "whyItMatters": "Impacts hardware, scaling, and deployment decisions.",
+      "addedAt": "2026-11-27T07:12:44.645Z"
+    },
+    {
       "title": "General-Purpose Decision Models for AI Configuration Tuning",
       "summary": "arXiv:2611.33190v1 Announce Type: new \nAbstract: AI configuration tuning searches for settings that improve the performance of AI systems under a limited budget. Existing tuners use different sampling and search policies, making the choice of decision strategy central to both tuning quality and cost. We investigate whether general-purpose decision models can guide tuning, using Jev as a deployed representative that returns structured choices and numeric scores across diverse tasks. To assess where it helps, we compare its use as an optimizer, performance predictor, and region guider against conventional methods and a large language model (LLM) on eight AI tuning tasks. Conventional optimizers attain rank 1 in six of eight comparisons. Similarly, established predictors outperform Jev in seven. Through region guidance, however, it finds configurations with lower perplexity than those selected by the native tuner, offering a quality gain when additional decision time and API fees are acceptable. These findings yield actionable recommendations on selecting the decision role, retaining conventional predictors, and balancing tuning quality against cost.",
       "url": "https://arxiv.org/abs/2611.33190",
@@ -2964,48 +3204,48 @@
     {
       "name": "Significant-Gravitas/AutoGPT",
       "description": "AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
-      "stars": 188204,
-      "forks": 45830,
+      "stars": 188205,
+      "forks": 45833,
       "language": "Python",
       "url": "https://github.com/Significant-Gravitas/AutoGPT"
     },
     {
       "name": "f/prompts.chat",
       "description": "f.k.a. Awesome ChatGPT Prompts. Share, discover, and collect prompts from the community. Free and open source — self-host for your organization with complete privacy.",
-      "stars": 178544,
-      "forks": 22756,
+      "stars": 178630,
+      "forks": 22761,
       "language": "MDX",
       "url": "https://github.com/f/prompts.chat"
     },
     {
       "name": "thedotmack/claude-mem",
       "description": "Persistent Context Across Sessions for Every Agent –  Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
-      "stars": 119831,
-      "forks": 10421,
+      "stars": 120059,
+      "forks": 10447,
       "language": "TypeScript",
       "url": "https://github.com/thedotmack/claude-mem"
     },
     {
       "name": "rasbt/LLMs-from-scratch",
       "description": "Implement a ChatGPT-like LLM in PyTorch from scratch, step by step",
-      "stars": 109068,
-      "forks": 16858,
+      "stars": 109109,
+      "forks": 16866,
       "language": "Jupyter Notebook",
       "url": "https://github.com/rasbt/LLMs-from-scratch"
     },
     {
       "name": "hacksider/Deep-Live-Cam",
       "description": "real time face swap and one-click video deepfake with only a single image",
-      "stars": 98936,
-      "forks": 14467,
+      "stars": 98963,
+      "forks": 14473,
       "language": "Python",
       "url": "https://github.com/hacksider/Deep-Live-Cam"
     },
     {
       "name": "OpenHands/OpenHands",
       "description": "🙌 OpenHands: AI-Driven Development",
-      "stars": 94361,
-      "forks": 12651,
+      "stars": 94434,
+      "forks": 12661,
       "language": "TypeScript",
       "url": "https://github.com/OpenHands/OpenHands"
     }
@@ -3038,13 +3278,6 @@
       "location": "Canada Only",
       "salary": "Competitive",
       "url": "https://remoteOK.com/remote-jobs/remote-senior-software-developer-agentic-ai-canada-clover-health-1138068"
-    },
-    {
-      "title": "Staff Data Scientist - Martech Platform (ML/Algos)",
-      "company": "Airbnb",
-      "location": "US Only",
-      "salary": "Competitive",
-      "url": "https://remoteOK.com/remote-jobs/remote-staff-data-scientist-martech-platform-ml-algos-airbnb-1137956"
     }
   ]
 }
