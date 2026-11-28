@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-27T12:42:44.645+05:30",
+  "generatedAt": "2026-11-28T12:15:33.229+05:30",
   "retentionDays": 7,
-  "totalStories": 137,
-  "newToday": 32,
+  "totalStories": 122,
+  "newToday": 2,
   "articles": [
     {
       "title": "Dynamic Reasoning in Next-Gen Detection and Response: An Empirical Study of LLM Triage, Reinforcement Tuning, and Adversarial Evasion",
@@ -904,27 +904,6 @@
       "insightsAttempted": true
     },
     {
-      "title": "Long-Range Video Presentation Attack Detection: A Three-Class Benchmark Across 1-100 m and Two Sensor Types",
-      "summary": "arXiv:2611.25108v1 Announce Type: new \nAbstract: Face presentation attack detection (PAD) systems deployed in border control and airport surveillance are constrained by a critical assumption: subjects are captured at close range, typically under one meter. No existing benchmark systematically addresses multi-distance capture, diverse environmental conditions, and concurrent spoofing and occlusion-based attacks, leaving deployed models underprepared for real-world scenarios. We introduce a video-based PAD dataset of 374,000+ frames from 261 unique identities collected across five standoff distances (1 m-100 m) under indoor and outdoor conditions using a DSLR camera (C) and a mobile sensor (M), with three-class labels: live, spoof, and props (occlusions); models are trained and evaluated on video clips rather than single frames. We fine-tune and benchmark four CNN architectures: MobileNetV3, MobileNet, EfficientNet, and ResNet-50. The higher-resolution DSLR maintains near-perfect spoof classification rate across all distances, while the lower-resolution mobile sensor degrades sharply beyond 50 m, with props classification rate dropping to 55% at 75 m for MobileNetV3. EfficientNet achieves the best overall performance (98.48% accuracy, ACER 2.01%). Generalization tests on unseen attack datasets yield 89-94% accuracy, validating cross-domain robustness. These results establish capture distance and sensor resolution as critical but underexplored axes of PAD difficulty. The dataset will be publicly released under an End-User License Agreement to support reproducible long-range PAD research.",
-      "url": "https://arxiv.org/abs/2611.25108",
-      "publishedAt": "2026-11-21T05:00:00.000Z",
-      "source": "arXiv ML",
-      "category": "Research",
-      "trusted": true,
-      "image": null,
-      "audience": "ai_engineer",
-      "id": "ad6aae032ad2f",
-      "relevanceScore": 22,
-      "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-21T10:02:36.199Z",
-      "insights": {
-        "whatHappened": "These results establish capture distance and sensor resolution as critical but underexplored axes of PAD difficulty. The higher-resolution DSLR maintains near-perfect spoof classification rate across all distances, while the lower-resolution mobile sensor degrades sharply beyond 50 m, with props classification rate dropping to 55% at 75 m for MobileNetV3. The dataset will be publicly released under an End-User License Agreement to support reproducible long-range PAD research. No existing benchmark systematically addresses multi-distance capture, diverse environmental conditions, and concurrent spoofing and occlusion-based attacks, leaving deployed models underprepared for real-world scenarios.",
-        "engineerSummary": "These results establish capture distance and sensor resolution as critical but underexplored axes of PAD difficulty. The higher-resolution DSLR maintains near-perfect spoof classification rate across all distances, while the lower-resolution mobile sensor degrades sharply beyond 50 m, with props classification rate dropping to 55% at 75 m for MobileNetV3. The dataset will be publicly released under an End-User License Agreement to support reproducible long-range PAD research. No existing benchmark systematically addresses multi-distance capture, diverse environmental conditions, and concurrent spoofing and occlusion-based attacks, leaving deployed models underprepared for real-world scenarios.",
-        "founderSummary": "These results establish capture distance and sensor resolution as critical but underexplored axes of PAD difficulty. The higher-resolution DSLR maintains near-perfect spoof classification rate across all distances, while the lower-resolution mobile sensor degrades sharply beyond 50 m, with props classification rate dropping to 55% at 75 m for MobileNetV3. The dataset will be publicly released under an End-User License Agreement to support reproducible long-range PAD research. No existing benchmark systematically addresses multi-distance capture, diverse environmental conditions, and concurrent spoofing and occlusion-based attacks, leaving deployed models underprepared for real-world scenarios."
-      },
-      "insightsAttempted": true
-    },
-    {
       "title": "Constraint-Aware Test-Time Scoring for LLM and VLM Candidate Selection",
       "summary": "arXiv:2611.33161v1 Announce Type: new \nAbstract: When an LLM or VLM produces several candidate answers, picking the best one usually relies on the model's own confidence, a learned judge model, or a domain check. Each has a known weakness: an answer can be fluent but insecure, mathematically plausible but physically infeasible, or rated highly by a judge while quietly breaking a task requirement. We propose a scoring framework that combines a small set of hard checks every answer must pass with a wider set of softer checks whose scores are blended into one number per candidate. This adaptive scoring framework consists of three components: a drafting model that produces the candidates, a configuring model that selects and weights the checks for each task, and scoring models that rate properties no grounded tool can compute. We apply our proposed method to four tasks: writing code that is both correct and secure (CWEval), generating robot manipulation plans (LIBERO with added safety variants), passing competitive-programming hidden tests (LiveCodeBench), and answering questions from retrieved documents (HotpotQA). An ablation study isolates the contribution of each component and finds that the largest gains come from combining hard checks with candidate comparison: on tasks where the first sampled answer is often broken or unsafe, this pairing lifts joint correctness-and-safety by up to +0.21 (retrieval-augmented QA) and code-generation safety by up to +0.28 (CWEval), with the size of the gain tracking how weak the first sample is, falling to near zero or slightly negative where it is already strong. The per-task layer that selects and weights the softer checks adds no measurable value over simpler alternatives. This builds a unified scoring framework, together with an ablation that identifies the grounded hard checks, not the soft-factor configuration, as the source of the gain.",
       "url": "https://arxiv.org/abs/2611.33161",
@@ -1153,27 +1132,6 @@
           "More than half of the answers that become correct after episode 3 cite only evidence from earlier episodes.",
           "Self-improvement in an embodied world cannot be read from one measure. Two LLM judges from different model families check every answer."
         ]
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "A Model of Diverse Sampling from Language Models",
-      "summary": "arXiv:2611.25003v1 Announce Type: new \nAbstract: Language models often produce high-quality individual samples but poor sets, with repeated samples clustering around the same semantic modes. We formalize diverse generation as sampling a size-$K$ subset of complete strings from a determinantal point process (DPP), where the likelihood encodes item quality, and the embedding geometry encodes repulsion between similar outputs. Exact inference over all strings is intractable, so we propose PoolDPP: draw a finite candidate pool from a tractable proposal, importance-weight the candidates toward the target quality, and run a $K$-DPP sampler on the induced pool kernel; a greedy MAP variant provides deterministic selection. We prove a finite-sample bound with an explicit constant: the KL divergence between the sampler's output and the target $K$-DPP decays as O(1/N) in the pool size. Empirically, PoolDPP extends the quality--diversity frontier on open-ended generation and the precision--recall frontier on ambiguous text-to-SQL (Ambrosia), and on mathematical reasoning (GSM8K), it raises diversity at about the same pass@$K$.",
-      "url": "https://arxiv.org/abs/2611.25003",
-      "publishedAt": "2026-11-21T05:00:00.000Z",
-      "source": "arXiv ML",
-      "category": "Research",
-      "trusted": true,
-      "image": null,
-      "audience": "ai_engineer",
-      "id": "af5ece5166f70",
-      "relevanceScore": 21,
-      "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-21T10:02:36.199Z",
-      "insights": {
-        "whatHappened": "25003v1 Announce Type: new \nAbstract: Language models often produce high-quality individual samples but poor sets, with repeated samples clustering around the same semantic modes. We formalize diverse generation as sampling a size-$K$ subset of complete strings from a determinantal point process (DPP), where the likelihood encodes item quality, and the embedding geometry encodes repulsion between similar outputs. Exact inference over all strings is intractable, so we propose PoolDPP: draw a finite candidate pool from a tractable proposal, importance-weight the candidates toward the target quality, and run a $K$-DPP sampler on the induced pool kernel; a greedy MAP variant provides deterministic selection. arXiv:2611.",
-        "engineerSummary": "25003v1 Announce Type: new \nAbstract: Language models often produce high-quality individual samples but poor sets, with repeated samples clustering around the same semantic modes. We formalize diverse generation as sampling a size-$K$ subset of complete strings from a determinantal point process (DPP), where the likelihood encodes item quality, and the embedding geometry encodes repulsion between similar outputs. Exact inference over all strings is intractable, so we propose PoolDPP: draw a finite candidate pool from a tractable proposal, importance-weight the candidates toward the target quality, and run a $K$-DPP sampler on the induced pool kernel; a greedy MAP variant provides deterministic selection. arXiv:2611.",
-        "founderSummary": "25003v1 Announce Type: new \nAbstract: Language models often produce high-quality individual samples but poor sets, with repeated samples clustering around the same semantic modes. We formalize diverse generation as sampling a size-$K$ subset of complete strings from a determinantal point process (DPP), where the likelihood encodes item quality, and the embedding geometry encodes repulsion between similar outputs. Exact inference over all strings is intractable, so we propose PoolDPP: draw a finite candidate pool from a tractable proposal, importance-weight the candidates toward the target quality, and run a $K$-DPP sampler on the induced pool kernel; a greedy MAP variant provides deterministic selection. arXiv:2611."
       },
       "insightsAttempted": true
     },
@@ -1580,27 +1538,6 @@
           "Abstract: Federated fine-tuning of foundation models with low-rank adapters (LoRA) is typically reconciled by averaging locally trained adapters.",
           "Across image and text fine-tuning benchmarks, LEAN outperforms averaging-based baselines in most settings with substantially less communication, and remains effective under heavy data heterogeneity, where averaging-based methods fail to reach nontrivial accuracy, and under heavy asynchrony, where they degrade substantially. We propose a simple idea called federated library-based adaptation (LEAN), which replaces averaging altogether. In cross-device settings, where participants hold heterogeneous data and join or leave asynchronously, averaging is poorly suited: locally trained adapters are not identifiable up to permutation, and averages of adapters trained on dissimilar data can be uninformative or unstable."
         ]
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "HapBO: Harnessed $\\alpha$-$\\pi$ Bayesian Optimization via Expert Natural Language Priors",
-      "summary": "arXiv:2611.25100v1 Announce Type: new \nAbstract: Bayesian Optimization (BO) can be substantially more sample-efficient when informed by prior knowledge about the problem. In practice, however, such knowledge is often available only in natural language, e.g., expert intuitions or documentation, rather than as the explicit probability distribution landscape that prior-guided BO methods may require. Leveraging it effectively demands both an expressive mapping from language to priors and robustness to information that may be misleading. We propose HapBO (Harnessed $\\alpha$-$\\pi$ Bayesian Optimization), which elicits beliefs once from a human expert, a large language model (LLM), or both, and deterministically compiles a structured specification into a reusable belief function ($\\pi: \\mathcal{X} \\to[0,1]$), with a rich representation not restricted to a Gaussian family. Building on $\\alpha$-$\\pi$BO, HapBO applies this belief function through a bounded positive multiplier on any nonnegative acquisition, preserving positive acquisition support and requiring no LLM calls during optimization. We prove that, for the Expected Improvement acquisition function (EI), HapBO preserves the standard simple-regret rate up to a bounded factor, even under adversarial beliefs. We evaluate HapBO on 40 HPOBench tasks, a synthetic suite in 6-15 dimensions and two real-world applications: cortical neurostimulation and constrained solar design. HapBO achieves the lowest aggregate HPOBench regret and strong real-world task performance, with zero in-loop token cost. In real-world applications it improves the optimization outcome even at budgets of 12-20 queries, and at a small fraction of the wall-clock and token costs of other LLM-based methods.",
-      "url": "https://arxiv.org/abs/2611.25100",
-      "publishedAt": "2026-11-21T05:00:00.000Z",
-      "source": "arXiv ML",
-      "category": "LLM Engineering",
-      "trusted": true,
-      "image": null,
-      "audience": "ai_engineer",
-      "id": "a9bd411f4856d",
-      "relevanceScore": 19,
-      "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
-      "addedAt": "2026-11-21T10:02:36.199Z",
-      "insights": {
-        "whatHappened": "Building on $\\alpha$-$\\pi$BO, HapBO applies this belief function through a bounded positive multiplier on any nonnegative acquisition, preserving positive acquisition support and requiring no LLM calls during optimization. HapBO achieves the lowest aggregate HPOBench regret and strong real-world task performance, with zero in-loop token cost. We prove that, for the Expected Improvement acquisition function (EI), HapBO preserves the standard simple-regret rate up to a bounded factor, even under adversarial beliefs. 25100v1 Announce Type: new \nAbstract: Bayesian Optimization (BO) can be substantially more sample-efficient when informed by prior knowledge about the problem.",
-        "engineerSummary": "Building on $\\alpha$-$\\pi$BO, HapBO applies this belief function through a bounded positive multiplier on any nonnegative acquisition, preserving positive acquisition support and requiring no LLM calls during optimization. HapBO achieves the lowest aggregate HPOBench regret and strong real-world task performance, with zero in-loop token cost. We prove that, for the Expected Improvement acquisition function (EI), HapBO preserves the standard simple-regret rate up to a bounded factor, even under adversarial beliefs. 25100v1 Announce Type: new \nAbstract: Bayesian Optimization (BO) can be substantially more sample-efficient when informed by prior knowledge about the problem.",
-        "founderSummary": "Building on $\\alpha$-$\\pi$BO, HapBO applies this belief function through a bounded positive multiplier on any nonnegative acquisition, preserving positive acquisition support and requiring no LLM calls during optimization. HapBO achieves the lowest aggregate HPOBench regret and strong real-world task performance, with zero in-loop token cost. We prove that, for the Expected Improvement acquisition function (EI), HapBO preserves the standard simple-regret rate up to a bounded factor, even under adversarial beliefs. 25100v1 Announce Type: new \nAbstract: Bayesian Optimization (BO) can be substantially more sample-efficient when informed by prior knowledge about the problem."
       },
       "insightsAttempted": true
     },
@@ -2040,48 +1977,6 @@
       "insightsAttempted": true
     },
     {
-      "title": "Rate-distortion Assessment for Hierarchical Content Summarization",
-      "summary": "arXiv:2611.25151v1 Announce Type: new \nAbstract: Powerful generative models including large language and vision models have demonstrated success across a wide range of content generation, editing and manipulation tasks via end-to-end prompt-based generation. However, current assessment of the quality of generative content manipulation remains subjective, limiting scientific understanding of model capabilities. Inspired by rate-distortion theory from Shannon information compression theory, in this work we formalize hierarchical content summarization as an information encoding problem. We design a principled framework to extract the semantic hierarchy of the source content to support quantitative characterization of the rate-distortion trade-off between compression efficiency (rate) against information loss (distortion) during generative content manipulation, which allows us to benchmark various models with respect to performance conditional on rate budget of interest. We demonstrate the use of the framework with empirical experiments on content summarization for long-context question-answering with state-of-the-art large language models, offering new insights into their efficiency and comprehension capabilities. We further demonstrate the use of the semantic hierarchy as guidance for performing effective retrieval augmented generation, showing improved rate-distortion characteristics against current baselines.",
-      "url": "https://arxiv.org/abs/2611.25151",
-      "publishedAt": "2026-11-21T05:00:00.000Z",
-      "source": "arXiv ML",
-      "category": "Research",
-      "trusted": true,
-      "image": null,
-      "audience": "ai_engineer",
-      "id": "aa9a6c2b7492b",
-      "relevanceScore": 16,
-      "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-21T10:02:36.199Z",
-      "insights": {
-        "whatHappened": "Inspired by rate-distortion theory from Shannon information compression theory, in this work we formalize hierarchical content summarization as an information encoding problem. We design a principled framework to extract the semantic hierarchy of the source content to support quantitative characterization of the rate-distortion trade-off between compression efficiency (rate) against information loss (distortion) during generative content manipulation, which allows us to benchmark various models with respect to performance conditional on rate budget of interest. 25151v1 Announce Type: new \nAbstract: Powerful generative models including large language and vision models have demonstrated success across a wide range of content generation, editing and manipulation tasks via end-to-end prompt-based generation. However, current assessment of the quality of generative content manipulation remains subjective, limiting scientific understanding of model capabilities.",
-        "engineerSummary": "Inspired by rate-distortion theory from Shannon information compression theory, in this work we formalize hierarchical content summarization as an information encoding problem. We design a principled framework to extract the semantic hierarchy of the source content to support quantitative characterization of the rate-distortion trade-off between compression efficiency (rate) against information loss (distortion) during generative content manipulation, which allows us to benchmark various models with respect to performance conditional on rate budget of interest. 25151v1 Announce Type: new \nAbstract: Powerful generative models including large language and vision models have demonstrated success across a wide range of content generation, editing and manipulation tasks via end-to-end prompt-based generation. However, current assessment of the quality of generative content manipulation remains subjective, limiting scientific understanding of model capabilities.",
-        "founderSummary": "Inspired by rate-distortion theory from Shannon information compression theory, in this work we formalize hierarchical content summarization as an information encoding problem. We design a principled framework to extract the semantic hierarchy of the source content to support quantitative characterization of the rate-distortion trade-off between compression efficiency (rate) against information loss (distortion) during generative content manipulation, which allows us to benchmark various models with respect to performance conditional on rate budget of interest. 25151v1 Announce Type: new \nAbstract: Powerful generative models including large language and vision models have demonstrated success across a wide range of content generation, editing and manipulation tasks via end-to-end prompt-based generation. However, current assessment of the quality of generative content manipulation remains subjective, limiting scientific understanding of model capabilities."
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "Game-Theoretic Data Allocation for Expert Specialization and Routing",
-      "summary": "arXiv:2611.25167v1 Announce Type: new \nAbstract: Can the allocation used to train experts also predict which expert will perform best on a prompt? Such a connection would make the intended division of labor inspectable before training and allow the allocation itself to guide inference. We introduce InflEns, a mixture of LoRA experts whose training weights and inference routes come from the same location game in a fixed prompt-trait space. Players choose positions to maximize their expected shares of the prompt distribution, without using expert losses. We utilize the game's kernel-general theoretical criterion for when co-located positions become locally unstable to separation. We evaluate InflEns on a corpus assembled from seven safety-related benchmarks, which demonstrates that the highest-share expert has the lowest held-out response negative log-likelihood (NLL) on approximately 90% of prompts across four kernels under a sharpened simplex representation, compared with approximately 15% after permuting allocations across prompts. We demonstrate that the method performs comparably to published learned gates without having to train an explicit gate on the experts. Because the router is fixed, we can trace harmful behavior to a single expert and retrain only that expert, which lowers HarmBench attack success from 0.51 to 0.02 while keeping instruction following. The game also gives us several controls over how the experts specialize, including the kernel choice and its parameters, the trait-space geometry, and the number of experts. Importantly, InflEns is a general framework that can be extended to any encoder and data distribution.",
-      "url": "https://arxiv.org/abs/2611.25167",
-      "publishedAt": "2026-11-21T05:00:00.000Z",
-      "source": "arXiv ML",
-      "category": "Model Training",
-      "trusted": true,
-      "image": null,
-      "audience": "ai_engineer",
-      "id": "a0aa157e62414",
-      "relevanceScore": 16,
-      "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
-      "addedAt": "2026-11-21T10:02:36.199Z",
-      "insights": {
-        "whatHappened": "25167v1 Announce Type: new \nAbstract: Can the allocation used to train experts also predict which expert will perform best on a prompt? We introduce InflEns, a mixture of LoRA experts whose training weights and inference routes come from the same location game in a fixed prompt-trait space. Players choose positions to maximize their expected shares of the prompt distribution, without using expert losses. Because the router is fixed, we can trace harmful behavior to a single expert and retrain only that expert, which lowers HarmBench attack success from 0.",
-        "engineerSummary": "25167v1 Announce Type: new \nAbstract: Can the allocation used to train experts also predict which expert will perform best on a prompt? We introduce InflEns, a mixture of LoRA experts whose training weights and inference routes come from the same location game in a fixed prompt-trait space. Players choose positions to maximize their expected shares of the prompt distribution, without using expert losses. Because the router is fixed, we can trace harmful behavior to a single expert and retrain only that expert, which lowers HarmBench attack success from 0.",
-        "founderSummary": "25167v1 Announce Type: new \nAbstract: Can the allocation used to train experts also predict which expert will perform best on a prompt? We introduce InflEns, a mixture of LoRA experts whose training weights and inference routes come from the same location game in a fixed prompt-trait space. Players choose positions to maximize their expected shares of the prompt distribution, without using expert losses. Because the router is fixed, we can trace harmful behavior to a single expert and retrain only that expert, which lowers HarmBench attack success from 0."
-      },
-      "insightsAttempted": true
-    },
-    {
       "title": "Failure Modes and Data-Efficient Remedies for Transformer-Based Prediction of Viscoplastic Flows",
       "summary": "arXiv:2611.28267v1 Announce Type: new \nAbstract: Fast and accurate prediction of viscoplastic flows remains a challenge in computational rheology due to yield surfaces, discontinuous gradients, and strongly nonlinear transitions between yielded and unyielded regions. Transformer-based neural operators such as RheOFormer have recently shown strong potential for surrogate modeling of non-Newtonian flows. However, their applicability to viscoplastic systems and their efficacy in recovering realistic flows remain poorly understood. In this work, we present the first systematic investigation of RheOFormer applied to steady Bingham channel flow. By isolating the problem to a simple geometry and constitutive model, we examine how dataset structure, numerical value range, and input representation govern the model's ability to interpolate and extrapolate within the parameter space. The data regimes in which RheOFormer remains accurate and those in which errors emerge are identified, particularly for plug-dominated flows and for conditions outside the velocity scales or flow structures represented during training. Upon identifying these failure modes, targeted enhancements to the input representation and loss formulation are introduced to better predict low-gradient plug regions. Logarithmic velocity representations and gradient-aware loss formulations substantially improve accuracy in challenging regimes where the baseline formulation fails. In addition, extrapolation errors are reduced by augmenting the training set with only a few strategically selected cases spanning the missing physical regimes. Finally, a single partially developed snapshot suffices for an accurate steady-state prediction, and the model outperforms simply copying its input throughout flow development. These results highlight the importance of appropriate field representation and parameter-space coverage for data-efficient neural-operator prediction of viscoplastic flows.",
       "url": "https://arxiv.org/abs/2611.28267",
@@ -2198,27 +2093,6 @@
       "insightsAttempted": true
     },
     {
-      "title": "Fast and Memory-Light Evaluation of Density-Based Clusterings with the DISCO Index in R",
-      "summary": "arXiv:2611.25114v1 Announce Type: new \nAbstract: DISCO is a recent internal cluster validity index for density-based clustering that, unlike earlier indices, also evaluates the quality of noise labels. The discoCVI package makes DISCO available in R. This article describes the design of the package and a typical workflow, in which DISCO is used to compare clusterings and to choose the parameters of HDBSCAN without ground truth, followed by the implementation introduced in version 0.2.0. DISCO is defined through density-connectivity distances between all pairs of points, so direct implementations store several n-by-n matrices. We show that every quantity DISCO needs can be read off the single-linkage merge tree of the mutual-reachability minimum spanning tree, so that the index can be computed exactly with memory that grows linearly with the number of points, while the running time remains quadratic as in the original definition. The implementation is tested against the previous version, agrees with the original Python implementation to within $3 \\times 10^{-13}$, and corrects the score of singleton clusters to match the published definition. In benchmarks, discoCVI is 23 to 138 times faster than its previous version for 500 to 4,000 points and 3 to 9 times faster than the Python reference for 500 to 8,000 points, using a fraction of the memory of both, and it scores 100,000 points in about 50 seconds with less than 200 MB of memory.",
-      "url": "https://arxiv.org/abs/2611.25114",
-      "publishedAt": "2026-11-21T05:00:00.000Z",
-      "source": "arXiv ML",
-      "category": "Research",
-      "trusted": true,
-      "image": null,
-      "audience": "ai_engineer",
-      "id": "af2069aea21f6",
-      "relevanceScore": 15,
-      "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-21T10:02:36.199Z",
-      "insights": {
-        "whatHappened": "The discoCVI package makes DISCO available in R. In benchmarks, discoCVI is 23 to 138 times faster than its previous version for 500 to 4,000 points and 3 to 9 times faster than the Python reference for 500 to 8,000 points, using a fraction of the memory of both, and it scores 100,000 points in about 50 seconds with less than 200 MB of memory. DISCO is defined through density-connectivity distances between all pairs of points, so direct implementations store several n-by-n matrices. arXiv:2611.",
-        "engineerSummary": "The discoCVI package makes DISCO available in R. In benchmarks, discoCVI is 23 to 138 times faster than its previous version for 500 to 4,000 points and 3 to 9 times faster than the Python reference for 500 to 8,000 points, using a fraction of the memory of both, and it scores 100,000 points in about 50 seconds with less than 200 MB of memory. DISCO is defined through density-connectivity distances between all pairs of points, so direct implementations store several n-by-n matrices. arXiv:2611.",
-        "founderSummary": "The discoCVI package makes DISCO available in R. In benchmarks, discoCVI is 23 to 138 times faster than its previous version for 500 to 4,000 points and 3 to 9 times faster than the Python reference for 500 to 8,000 points, using a fraction of the memory of both, and it scores 100,000 points in about 50 seconds with less than 200 MB of memory. DISCO is defined through density-connectivity distances between all pairs of points, so direct implementations store several n-by-n matrices. arXiv:2611."
-      },
-      "insightsAttempted": true
-    },
-    {
       "title": "Introducing the llama.cpp benchmark dashboard for AMD Ryzen and Radeon",
       "summary": "",
       "url": "https://huggingface.co/blog/ggml-org/llamacpp-amd-bench",
@@ -2231,7 +2105,21 @@
       "id": "aa734da9d3a1d",
       "relevanceScore": 14,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
-      "addedAt": "2026-11-27T07:12:44.645Z"
+      "addedAt": "2026-11-27T07:12:44.645Z",
+      "insights": {
+        "whatHappened": "No details available.",
+        "engineerSummary": [
+          "No details available.",
+          "No additional sourced detail is available.",
+          "No additional sourced detail is available."
+        ],
+        "founderSummary": [
+          "No details available.",
+          "No additional sourced detail is available.",
+          "No additional sourced detail is available."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Building on Nemotron 3.5 Parse: Open Data, Fine-Tuning, and Faster Inference",
@@ -2333,7 +2221,21 @@
       "id": "a0773c7733003",
       "relevanceScore": 14,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-25T07:28:08.145Z"
+      "addedAt": "2026-11-25T07:28:08.145Z",
+      "insights": {
+        "whatHappened": "3829 (Layout-only), 0. The Layout-only kept only the layout of the non-background dies. We then constructed four variations of each wafer map. The Global-shuffle kept the count of failed dies while shuffling them around.",
+        "engineerSummary": [
+          "3829 (Layout-only), 0.",
+          "The Layout-only kept only the layout of the non-background dies.",
+          "We then constructed four variations of each wafer map. The Global-shuffle kept the count of failed dies while shuffling them around."
+        ],
+        "founderSummary": [
+          "3829 (Layout-only), 0.",
+          "The Layout-only kept only the layout of the non-background dies.",
+          "We then constructed four variations of each wafer map. The Global-shuffle kept the count of failed dies while shuffling them around."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "What Do Differentiable Rule Learners Need? FLARE: Fuzzy Rules with Additive Evidence",
@@ -2348,7 +2250,21 @@
       "id": "a6c985ab72ea7",
       "relevanceScore": 14,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-24T08:51:41.782Z"
+      "addedAt": "2026-11-24T08:51:41.782Z",
+      "insights": {
+        "whatHappened": "However, these differentiable rule learners often lag behind both classical rule learners and black-box classifiers in terms of performance. On CC18, FLARE exceeds the compared rule learners by 7. Based on our results, we propose FLARE (Fuzzy Learned-Antecedent Rule Evidence), a differentiable rule learner that learns simple rules that combine to make the final decision. We study which parts of a rule-based classifier affect performance, and how well gradient-based training learns each of them.",
+        "engineerSummary": [
+          "However, these differentiable rule learners often lag behind both classical rule learners and black-box classifiers in terms of performance.",
+          "On CC18, FLARE exceeds the compared rule learners by 7.",
+          "Based on our results, we propose FLARE (Fuzzy Learned-Antecedent Rule Evidence), a differentiable rule learner that learns simple rules that combine to make the final decision. We study which parts of a rule-based classifier affect performance, and how well gradient-based training learns each of them."
+        ],
+        "founderSummary": [
+          "However, these differentiable rule learners often lag behind both classical rule learners and black-box classifiers in terms of performance.",
+          "On CC18, FLARE exceeds the compared rule learners by 7.",
+          "Based on our results, we propose FLARE (Fuzzy Learned-Antecedent Rule Evidence), a differentiable rule learner that learns simple rules that combine to make the final decision. We study which parts of a rule-based classifier affect performance, and how well gradient-based training learns each of them."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Beyond Final Answers: Interpretable Tumor Immune Microenvironment Reasoning from H&E and mIF",
@@ -2363,7 +2279,21 @@
       "id": "aba63b8571281",
       "relevanceScore": 14,
       "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
-      "addedAt": "2026-11-23T06:17:06.164Z"
+      "addedAt": "2026-11-23T06:17:06.164Z",
+      "insights": {
+        "whatHappened": "Pathology MLLMs read H&E alone, while these readouts need the cell phenotypes that mIF measures. Same-section H&E and mIF provide what both gaps lack: mIF measures every cell without manual annotation, which gives cell-level ground truth for each step that clinical guidelines prescribe, from delineating a tissue compartment to counting and normalizing the marker-positive cells within it. 26794v1 Announce Type: new \nAbstract: Readouts of the tumor immune microenvironment (TIME), such as CD8+ T-cell density, intra-epithelial infiltration and the Ki67 index, combine tissue architecture from H&E with cell phenotypes from multiplex immunofluorescence (mIF). Multimodal large language models (MLLMs) could automate these readouts with an explanation, but two gaps remain.",
+        "engineerSummary": [
+          "Pathology MLLMs read H&E alone, while these readouts need the cell phenotypes that mIF measures.",
+          "Same-section H&E and mIF provide what both gaps lack: mIF measures every cell without manual annotation, which gives cell-level ground truth for each step that clinical guidelines prescribe, from delineating a tissue compartment to counting and normalizing the marker-positive cells within it.",
+          "26794v1 Announce Type: new Abstract: Readouts of the tumor immune microenvironment (TIME), such as CD8+ T-cell density, intra-epithelial infiltration and the Ki67 index, combine tissue architecture from H&E with cell phenotypes from multiplex immunofluorescence (mIF). Multimodal large language models (MLLMs) could automate these readouts with an explanation, but two gaps remain."
+        ],
+        "founderSummary": [
+          "Pathology MLLMs read H&E alone, while these readouts need the cell phenotypes that mIF measures.",
+          "Same-section H&E and mIF provide what both gaps lack: mIF measures every cell without manual annotation, which gives cell-level ground truth for each step that clinical guidelines prescribe, from delineating a tissue compartment to counting and normalizing the marker-positive cells within it.",
+          "26794v1 Announce Type: new Abstract: Readouts of the tumor immune microenvironment (TIME), such as CD8+ T-cell density, intra-epithelial infiltration and the Ki67 index, combine tissue architecture from H&E with cell phenotypes from multiplex immunofluorescence (mIF). Multimodal large language models (MLLMs) could automate these readouts with an explanation, but two gaps remain."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Self-Evolving Beyond Human-Crafted Experience for EDA Scripting",
@@ -2378,7 +2308,21 @@
       "id": "adae9992927e4",
       "relevanceScore": 14,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-23T06:17:06.164Z"
+      "addedAt": "2026-11-23T06:17:06.164Z",
+      "insights": {
+        "whatHappened": "We present ZhuLong-SE (Self-Evolution), an execution-grounded LLM agent that learns reusable knowledge from prior task traces. Building on ZhuLong, it enhances the task-level harness with API retrieval, documentation responses, isolated sandbox execution, and static checking, then adds governed cross-task self-evolution. On the 158-task EDA-Eval-PyAether benchmark, the full task-level harness, with self-evolution disabled, achieves 92. Beyond solving individual tasks, ZhuLong-SE distills past execution traces into a three-tier memory store governed by ground-truth anchoring, disconfirmation filtering, held-out rollback, and anti-leakage retrieval.",
+        "engineerSummary": [
+          "We present ZhuLong-SE (Self-Evolution), an execution-grounded LLM agent that learns reusable knowledge from prior task traces.",
+          "Building on ZhuLong, it enhances the task-level harness with API retrieval, documentation responses, isolated sandbox execution, and static checking, then adds governed cross-task self-evolution.",
+          "On the 158-task EDA-Eval-PyAether benchmark, the full task-level harness, with self-evolution disabled, achieves 92. Beyond solving individual tasks, ZhuLong-SE distills past execution traces into a three-tier memory store governed by ground-truth anchoring, disconfirmation filtering, held-out rollback, and anti-leakage retrieval."
+        ],
+        "founderSummary": [
+          "We present ZhuLong-SE (Self-Evolution), an execution-grounded LLM agent that learns reusable knowledge from prior task traces.",
+          "Building on ZhuLong, it enhances the task-level harness with API retrieval, documentation responses, isolated sandbox execution, and static checking, then adds governed cross-task self-evolution.",
+          "On the 158-task EDA-Eval-PyAether benchmark, the full task-level harness, with self-evolution disabled, achieves 92. Beyond solving individual tasks, ZhuLong-SE distills past execution traces into a three-tier memory store governed by ground-truth anchoring, disconfirmation filtering, held-out rollback, and anti-leakage retrieval."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Self-similar Organization of Information in Language",
@@ -2393,7 +2337,21 @@
       "id": "a14beffb87673",
       "relevanceScore": 14,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
-      "addedAt": "2026-11-23T06:17:06.164Z"
+      "addedAt": "2026-11-23T06:17:06.164Z",
+      "insights": {
+        "whatHappened": "predictive information) is carried by the preceding text, and how is this information distributed along that history? , it has a self-similar structure -- then the information measures evaluated at different lengths collapse onto a common form. We observe this scaling collapse in long text documents, showing that predictive information is present at every length scale we measure and has a self-similar structure. Indeed, LLMs trained to predict the next token in text must exploit this predictive information, so its organization determines how the structure of language becomes available to the model to learn.",
+        "engineerSummary": [
+          "predictive information) is carried by the preceding text, and how is this information distributed along that history? , it has a self-similar structure -- then the information measures evaluated at different lengths collapse onto a common form.",
+          "We observe this scaling collapse in long text documents, showing that predictive information is present at every length scale we measure and has a self-similar structure.",
+          "Indeed, LLMs trained to predict the next token in text must exploit this predictive information, so its organization determines how the structure of language becomes available to the model to learn."
+        ],
+        "founderSummary": [
+          "predictive information) is carried by the preceding text, and how is this information distributed along that history? , it has a self-similar structure -- then the information measures evaluated at different lengths collapse onto a common form.",
+          "We observe this scaling collapse in long text documents, showing that predictive information is present at every length scale we measure and has a self-similar structure.",
+          "Indeed, LLMs trained to predict the next token in text must exploit this predictive information, so its organization determines how the structure of language becomes available to the model to learn."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Parasite Features: Causal Abstraction Through Spurious Pathways",
@@ -2408,7 +2366,21 @@
       "id": "a2d34d4aaf559",
       "relevanceScore": 14,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-23T06:17:06.164Z"
+      "addedAt": "2026-11-23T06:17:06.164Z",
+      "insights": {
+        "whatHappened": "Interpretability methods based on Causal Abstraction (e. Experimentally, we show that Distributed Alignment Search finds parasite features using linear alignment maps in two tasks: syntactic agreement and two-digit addition. , Distributed Alignment Search) can \\emph{spuriously} simulate these directions' combined behavior by leveraging pathways passing through them, giving the impression that the model implements this feature. Our paper highlights an important consideration for Causal Abstraction and contributes to the ongoing debate about best practices for mechanistic interpretability.",
+        "engineerSummary": [
+          "Interpretability methods based on Causal Abstraction (e.",
+          "Experimentally, we show that Distributed Alignment Search finds parasite features using linear alignment maps in two tasks: syntactic agreement and two-digit addition. , Distributed Alignment Search) can \\emph{spuriously} simulate these directions' combined behavior by leveraging pathways passing through them, giving the impression that the model implements this feature.",
+          "Our paper highlights an important consideration for Causal Abstraction and contributes to the ongoing debate about best practices for mechanistic interpretability."
+        ],
+        "founderSummary": [
+          "Interpretability methods based on Causal Abstraction (e.",
+          "Experimentally, we show that Distributed Alignment Search finds parasite features using linear alignment maps in two tasks: syntactic agreement and two-digit addition. , Distributed Alignment Search) can \\emph{spuriously} simulate these directions' combined behavior by leveraging pathways passing through them, giving the impression that the model implements this feature.",
+          "Our paper highlights an important consideration for Causal Abstraction and contributes to the ongoing debate about best practices for mechanistic interpretability."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "NitroGen: Observations on the Action Dynamics, Visual Instruction Following, and Spatial Exploration",
@@ -2423,7 +2395,21 @@
       "id": "a786be66b40ea",
       "relevanceScore": 14,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-23T06:17:06.164Z"
+      "addedAt": "2026-11-23T06:17:06.164Z",
+      "insights": {
+        "whatHappened": "26807v1 Announce Type: new \nAbstract: NitroGen is an open vision-action foundation model for game control. arXiv:2611. Our results indicate that NitroGen can adapt its actions to local context, but it lacks the planning, recovery, and exploration needed for longer-horizon game control. In this paper, we study the frozen controller in Hollow Knight and Trackmania as examples along three dimensions: action adaptation, visual instruction following, and spatial exploration.",
+        "engineerSummary": [
+          "26807v1 Announce Type: new",
+          "Abstract: NitroGen is an open vision-action foundation model for game control. arXiv:2611.",
+          "Our results indicate that NitroGen can adapt its actions to local context, but it lacks the planning, recovery, and exploration needed for longer-horizon game control. In this paper, we study the frozen controller in Hollow Knight and Trackmania as examples along three dimensions: action adaptation, visual instruction following, and spatial exploration."
+        ],
+        "founderSummary": [
+          "26807v1 Announce Type: new",
+          "Abstract: NitroGen is an open vision-action foundation model for game control. arXiv:2611.",
+          "Our results indicate that NitroGen can adapt its actions to local context, but it lacks the planning, recovery, and exploration needed for longer-horizon game control. In this paper, we study the frozen controller in Hollow Knight and Trackmania as examples along three dimensions: action adaptation, visual instruction following, and spatial exploration."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Large Reported CHB-MIT Adaptation Gains Disappear with Pretrained Encoders and Matched Probes",
@@ -2438,89 +2424,19 @@
       "id": "a3be939557185",
       "relevanceScore": 14,
       "whyItMatters": "Relevant to deployment, monitoring, and evaluation workflows.",
-      "addedAt": "2026-11-23T06:17:06.164Z"
-    },
-    {
-      "title": "Watch Where You Linearize: Predicting and Correcting Model-Merging Interference",
-      "summary": "arXiv:2611.25000v1 Announce Type: new \nAbstract: Model merging combines separately fine-tuned models by adding their task vectors to a shared backbone. Interference is typically assessed only after constructing and evaluating a candidate merge, making coefficient search expensive. We show that a first-order directional derivative of task A's outputs along task B's vector can predict interference, but only when evaluated at the appropriate model.\n At the receiver model, this derivative forecasts nearby merges per task and per example, halves the accuracy error of a no-change baseline, and identifies most examples whose predictions flip. For full multi-task merges, a single evaluation is insufficient; two evaluations along the merge path are needed. At the shared pretrained backbone, however, the derivative is nearly orthogonal to realized changes in our vision experiments and only partly predictive in LoRA language-model pilots. Controls link this failure to displacement along the receiver's own task vector, not simply parameter distance; the mismatch appears within the first few dozen fine-tuning steps.\n Freezing receiver-local responses produces a surrogate affine in the merge coefficients. We use it to construct LR-Merge, a label-free correction that optimizes coefficients through convex teacher matching on unlabeled probes, without backpropagation through merged networks. LR-Merge improves all tested closed-form, isotropic, and sparsified base mergers, with gains generally increasing as more tasks are merged. Using pretrained rather than receiver-local responses instead degrades the base merge. LR-Merge matches exact teacher matching through a merged network, which takes roughly three times longer to converge and performs similarly at an equal compute budget. Once built, the surrogate answers new coefficient and task-subset queries in seconds.",
-      "url": "https://arxiv.org/abs/2611.25000",
-      "publishedAt": "2026-11-21T05:00:00.000Z",
-      "source": "arXiv ML",
-      "category": "Model Training",
-      "trusted": true,
-      "image": null,
-      "audience": "ai_engineer",
-      "id": "ac102e0e70e68",
-      "relevanceScore": 14,
-      "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
-      "addedAt": "2026-11-21T10:02:36.199Z",
+      "addedAt": "2026-11-23T06:17:06.164Z",
       "insights": {
-        "whatHappened": "Using pretrained rather than receiver-local responses instead degrades the base merge. Freezing receiver-local responses produces a surrogate affine in the merge coefficients. For full multi-task merges, a single evaluation is insufficient; two evaluations along the merge path are needed. 25000v1 Announce Type: new \nAbstract: Model merging combines separately fine-tuned models by adding their task vectors to a shared backbone.",
-        "engineerSummary": "Using pretrained rather than receiver-local responses instead degrades the base merge. Freezing receiver-local responses produces a surrogate affine in the merge coefficients. For full multi-task merges, a single evaluation is insufficient; two evaluations along the merge path are needed. 25000v1 Announce Type: new \nAbstract: Model merging combines separately fine-tuned models by adding their task vectors to a shared backbone.",
-        "founderSummary": "Using pretrained rather than receiver-local responses instead degrades the base merge. Freezing receiver-local responses produces a surrogate affine in the merge coefficients. For full multi-task merges, a single evaluation is insufficient; two evaluations along the merge path are needed. 25000v1 Announce Type: new \nAbstract: Model merging combines separately fine-tuned models by adding their task vectors to a shared backbone."
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "Density Feedback Control for Transferability of Generative Sparse Adversarial Attacks",
-      "summary": "arXiv:2611.25001v1 Announce Type: new \nAbstract: Generator-based sparse adversarial attacks train encoder--decoder networks to produce transferable sparse perturbations for black-box robustness evaluation. Their perturbation density, however, is set only indirectly by a fixed sparsity coefficient whose mapping to density is unknown and shifts during training, so reaching a target density requires re-tuning; this fixed pressure also yields little transferability gain once density reduction begins. We propose Density Feedback Control (DFC), which tightens or relaxes this coefficient at the end of each epoch according to the gap between the observed hard-mask density and the target, without changing the generator architecture or loss. At a 10\\% target density, DFC brings the mean density of three base attacks within one percentage point of the target in a single run and improves the transfer attack success rate (ASR) of two of them on CNN and Transformer targets, including under per-image $\\ell_0$ budgets, while perturbing fewer pixels. Tracing GPG's training, we observe that as DFC relaxes the coefficient, the transfer ASR recovers with the density and overtakes the fixed-coefficient baseline with fewer pixels. For EGS-TSSA, which restricts perturbations to source-model feature-importance regions, DFC yields no consistent gain; we analyze how this restriction interacts with density feedback.",
-      "url": "https://arxiv.org/abs/2611.25001",
-      "publishedAt": "2026-11-21T05:00:00.000Z",
-      "source": "arXiv ML",
-      "category": "Research",
-      "trusted": true,
-      "image": null,
-      "audience": "ai_engineer",
-      "id": "abad92ad73eeb",
-      "relevanceScore": 14,
-      "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-21T10:02:36.199Z",
-      "insights": {
-        "whatHappened": "Their perturbation density, however, is set only indirectly by a fixed sparsity coefficient whose mapping to density is unknown and shifts during training, so reaching a target density requires re-tuning; this fixed pressure also yields little transferability gain once density reduction begins. Tracing GPG's training, we observe that as DFC relaxes the coefficient, the transfer ASR recovers with the density and overtakes the fixed-coefficient baseline with fewer pixels. We propose Density Feedback Control (DFC), which tightens or relaxes this coefficient at the end of each epoch according to the gap between the observed hard-mask density and the target, without changing the generator architecture or loss. For EGS-TSSA, which restricts perturbations to source-model feature-importance regions, DFC yields no consistent gain; we analyze how this restriction interacts with density feedback.",
-        "engineerSummary": "Their perturbation density, however, is set only indirectly by a fixed sparsity coefficient whose mapping to density is unknown and shifts during training, so reaching a target density requires re-tuning; this fixed pressure also yields little transferability gain once density reduction begins. Tracing GPG's training, we observe that as DFC relaxes the coefficient, the transfer ASR recovers with the density and overtakes the fixed-coefficient baseline with fewer pixels. We propose Density Feedback Control (DFC), which tightens or relaxes this coefficient at the end of each epoch according to the gap between the observed hard-mask density and the target, without changing the generator architecture or loss. For EGS-TSSA, which restricts perturbations to source-model feature-importance regions, DFC yields no consistent gain; we analyze how this restriction interacts with density feedback.",
-        "founderSummary": "Their perturbation density, however, is set only indirectly by a fixed sparsity coefficient whose mapping to density is unknown and shifts during training, so reaching a target density requires re-tuning; this fixed pressure also yields little transferability gain once density reduction begins. Tracing GPG's training, we observe that as DFC relaxes the coefficient, the transfer ASR recovers with the density and overtakes the fixed-coefficient baseline with fewer pixels. We propose Density Feedback Control (DFC), which tightens or relaxes this coefficient at the end of each epoch according to the gap between the observed hard-mask density and the target, without changing the generator architecture or loss. For EGS-TSSA, which restricts perturbations to source-model feature-importance regions, DFC yields no consistent gain; we analyze how this restriction interacts with density feedback."
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "Temporal Extrapolation of Elastic Seismic Wave Propagation in Layered Media Using Neural Operators",
-      "summary": "arXiv:2611.25130v1 Announce Type: new \nAbstract: Temporal prediction of seismic velocity fields beyond the time interval represented in training remains challenging for neural operator models. This study develops a coupled neural operator framework for stress-conditioned temporal prediction in layered elastic media. A time-integrator-embedded Deep Operator Network (TI-DeepONet) advances the velocity field through an embedded fourth-order Runge-Kutta (RK4) scheme, while a Fourier Neural Operator (FNO) learns a residual correction to the predicted spatial field. The two components are trained jointly in a predictor-corrector configuration. Prediction is initialized with reference velocity fields at the first two time levels and proceeds autoregressively, with reference stress fields and prescribed excitation supplied throughout rollout, including beyond the training interval. Four cases consider horizontally polarized shear (SH) waves in four-layer soil columns with fixed total depths of 50 and 280 m, excited by third-order Gaussian-derivative (DOG3) wavelets with central frequencies between 0.5 and 6 Hz. Layer thicknesses and shear-wave velocities vary across profiles. Evaluations on test profiles extend beyond the training interval by up to twice its duration. The predictions reproduce principal velocity arrivals and depth-dependent response patterns, with accuracy varying across profiles. Across the four cases, mean peak-normalized root-mean-square errors (NRMSEs) range from 0.53% to 2.31% over the full evaluation windows and from 0.61% to 2.82% over the extrapolation intervals. Both metrics use each profile's peak absolute reference velocity over the full evaluation window as the normalizer. These results demonstrate temporal velocity prediction under reference-stress conditioning for the tested configurations; autonomous continuation of the coupled velocity-stress wavefield remains to be established.",
-      "url": "https://arxiv.org/abs/2611.25130",
-      "publishedAt": "2026-11-21T05:00:00.000Z",
-      "source": "arXiv ML",
-      "category": "Research",
-      "trusted": true,
-      "image": null,
-      "audience": "ai_engineer",
-      "id": "aab19dfcb038e",
-      "relevanceScore": 14,
-      "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-21T10:02:36.199Z",
-      "insights": {
-        "whatHappened": "25130v1 Announce Type: new \nAbstract: Temporal prediction of seismic velocity fields beyond the time interval represented in training remains challenging for neural operator models. These results demonstrate temporal velocity prediction under reference-stress conditioning for the tested configurations; autonomous continuation of the coupled velocity-stress wavefield remains to be established. Prediction is initialized with reference velocity fields at the first two time levels and proceeds autoregressively, with reference stress fields and prescribed excitation supplied throughout rollout, including beyond the training interval. This study develops a coupled neural operator framework for stress-conditioned temporal prediction in layered elastic media.",
-        "engineerSummary": "25130v1 Announce Type: new \nAbstract: Temporal prediction of seismic velocity fields beyond the time interval represented in training remains challenging for neural operator models. These results demonstrate temporal velocity prediction under reference-stress conditioning for the tested configurations; autonomous continuation of the coupled velocity-stress wavefield remains to be established. Prediction is initialized with reference velocity fields at the first two time levels and proceeds autoregressively, with reference stress fields and prescribed excitation supplied throughout rollout, including beyond the training interval. This study develops a coupled neural operator framework for stress-conditioned temporal prediction in layered elastic media.",
-        "founderSummary": "25130v1 Announce Type: new \nAbstract: Temporal prediction of seismic velocity fields beyond the time interval represented in training remains challenging for neural operator models. These results demonstrate temporal velocity prediction under reference-stress conditioning for the tested configurations; autonomous continuation of the coupled velocity-stress wavefield remains to be established. Prediction is initialized with reference velocity fields at the first two time levels and proceeds autoregressively, with reference stress fields and prescribed excitation supplied throughout rollout, including beyond the training interval. This study develops a coupled neural operator framework for stress-conditioned temporal prediction in layered elastic media."
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "Separating Interpretability and Reconstruction in Sparse Autoencoders",
-      "summary": "arXiv:2611.25165v1 Announce Type: new \nAbstract: Sparse Autoencoders (SAEs) are effective tools for mechanistic interpretability by decomposing neural representations into sparse and interpretable features. However, a single sparse representation in traditional SAEs is responsible for both reconstruction fidelity and interpretability, which are not guaranteed to align. To separate these objectives, we propose DualSAE, a modular framework that augments standard SAEs with a plug-in Residual Branch. A standard SAE serves as the Sparse Branch, learning a sparse code that contains the dominant semantics of the input. The added Residual Branch models the non-semantic information omitted by the Sparse Branch. We ensure that the contributions of the two branches towards the overall reconstruction have minimal overlap through a decorrelation loss. We also adopt a two-stage training strategy that first stabilizes sparse representation learning before coupling with the Residual Branch. Across diverse encoder-SAE configurations on two vision datasets and two language corpora, DualSAE achieves mean relative improvements of approximately 29% in reconstruction fidelity and 34% in interpretability (measured by monosemanticity score). Moreover, with more interpretable representations, DualSAE yields consistent performance gains in the downstream applications of topic modeling, hypothesis generation, and LLM steering. Qualitative analysis further suggests that the Sparse Branch indeed preserves dominant semantic content, whereas the Residual Branch captures non-semantic information to improve reconstruction fidelity.",
-      "url": "https://arxiv.org/abs/2611.25165",
-      "publishedAt": "2026-11-21T05:00:00.000Z",
-      "source": "arXiv ML",
-      "category": "Research",
-      "trusted": true,
-      "image": null,
-      "audience": "ai_engineer",
-      "id": "a62aa334564b4",
-      "relevanceScore": 14,
-      "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-21T10:02:36.199Z",
-      "insights": {
-        "whatHappened": "The added Residual Branch models the non-semantic information omitted by the Sparse Branch. Qualitative analysis further suggests that the Sparse Branch indeed preserves dominant semantic content, whereas the Residual Branch captures non-semantic information to improve reconstruction fidelity. A standard SAE serves as the Sparse Branch, learning a sparse code that contains the dominant semantics of the input. We also adopt a two-stage training strategy that first stabilizes sparse representation learning before coupling with the Residual Branch.",
-        "engineerSummary": "The added Residual Branch models the non-semantic information omitted by the Sparse Branch. Qualitative analysis further suggests that the Sparse Branch indeed preserves dominant semantic content, whereas the Residual Branch captures non-semantic information to improve reconstruction fidelity. A standard SAE serves as the Sparse Branch, learning a sparse code that contains the dominant semantics of the input. We also adopt a two-stage training strategy that first stabilizes sparse representation learning before coupling with the Residual Branch.",
-        "founderSummary": "The added Residual Branch models the non-semantic information omitted by the Sparse Branch. Qualitative analysis further suggests that the Sparse Branch indeed preserves dominant semantic content, whereas the Residual Branch captures non-semantic information to improve reconstruction fidelity. A standard SAE serves as the Sparse Branch, learning a sparse code that contains the dominant semantics of the input. We also adopt a two-stage training strategy that first stabilizes sparse representation learning before coupling with the Residual Branch."
+        "whatHappened": "5 points over linear probing. Two fixed-probe gains near +21 points shrink under the same tuning, with smaller benefits unresolved. 7 ROC-AUC points over 18 comparisons (related settings and feature variants). These findings concern the tested configurations; the encoder-level probe and subsequent checks were chosen post hoc.",
+        "engineerSummary": [
+          "5 points over linear probing.",
+          "Two fixed-probe gains near +21 points shrink under the same tuning, with smaller benefits unresolved.",
+          "7 ROC-AUC points over 18 comparisons (related settings and feature variants). These findings concern the tested configurations; the encoder-level probe and subsequent checks were chosen post hoc."
+        ],
+        "founderSummary": [
+          "5 points over linear probing.",
+          "Two fixed-probe gains near +21 points shrink under the same tuning, with smaller benefits unresolved.",
+          "7 ROC-AUC points over 18 comparisons (related settings and feature variants). These findings concern the tested configurations; the encoder-level probe and subsequent checks were chosen post hoc."
+        ]
       },
       "insightsAttempted": true
     },
@@ -2537,7 +2453,21 @@
       "id": "ae07ac3c4387d",
       "relevanceScore": 13,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-25T07:28:08.145Z"
+      "addedAt": "2026-11-25T07:28:08.145Z",
+      "insights": {
+        "whatHappened": "Existing benchmarks examine selected prediction conditions, but it remains unclear how model advantages depend on signal duration, warning time, and available inputs across care settings. We introduce Actionwave, a benchmark for waveform-centric clinical prediction across intensive-care, operating-room, and emergency-department settings. These comparisons identify task-specific choices and show why matched cohorts, unimodal controls, and explicit timing are necessary when interpreting waveform model performance. 31249v1 Announce Type: new \nAbstract: Continuous bedside waveforms record rapid physiological changes that can inform clinical decisions.",
+        "engineerSummary": [
+          "Existing benchmarks examine selected prediction conditions, but it remains unclear how model advantages depend on signal duration, warning time, and available inputs across care settings.",
+          "We introduce Actionwave, a benchmark for waveform-centric clinical prediction across intensive-care, operating-room, and emergency-department settings.",
+          "These comparisons identify task-specific choices and show why matched cohorts, unimodal controls, and explicit timing are necessary when interpreting waveform model performance. 31249v1 Announce Type: new Abstract: Continuous bedside waveforms record rapid physiological changes that can inform clinical decisions."
+        ],
+        "founderSummary": [
+          "Existing benchmarks examine selected prediction conditions, but it remains unclear how model advantages depend on signal duration, warning time, and available inputs across care settings.",
+          "We introduce Actionwave, a benchmark for waveform-centric clinical prediction across intensive-care, operating-room, and emergency-department settings.",
+          "These comparisons identify task-specific choices and show why matched cohorts, unimodal controls, and explicit timing are necessary when interpreting waveform model performance. 31249v1 Announce Type: new Abstract: Continuous bedside waveforms record rapid physiological changes that can inform clinical decisions."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Fusion Gains Depend on the Implementation and the Calibration Target: An 18-Task Study of Prediction Intervals with a Single-Source Fallback",
@@ -2552,7 +2482,21 @@
       "id": "a5774fc73315f",
       "relevanceScore": 13,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-25T07:28:08.145Z"
+      "addedAt": "2026-11-25T07:28:08.145Z",
+      "insights": {
+        "whatHappened": "1% against its matched single source. 1% of task-level runs under group-wise calibration. We compare four fusion implementations with matched single-source learners on 18 regression tasks with prediction intervals. Across ten refits under group-wise calibration, linear stacking improved the interval score by 6.",
+        "engineerSummary": [
+          "1% against its matched single source.",
+          "1% of task-level runs under group-wise calibration.",
+          "We compare four fusion implementations with matched single-source learners on 18 regression tasks with prediction intervals. Across ten refits under group-wise calibration, linear stacking improved the interval score by 6."
+        ],
+        "founderSummary": [
+          "1% against its matched single source.",
+          "1% of task-level runs under group-wise calibration.",
+          "We compare four fusion implementations with matched single-source learners on 18 regression tasks with prediction intervals. Across ten refits under group-wise calibration, linear stacking improved the interval score by 6."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Certify What You Plant: Shortcut-Free Proof Depth in Logical Reasoning Data",
@@ -2567,7 +2511,21 @@
       "id": "a7768337a6b16",
       "relevanceScore": 12,
       "whyItMatters": "Directly affects how LLM-powered products are built and shipped.",
-      "addedAt": "2026-11-26T07:16:27.163Z"
+      "addedAt": "2026-11-26T07:16:27.163Z",
+      "insights": {
+        "whatHappened": "However, a planted proof is only one possible proof. Their difficulty is usually set by planting a proof, that is, by sampling a proof of the desired depth and stating its premises as the problem. A problem can also have shorter proofs, or several unrelated ones, and its stated depth then overstates what solving it requires. We then construct problems whose every proof has a requested structure, using a catalog of shortcuts proved once per rule set.",
+        "engineerSummary": [
+          "However, a planted proof is only one possible proof.",
+          "Their difficulty is usually set by planting a proof, that is, by sampling a proof of the desired depth and stating its premises as the problem.",
+          "A problem can also have shorter proofs, or several unrelated ones, and its stated depth then overstates what solving it requires. We then construct problems whose every proof has a requested structure, using a catalog of shortcuts proved once per rule set."
+        ],
+        "founderSummary": [
+          "However, a planted proof is only one possible proof.",
+          "Their difficulty is usually set by planting a proof, that is, by sampling a proof of the desired depth and stating its premises as the problem.",
+          "A problem can also have shorter proofs, or several unrelated ones, and its stated depth then overstates what solving it requires. We then construct problems whose every proof has a requested structure, using a catalog of shortcuts proved once per rule set."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "PeerReveal: Learning to Generalize in AI Peer Review Detection",
@@ -2582,7 +2540,21 @@
       "id": "a3c83ed49a8f3",
       "relevanceScore": 12,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-26T07:16:27.163Z"
+      "addedAt": "2026-11-26T07:16:27.163Z",
+      "insights": {
+        "whatHappened": "These results show that robust AI-review detection benefits from richer review-level evidence and adversarial training on more challenging generation processes. 33555v1 Announce Type: new \nAbstract: Can we distinguish fully AI-generated reviews from those using AI only to rewrite human judgement? We evaluate PeerReveal on PeerShift, a new, challenging test set of 5,430 reviews spanning multiple domains, including machine learning, life sciences, and social sciences, combining variation in disciplinary review conventions with diverse AI review-production mechanisms. To this end, we introduce PeerReveal, a new detector that grounds its decisions in learned relationships between a review's claims and reference claims drawn from AI-generated reviews of the same paper, complemented by review-level textual signals.",
+        "engineerSummary": [
+          "These results show that robust AI-review detection benefits from richer review-level evidence and adversarial training on more challenging generation processes.",
+          "33555v1 Announce Type: new",
+          "Abstract: Can we distinguish fully AI-generated reviews from those using AI only to rewrite human judgement? We evaluate PeerReveal on PeerShift, a new, challenging test set of 5,430 reviews spanning multiple domains, including machine learning, life sciences, and social sciences, combining variation in disciplinary review conventions with diverse AI review-production mechanisms. To this end, we introduce PeerReveal, a new detector that grounds its decisions in learned relationships between a review's claims and reference claims drawn from AI-generated reviews of the same paper, complemented by review-level textual signals."
+        ],
+        "founderSummary": [
+          "These results show that robust AI-review detection benefits from richer review-level evidence and adversarial training on more challenging generation processes.",
+          "33555v1 Announce Type: new",
+          "Abstract: Can we distinguish fully AI-generated reviews from those using AI only to rewrite human judgement? We evaluate PeerReveal on PeerShift, a new, challenging test set of 5,430 reviews spanning multiple domains, including machine learning, life sciences, and social sciences, combining variation in disciplinary review conventions with diverse AI review-production mechanisms. To this end, we introduce PeerReveal, a new detector that grounds its decisions in learned relationships between a review's claims and reference claims drawn from AI-generated reviews of the same paper, complemented by review-level textual signals."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Quantum Machine Learning for Signature Forgery Detection",
@@ -2597,7 +2569,21 @@
       "id": "a94fb241daa7c",
       "relevanceScore": 12,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-26T07:16:27.163Z"
+      "addedAt": "2026-11-26T07:16:27.163Z",
+      "insights": {
+        "whatHappened": "62 percent accuracy. 13 percent. We pair a ZZ feature map quantum kernel with three classical learners: K-Nearest Neighbours, Support Vector Machine and Random Forest. arXiv:2611.",
+        "engineerSummary": [
+          "62 percent accuracy.",
+          "13 percent.",
+          "We pair a ZZ feature map quantum kernel with three classical learners: K-Nearest Neighbours, Support Vector Machine and Random Forest. arXiv:2611."
+        ],
+        "founderSummary": [
+          "62 percent accuracy.",
+          "13 percent.",
+          "We pair a ZZ feature map quantum kernel with three classical learners: K-Nearest Neighbours, Support Vector Machine and Random Forest. arXiv:2611."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Temporal Exposure to Byzantine Vulnerability Under Intermittent Participation in Federated Learning",
@@ -2612,7 +2598,21 @@
       "id": "a0dcbf7b6eefd",
       "relevanceScore": 12,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-26T07:16:27.163Z"
+      "addedAt": "2026-11-26T07:16:27.163Z",
+      "insights": {
+        "whatHappened": "Our analysis shows that intermittent participation does not automatically imply aggregation failure. Under stochastic participation, we derive the probability of per round exposure and analyse how active-set size affects the variability of the observed Byzantine fraction. To mitigate this risk, we outline actionable design recommendations based on minimum active-set constraints, temporal monitoring, participation history, and adaptive aggregation. 33168v1 Announce Type: new \nAbstract: In this paper, we study the effect of participation variability on per-round Byzantine vulnerability.",
+        "engineerSummary": [
+          "Our analysis shows that intermittent participation does not automatically imply aggregation failure.",
+          "Under stochastic participation, we derive the probability of per round exposure and analyse how active-set size affects the variability of the observed Byzantine fraction.",
+          "To mitigate this risk, we outline actionable design recommendations based on minimum active-set constraints, temporal monitoring, participation history, and adaptive aggregation. 33168v1 Announce Type: new Abstract: In this paper, we study the effect of participation variability on per-round Byzantine vulnerability."
+        ],
+        "founderSummary": [
+          "Our analysis shows that intermittent participation does not automatically imply aggregation failure.",
+          "Under stochastic participation, we derive the probability of per round exposure and analyse how active-set size affects the variability of the observed Byzantine fraction.",
+          "To mitigate this risk, we outline actionable design recommendations based on minimum active-set constraints, temporal monitoring, participation history, and adaptive aggregation. 33168v1 Announce Type: new Abstract: In this paper, we study the effect of participation variability on per-round Byzantine vulnerability."
+        ]
+      },
+      "insightsAttempted": true
     },
     {
       "title": "Geophysics-informed invertible operator network for Bayesian geophysical inversion",
@@ -2748,69 +2748,6 @@
       "relevanceScore": 12,
       "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
       "addedAt": "2026-11-23T06:17:06.164Z"
-    },
-    {
-      "title": "PsyWorld: Profile-Conditioned World Modeling for Human Behavior Prediction",
-      "summary": "arXiv:2611.24999v1 Announce Type: new \nAbstract: Understanding how stable psychometric traits and time-varying states jointly inform behavior is an important problem in computational behavioral science. Existing personalized agents commonly condition actions directly on a static profile, leaving realized state transitions unused as an explicit source of supervision. We introduce a profile-conditioned state world model that uses observed environment--behavior state transitions to learn transition-informed representations for behavioral prediction. During training, a posterior encoder quantizes realized transitions, while a prior predicts the resulting codes from the psychometric profile and pre-transition context. The prior code and predicted next state then condition macro-level behavior and simulator-grounded execution. Thus, the world model provides structured transition supervision instead of treating personality as a direct action descriptor. We evaluate the framework in VEET, a controlled behavioral simulator with human trajectories, and in AgentSociety as a structurally different synthetic environment. A participant-disjoint split of 240 training, 25 validation, and 48 test participants evaluates generalization to unseen people. On VEET, the model reaches 0.904 Top-1 accuracy (95\\% CI: [0.895, 0.913]) and 0.0033 Macro KL. Ablations associate continuous next-state modeling with most of the Top-1 gain, while discrete codes and prior alignment mainly improve Top-3 and distributional alignment. These results establish transition-informed world-model supervision as useful for subject-generalized behavior prediction, without implying causal psychological mechanisms or calibrated long-horizon state dynamics.",
-      "url": "https://arxiv.org/abs/2611.24999",
-      "publishedAt": "2026-11-21T05:00:00.000Z",
-      "source": "arXiv ML",
-      "category": "AI Agents",
-      "trusted": true,
-      "image": null,
-      "audience": "ai_engineer",
-      "id": "a2811d5d7284a",
-      "relevanceScore": 12,
-      "whyItMatters": "Impacts agent orchestration, tool use, and reliability.",
-      "addedAt": "2026-11-21T10:02:36.199Z",
-      "insights": {
-        "whatHappened": "We introduce a profile-conditioned state world model that uses observed environment--behavior state transitions to learn transition-informed representations for behavioral prediction. The prior code and predicted next state then condition macro-level behavior and simulator-grounded execution. These results establish transition-informed world-model supervision as useful for subject-generalized behavior prediction, without implying causal psychological mechanisms or calibrated long-horizon state dynamics. During training, a posterior encoder quantizes realized transitions, while a prior predicts the resulting codes from the psychometric profile and pre-transition context.",
-        "engineerSummary": "We introduce a profile-conditioned state world model that uses observed environment--behavior state transitions to learn transition-informed representations for behavioral prediction. The prior code and predicted next state then condition macro-level behavior and simulator-grounded execution. These results establish transition-informed world-model supervision as useful for subject-generalized behavior prediction, without implying causal psychological mechanisms or calibrated long-horizon state dynamics. During training, a posterior encoder quantizes realized transitions, while a prior predicts the resulting codes from the psychometric profile and pre-transition context.",
-        "founderSummary": "We introduce a profile-conditioned state world model that uses observed environment--behavior state transitions to learn transition-informed representations for behavioral prediction. The prior code and predicted next state then condition macro-level behavior and simulator-grounded execution. These results establish transition-informed world-model supervision as useful for subject-generalized behavior prediction, without implying causal psychological mechanisms or calibrated long-horizon state dynamics. During training, a posterior encoder quantizes realized transitions, while a prior predicts the resulting codes from the psychometric profile and pre-transition context."
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "On the Impact of Feature Reduction Techniques on Adversarial Attacks",
-      "summary": "arXiv:2611.25004v1 Announce Type: new \nAbstract: Adversarial attacks have posed significant threats to machine learning models by exploiting their inherent vulnerabilities. Researchers have established an interdisciplinary field called adversarial machine learning to explore these vulnerabilities and develop corresponding defense strategies. Feature reduction strategies are used to decrease the dimensionality of the data in order to reduce training time, avoid the curse of dimensionality, prevent overfitting, and mitigate redundant features. However, their effect on adversarial robustness across different classifiers and attack scenarios remains insufficiently explored. This study aims to analyze the effect of feature reduction techniques on the adversarial robustness of a diverse set of machine learning models under poisoning, backdoor, and universal adversarial perturbation attacks on the APT dataset. These models include support vector machine, decision tree, random forest, multi-layer perceptron, and k-nearest neighbors. The attained results are compared with scenarios where different feature reduction techniques are applied, including principal component analysis, permutation importance ranking, recursive feature elimination, and univariate mutual information. Metrics such as accuracy, F1-score, and mitigation score are employed to evaluate the effect of these techniques on adversarial robustness. The results demonstrate that permutation importance ranking and univariate mutual information generally provide the most consistent robustness improvements, while other methods exhibit more variable effects depending on the classifier and attack scenario.",
-      "url": "https://arxiv.org/abs/2611.25004",
-      "publishedAt": "2026-11-21T05:00:00.000Z",
-      "source": "arXiv ML",
-      "category": "Research",
-      "trusted": true,
-      "image": null,
-      "audience": "ai_engineer",
-      "id": "a8284e7b32417",
-      "relevanceScore": 12,
-      "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-21T10:02:36.199Z",
-      "insights": {
-        "whatHappened": "However, their effect on adversarial robustness across different classifiers and attack scenarios remains insufficiently explored. 25004v1 Announce Type: new \nAbstract: Adversarial attacks have posed significant threats to machine learning models by exploiting their inherent vulnerabilities. Researchers have established an interdisciplinary field called adversarial machine learning to explore these vulnerabilities and develop corresponding defense strategies. This study aims to analyze the effect of feature reduction techniques on the adversarial robustness of a diverse set of machine learning models under poisoning, backdoor, and universal adversarial perturbation attacks on the APT dataset.",
-        "engineerSummary": "However, their effect on adversarial robustness across different classifiers and attack scenarios remains insufficiently explored. 25004v1 Announce Type: new \nAbstract: Adversarial attacks have posed significant threats to machine learning models by exploiting their inherent vulnerabilities. Researchers have established an interdisciplinary field called adversarial machine learning to explore these vulnerabilities and develop corresponding defense strategies. This study aims to analyze the effect of feature reduction techniques on the adversarial robustness of a diverse set of machine learning models under poisoning, backdoor, and universal adversarial perturbation attacks on the APT dataset.",
-        "founderSummary": "However, their effect on adversarial robustness across different classifiers and attack scenarios remains insufficiently explored. 25004v1 Announce Type: new \nAbstract: Adversarial attacks have posed significant threats to machine learning models by exploiting their inherent vulnerabilities. Researchers have established an interdisciplinary field called adversarial machine learning to explore these vulnerabilities and develop corresponding defense strategies. This study aims to analyze the effect of feature reduction techniques on the adversarial robustness of a diverse set of machine learning models under poisoning, backdoor, and universal adversarial perturbation attacks on the APT dataset."
-      },
-      "insightsAttempted": true
-    },
-    {
-      "title": "Bayesian $\\kappa$-Explorer for Minimax Model Estimation in MDPs",
-      "summary": "arXiv:2611.25160v1 Announce Type: new \nAbstract: We study active exploration for minimax transition estimation in unknown Markov decision processes (MDPs). Frequentist $\\kappa$-Explorer~\\citep{gu2026kappa} addresses this problem through a parameterized family of exploration objectives, but requires confidence-bound constructions and joint optimization over plausible transition kernels and occupancy measures, introducing a computational burden that limits its practical applicability. We develop Bayesian $\\kappa$-Explorer, which simplifies this procedure by placing Dirichlet priors on the transition distributions. Under the posterior mean estimator, the posterior expected squared $\\ell_2$ error equals the total posterior variance, providing a closed-form exploration signal. The algorithm plans under the posterior mean model, eliminating confidence-set optimization. Under the stated assumptions, this simpler planning procedure retains the $\\widetilde{O}(T^{-1/3})$ surrogate convergence rate of frequentist $\\kappa$-Explorer. We further bound the maximum posterior variance relative to the optimal asymptotic minimax allocation benchmark. Experiments on Pendulum, Mountain Car, and Taxi demonstrate lower worst-case transition-estimation errors than the tested baselines.",
-      "url": "https://arxiv.org/abs/2611.25160",
-      "publishedAt": "2026-11-21T05:00:00.000Z",
-      "source": "arXiv ML",
-      "category": "Research",
-      "trusted": true,
-      "image": null,
-      "audience": "ai_engineer",
-      "id": "a1fe3f40ac638",
-      "relevanceScore": 12,
-      "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-21T10:02:36.199Z",
-      "insights": {
-        "whatHappened": "Under the posterior mean estimator, the posterior expected squared $\\ell_2$ error equals the total posterior variance, providing a closed-form exploration signal. The algorithm plans under the posterior mean model, eliminating confidence-set optimization. 25160v1 Announce Type: new \nAbstract: We study active exploration for minimax transition estimation in unknown Markov decision processes (MDPs). We further bound the maximum posterior variance relative to the optimal asymptotic minimax allocation benchmark.",
-        "engineerSummary": "Under the posterior mean estimator, the posterior expected squared $\\ell_2$ error equals the total posterior variance, providing a closed-form exploration signal. The algorithm plans under the posterior mean model, eliminating confidence-set optimization. 25160v1 Announce Type: new \nAbstract: We study active exploration for minimax transition estimation in unknown Markov decision processes (MDPs). We further bound the maximum posterior variance relative to the optimal asymptotic minimax allocation benchmark.",
-        "founderSummary": "Under the posterior mean estimator, the posterior expected squared $\\ell_2$ error equals the total posterior variance, providing a closed-form exploration signal. The algorithm plans under the posterior mean model, eliminating confidence-set optimization. 25160v1 Announce Type: new \nAbstract: We study active exploration for minimax transition estimation in unknown Markov decision processes (MDPs). We further bound the maximum posterior variance relative to the optimal asymptotic minimax allocation benchmark."
-      },
-      "insightsAttempted": true
     },
     {
       "title": "GPT-6 models demonstrate intrinsic protein-design capabilities",
@@ -3143,27 +3080,6 @@
       "addedAt": "2026-11-23T06:17:06.164Z"
     },
     {
-      "title": "Near-Quadratic Sample Compression for All VC Classes",
-      "summary": "arXiv:2611.25011v1 Announce Type: new \nAbstract: The sample compression conjecture is a longstanding open problem in learning theory, originating in the work of Littlestone and Warmuth in the 1980s. At its heart is a connection between simplification and generalization: if a predictor consistent with a training sample is defined using only a small part of that sample, then it is likely to generalize. Sample compression schemes formalize this idea, and many natural learning algorithms can be analyzed this way.\n The sample compression conjecture of Floyd and Warmuth (1995) asserts that every binary concept class of VC dimension $d$ admits a sample compression scheme of size $O(d)$; a weaker conjecture asks only for size polynomial in $d$. Both have remained open: the first bound depending only on $d$, due to Moran and Yehudayoff (2016), is exponential in $d$. We prove the weaker conjecture by constructing a sample compression scheme of size $O(d^2 \\log^2 d)$.",
-      "url": "https://arxiv.org/abs/2611.25011",
-      "publishedAt": "2026-11-21T05:00:00.000Z",
-      "source": "arXiv ML",
-      "category": "Model Training",
-      "trusted": true,
-      "image": null,
-      "audience": "ai_engineer",
-      "id": "ac43c7baee570",
-      "relevanceScore": 8,
-      "whyItMatters": "Influences training cost, quality, and adaptation strategy.",
-      "addedAt": "2026-11-21T10:02:36.199Z",
-      "insights": {
-        "whatHappened": "The sample compression conjecture of Floyd and Warmuth (1995) asserts that every binary concept class of VC dimension $d$ admits a sample compression scheme of size $O(d)$; a weaker conjecture asks only for size polynomial in $d$. Sample compression schemes formalize this idea, and many natural learning algorithms can be analyzed this way. We prove the weaker conjecture by constructing a sample compression scheme of size $O(d^2 \\log^2 d)$. 25011v1 Announce Type: new \nAbstract: The sample compression conjecture is a longstanding open problem in learning theory, originating in the work of Littlestone and Warmuth in the 1980s.",
-        "engineerSummary": "The sample compression conjecture of Floyd and Warmuth (1995) asserts that every binary concept class of VC dimension $d$ admits a sample compression scheme of size $O(d)$; a weaker conjecture asks only for size polynomial in $d$. Sample compression schemes formalize this idea, and many natural learning algorithms can be analyzed this way. We prove the weaker conjecture by constructing a sample compression scheme of size $O(d^2 \\log^2 d)$. 25011v1 Announce Type: new \nAbstract: The sample compression conjecture is a longstanding open problem in learning theory, originating in the work of Littlestone and Warmuth in the 1980s.",
-        "founderSummary": "The sample compression conjecture of Floyd and Warmuth (1995) asserts that every binary concept class of VC dimension $d$ admits a sample compression scheme of size $O(d)$; a weaker conjecture asks only for size polynomial in $d$. Sample compression schemes formalize this idea, and many natural learning algorithms can be analyzed this way. We prove the weaker conjecture by constructing a sample compression scheme of size $O(d^2 \\log^2 d)$. 25011v1 Announce Type: new \nAbstract: The sample compression conjecture is a longstanding open problem in learning theory, originating in the work of Littlestone and Warmuth in the 1980s."
-      },
-      "insightsAttempted": true
-    },
-    {
       "title": "Cross-Attack Robust Aggregation for Federated Learning",
       "summary": "arXiv:2611.26731v1 Announce Type: new \nAbstract: Federated learning (FL) lets resource-constrained IoT and edge devices train a shared model without exchanging raw data, but compromised or faulty devices can poison the global model. Existing robust aggregators each fail in some regime: naive averaging (FedAvg) collapses under high-magnitude attacks, whereas distance- and statistics-based defenses (Krum, median, trimmed mean) sacrifice accuracy on non-IID data and remain vulnerable to stealthy attacks. We present FedTether, which reweights client updates by their deviation from a coordinatewise median through a robust, dead-zoned score applied as a server-side optimizer step. Across three datasets, three attack types, and Byzantine fractions up to 40%, FedTether is the only method top-tier in every regime: it matches FedAvg under stealthy attacks with no robustness tax, exceeds robust baselines by up to 42 accuracy points, and stays accurate where high-magnitude attacks reduce FedAvg to near-random. These properties persist at 50 clients under partial participation, with no shared data or validation set.",
       "url": "https://arxiv.org/abs/2611.26731",
@@ -3177,75 +3093,54 @@
       "relevanceScore": 6,
       "whyItMatters": "New research that may shape upcoming engineering practices.",
       "addedAt": "2026-11-23T06:17:06.164Z"
-    },
-    {
-      "title": "Auditing Learned Dynamics in Weather Models",
-      "summary": "arXiv:2611.25119v1 Announce Type: new \nAbstract: Learned weather models are experimentally accessible computational systems whose internal representations can be inspected and manipulated. Using sparse autoencoder features from GraphCast, DeepMind's autoregressive weather forecasting model, we test whether causal relevance requires physical semantics, a question that matters for auditing whether AI forecasters used in high-assurance settings rely on reliable mechanisms. We also look at whether physically associated latent directions can be steered to improve extreme-event forecasts, where interventions are applied to the model's internal activations during the rollout. We find that ablating a feature locked to GraphCast's computational mesh increases global geopotential height error despite lacking conventional physical semantics. Second, suppressing convection- and low-level-vorticity-associated features weakens predicted tropical-cyclone deepening (the fall in central pressure during intensification), while amplifying them reduces intensity error, with amplification of convection features through feature scaling achieving a median of 51\\% error reduction over seven storms. Together, these results separate interpretable, physical association from causal utility and establish sparse features as experimental coordinates for auditing and intervening on learned weather dynamics.",
-      "url": "https://arxiv.org/abs/2611.25119",
-      "publishedAt": "2026-11-21T05:00:00.000Z",
-      "source": "arXiv ML",
-      "category": "Research",
-      "trusted": true,
-      "image": null,
-      "audience": "ai_engineer",
-      "id": "a2f4825de1af5",
-      "relevanceScore": 6,
-      "whyItMatters": "New research that may shape upcoming engineering practices.",
-      "addedAt": "2026-11-21T10:02:36.199Z",
-      "insights": {
-        "whatHappened": "Together, these results separate interpretable, physical association from causal utility and establish sparse features as experimental coordinates for auditing and intervening on learned weather dynamics. Using sparse autoencoder features from GraphCast, DeepMind's autoregressive weather forecasting model, we test whether causal relevance requires physical semantics, a question that matters for auditing whether AI forecasters used in high-assurance settings rely on reliable mechanisms. Second, suppressing convection- and low-level-vorticity-associated features weakens predicted tropical-cyclone deepening (the fall in central pressure during intensification), while amplifying them reduces intensity error, with amplification of convection features through feature scaling achieving a median of 51\\% error reduction over seven storms. 25119v1 Announce Type: new \nAbstract: Learned weather models are experimentally accessible computational systems whose internal representations can be inspected and manipulated.",
-        "engineerSummary": "Together, these results separate interpretable, physical association from causal utility and establish sparse features as experimental coordinates for auditing and intervening on learned weather dynamics. Using sparse autoencoder features from GraphCast, DeepMind's autoregressive weather forecasting model, we test whether causal relevance requires physical semantics, a question that matters for auditing whether AI forecasters used in high-assurance settings rely on reliable mechanisms. Second, suppressing convection- and low-level-vorticity-associated features weakens predicted tropical-cyclone deepening (the fall in central pressure during intensification), while amplifying them reduces intensity error, with amplification of convection features through feature scaling achieving a median of 51\\% error reduction over seven storms. 25119v1 Announce Type: new \nAbstract: Learned weather models are experimentally accessible computational systems whose internal representations can be inspected and manipulated.",
-        "founderSummary": "Together, these results separate interpretable, physical association from causal utility and establish sparse features as experimental coordinates for auditing and intervening on learned weather dynamics. Using sparse autoencoder features from GraphCast, DeepMind's autoregressive weather forecasting model, we test whether causal relevance requires physical semantics, a question that matters for auditing whether AI forecasters used in high-assurance settings rely on reliable mechanisms. Second, suppressing convection- and low-level-vorticity-associated features weakens predicted tropical-cyclone deepening (the fall in central pressure during intensification), while amplifying them reduces intensity error, with amplification of convection features through feature scaling achieving a median of 51\\% error reduction over seven storms. 25119v1 Announce Type: new \nAbstract: Learned weather models are experimentally accessible computational systems whose internal representations can be inspected and manipulated."
-      },
-      "insightsAttempted": true
     }
   ],
   "githubTrending": [
     {
       "name": "Significant-Gravitas/AutoGPT",
       "description": "AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
-      "stars": 188205,
-      "forks": 45833,
+      "stars": 188218,
+      "forks": 45824,
       "language": "Python",
       "url": "https://github.com/Significant-Gravitas/AutoGPT"
     },
     {
       "name": "f/prompts.chat",
       "description": "f.k.a. Awesome ChatGPT Prompts. Share, discover, and collect prompts from the community. Free and open source — self-host for your organization with complete privacy.",
-      "stars": 178630,
-      "forks": 22761,
+      "stars": 178725,
+      "forks": 22767,
       "language": "MDX",
       "url": "https://github.com/f/prompts.chat"
     },
     {
       "name": "thedotmack/claude-mem",
       "description": "Persistent Context Across Sessions for Every Agent –  Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More",
-      "stars": 120059,
-      "forks": 10447,
+      "stars": 120261,
+      "forks": 10462,
       "language": "TypeScript",
       "url": "https://github.com/thedotmack/claude-mem"
     },
     {
       "name": "rasbt/LLMs-from-scratch",
       "description": "Implement a ChatGPT-like LLM in PyTorch from scratch, step by step",
-      "stars": 109109,
-      "forks": 16866,
+      "stars": 109168,
+      "forks": 16874,
       "language": "Jupyter Notebook",
       "url": "https://github.com/rasbt/LLMs-from-scratch"
     },
     {
       "name": "hacksider/Deep-Live-Cam",
       "description": "real time face swap and one-click video deepfake with only a single image",
-      "stars": 98963,
-      "forks": 14473,
+      "stars": 98979,
+      "forks": 14476,
       "language": "Python",
       "url": "https://github.com/hacksider/Deep-Live-Cam"
     },
     {
       "name": "OpenHands/OpenHands",
       "description": "🙌 OpenHands: AI-Driven Development",
-      "stars": 94434,
-      "forks": 12661,
+      "stars": 94477,
+      "forks": 12672,
       "language": "TypeScript",
       "url": "https://github.com/OpenHands/OpenHands"
     }
